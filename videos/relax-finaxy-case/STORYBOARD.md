@@ -1,231 +1,164 @@
 ---
 format: 1920x1080
 duration: 100s
-message: "Les meilleurs experts pour votre projet, coordonnés par un partenaire de confiance : Relax construit l'organisation autour du projet et absorbe la complexité pour le client."
-arc: Chaos hérité → le vrai sujet → Comprendre → Révéler → Organiser → Exprimer → Déployer (exponentiel) → la méthode Relax → tourbillon → respiration → logo Relax
-audience: Dirigeants et directions marketing/communication, prospects de l'agence Relax (site + réseaux sociaux)
+message: "Les meilleurs talents au service de votre projet, coordonnés comme une seule équipe : chez Relax, on construit l'équipe autour du projet."
+arc: Constat → écouter / révéler → organiser / exprimer → déployer → le rôle de Relax → respiration → relax•
+audience: Dirigeants et directions marketing/communication, prospects de l'agence Relax
 mode: collaborative
 ---
 
-# Storyboard v3 — Relax × Finaxy
+# Storyboard v4 — Relax × Finaxy (direction v2 : l'effet domino)
 
-**Ce film dit aux dirigeants et directions marketing que Relax réunit et coordonne, sans couture, les
-meilleurs experts autour de leur projet — pour qu'eux n'aient plus à gérer la complexité.**
-
-- **Format :** 1920×1080, ~100 s estimés (somme des beats : 102,5 s) (VO réelle décidera), voix off FR Gemini « Algieba », fond musical
-  ambient discret, sound design sur le fil, respiration finale. Déclinaison 4:5 ensuite.
-- **DA :** le film parle en Relax (fond blanc et lavis pastel du site, Unbounded + DM Sans, frame.md) ;
-  l'identité Finaxy (marine, crème, bordeaux, serif) n'apparaît que sur les livrables montrés.
-- **Spine — le fil :** le ruban lavande du site Relax, aplati en une ligne, traverse tout le film sans
-  jamais être coupé. Sa tête est le point rose du logo relax•. Chaque contact aligne l'élément suivant
-  (effet domino). Le monde glisse vers la gauche, le fil continue vers la droite. À la fin, le fil expire
-  et devient le point du logo.
-- **Courbe d'énergie :** frénétique au début (dérive rapide, saccades), puis chaque scène plus lente et
-  plus posée que la précédente — sauf le déploiement (accélération exponentielle maîtrisée), puis le
-  tourbillon, puis le calme total de la respiration.
-- **Held frames :** Frame 05 (« L'intelligence collective du risque. » — rien ne bouge) et Frame 12
-  (inspiration retenue avant l'expiration).
-- **Bans :** pas d'effet catalogue, pas d'anglais à l'écran (sauf « naming », « Team player »), pas de faux
-  site ni de fausse interface (captures réelles ou placeholders étiquetés), pas de glow sur le texte.
-  Échecs de motion à éviter : le diaporama (chaque beat une nouvelle carte) et l'écran de veille.
-
-## Changes from v1
-
-- « Dans la narration je pense qu'il faut dire que ca va au dela d'un simple pb de logo mais qu'on se parle
-  plutot d'un pb de cohérence globale. » → VO Frame 2 réécrite.
-- « vu que c'est un case relax, le fond de la DA devrait etre une DA relax plutot que Finaxy. Mais on
-  illustre bien dans la video la DA qu'on a mis en place pour finaxy. » → frame.md réécrit (Relax = film,
-  Finaxy = artefacts).
-- Frame 6 : les 3 verticales réelles de finaxy.com. Frame 12 : vrai logo relax• (relax-agency.com).
-
-## Changes from v2
-
-- « Je dirai plutôt simplement : "L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence." » → VO Frame 2.
-- « Prend les infos du site » → Frame 1 : 11ᵉ courtier français (finaxy.com) + 12 000 entreprises clientes ; pas le nombre de collaborateurs (retour client).
-- Narration verrouillée dans SCRIPT.md.
-
-## Locked
-
-- Plan et sketches v3 validés (« Ok avec le reste »). Build : compositions/ générées par tools/build.py
-  depuis tools/scenes/ et tools/timing.json (durées et repères de voix off).
+- **Retour client sur v1 :** trop descriptif, pas assez moderne ; constat rapide, effet domino, puis la force de Relax ; voix féminine.
+- **Texte :** script du client (SCRIPT.md), voix Sulafat, 5 prises (une par acte).
+- **Langage :** références Jerry (carrousel à plis de verre irisé) et Stephan (aplats plein cadre, typo géante, contours répétés, habillage interface en mono) ; 3D isométrique pour la ville, l'architecture et l'équipe ; l'effet domino relie les actes.
+- **DA :** Relax (blanc, verre irisé cyan/lavande/rose, aplats violet #6955AA et rose #FF0055, nuit #16131F, Unbounded + DM Sans + mono). Finaxy uniquement sur les livrables.
+- **Fin :** respiration calme et discrète, relax•, signature « Relax, on s'occupe de tout. »
 
 ## Still open
 
-- Signature finale optionnelle « Maintenant, relax, on s'occupe du reste. » (site Relax) — oui / non.
-- Ancien site Finaxy : web.archive.org très instable et peu de captures récentes de finaxy.com — à réessayer
-  au build, ou captures à fournir.
-- Visuels réels des supports (plaquettes B2B, kakemonos, cartes de visite, masques de présentation,
-  cartes de vœux, LinkedIn) et de l'agent IA — placeholders étiquetés en attendant.
-- `GEMINI_API_KEY` pour la voix Algieba.
-- Respiration finale : enregistrement réel (banque de sons) vs synthèse — à valider à l'écoute.
+- Validation de la planche v4.
+- Troisième référence (stevelauda_) inaccessible.
 
-## Frame 1 — Chaos hérité
+## Frame 1 — 11ᵉ courtier
 
-- scene: Des dizaines de nœuds épars dérivent vite ; noms de cabinets, expertises, sigles ; ancien logo FINAXY GROUP au milieu ; « 11ᵉ courtier français » et « + 12 000 entreprises clientes » se comptent
-- duration: 9s
-- transition_in: cut
-- status: animated
-- src: compositions/01-chaos.html
-- voiceover: "Finaxy avait grandi vite. Très vite. Des acquisitions, des cabinets, des expertises, des marques… Onzième courtier français. Plus de douze mille entreprises clientes."
-- motion: rules — spring-pop-entrance, sine-wave-loop (jitter), counting-dynamic-scale
-- poster: 6s
+- scene: Aplat violet, « 11 » géant, habillage interface (coins, mono), point rose
+- status: built
+- src: compositions/v2-01.html
+- act: A — Le constat
+- voiceover: "Finaxy est le onzième courtier français."
+- cue: line 1 @ 0.70s
 
-Hero prop : les nœuds (ils reviennent dans chaque scène, de plus en plus ordonnés). Couleur « avant »
-#5E7891. L'ancien logo est un nœud parmi d'autres, sans hiérarchie. « Plus de 12 000 entreprises
-clientes » arrive en compteur Manrope. Pas de fil encore. Why : poser la puissance ET la complexité.
+## Frame 2 — A grandi vite
 
-## Frame 2 — Le vrai sujet
+- scene: Ville isométrique qui pousse en rafale ; pastilles de verre Cabinets · Entreprises · Marques · Acquisitions
+- status: built
+- src: compositions/v2-02.html
+- act: A — Le constat
+- voiceover: "Un groupe qui a grandi vite."
+- cue: line 1 @ 3.35s
 
-- scene: « Pas un simple problème de logo. » barré ; « Mais un sujet de cohérence. » en Unbounded ; le fil entre par le bas-gauche et touche le premier nœud qui cesse de trembler
-- duration: 9s
-- transition_in: cut
-- status: animated
-- src: compositions/02-coherence.html
-- voiceover: "L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence. Le défi : simplifier, sans appauvrir."
-- motion: rules — svg-path-draw, center-outward-expansion (inverse: nodes draw closer)
-- poster: 7s
+## Frame 3 — Ne racontait plus
 
-« simplifier, sans appauvrir » : les nœuds se rapprochent mais gardent tous leur nom (rien ne disparaît).
-Why : recadrer le problème — ce n'est pas un rebranding, c'est un problème de cohérence.
+- scene: L'ancien logo FINAXY GROUP se dédouble et se désynchronise (glitch, flou)
+- status: built
+- src: compositions/v2-03.html
+- act: A — Le constat
+- voiceover: "Et une marque qui avait fini par ne plus refléter ce que l'entreprise était devenue."
+- cue: line 1 @ 5.05s
 
-## Frame 3 — Comprendre
+## Frame 4 — Cohérence
 
-- scene: Le fil passe de nœud en nœud ; à chaque contact un mot d'enquête apparaît : dirigeants, collaborateurs, métiers, marché ; étape « 01 Comprendre » en haut à gauche
-- duration: 8s
-- transition_in: thread-carry
-- status: animated
-- src: compositions/03-comprendre.html
-- voiceover: "Alors on a commencé par écouter. Dirigeants, collaborateurs, métiers, marché. Pour comprendre ce que Finaxy était vraiment."
-- motion: blueprint spatial-pan-stations (adapted: the thread is the camera) + rules svg-path-draw, cursor-click-ripple (node ping)
-- poster: 6s
+- scene: Noir ; « logo » barré ; « COHÉRENCE » en contours répétés puis plein
+- status: built
+- src: compositions/v2-04.html
+- act: A — Le constat
+- voiceover: "Pas juste un problème de logo :"
+- cue: line 1 @ 10.74s
 
-Chaque contact = un ping bordeaux. Le rail d'étapes (01 → 05) en haut s'installe ici et persistera.
-Why : première décision de la chaîne — on ne propose rien avant d'avoir compris.
+## Frame 5 — Écouter
 
-## Frame 4 — Révéler : la singularité
+- scene: Le ruban irisé traverse 4 cartes de verre : dirigeants, collaborateurs, métiers, marché
+- status: built
+- src: compositions/v2-05.html
+- act: B — Écouter, comprendre
+- voiceover: "On a commencé par écouter."
+- cue: line 2 @ 0.67s
 
-- scene: Les nœuds se regroupent en réseau maillé ; deux pôles — « La force d'un groupe. » / « L'esprit d'un cabinet. » — reliés par le fil ; étape 02
-- duration: 9s
-- transition_in: thread-carry
-- status: animated
-- src: compositions/04-reveler.html
-- voiceover: "Et une singularité est apparue. La force d'un groupe. L'esprit d'un cabinet. Face à des risques multiples, aucune expertise isolée ne suffit."
-- motion: rules — depth-scatter-assemble, svg-path-draw
-- poster: 6s
+## Frame 6 — Intelligence collective
 
-Le réseau reprend le motif du deck plateforme (nœuds connectés). Les nœuds passent du bleu « avant » au
-crème. Why : la révélation — ce que Finaxy peut légitimement revendiquer.
+- scene: Deux cartes (La force d'un groupe / L'esprit d'un cabinet) fusionnent en panneau Finaxy « Une intelligence collective du risque. »
+- status: built
+- src: compositions/v2-06.html
+- act: B — Écouter, comprendre
+- voiceover: "Et on a compris ce que Finaxy était vraiment :"
+- cue: line 2 @ 2.75s
 
-## Frame 5 — L'intelligence collective du risque (held)
+## Frame 7 — Proposition de valeur
 
-- scene: Plein cadre, serif 160px : « L'intelligence collective du risque. » ; le réseau, immobile, en arrière-plan ; le fil s'arrête dessous
-- duration: 4.5s
-- transition_in: crossfade
-- status: animated
-- src: compositions/05-intelligence.html
-- voiceover: "Finaxy, c'est l'intelligence collective du risque."
-- motion: held frame — kinetic-type-beats (mask rise 0.8s), puis rien
-- poster: 3s
+- scene: Risques qui se multiplient autour d'un point isolé ; à droite le réseau d'experts tient ; « Le risque est devenu multiple. »
+- status: built
+- src: compositions/v2-07.html
+- act: B — Écouter, comprendre
+- voiceover: "Une proposition de valeur clé :"
+- cue: line 2 @ 8.65s
 
-Le principe qui organise tout le reste. Why : la big idea, posée comme une évidence.
+## Frame 8 — Rendre lisible
 
-## Frame 6 — Organiser : l'architecture
+- scene: La ville se range en 3 tours isométriques (verticales réelles) ; « Une idée : rendre le groupe lisible. » ; dominos qui basculent
+- status: built
+- src: compositions/v2-08.html
+- act: C — Organiser, exprimer
+- voiceover: "De cette idée,"
+- cue: line 3 @ 0.73s
 
-- scene: Le réseau se range sous le logo Finaxy en 3 verticales réelles (finaxy.com) : « Entreprises & institutions », « Affinitaire & partenariats », « Clientèle privée », chacune avec ses offres ; marques autonomes conservées en pointillé ; étape 03
-- duration: 10.5s
-- transition_in: thread-carry
-- status: animated
-- src: compositions/06-organiser.html
-- voiceover: "Cette idée est devenue un principe d'organisation. Architecture, verticales, naming, place de chaque marque : le groupe, lui aussi, est devenu lisible."
-- motion: blueprint grid-card-assemble + rules svg-path-draw, waterfall-entry
-- poster: 8s
+## Frame 9 — Du corps
 
-Les mêmes nœuds qu'en Frame 1 (callback) — mais rangés. Certaines marques acquises restent autonomes
-(liées en pointillé), d'autres intègrent le système. Verticales et offres reprises de finaxy.com. Why : la plateforme
-devient principe d'organisation — « complexe → intelligible ».
+- scene: Logo Finaxy en relief + balayage de lumière ; palette et 4 traits en éventail
+- status: built
+- src: compositions/v2-09.html
+- act: C — Organiser, exprimer
+- voiceover: "Ensuite,"
+- cue: line 3 @ 6.27s
 
-## Frame 7 — Exprimer : logo, identité, voix
+## Frame 10 — Stature · humain
 
-- scene: L'ancien logo FINAXY GROUP s'efface ; sur un panneau marine Finaxy, le nouveau « Finaxy » crème se dessine et le fil, en passant, signe la virgule bordeaux ; quatre traits en orbite : Ancré · Architecte · Team player · Pédagogue ; étape 04
-- duration: 8s
-- transition_in: thread-carry
-- status: animated
-- src: compositions/07-exprimer.html
-- voiceover: "Puis elle a pris corps. Un logo, une identité, une voix. Plus de stature, sans rien perdre d'humain."
-- motion: blueprint logo-assemble-lockup + rules svg-path-draw, spring-pop-entrance
-- poster: 6s
+- scene: Aplat rose ; « STATURE » / « humain »
+- status: built
+- src: compositions/v2-10.html
+- act: C — Organiser, exprimer
+- voiceover: "Notre ambition :"
+- cue: line 3 @ 13.79s
 
-Moment signature : le fil Relax signe la virgule bordeaux du logo Finaxy. Why : la stratégie prend corps
-— la marque exprime sa nouvelle stature.
+## Frame 11 — Les supports
 
-## Frame 8 — Déployer : l'exponentielle
+- scene: Carrousel à plis de verre irisé : plaquettes, kakemonos, cartes de visite, réseaux sociaux, vrai site finaxy.com
+- status: built
+- src: compositions/v2-11.html
+- act: D — Déployer
+- voiceover: "Et enfin,"
+- cue: line 4 @ 0.69s
 
-- scene: 1 support → 2 → 4 → 8 → 16 → mur de supports ; libellés : plaquettes B2B, kakemonos, cartes de visite, masques de présentation, cartes de vœux, LinkedIn, nouveau site, agent IA ; compteur ×2 ; étape 05
-- duration: 12s
-- transition_in: thread-carry
-- status: animated
-- src: compositions/08-deployer.html
-- voiceover: "Et le système s'est mis à produire. Plaquettes, kakemonos, cartes de visite, présentations, cartes de vœux, LinkedIn, le nouveau site… Jusqu'à un agent IA, pour que chacun écrive comme Finaxy."
-- motion: blueprint grid-card-assemble + rules discrete-text-sequence (agent IA typing)
-- poster: 9s
+## Frame 12 — Agent IA
 
-Chaque doublement est relié au précédent par le fil (le système se reproduit, il ne s'empile pas). Les
-supports sont des placeholders étiquetés tant que les visuels réels ne sont pas fournis. L'agent IA ferme
-la séquence : une bulle de texte qui s'écrit dans la voix Finaxy. Why : un système qui produit de la
-cohérence dans le temps, pas des guidelines rangées dans un tiroir.
+- scene: La cerise (point rose) tombe sur l'interface de l'agent éditorial IA qui écrit en voix Finaxy
+- status: built
+- src: compositions/v2-12.html
+- act: D — Déployer
+- voiceover: "La cerise sur le gâteau ?"
+- cue: line 4 @ 11.65s
 
-## Frame 9 — La méthode Relax : la bonne équipe
+## Frame 13 — Notre rôle
 
-- scene: Recul : le fil se dédouble ; au-dessus, une constellation d'experts en mouvement — stratégie, architecture de marque, naming, design, éditorial, production, IA — qui se relient ; au-dessous, une seule ligne calme
-- duration: 9s
-- transition_in: zoom-out
-- status: animated
-- src: compositions/09-equipe.html
-- voiceover: "Stratégie, architecture, naming, design, éditorial, production, IA. Pour chaque enjeu, Relax a réuni la bonne équipe. Et l'a fait jouer comme une seule."
-- motion: blueprint constellation-hub + rules spring-pop-entrance, svg-path-draw
-- poster: 7s
+- scene: Noir ; les talents (Stratégie, Naming, Design, Édito, Développement, Production) se verrouillent autour du projet
+- status: built
+- src: compositions/v2-13.html
+- act: E — Le rôle de Relax
+- voiceover: "Notre rôle là-dedans ?"
+- cue: line 5 @ 0.70s
 
-Les disciplines s'allument dans l'ordre exact de la VO. Why : la singularité Relax n°1 — elle coordonne
-elle-même les expertises.
+## Frame 14 — Autour du projet
 
-## Frame 10 — Côté Relax / côté client
+- scene: 3D isométrique : le cube « agence » rejette le projet, puis les experts se placent autour
+- status: built
+- src: compositions/v2-14.html
+- act: E — Le rôle de Relax
+- voiceover: "Parce que chez Relax,"
+- cue: line 5 @ 8.58s
 
-- scene: Écran partagé horizontal : « Côté Relax » (beaucoup de mouvement) / « Côté client » (un seul fil, immobile) ; « On construit l'équipe autour du projet. » ; « Aucune couture. »
-- duration: 10.5s
-- transition_in: thread-carry
-- status: animated
-- src: compositions/10-sans-couture.html
-- voiceover: "On ne fait pas entrer un projet dans une agence. On construit l'équipe autour du projet. Côté Relax, beaucoup de mouvement. Côté client, un seul fil. Aucune couture."
-- motion: rules — center-outward-expansion (team around the project), sine-wave-loop (two tempos)
-- poster: 8s
+## Frame 15 — La promesse
 
-Visualisation de « construire l'organisation autour du projet » : un carré rigide (l'agence) refuse le
-projet, puis les experts se placent autour du projet. Why : la singularité Relax n°2 + le bénéfice client.
+- scene: Écran partagé : Côté Relax du mouvement / Côté client un seul fil, zéro couture ; « C'est ça, notre promesse. »
+- status: built
+- src: compositions/v2-15.html
+- act: E — Le rôle de Relax
+- voiceover: "Côté Relax :"
+- cue: line 5 @ 15.73s
 
-## Frame 11 — Tourbillon
+## Frame 16 — Respiration
 
-- scene: Tous les éléments du film (nœuds, mots, supports, logo Finaxy, disciplines) tourbillonnent et s'agrègent vers le centre ; « Les meilleurs experts pour votre projet. » puis « Coordonnés par un partenaire de confiance. »
-- duration: 6s
-- transition_in: thread-carry
-- status: animated
-- src: compositions/11-tourbillon.html
-- voiceover: "Les meilleurs experts pour votre projet. Coordonnés par un partenaire de confiance."
-- motion: rules — orbit-3d-entry (flattened to an elliptical orbit), center-outward-expansion (inverse)
-- poster: 4s
-
-Callback de tout le film. Le tourbillon ralentit jusqu'à un point. Why : la promesse, formulée.
-
-## Frame 12 — Respiration → Relax
-
-- scene: Le point rose se dilate sur une grande inspiration (tout se suspend), puis l'expiration relâchée ouvre des ondes douces ; « relax » s'écrit et le point se pose à sa place dans le logo
-- duration: 7s
-- transition_in: cut
-- status: animated
-- src: compositions/12-relax.html
-- voiceover: "(respiration : grande inspiration, expiration relâchée)"
-- motion: blueprint logo-assemble-lockup + rules ambient-glow-bloom (breath), svg-path-draw
-- poster: 6s
-
-Inspiration ~1.6 s (le point grossit lentement, held), expiration ~2.4 s (le cadre s'ouvre, fond ink →
-lavis Relax), le logo relax• s'écrit sur la fin de l'expiration et le point se pose. Silence musical autour du souffle.
-Why : le soulagement — la tranquillité d'esprit de confier son projet à Relax.
+- scene: Ondes qui s'ouvrent sur une respiration calme, relax• se pose, « Relax, on s'occupe de tout. »
+- status: built
+- src: compositions/v2-16.html
+- act: Final
+- voiceover: "(respiration)"
