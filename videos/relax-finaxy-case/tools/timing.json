@@ -1,0 +1,21 @@
+{
+  "_note": "Scene durations (s) and in-scene voice cues (s from scene start). Estimates until the real Algieba takes land; then replace from the transcript and rebuild.",
+  "scenes": [
+    {"id": "s01-chaos",        "dur": 9,    "vo": {"start": 0.4, "acquisitions": 2.2, "courtier": 5.0, "clientes": 6.6}},
+    {"id": "s02-coherence",    "dur": 9,    "vo": {"start": 0.3, "logo": 2.4, "coherence": 4.0, "defi": 5.4, "appauvrir": 7.0}},
+    {"id": "s03-comprendre",   "dur": 8,    "vo": {"start": 0.3, "dirigeants": 2.0, "collaborateurs": 2.7, "metiers": 3.5, "marche": 4.1, "vraiment": 5.6}},
+    {"id": "s04-reveler",      "dur": 9,    "vo": {"start": 0.3, "groupe": 2.4, "cabinet": 3.6, "risques": 5.0, "suffit": 7.0}},
+    {"id": "s05-intelligence", "dur": 4.5,  "vo": {"start": 0.2, "intelligence": 1.2}},
+    {"id": "s06-organiser",    "dur": 10.5, "vo": {"start": 0.3, "architecture": 2.8, "verticales": 3.6, "naming": 4.3, "marque": 5.4, "lisible": 8.2}},
+    {"id": "s07-exprimer",     "dur": 8,    "vo": {"start": 0.3, "logo": 1.9, "identite": 2.8, "voix": 3.6, "stature": 4.6, "humain": 6.6}},
+    {"id": "s08-deployer",     "dur": 12,   "vo": {"start": 0.3, "plaquettes": 1.9, "kakemonos": 2.6, "cartes": 3.3, "presentations": 4.0, "voeux": 4.6, "linkedin": 5.2, "site": 5.8, "agent": 7.4, "finaxy": 9.6}},
+    {"id": "s09-equipe",       "dur": 9,    "vo": {"start": 0.3, "d0": 0.3, "d1": 0.9, "d2": 1.8, "d3": 2.4, "d4": 2.9, "d5": 3.5, "d6": 4.1, "equipe": 6.0, "seule": 7.6}},
+    {"id": "s10-couture",      "dur": 10.5, "vo": {"start": 0.3, "agence": 2.2, "autour": 4.4, "relax": 5.6, "client": 7.2, "couture": 8.7}},
+    {"id": "s11-tourbillon",   "dur": 6,    "vo": {"start": 0.3, "experts": 0.4, "confiance": 2.6}},
+    {"id": "s12-relax",        "dur": 7,    "vo": {"inhale": 0.5, "exhale": 2.3, "logo": 3.6, "signature": 4.6}}
+  ],
+  "audio": [
+    {"id": "bgm", "src": "assets/audio/bed.wav", "start": 0, "volume": 1, "track": 2},
+    {"id": "breath", "src": "assets/audio/breath.wav", "scene": 11, "offset": 0.4, "volume": 1, "track": 3}
+  ]
+}

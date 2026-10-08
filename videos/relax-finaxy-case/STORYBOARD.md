@@ -44,6 +44,11 @@ meilleurs experts autour de leur projet — pour qu'eux n'aient plus à gérer l
 - « Prend les infos du site » → Frame 1 : 11ᵉ courtier français (finaxy.com) + 12 000 entreprises clientes ; pas le nombre de collaborateurs (retour client).
 - Narration verrouillée dans SCRIPT.md.
 
+## Locked
+
+- Plan et sketches v3 validés (« Ok avec le reste »). Build : compositions/ générées par tools/build.py
+  depuis tools/scenes/ et tools/timing.json (durées et repères de voix off).
+
 ## Still open
 
 - Signature finale optionnelle « Maintenant, relax, on s'occupe du reste. » (site Relax) — oui / non.
@@ -59,10 +64,10 @@ meilleurs experts autour de leur projet — pour qu'eux n'aient plus à gérer l
 - scene: Des dizaines de nœuds épars dérivent vite ; noms de cabinets, expertises, sigles ; ancien logo FINAXY GROUP au milieu ; « 11ᵉ courtier français » et « + 12 000 entreprises clientes » se comptent
 - duration: 9s
 - transition_in: cut
-- status: built
+- status: animated
 - src: compositions/01-chaos.html
 - voiceover: "Finaxy avait grandi vite. Très vite. Des acquisitions, des cabinets, des expertises, des marques… Onzième courtier français. Plus de douze mille entreprises clientes."
-- motion: rules — drift-jitter, stagger-pop, count-up
+- motion: rules — spring-pop-entrance, sine-wave-loop (jitter), counting-dynamic-scale
 - poster: 6s
 
 Hero prop : les nœuds (ils reviennent dans chaque scène, de plus en plus ordonnés). Couleur « avant »
@@ -74,10 +79,10 @@ clientes » arrive en compteur Manrope. Pas de fil encore. Why : poser la puissa
 - scene: « Pas un simple problème de logo. » barré ; « Mais un sujet de cohérence. » en Unbounded ; le fil entre par le bas-gauche et touche le premier nœud qui cesse de trembler
 - duration: 9s
 - transition_in: cut
-- status: built
+- status: animated
 - src: compositions/02-coherence.html
 - voiceover: "L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence. Le défi : simplifier, sans appauvrir."
-- motion: rules — strike-through, line-draw, settle
+- motion: rules — svg-path-draw, center-outward-expansion (inverse: nodes draw closer)
 - poster: 7s
 
 « simplifier, sans appauvrir » : les nœuds se rapprochent mais gardent tous leur nom (rien ne disparaît).
@@ -88,10 +93,10 @@ Why : recadrer le problème — ce n'est pas un rebranding, c'est un problème d
 - scene: Le fil passe de nœud en nœud ; à chaque contact un mot d'enquête apparaît : dirigeants, collaborateurs, métiers, marché ; étape « 01 Comprendre » en haut à gauche
 - duration: 8s
 - transition_in: thread-carry
-- status: built
+- status: animated
 - src: compositions/03-comprendre.html
 - voiceover: "Alors on a commencé par écouter. Dirigeants, collaborateurs, métiers, marché. Pour comprendre ce que Finaxy était vraiment."
-- motion: rules — line-draw, node-ping, label-reveal
+- motion: blueprint spatial-pan-stations (adapted: the thread is the camera) + rules svg-path-draw, cursor-click-ripple (node ping)
 - poster: 6s
 
 Chaque contact = un ping bordeaux. Le rail d'étapes (01 → 05) en haut s'installe ici et persistera.
@@ -102,10 +107,10 @@ Why : première décision de la chaîne — on ne propose rien avant d'avoir com
 - scene: Les nœuds se regroupent en réseau maillé ; deux pôles — « La force d'un groupe. » / « L'esprit d'un cabinet. » — reliés par le fil ; étape 02
 - duration: 9s
 - transition_in: thread-carry
-- status: built
+- status: animated
 - src: compositions/04-reveler.html
 - voiceover: "Et une singularité est apparue. La force d'un groupe. L'esprit d'un cabinet. Face à des risques multiples, aucune expertise isolée ne suffit."
-- motion: rules — network-form, split-reveal, connect
+- motion: rules — depth-scatter-assemble, svg-path-draw
 - poster: 6s
 
 Le réseau reprend le motif du deck plateforme (nœuds connectés). Les nœuds passent du bleu « avant » au
@@ -116,10 +121,10 @@ crème. Why : la révélation — ce que Finaxy peut légitimement revendiquer.
 - scene: Plein cadre, serif 160px : « L'intelligence collective du risque. » ; le réseau, immobile, en arrière-plan ; le fil s'arrête dessous
 - duration: 4.5s
 - transition_in: crossfade
-- status: built
+- status: animated
 - src: compositions/05-intelligence.html
 - voiceover: "Finaxy, c'est l'intelligence collective du risque."
-- motion: held frame — seule l'entrée du texte (mask-up 0.8s), puis rien
+- motion: held frame — kinetic-type-beats (mask rise 0.8s), puis rien
 - poster: 3s
 
 Le principe qui organise tout le reste. Why : la big idea, posée comme une évidence.
@@ -129,10 +134,10 @@ Le principe qui organise tout le reste. Why : la big idea, posée comme une évi
 - scene: Le réseau se range sous le logo Finaxy en 3 verticales réelles (finaxy.com) : « Entreprises & institutions », « Affinitaire & partenariats », « Clientèle privée », chacune avec ses offres ; marques autonomes conservées en pointillé ; étape 03
 - duration: 10.5s
 - transition_in: thread-carry
-- status: built
+- status: animated
 - src: compositions/06-organiser.html
 - voiceover: "Cette idée est devenue un principe d'organisation. Architecture, verticales, naming, place de chaque marque : le groupe, lui aussi, est devenu lisible."
-- motion: rules — flip-reorder, tree-grow, label-reveal
+- motion: blueprint grid-card-assemble + rules svg-path-draw, waterfall-entry
 - poster: 8s
 
 Les mêmes nœuds qu'en Frame 1 (callback) — mais rangés. Certaines marques acquises restent autonomes
@@ -144,10 +149,10 @@ devient principe d'organisation — « complexe → intelligible ».
 - scene: L'ancien logo FINAXY GROUP s'efface ; sur un panneau marine Finaxy, le nouveau « Finaxy » crème se dessine et le fil, en passant, signe la virgule bordeaux ; quatre traits en orbite : Ancré · Architecte · Team player · Pédagogue ; étape 04
 - duration: 8s
 - transition_in: thread-carry
-- status: built
+- status: animated
 - src: compositions/07-exprimer.html
 - voiceover: "Puis elle a pris corps. Un logo, une identité, une voix. Plus de stature, sans rien perdre d'humain."
-- motion: rules — morph-dissolve, svg-draw, orbit-labels
+- motion: blueprint logo-assemble-lockup + rules svg-path-draw, spring-pop-entrance
 - poster: 6s
 
 Moment signature : le fil Relax signe la virgule bordeaux du logo Finaxy. Why : la stratégie prend corps
@@ -158,10 +163,10 @@ Moment signature : le fil Relax signe la virgule bordeaux du logo Finaxy. Why : 
 - scene: 1 support → 2 → 4 → 8 → 16 → mur de supports ; libellés : plaquettes B2B, kakemonos, cartes de visite, masques de présentation, cartes de vœux, LinkedIn, nouveau site, agent IA ; compteur ×2 ; étape 05
 - duration: 12s
 - transition_in: thread-carry
-- status: built
+- status: animated
 - src: compositions/08-deployer.html
 - voiceover: "Et le système s'est mis à produire. Plaquettes, kakemonos, cartes de visite, présentations, cartes de vœux, LinkedIn, le nouveau site… Jusqu'à un agent IA, pour que chacun écrive comme Finaxy."
-- motion: rules — doubling-grid, push-in, card-flip
+- motion: blueprint grid-card-assemble + rules discrete-text-sequence (agent IA typing)
 - poster: 9s
 
 Chaque doublement est relié au précédent par le fil (le système se reproduit, il ne s'empile pas). Les
@@ -174,10 +179,10 @@ cohérence dans le temps, pas des guidelines rangées dans un tiroir.
 - scene: Recul : le fil se dédouble ; au-dessus, une constellation d'experts en mouvement — stratégie, architecture de marque, naming, design, éditorial, production, IA — qui se relient ; au-dessous, une seule ligne calme
 - duration: 9s
 - transition_in: zoom-out
-- status: built
+- status: animated
 - src: compositions/09-equipe.html
 - voiceover: "Stratégie, architecture, naming, design, éditorial, production, IA. Pour chaque enjeu, Relax a réuni la bonne équipe. Et l'a fait jouer comme une seule."
-- motion: rules — zoom-out, constellation, converge
+- motion: blueprint constellation-hub + rules spring-pop-entrance, svg-path-draw
 - poster: 7s
 
 Les disciplines s'allument dans l'ordre exact de la VO. Why : la singularité Relax n°1 — elle coordonne
@@ -188,10 +193,10 @@ elle-même les expertises.
 - scene: Écran partagé horizontal : « Côté Relax » (beaucoup de mouvement) / « Côté client » (un seul fil, immobile) ; « On construit l'équipe autour du projet. » ; « Aucune couture. »
 - duration: 10.5s
 - transition_in: thread-carry
-- status: built
+- status: animated
 - src: compositions/10-sans-couture.html
 - voiceover: "On ne fait pas entrer un projet dans une agence. On construit l'équipe autour du projet. Côté Relax, beaucoup de mouvement. Côté client, un seul fil. Aucune couture."
-- motion: rules — split-horizontal, contrast-tempo, settle
+- motion: rules — center-outward-expansion (team around the project), sine-wave-loop (two tempos)
 - poster: 8s
 
 Visualisation de « construire l'organisation autour du projet » : un carré rigide (l'agence) refuse le
@@ -202,10 +207,10 @@ projet, puis les experts se placent autour du projet. Why : la singularité Rela
 - scene: Tous les éléments du film (nœuds, mots, supports, logo Finaxy, disciplines) tourbillonnent et s'agrègent vers le centre ; « Les meilleurs experts pour votre projet. » puis « Coordonnés par un partenaire de confiance. »
 - duration: 6s
 - transition_in: thread-carry
-- status: built
+- status: animated
 - src: compositions/11-tourbillon.html
 - voiceover: "Les meilleurs experts pour votre projet. Coordonnés par un partenaire de confiance."
-- motion: rules — vortex, aggregate, text-mask-up
+- motion: rules — orbit-3d-entry (flattened to an elliptical orbit), center-outward-expansion (inverse)
 - poster: 4s
 
 Callback de tout le film. Le tourbillon ralentit jusqu'à un point. Why : la promesse, formulée.
@@ -215,10 +220,10 @@ Callback de tout le film. Le tourbillon ralentit jusqu'à un point. Why : la pro
 - scene: Le point rose se dilate sur une grande inspiration (tout se suspend), puis l'expiration relâchée ouvre des ondes douces ; « relax » s'écrit et le point se pose à sa place dans le logo
 - duration: 7s
 - transition_in: cut
-- status: built
+- status: animated
 - src: compositions/12-relax.html
 - voiceover: "(respiration : grande inspiration, expiration relâchée)"
-- motion: rules — breathe-scale, iris-open, logo-settle
+- motion: blueprint logo-assemble-lockup + rules ambient-glow-bloom (breath), svg-path-draw
 - poster: 6s
 
 Inspiration ~1.6 s (le point grossit lentement, held), expiration ~2.4 s (le cadre s'ouvre, fond ink →

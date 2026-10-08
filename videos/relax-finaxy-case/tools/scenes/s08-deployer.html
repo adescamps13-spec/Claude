@@ -1,0 +1,107 @@
+<style>
+  .s08-sup{position:absolute;border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(31,20,67,.12)}
+  .s08-sup img.lg{display:block;height:auto}
+  .s08-cap{position:absolute;font-size:21px;font-weight:500;color:#6B7278;white-space:nowrap}
+  .s08-sup .kline{position:absolute;left:24px;right:24px;height:3px;background:#9C0A3F;border-radius:2px}
+  .s08-sup .txt{position:absolute;font-family:'Instrument Serif',serif;color:#F4F1EB}
+  #s08-deployer-site{background:#fff;overflow:hidden}
+  #s08-deployer-site img{width:100%;height:100%;object-fit:cover;display:block}
+  #s08-deployer-grid{position:absolute;left:1604px;top:190px;width:200px;height:700px}
+  #s08-deployer-grid i{position:absolute;width:40px;height:48px;border-radius:5px}
+  #s08-deployer-count{position:absolute;left:1600px;top:900px;width:210px;text-align:center;font-family:Unbounded,sans-serif;font-size:40px;color:#6955AA}
+  #s08-deployer-agent{position:absolute;left:150px;top:916px;width:1420px;height:104px;border-radius:52px;background:#fff;border:3px solid #D4CCEE;display:flex;align-items:center;padding:0 44px;gap:28px;box-shadow:0 10px 30px rgba(31,20,67,.08)}
+  #s08-deployer-agent .who{font-weight:600;font-size:28px;color:#6955AA;white-space:nowrap}
+  #s08-deployer-agent .say{font-size:25px;font-weight:300;color:#212C34;white-space:nowrap;overflow:hidden}
+  #s08-deployer-agent .caret{display:inline-block;width:3px;height:30px;background:#6955AA;vertical-align:-5px;margin-left:3px}
+</style>
+<div class="wash"></div>
+<div id="s08-deployer-rail">{{RAIL:5}}</div>
+<svg class="stage" id="s08-deployer-stage" viewBox="0 0 1920 1080"></svg>
+
+<div class="s08-sup" id="s08-deployer-u0" style="left:150px;top:230px;width:300px;height:420px;background:#191853"><span class="lg" style="display:block;width:190px;height:53.9px;background:url(assets/brand/finaxy-new.svg) center/contain no-repeat;"></span><span class="kline" style="bottom:46px"></span><span class="txt" style="left:24px;bottom:70px;font-size:28px">L'intelligence collective du risque</span></div>
+<div class="s08-cap" style="left:150px;top:664px" id="s08-deployer-c0">Plaquettes B2B</div>
+<div class="s08-sup" id="s08-deployer-u1" style="left:490px;top:190px;width:190px;height:600px;background:#F4F1EB"><span class="lg" style="display:block;width:140px;height:39.7px;background:url(assets/brand/finaxy-new-navy.svg) center/contain no-repeat;margin-top:-260px"></span><span class="kline" style="bottom:60px"></span></div>
+<div class="s08-cap" style="left:490px;top:804px" id="s08-deployer-c1">Kakemonos</div>
+<div class="s08-sup" id="s08-deployer-u2" style="left:720px;top:230px;width:220px;height:128px;background:#191853"><span class="lg" style="display:block;width:120px;height:34.1px;background:url(assets/brand/finaxy-new.svg) center/contain no-repeat;"></span></div>
+<div class="s08-sup" id="s08-deployer-u3" style="left:720px;top:372px;width:220px;height:128px;background:#F4F1EB"><span class="lg" style="display:block;width:120px;height:34.1px;background:url(assets/brand/finaxy-new-navy.svg) center/contain no-repeat;"></span></div>
+<div class="s08-cap" style="left:720px;top:512px" id="s08-deployer-c2">Cartes de visite</div>
+<div class="s08-sup" id="s08-deployer-u4" style="left:980px;top:230px;width:380px;height:214px;background:#5A80D9"><span class="lg" style="display:block;width:170px;height:48.3px;background:url(assets/brand/finaxy-new.svg) center/contain no-repeat;"></span></div>
+<div class="s08-cap" style="left:980px;top:456px" id="s08-deployer-c4">Masques de présentation</div>
+<div class="s08-sup" id="s08-deployer-u5" style="left:720px;top:560px;width:220px;height:150px;background:#9C0A3F"><span class="txt" style="font-size:30px;font-style:italic;left:26px;top:34px">Meilleurs vœux</span><span class="txt" style="font-size:44px;left:26px;top:72px">2026</span></div>
+<div class="s08-cap" style="left:720px;top:722px" id="s08-deployer-c5">Cartes de vœux</div>
+<div class="s08-sup" id="s08-deployer-u6" style="left:1400px;top:230px;width:160px;height:214px;background:#4A5892"><span class="lg" style="display:block;width:110px;height:31.2px;background:url(assets/brand/finaxy-new.svg) center/contain no-repeat;"></span></div>
+<div class="s08-sup" id="s08-deployer-u7" style="left:980px;top:510px;width:580px;height:96px;background:#191853;justify-content:flex-start;padding-left:30px"><span class="lg" style="display:block;width:120px;height:34.1px;background:url(assets/brand/finaxy-new.svg) center/contain no-repeat;"></span><span class="txt" style="right:26px;top:34px;font-size:22px;font-family:'DM Sans',sans-serif;font-weight:300">Ensemble, protégeons ce qui compte</span></div>
+<div class="s08-cap" style="left:980px;top:616px" id="s08-deployer-c7">LinkedIn</div>
+<div class="s08-sup" id="s08-deployer-site" style="left:980px;top:660px;width:580px;height:224px"><img src="assets/captures/finaxy-site-cartes.jpg" alt=""></div>
+<div class="s08-cap" style="left:1300px;top:616px" id="s08-deployer-c8">Nouveau site — finaxy.com</div>
+<div id="s08-deployer-grid"></div>
+<div id="s08-deployer-count">×2</div>
+<div id="s08-deployer-agent"><span class="who">Agent IA Finaxy</span><span class="say"><span id="s08-deployer-type"></span><span class="caret" id="s08-deployer-caret"></span></span></div>
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const { C, el, defs, thread } = window.FIL;
+    const svg = document.getElementById(ID + "-stage");
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    defs(svg, ID);
+
+    // the thread visits every support in the order the voice names them
+    const P = [[-20, 540], [300, 440], [585, 490], [830, 300], [1170, 337], [830, 630], [1270, 558], [1270, 770], [1700, 540], [1940, 540]];
+    const cr = (pts) => { // Catmull-Rom → cubic Bézier, smooth through every point
+      let d = `M ${pts[0][0]} ${pts[0][1]}`;
+      for (let i = 0; i < pts.length - 1; i++) {
+        const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+        d += ` C ${p1[0] + (p2[0] - p0[0]) / 6} ${p1[1] + (p2[1] - p0[1]) / 6}, ${p2[0] - (p3[0] - p1[0]) / 6} ${p2[1] - (p3[1] - p1[1]) / 6}, ${p2[0]} ${p2[1]}`;
+      }
+      return d;
+    };
+    const th = thread(svg, ID, cr(P), { w: 5 });
+    const seg = (k) => k / (P.length - 1); // approx progress at point k (equal-weight)
+
+    const CUES = [VO.plaquettes, VO.kakemonos, VO.cartes, VO.presentations, VO.voeux, VO.linkedin, VO.site, VO.site + 0.6];
+    const SUPS = [["u0", "c0"], ["u1", "c1"], ["u2", "u3", "c2"], ["u4", "u6", "c4"], ["u5", "c5"], ["u7", "c7"], ["site", "c8"]];
+    th.draw(tl, 0, seg(1), VO.start, VO.plaquettes - VO.start, "sine.inOut");
+    SUPS.forEach((ids, i) => {
+      const t = CUES[i];
+      ids.forEach((s, j) => tl.fromTo($(s), { opacity: 0, scale: 0.86, y: 16 }, { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(1.7)" }, t - 0.15 + j * 0.08));
+      th.draw(tl, seg(i + 1), seg(i + 2), t, CUES[i + 1] - t, "sine.inOut");
+    });
+
+    // exponential: 1 → 2 → 4 → 8 → 16 → 32 → 48 tiles, the system reproducing itself
+    const grid = $("grid"), COLS = [C.navy, C.cream, C.fblue, C.burg, C.slate, C.navy, C.cream];
+    const tiles = [];
+    for (let i = 0; i < 48; i++) {
+      const tdiv = document.createElement("i");
+      tdiv.style.left = (i % 4) * 52 + "px";
+      tdiv.style.top = Math.floor(i / 4) * 58 + "px";
+      tdiv.style.background = COLS[(i * 3) % COLS.length];
+      if (COLS[(i * 3) % COLS.length] === C.cream) tdiv.style.outline = "1px solid #E6E1D8";
+      grid.appendChild(tdiv);
+      tiles.push(tdiv);
+    }
+    const t0 = VO.site + 0.2, gens = [1, 2, 4, 8, 16, 32, 48];
+    const count = $("count");
+    gens.forEach((n, g) => {
+      const prev = g ? gens[g - 1] : 0, at = t0 + g * 0.28;
+      tl.fromTo(tiles.slice(prev, n), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", stagger: Math.min(0.02, 0.25 / Math.max(1, n - prev)) }, at);
+    });
+    const cnt = { v: 0 };
+    tl.fromTo(count, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t0);
+    tl.fromTo(cnt, { v: 0 }, { v: gens.length - 1, duration: 0.28 * (gens.length - 1), ease: "none", immediateRender: false, onUpdate: () => (count.textContent = "×" + gens[Math.round(cnt.v)]) }, t0);
+
+    // the AI agent writes in Finaxy's voice (a real line from the editorial charter)
+    const LINE = "« On réunit les bonnes expertises pour construire une réponse adaptée à votre réalité. »";
+    const type = $("type"), typ = { n: 0 };
+    tl.fromTo($("agent"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, VO.agent - 0.3);
+    tl.fromTo(typ, { n: 0 }, { n: LINE.length, duration: 2.6, ease: "none", onUpdate: () => (type.textContent = LINE.slice(0, Math.round(typ.n))) }, VO.agent + 0.1);
+    tl.fromTo($("caret"), { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "steps(1)", yoyo: true, repeat: Math.max(0, Math.floor((D - VO.agent) / 0.4) - 1) }, VO.agent);
+    tl.fromTo($("rail").querySelector(".rail-bar"), { scaleX: 0.8 }, { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, 0.2);
+
+    // seam: a slow pull-back, the whole wall leaves to the left
+    const all = ["u0", "u1", "u2", "u3", "u4", "u5", "u6", "u7", "site", "c0", "c1", "c2", "c4", "c5", "c7", "c8", "grid", "count", "agent"].map($);
+    tl.to(all, { x: -70, opacity: 0, duration: 0.6, ease: "power2.in", stagger: 0.015 }, D - 0.8);
+    th.draw(tl, seg(8), 1, D - 1.2, 1.2, "power2.in");
+    window.__timelines[ID] = tl;
+  })();
+</script>

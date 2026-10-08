@@ -1,0 +1,68 @@
+<style>
+  #s07-exprimer-old{position:absolute;left:760px;top:420px;width:400px}
+  #s07-exprimer-old svg{width:400px;height:123px;display:block}
+  #s07-exprimer-oldtag{position:absolute;left:120px;top:410px;font-size:20px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6B7278;width:250px;text-align:center}
+  #s07-exprimer-panel{position:absolute;left:470px;top:190px;width:1300px;height:560px;border-radius:28px;background:#191853}
+  #s07-exprimer-new{position:absolute;left:640px;top:330px;width:960px;clip-path:inset(0 100% 0 0)}
+  #s07-exprimer-new svg{width:960px;height:272px;display:block}
+  .s07-trait{position:absolute;top:850px;width:420px;text-align:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:60px;color:#191853}
+  #s07-exprimer-words{position:absolute;right:150px;top:86px;font-size:28px;font-weight:300;color:#6B7278}
+  #s07-exprimer-tag{position:absolute;left:0;right:0;top:960px;text-align:center;font-size:20px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#A7AEB4}
+</style>
+<div class="wash"></div>
+<div id="s07-exprimer-rail">{{RAIL:4}}</div>
+<div id="s07-exprimer-panel"></div>
+<div id="s07-exprimer-old">{{FINAXY_OLD}}</div>
+<div id="s07-exprimer-oldtag">avant</div>
+<div id="s07-exprimer-new">{{FINAXY_NEW}}</div>
+<svg class="stage" id="s07-exprimer-stage" viewBox="0 0 1920 1080"></svg>
+<div class="s07-trait" id="s07-exprimer-t0" style="left:40px">Ancré</div>
+<div class="s07-trait" id="s07-exprimer-t1" style="left:520px">Architecte</div>
+<div class="s07-trait" id="s07-exprimer-t2" style="left:980px">Team player</div>
+<div class="s07-trait" id="s07-exprimer-t3" style="left:1460px">Pédagogue</div>
+<div id="s07-exprimer-words">un logo · une identité · une voix</div>
+<div id="s07-exprimer-tag">personnalité de marque — charte éditoriale Finaxy</div>
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const { C, el, defs, thread, progressNear } = window.FIL;
+    const svg = document.getElementById(ID + "-stage");
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    defs(svg, ID);
+
+    // the burgundy accent of the new logotype is signed by the thread, not revealed with the letters
+    const swoosh = document.querySelector("#" + ID + "-fxnew path[fill='#9C0A3F']");
+    // swoosh tip in stage coords: logo box 640,330 · 960 wide · scale 960/155
+    const S = 960 / 155, tipX = 640 + 154.9 * S, tipY = 330 + 1.1 * S;
+    const th = thread(svg, ID, `M -20 540 C 300 560, 520 900, 1000 860 S 1700 520, ${tipX - 40} ${tipY + 60} L ${tipX} ${tipY}`, { w: 6 });
+
+    // 1 — the old mark, alone in the middle, steps aside
+    tl.fromTo($("old"), { opacity: 1, x: 0, y: 0, scale: 1, transformOrigin: "0% 0%" }, { opacity: 0.45, x: -640, y: 40, scale: 0.62, transformOrigin: "0% 0%", duration: 1.0, ease: "power3.inOut" }, VO.start + 0.2);
+    tl.fromTo($("oldtag"), { opacity: 0 }, { opacity: 1, duration: 0.4 }, VO.start + 1.0);
+    // 2 — the Finaxy navy panel opens behind
+    tl.fromTo($("panel"), { opacity: 0, scale: 0.9, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, VO.logo - 0.6);
+    // 3 — letters write in, left to right (clip-path wipe)
+    tl.fromTo($("new"), { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.0, ease: "power2.inOut" }, VO.logo - 0.1);
+    // 4 — the thread arrives and signs the accent
+    th.draw(tl, 0, 1, 0.2, VO.identite + 0.4, "power2.inOut");
+    if (swoosh) {
+      tl.fromTo(swoosh, { opacity: 0, scale: 0.2, transformOrigin: "100% 0%" }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.6)" }, VO.identite + 0.6);
+    }
+    tl.to(th.group, { opacity: 0, duration: 0.6, ease: "power1.out" }, VO.identite + 0.9);
+    tl.fromTo($("words"), { opacity: 0 }, { opacity: 1, duration: 0.5 }, VO.logo);
+    // 5 — the voice: four traits from the editorial charter
+    [0, 1, 2, 3].forEach((i) => tl.fromTo($("t" + i), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, VO.voix + i * 0.14));
+    tl.fromTo($("tag"), { opacity: 0 }, { opacity: 1, duration: 0.5 }, VO.voix + 0.8);
+    tl.fromTo($("rail").querySelector(".rail-bar"), { scaleX: 0.75 }, { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, 0.2);
+    // "stature": the panel and mark gain a notch of scale; "humain": it softens
+    tl.to([$("panel"), $("new")], { scale: 1.03, transformOrigin: "50% 50%", duration: 1.4, ease: "sine.inOut" }, VO.stature);
+
+    // seam: a new thread leaves from the mark toward the right edge
+    const out = thread(svg, ID + "o", `M ${tipX} ${tipY} C 1840 260, 1840 540, 1940 540`, { w: 6 });
+    defs(svg, ID + "o");
+    out.draw(tl, 0, 1, D - 1.0, 1.0, "power2.in");
+    tl.to([$("t0"), $("t1"), $("t2"), $("t3"), $("tag"), $("old"), $("oldtag"), $("words")], { x: -50, opacity: 0, duration: 0.5, ease: "power2.in", stagger: 0.02 }, D - 0.6);
+    window.__timelines[ID] = tl;
+  })();
+</script>

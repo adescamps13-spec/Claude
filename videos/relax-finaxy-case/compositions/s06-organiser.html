@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .wash{position:absolute;inset:-10%;background:
+  radial-gradient(42% 46% at 14% 62%, rgba(86,160,170,.30) 0%, rgba(255,255,255,0) 100%),
+  radial-gradient(36% 40% at 84% 58%, rgba(171,162,86,.28) 0%, rgba(255,255,255,0) 100%),
+  radial-gradient(28% 30% at 50% 52%, rgba(105,85,170,.20) 0%, rgba(255,255,255,0) 100%)}
+#root svg.stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:visible}
+#root .t-title{font-family:Unbounded,sans-serif;font-weight:400;letter-spacing:-.01em}
+#root .t-serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .abs{position:absolute}
+#root .rail{position:absolute;left:120px;top:78px;display:flex;gap:56px;font-size:22px;font-weight:600;color:#747779}
+#root .rail .n{font-family:Unbounded,sans-serif;font-weight:500;margin-right:14px}
+#root .rail .on{color:#212C34}
+#root .rail .on .n{color:#6955AA}
+#root .rail .done{color:#4F575D}
+#root .rail-bar{position:absolute;left:120px;top:126px;height:3px;background:#6955AA;transform-origin:left center}
+
+      </style>
+      <div id="root" data-composition-id="s06-organiser" data-width="1920" data-height="1080" data-duration="10.5">
+<style>
+  #s06-organiser-logo{position:absolute;left:830px;top:168px;width:260px}
+  #s06-organiser-logo svg{width:260px;height:74px;display:block}
+  .s06-card{position:absolute;top:400px;width:500px;height:470px;border-radius:18px;padding:40px 38px;color:#F4F1EB;transform-origin:50% 0%}
+  .s06-card h3{font-family:'Instrument Serif',serif;font-weight:400;font-size:50px;line-height:1.05;margin-bottom:40px;min-height:110px}
+  .s06-card .chip{display:inline-block;border:2px solid rgba(244,241,235,.8);border-radius:30px;padding:9px 22px;font-size:23px;margin:0 10px 14px 0;white-space:nowrap}
+  #s06-organiser-auto{position:absolute;left:120px;top:940px;display:flex;align-items:center;gap:16px;font-size:26px;font-weight:500;color:#6B7278}
+  #s06-organiser-auto i{display:block;width:16px;height:16px;border-radius:8px;background:#A7AEB4}
+  #s06-organiser-words{position:absolute;right:120px;top:940px;font-size:30px;font-weight:300;color:#6B7278}
+  #s06-organiser-src{position:absolute;right:120px;top:990px;font-size:18px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#A7AEB4}
+</style>
+<div class="wash"></div>
+<div id="s06-organiser-rail"><div class="rail"><div class="done"><span class="n">01</span>Comprendre</div><div class="done"><span class="n">02</span>Révéler</div><div class="on"><span class="n">03</span>Organiser</div><div class=""><span class="n">04</span>Exprimer</div><div class=""><span class="n">05</span>Déployer</div></div><div class="rail-bar" style="width:776px"></div></div>
+<svg class="stage" id="s06-organiser-stage" viewBox="0 0 1920 1080"></svg>
+<div id="s06-organiser-logo"><svg id="s06-organiser-fxnavy" class-="fxnew" viewBox="0 0 155 44" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_514_2012)">
+<path d="M154.978 1.09937H123.225C142.192 1.09937 149.627 1.99352 144.588 8.40159L154.978 1.09937Z" fill="#9C0A3F"/>
+<path d="M103.858 12.177C102.918 12.2366 102.403 12.6473 102.317 13.4089C102.257 14.1706 102.51 15.0217 103.068 15.9589C103.51 16.7206 103.935 17.4525 104.347 18.1579C104.759 18.8599 105.17 19.5488 105.582 20.2243L108.536 16.0914C109.27 15.0648 109.579 14.1706 109.462 13.4089C109.373 12.6473 108.888 12.2366 108.007 12.177V11.7365H125.869V12.177C125.075 12.2664 124.457 12.5446 124.019 13.0115C123.607 13.4818 123.401 14.0812 123.401 14.8131C123.401 15.4589 123.547 16.1179 123.843 16.7901L128.297 27.2087L132.752 16.7901C133.048 16.1146 133.194 15.4555 133.194 14.8131C133.194 14.0812 132.975 13.4785 132.533 13.0115C132.121 12.5413 131.503 12.2631 130.682 12.177V11.7365H136.768V12.177C136.09 12.3227 135.519 12.7632 135.047 13.495C134.576 14.1971 134.077 15.1641 133.549 16.3961L124.554 37.2331C123.614 39.4022 122.394 41.058 120.893 42.2006C119.395 43.3431 117.734 43.916 115.91 43.916C115.661 43.916 115.412 43.9061 115.166 43.8862V38.4352C115.601 38.5743 116.056 38.7034 116.528 38.816C117.408 39.0214 118.292 39.124 119.172 39.124C120.288 39.124 121.331 38.8889 122.301 38.422C123.301 37.9815 124.052 37.147 124.55 35.915L125.035 34.7294L116.305 14.5548C116.013 13.8527 115.628 13.293 115.159 12.8857C114.814 12.581 114.385 12.3757 113.874 12.2697C113.239 12.4088 112.621 12.6737 112.023 13.0612C111.289 13.558 110.436 14.4819 109.466 15.8298L105.895 20.7542C106.924 22.5127 107.951 24.2414 108.981 25.9403C110.01 27.6094 111.127 29.4275 112.332 31.3913C112.831 32.1828 113.259 32.7391 113.611 33.0604C113.993 33.3816 114.465 33.5737 115.023 33.6333V34.0737H103.559V33.6333C104.47 33.5737 104.998 33.1928 105.147 32.4908C105.293 31.7887 105.044 30.8945 104.396 29.8083C103.898 28.9009 103.397 28.0366 102.898 27.2153C102.4 26.3642 101.898 25.5296 101.4 24.7083L97.5202 30.1593C96.8459 31.0965 96.6233 31.9046 96.8591 32.5769C97.1249 33.2226 97.7693 33.5737 98.7991 33.6333V34.0737H92.4045V33.6333C92.9327 33.5472 93.5938 33.2524 94.3877 32.7524C95.0919 32.2556 95.9323 31.3317 96.9023 29.9838L101.091 24.2248C100.62 23.4632 100.164 22.7015 99.7259 21.9398C99.2841 21.1781 98.829 20.4297 98.3573 19.6978C97.8856 18.9361 97.4006 18.1579 96.9023 17.3697C96.4306 16.5782 95.9456 15.7569 95.4473 14.9091C94.8295 13.9421 94.3146 13.2665 93.9027 12.8857C93.4908 12.475 92.9925 12.2399 92.4045 12.1836V11.7432H103.868V12.1836L103.858 12.177ZM79.9276 11.0775C82.4256 11.0775 84.4553 11.7796 86.0132 13.1871C87.6011 14.5647 88.395 16.4557 88.395 18.8566V29.4506C88.395 31.1495 88.9697 32.0006 90.1157 32.0006C90.7934 32.0006 91.4545 31.633 92.0989 30.9012L92.451 31.2091C91.687 32.2358 90.7602 33.0703 89.6739 33.7161C88.5877 34.3618 87.528 34.6831 86.4982 34.6831C85.3821 34.6831 84.4121 34.3022 83.5883 33.5406C82.7943 32.7789 82.2961 31.7688 82.0901 30.5071C80.6484 31.9708 79.3861 33.0405 78.2965 33.7161C77.2402 34.3618 76.0642 34.6831 74.7687 34.6831C72.9749 34.6831 71.5365 34.1996 70.4469 33.2326C69.3607 32.2656 68.8159 30.9906 68.8159 29.4076C68.8159 28.732 68.9322 28.1028 69.168 27.5166C69.4039 26.9007 69.8424 26.3013 70.4901 25.7151C71.1678 25.1289 72.0913 24.5295 73.2672 23.9135C74.4432 23.2678 76.0011 22.5955 77.9411 21.8901L82.0403 20.3966V17.0981C82.0403 15.4291 81.7745 14.1077 81.2463 13.1407C80.7182 12.1439 79.9807 11.6471 79.0406 11.6471C77.9245 11.6769 76.9678 12.4088 76.1739 13.8461C75.4098 15.2833 74.8949 17.2737 74.6325 19.8236L69.8689 17.0981C70.3672 15.896 71.1346 14.8429 72.161 13.9322C73.1908 13.0248 74.3668 12.3194 75.6889 11.8226C77.0409 11.3259 78.4527 11.0742 79.9209 11.0742L79.9276 11.0775ZM25.0901 9.97805H24.6948C23.8145 4.44094 20.3132 1.66908 14.201 1.66908H10.5403V14.8992H13.9784C15.4467 14.8992 16.6226 14.4455 17.5063 13.5381C18.3866 12.6009 18.8284 11.3988 18.8284 9.935H19.2702V20.9231H18.8284C18.8284 19.3401 18.3434 18.0353 17.3734 17.012C16.4034 15.9854 15.1245 15.4721 13.5366 15.4721H10.537V30.4607C10.537 31.4277 10.8758 32.206 11.5501 32.7921C12.2278 33.3485 13.0649 33.6267 14.0648 33.6267L14.108 34.0671H0L0.0896906 33.6267H0.222565C1.28224 33.6267 2.13264 33.3054 2.78041 32.6597C3.42817 32.0139 3.75039 31.1661 3.75039 30.1097V5.0536C3.75039 3.99718 3.42817 3.14939 2.78041 2.50362C2.13264 1.85784 1.28224 1.53661 0.222565 1.53661L0.179381 1.09616H23.768L25.0901 9.97474V9.97805ZM35.4411 30.1097C35.4411 31.1661 35.7633 32.0139 36.411 32.6597C37.0588 33.3054 37.9092 33.6267 38.9689 33.6267H39.0121V34.0671H25.5186V33.6267H25.5618C26.6215 33.6267 27.4719 33.3054 28.1196 32.6597C28.7674 32.0139 29.0896 31.1661 29.0896 30.1097V15.6907C29.0896 14.578 28.8538 13.7136 28.3854 13.0976C27.9436 12.4817 26.9902 12.1737 25.5186 12.1737V11.7332H30.0164C31.5146 11.7332 32.6606 11.571 33.4546 11.2497C34.1887 10.9285 34.7036 10.5311 34.9992 10.0642H35.4411V30.1097ZM49.28 16.2205C50.044 14.6972 51.2067 13.4652 52.7646 12.528C54.3226 11.5908 55.9702 11.1206 57.7042 11.1206C59.6741 11.1206 61.2454 11.7663 62.4213 13.0546C63.6271 14.3428 64.2284 16.045 64.2284 18.1546V30.1097C64.2284 31.1661 64.5506 32.0139 65.1984 32.6597C65.8461 33.3054 66.6965 33.6267 67.7562 33.6267H67.7994V34.0671H54.3525V33.6267H54.3957C55.4553 33.6267 56.3057 33.3054 56.9535 32.6597C57.6013 32.0139 57.9235 31.1661 57.9235 30.1097V17.7141C57.9235 16.2503 57.6278 15.078 57.0399 14.1971C56.4818 13.3195 55.731 12.8791 54.791 12.8791C53.8808 12.8791 52.9241 13.2732 51.9242 14.0646C50.9542 14.8263 50.1005 15.8662 49.3663 17.1842V30.1064C49.3663 31.1628 49.6886 32.0106 50.3363 32.6563C50.9841 33.3021 51.8345 33.6233 52.8942 33.6233H52.9374V34.0638H39.4439V33.6233H39.4871C40.5468 33.6233 41.3972 33.3021 42.0449 32.6563C42.6927 32.0106 43.0149 31.1628 43.0149 30.1064V15.6874C43.0149 14.5746 42.7791 13.7103 42.3107 13.0943C41.8689 12.4784 40.9155 12.1704 39.4439 12.1704V11.7299H43.8088C45.307 11.7299 46.4531 11.5676 47.247 11.2464C47.9811 10.9252 48.496 10.5278 48.7917 10.0608H49.2335L49.2766 16.2139L49.28 16.2205ZM80.2797 21.6252C78.7815 22.1815 77.6355 22.7545 76.8415 23.3406C76.0476 23.897 75.4895 24.5262 75.1673 25.2316C74.875 25.9337 74.7255 26.7417 74.7255 27.6491C74.7255 28.9075 75.0344 29.9507 75.6523 30.7687C76.3001 31.5602 77.1073 31.9543 78.0773 31.9543C78.725 31.9543 79.3429 31.792 79.9276 31.4708C80.5454 31.1495 81.2364 30.6197 82.0004 29.8878L82.0436 20.9662L80.2797 21.6252ZM32.2222 0C33.2519 0 34.1023 0.351037 34.78 1.05642C35.4842 1.75849 35.8397 2.62284 35.8397 3.64946C35.8397 4.67607 35.4876 5.54042 34.78 6.24249C34.1023 6.94456 33.2519 7.29891 32.2222 7.29891C31.1924 7.29891 30.2822 6.96112 29.5779 6.28885C28.9003 5.58678 28.5648 4.70588 28.5648 3.65277C28.5648 2.59966 28.9036 1.732 29.5779 1.05973C30.2822 0.35766 31.1658 0.00331167 32.2222 0.00331167V0Z" fill="#191853"/>
+</g>
+<defs>
+<clipPath id="clip0_514_2012">
+<rect width="155" height="44" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</div>
+<div class="s06-card" id="s06-organiser-k0" style="left:170px;background:#191853"><h3>Entreprises &amp; institutions</h3><span class="chip">Protégez votre activité</span><span class="chip">vos collaborateurs</span><span class="chip">vos actifs</span></div>
+<div class="s06-card" id="s06-organiser-k1" style="left:710px;background:#5A80D9"><h3>Affinitaire &amp; partenariats</h3><span class="chip">Affinitaire voyage</span><span class="chip">Multi-secteurs</span><span class="chip">Banque et assurance</span></div>
+<div class="s06-card" id="s06-organiser-k2" style="left:1250px;background:#4A5892"><h3>Clientèle privée</h3><span class="chip">Prestige &amp; collection</span><span class="chip">Univers équin</span><span class="chip">Plaisance</span><span class="chip">Forêts</span></div>
+<div id="s06-organiser-auto"><i></i>marques autonomes, conservées et reliées</div>
+<div id="s06-organiser-words">architecture · verticales · naming · place de chaque marque</div>
+<div id="s06-organiser-src">architecture réelle — finaxy.com</div>
+<script>
+  (function () {
+    const ID = "s06-organiser", D = 10.5, VO = {"start": 0.3, "architecture": 2.8, "verticales": 3.6, "naming": 4.3, "marque": 5.4, "lisible": 8.2};
+    const { C, rng, el, defs, thread, progressNear } = window.FIL;
+    const svg = document.getElementById(ID + "-stage");
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const r = rng(6);
+    const tl = gsap.timeline({ paused: true });
+    defs(svg, ID);
+
+    // incoming thread from the left, rising to the group mark
+    const th = thread(svg, ID, "M -20 540 C 260 540, 560 214, 796 214", { w: 6 });
+    th.draw(tl, 0, 1, 0, 1.4, "power2.inOut");
+    tl.to(th.group, { opacity: 0.25, duration: 0.6 }, VO.verticales - 0.3);
+    // branches: the group to its three verticals
+    const X = [420, 960, 1500];
+    const branches = X.map((x) => el("path", { d: `M 960 250 C 960 320, ${x} 320, ${x} 398`, fill: "none", stroke: C.purple, "stroke-width": 4, "stroke-linecap": "round" }, svg));
+    branches.forEach((b, i) => {
+      const L = b.getTotalLength();
+      b.style.strokeDasharray = `${L} ${L}`;
+      tl.fromTo(b, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, VO.architecture - 0.6 + i * 0.12);
+    });
+    // autonomous brands: dashed links, kept apart but connected
+    const autos = [[150, 900], [1790, 905]];
+    autos.forEach(([x, y], i) => {
+      const ln = el("path", { d: `M ${x} ${y} C ${x} ${y - 120}, ${i ? 1700 : 220} 300, ${i ? 1060 : 860} 220`, fill: "none", stroke: C.grey, "stroke-width": 2.5, "stroke-dasharray": "8 10", opacity: 0 }, svg);
+      const c = el("circle", { cx: x, cy: y, r: 10, fill: C.grey, opacity: 0 }, svg);
+      tl.fromTo([ln, c], { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, VO.marque + i * 0.15);
+    });
+
+    // the grey nodes of the opening sort themselves into the cards (callback to scene 01)
+    const field = el("g", {}, svg);
+    for (let i = 0; i < 24; i++) {
+      const sx = 160 + r() * 1600, sy = 420 + r() * 420;
+      const k = i % 3, tx = X[k] - 180 + (Math.floor(i / 3) % 4) * 120, ty = 830 - Math.floor(i / 12) * 40;
+      const c = el("circle", { r: 7, fill: C.grey, transform: `translate(${sx} ${sy})` }, field);
+      tl.fromTo(c, { attr: { transform: `translate(${sx} ${sy})` }, opacity: 0.8 }, { attr: { transform: `translate(${tx} ${ty})` }, opacity: 0, duration: 1.1, ease: "power3.inOut" }, 0.3 + i * 0.03);
+    }
+
+    tl.fromTo($("logo"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 1.0);
+    tl.fromTo($("rail").querySelector(".rail-bar"), { scaleX: 0.7 }, { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, 0.2);
+    [0, 1, 2].forEach((i) => {
+      tl.fromTo($("k" + i), { opacity: 0, scaleY: 0.2, y: -30 }, { opacity: 1, scaleY: 1, y: 0, duration: 0.7, ease: "power3.out" }, VO.verticales - 0.2 + i * 0.15);
+      tl.fromTo($("k" + i).querySelectorAll(".chip"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", stagger: 0.08 }, VO.naming + i * 0.2);
+    });
+    tl.fromTo($("auto"), { opacity: 0 }, { opacity: 1, duration: 0.5 }, VO.marque + 0.3);
+    tl.fromTo($("words"), { opacity: 0 }, { opacity: 1, duration: 0.6 }, VO.architecture);
+    tl.fromTo($("src"), { opacity: 0 }, { opacity: 1, duration: 0.6 }, VO.architecture + 0.4);
+    // "lisible": everything settles one notch — a breath of order
+    tl.to([$("k0"), $("k1"), $("k2")], { y: -6, duration: 1.2, ease: "sine.inOut" }, VO.lisible - 0.2);
+
+    // seam: everything slides left, the thread carries on from the mark
+    const out = thread(svg, ID + "o", "M 1090 205 C 1400 190, 1600 540, 1940 540", { w: 6 });
+    defs(svg, ID + "o");
+    out.draw(tl, 0, 1, D - 1.2, 1.2, "power2.in");
+    tl.to([$("k0"), $("k1"), $("k2"), $("auto"), $("words"), $("src")], { x: -60, opacity: 0, duration: 0.6, ease: "power2.in", stagger: 0.03 }, D - 0.7);
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

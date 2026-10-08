@@ -1,0 +1,56 @@
+<style>
+  #s03-comprendre-foot{position:absolute;left:120px;bottom:92px;font-size:40px;font-weight:300;color:#6B7278}
+  #s03-comprendre-foot b{font-weight:500;color:#212C34}
+</style>
+<div class="wash"></div>
+<div id="s03-comprendre-rail">{{RAIL:1}}</div>
+<svg class="stage" id="s03-comprendre-stage" viewBox="0 0 1920 1080"></svg>
+<div id="s03-comprendre-foot">Comprendre ce que Finaxy <b>était vraiment.</b></div>
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const { C, rng, el, defs, thread, progressNear } = window.FIL;
+    const svg = document.getElementById(ID + "-stage");
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    defs(svg, ID);
+
+    const STOPS = [[300, 650, "dirigeants", VO.dirigeants], [700, 420, "collaborateurs", VO.collaborateurs], [1100, 690, "métiers", VO.metiers], [1500, 440, "marché", VO.marche]];
+    const d = "M -20 540 C 120 540, 200 650, 300 650 S 560 420, 700 420 S 960 690, 1100 690 S 1360 440, 1500 440 S 1760 540, 1940 540";
+    // faint nodes still waiting around, grey: the rest of the picture
+    const r = rng(33);
+    for (let i = 0; i < 9; i++) {
+      const x = 160 + r() * 1600, y = 230 + r() * 640;
+      if (STOPS.some(([a, b]) => (a - x) ** 2 + (b - y) ** 2 < 170 ** 2)) continue;
+      const c = el("circle", { cx: x, cy: y, r: 7, fill: C.grey, opacity: 0.6 }, svg);
+      tl.fromTo(c, { opacity: 0 }, { opacity: 0.6, duration: 0.6, ease: "power1.out" }, 0.1 + i * 0.05);
+    }
+    const th = thread(svg, ID, d, { w: 6 });
+    th.set(0.02);
+    const marks = STOPS.map(([x, y, label, cue]) => {
+      const c = el("circle", { cx: x, cy: y, r: 12, fill: C.purple }, svg);
+      const ring = el("circle", { cx: x, cy: y, r: 14, fill: "none", stroke: C.pink, "stroke-width": 3, opacity: 0 }, svg);
+      const t = el("text", { x, y: y - 46, "text-anchor": "middle", fill: C.ink, "font-family": "Unbounded", "font-size": 46, "font-weight": 400 }, svg);
+      t.textContent = label;
+      return { c, ring, t, p: progressNear(th, x, y), cue };
+    });
+    // the head reaches each stop exactly on its word
+    let prev = 0.02, prevT = VO.start;
+    marks.forEach((m) => {
+      th.draw(tl, prev, m.p, prevT, Math.max(0.3, m.cue - prevT), "sine.inOut");
+      tl.fromTo(m.c, { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, m.cue - 0.05);
+      tl.fromTo(m.ring, { attr: { r: 14 }, opacity: 0.9 }, { attr: { r: 64 }, opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false }, m.cue);
+      tl.fromTo(m.t, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, m.cue);
+      prev = m.p; prevT = m.cue;
+    });
+    tl.fromTo($("rail"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.1);
+    tl.fromTo($("rail").querySelector(".rail-bar"), { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, 0.3);
+    tl.fromTo($("foot"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, VO.vraiment - 1.0);
+
+    // seam
+    th.draw(tl, prev, 1, D - 1.4, 1.4, "power2.in");
+    tl.to([$("foot")].concat(marks.map((m) => m.t)), { x: -50, opacity: 0, duration: 0.5, ease: "power2.in" }, D - 0.5);
+
+    window.__timelines[ID] = tl;
+  })();
+</script>
