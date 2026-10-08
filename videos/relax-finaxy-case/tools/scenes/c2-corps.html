@@ -45,8 +45,8 @@
     const deck = $("deck"), sws = SW.map((s, i) => {
       const d = document.createElement("div");
       d.className = ID + "-sw" + (s[0] === "aa" ? " " + ID + "-aa" : "");
-      if (s[0] === "aa") { d.style.background = "#F4F1EB"; d.innerHTML = `<span>Aa</span><b data-layout-allow-overlap style="color:#191853;font-size:18px;white-space:nowrap">Instrument Serif</b><i style="color:#191853">TITRES</i>`; }
-      else { d.style.background = s[0]; d.innerHTML = `<b data-layout-allow-overlap style="color:${s[3]}">${s[1]}</b><i data-layout-allow-overlap style="color:${s[3]}">${s[2]}</i>`; }
+      if (s[0] === "aa") { d.style.background = "#F4F1EB"; d.innerHTML = `<span>Aa</span>`; }
+      else { d.style.background = s[0]; d.innerHTML = `<i data-layout-allow-overlap style="color:${s[3]}">${s[2]}</i>`; }
       deck.insertBefore(d, $("card"));
       return d;
     });
