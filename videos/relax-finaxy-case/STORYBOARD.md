@@ -7,16 +7,19 @@ audience: Dirigeants et directions marketing/communication, prospects de l'agenc
 mode: collaborative
 ---
 
-# Storyboard v1 — Relax × Finaxy
+# Storyboard v2 — Relax × Finaxy
 
 **Ce film dit aux dirigeants et directions marketing que Relax réunit et coordonne, sans couture, les
 meilleurs experts autour de leur projet — pour qu'eux n'aient plus à gérer la complexité.**
 
 - **Format :** 1920×1080, ~100 s estimés (somme des beats : 102,5 s) (VO réelle décidera), voix off FR Gemini « Algieba », fond musical
   ambient discret, sound design sur le fil, respiration finale. Déclinaison 4:5 ensuite.
-- **Spine — le fil rouge :** une seule ligne bordeaux (#9C0A3F) traverse tout le film sans jamais être
-  coupée. Elle touche chaque élément ; chaque contact aligne le suivant (effet domino). Toutes les
-  transitions sont portées par le fil : le monde glisse vers la gauche, le fil continue vers la droite.
+- **DA :** le film parle en Relax (fond blanc et lavis pastel du site, Unbounded + DM Sans, frame.md) ;
+  l'identité Finaxy (marine, crème, bordeaux, serif) n'apparaît que sur les livrables montrés.
+- **Spine — le fil :** le ruban lavande du site Relax, aplati en une ligne, traverse tout le film sans
+  jamais être coupé. Sa tête est le point rose du logo relax•. Chaque contact aligne l'élément suivant
+  (effet domino). Le monde glisse vers la gauche, le fil continue vers la droite. À la fin, le fil expire
+  et devient le point du logo.
 - **Courbe d'énergie :** frénétique au début (dérive rapide, saccades), puis chaque scène plus lente et
   plus posée que la précédente — sauf le déploiement (accélération exponentielle maîtrisée), puis le
   tourbillon, puis le calme total de la respiration.
@@ -26,10 +29,20 @@ meilleurs experts autour de leur projet — pour qu'eux n'aient plus à gérer l
   site ni de fausse interface (captures réelles ou placeholders étiquetés), pas de glow sur le texte.
   Échecs de motion à éviter : le diaporama (chaque beat une nouvelle carte) et l'écran de veille.
 
+## Changes from v1
+
+- « Dans la narration je pense qu'il faut dire que ca va au dela d'un simple pb de logo mais qu'on se parle
+  plutot d'un pb de cohérence globale. » → VO Frame 2 réécrite.
+- « vu que c'est un case relax, le fond de la DA devrait etre une DA relax plutot que Finaxy. Mais on
+  illustre bien dans la video la DA qu'on a mis en place pour finaxy. » → frame.md réécrit (Relax = film,
+  Finaxy = artefacts).
+- Frame 6 : les 3 verticales réelles de finaxy.com. Frame 12 : vrai logo relax• (relax-agency.com).
+
 ## Still open
 
-- Logo Relax (site Relax à autoriser dans le réseau, ou fichier fourni) — placeholder « relax » en attendant.
-- Captures ancien site (web.archive.org) / nouveau site finaxy.com — placeholders étiquetés en attendant.
+- Signature finale optionnelle « Maintenant, relax, on s'occupe du reste. » (site Relax) — oui / non.
+- Ancien site Finaxy : web.archive.org très instable et peu de captures récentes de finaxy.com — à réessayer
+  au build, ou captures à fournir.
 - Visuels réels des supports (plaquettes B2B, kakemonos, cartes de visite, masques de présentation,
   cartes de vœux, LinkedIn) et de l'agent IA — placeholders étiquetés en attendant.
 - `GEMINI_API_KEY` pour la voix Algieba.
@@ -52,12 +65,12 @@ clientes » arrive en compteur Manrope. Pas de fil encore. Why : poser la puissa
 
 ## Frame 2 — Le vrai sujet
 
-- scene: Le mot « logo » barré, « cohérence » en serif ; le fil rouge entre par la gauche et touche le premier nœud qui cesse de trembler
+- scene: « Bien au-delà d'un simple problème de logo. » barré ; « Un problème de cohérence globale. » en Unbounded ; le fil entre par le bas-gauche et touche le premier nœud qui cesse de trembler
 - duration: 9s
 - transition_in: cut
 - status: built
 - src: compositions/02-coherence.html
-- voiceover: "Finaxy n'avait pas un problème de logo. Finaxy avait un problème de cohérence. Le défi : simplifier, sans appauvrir."
+- voiceover: "Mais l'enjeu allait bien au-delà d'un simple problème de logo. C'était un problème de cohérence globale. Le défi : simplifier, sans appauvrir."
 - motion: rules — strike-through, line-draw, settle
 - poster: 7s
 
@@ -107,7 +120,7 @@ Le principe qui organise tout le reste. Why : la big idea, posée comme une évi
 
 ## Frame 6 — Organiser : l'architecture
 
-- scene: Le réseau se range en arborescence : « Finaxy » au sommet, verticales/catégories, marques autonomes conservées sur les côtés ; libellés « architecture », « verticales », « naming » ; étape 03
+- scene: Le réseau se range sous le logo Finaxy en 3 verticales réelles (finaxy.com) : « Entreprises & institutions », « Affinitaire & partenariats », « Clientèle privée », chacune avec ses offres ; marques autonomes conservées en pointillé ; étape 03
 - duration: 10.5s
 - transition_in: thread-carry
 - status: built
@@ -117,12 +130,12 @@ Le principe qui organise tout le reste. Why : la big idea, posée comme une évi
 - poster: 8s
 
 Les mêmes nœuds qu'en Frame 1 (callback) — mais rangés. Certaines marques acquises restent autonomes
-(liées en pointillé), d'autres intègrent le système. Catégories exactes à confirmer. Why : la plateforme
+(liées en pointillé), d'autres intègrent le système. Verticales et offres reprises de finaxy.com. Why : la plateforme
 devient principe d'organisation — « complexe → intelligible ».
 
 ## Frame 7 — Exprimer : logo, identité, voix
 
-- scene: L'ancien logo FINAXY GROUP se dissout ; le nouveau « Finaxy » crème + virgule bordeaux se dessine (la virgule naît du fil) ; quatre traits en orbite : Ancré · Architecte · Team player · Pédagogue ; étape 04
+- scene: L'ancien logo FINAXY GROUP s'efface ; sur un panneau marine Finaxy, le nouveau « Finaxy » crème se dessine et le fil, en passant, signe la virgule bordeaux ; quatre traits en orbite : Ancré · Architecte · Team player · Pédagogue ; étape 04
 - duration: 8s
 - transition_in: thread-carry
 - status: built
@@ -131,7 +144,7 @@ devient principe d'organisation — « complexe → intelligible ».
 - motion: rules — morph-dissolve, svg-draw, orbit-labels
 - poster: 6s
 
-Moment signature : le fil rouge devient la virgule bordeaux du logo Finaxy. Why : la stratégie prend corps
+Moment signature : le fil Relax signe la virgule bordeaux du logo Finaxy. Why : la stratégie prend corps
 — la marque exprime sa nouvelle stature.
 
 ## Frame 8 — Déployer : l'exponentielle
@@ -193,7 +206,7 @@ Callback de tout le film. Le tourbillon ralentit jusqu'à un point. Why : la pro
 
 ## Frame 12 — Respiration → Relax
 
-- scene: Le point se dilate sur une grande inspiration (tout se suspend), puis l'expiration relâchée ouvre le cadre en crème ; le logo Relax apparaît, posé
+- scene: Le point rose se dilate sur une grande inspiration (tout se suspend), puis l'expiration relâchée ouvre des ondes douces ; « relax » s'écrit et le point se pose à sa place dans le logo
 - duration: 7s
 - transition_in: cut
 - status: built
@@ -203,5 +216,5 @@ Callback de tout le film. Le tourbillon ralentit jusqu'à un point. Why : la pro
 - poster: 6s
 
 Inspiration ~1.6 s (le point grossit lentement, held), expiration ~2.4 s (le cadre s'ouvre, fond ink →
-crème), logo Relax entre sur la fin de l'expiration et se pose. Silence musical autour du souffle.
+lavis Relax), le logo relax• s'écrit sur la fin de l'expiration et le point se pose. Silence musical autour du souffle.
 Why : le soulagement — la tranquillité d'esprit de confier son projet à Relax.
