@@ -41,7 +41,7 @@ meilleurs experts autour de leur projet — pour qu'eux n'aient plus à gérer l
 ## Changes from v2
 
 - « Je dirai plutôt simplement : "L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence." » → VO Frame 2.
-- « Prend les infos du site » → Frame 1 : 11ᵉ courtier français, 430 collaborateurs, 18 implantations en France (finaxy.com).
+- « Prend les infos du site » → Frame 1 : 11ᵉ courtier français (finaxy.com) + 12 000 entreprises clientes ; pas le nombre de collaborateurs (retour client).
 - Narration verrouillée dans SCRIPT.md.
 
 ## Still open
@@ -56,12 +56,12 @@ meilleurs experts autour de leur projet — pour qu'eux n'aient plus à gérer l
 
 ## Frame 1 — Chaos hérité
 
-- scene: Des dizaines de nœuds épars dérivent vite ; noms de cabinets, expertises, sigles ; ancien logo FINAXY GROUP au milieu ; « 11ᵉ courtier français · 430 collaborateurs · 18 implantations » se comptent (finaxy.com)
+- scene: Des dizaines de nœuds épars dérivent vite ; noms de cabinets, expertises, sigles ; ancien logo FINAXY GROUP au milieu ; « 11ᵉ courtier français » et « + 12 000 entreprises clientes » se comptent
 - duration: 9s
 - transition_in: cut
 - status: built
 - src: compositions/01-chaos.html
-- voiceover: "Finaxy avait grandi vite. Très vite. Des acquisitions, des cabinets, des expertises, des marques… Onzième courtier français. Quatre cent trente collaborateurs. Dix-huit implantations en France."
+- voiceover: "Finaxy avait grandi vite. Très vite. Des acquisitions, des cabinets, des expertises, des marques… Onzième courtier français. Plus de douze mille entreprises clientes."
 - motion: rules — drift-jitter, stagger-pop, count-up
 - poster: 6s
 

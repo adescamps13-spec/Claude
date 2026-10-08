@@ -13,7 +13,7 @@ Locked text: `tools/vo-lines.json` is generated from the indented blocks below �
 **Time:** 0.0 – 9.0s
 **Delivery:** Un peu plus d'allant, comme un constat qui s'accélère ; les chiffres posés, détachés.
 
-    Finaxy avait grandi vite. Très vite. Des acquisitions, des cabinets, des expertises, des marques… Onzième courtier français. Quatre cent trente collaborateurs. Dix-huit implantations en France.
+    Finaxy avait grandi vite. Très vite. Des acquisitions, des cabinets, des expertises, des marques… Onzième courtier français. Plus de douze mille entreprises clientes.
 
 ## Line 2 — Le vrai sujet (Frame 2)
 

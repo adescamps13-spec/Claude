@@ -112,10 +112,8 @@ def f01():
     s += t(120, 1000, "11", 140, fam=TITLE, weight=500)
     s += t(300, 960, "e", 44, fam=TITLE, weight=500)
     s += t(300, 1004, "courtier français", 30, fill=INK2, weight=300)
-    s += t(760, 1000, "430", 96, fam=TITLE, weight=400)
-    s += t(980, 1000, "collaborateurs", 30, fill=INK2, weight=300)
-    s += t(1300, 1000, "18", 96, fam=TITLE, weight=400)
-    s += t(1450, 1000, "implantations en France", 30, fill=INK2, weight=300)
+    s += t(760, 1000, "+ 12 000", 96, fam=TITLE, weight=400)
+    s += t(1260, 1000, "entreprises clientes", 30, fill=INK2, weight=300)
     return s
 
 
@@ -327,7 +325,7 @@ def f12():
 
 FRAMES = [
     ("01", "Chaos hérité", "0:00–0:09", f01, "cut",
-     "<b>Ça part vite.</b> Des nœuds gris dérivent et tremblent ; l'ancien logo flotte sans hiérarchie ; « 11ᵉ courtier · 430 collaborateurs · 18 implantations » se comptent. Pas encore de fil."),
+     "<b>Ça part vite.</b> Des nœuds gris dérivent et tremblent ; l'ancien logo flotte sans hiérarchie ; « 11ᵉ courtier français » et « + 12 000 entreprises clientes » se comptent. Pas encore de fil."),
     ("02", "Le vrai sujet", "0:09–0:19", f02, "cut",
      "<b>« problème de logo » se barre</b> ; « cohérence » s'écrit. Le fil entre par le bas-gauche et calme le premier nœud."),
     ("03", "Comprendre", "0:19–0:27", f03, "fil",
@@ -408,7 +406,7 @@ h1 .dot{{color:{PINK}}}
   <p class="dek">Case agence : Relax réunit et coordonne, sans couture, les meilleurs experts autour du projet — le client, lui, ne voit qu'un seul fil. Le film parle en Relax ; l'identité Finaxy y apparaît comme le travail réalisé.</p></div>
   <span class="tag">1920×1080 · ~100 s · 12 scènes · VO Algieba</span>
 </header>
-<div class="changes"><b>Changements depuis v1</b> — DA du film = DA Relax (fond blanc et lavis pastel du site, Unbounded + DM Sans, le ruban lavande comme fil, le point rose du logo comme tête du fil). L'identité Finaxy (marine, crème, bordeaux, serif) n'apparaît plus que sur les livrables montrés. VO scène 02 : « L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence. » Scène 01 : chiffres de finaxy.com. Scène 06 : les 3 vraies verticales de finaxy.com. Scène 12 : le vrai logo relax•.</div>
+<div class="changes"><b>Changements depuis v1</b> — DA du film = DA Relax (fond blanc et lavis pastel du site, Unbounded + DM Sans, le ruban lavande comme fil, le point rose du logo comme tête du fil). L'identité Finaxy (marine, crème, bordeaux, serif) n'apparaît plus que sur les livrables montrés. VO scène 02 : « L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence. » Scène 01 : 11ᵉ courtier + 12 000 entreprises clientes. Scène 06 : les 3 vraies verticales de finaxy.com. Scène 12 : le vrai logo relax•.</div>
 <div class="grid">
 {cells}
 <div class="act">Repères</div>
