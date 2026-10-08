@@ -108,8 +108,18 @@ def build_index():
         if not (ROOT / a["src"]).exists():
             continue
         vol = f' data-volume="{a["volume"]}"' if "volume" in a else ""
-        dur = f' data-duration="{a["dur"]}"' if "dur" in a else ""
-        audio.append(f'      <audio id="{a["id"]}" src="{a["src"]}" data-start="{round(start, 3)}"{dur} data-track-index="{a.get("track", 1)}"{vol}></audio>')
+        if "dur" not in a:
+            import wave
+            with wave.open(str(ROOT / a["src"])) as w:
+                a["dur"] = round(w.getnframes() / w.getframerate(), 2)
+        a["dur"] = min(a["dur"], round(total - start, 3))
+        dur = f' data-duration="{a["dur"]}"'
+        grp = f' data-audio-group="{a["group"]}"' if "group" in a else ""
+        fx = ""
+        carve = ROOT / "tools" / f'{a["id"]}-carve.attrs'
+        if carve.exists():  # voiceover carve written by hyperframes-audio/scripts/carve.mjs, kept across rebuilds
+            fx = " " + carve.read_text().strip()
+        audio.append(f'      <audio id="{a["id"]}" src="{a["src"]}" data-start="{round(start, 3)}"{dur} data-track-index="{a.get("track", 1)}"{vol}{grp}{fx}></audio>')
     html = f"""<!doctype html>
 <html lang="fr">
   <head>

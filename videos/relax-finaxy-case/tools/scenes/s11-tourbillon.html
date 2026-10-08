@@ -16,6 +16,7 @@
     const tl = gsap.timeline({ paused: true });
     defs(svg, ID);
     const CX = 960, CY = 400;
+    const KT = Math.max(1, (D - 1.4) / 4.6); // vortex pacing scales with the voice line
 
     // the thread comes in from the left and coils toward the centre
     const pts = [];
@@ -26,10 +27,10 @@
     const th = thread(svg, ID, "M " + pts.join(" L "), { w: 4 });
 
     // everything the film carried, now whirling in
-    const ITEMS = [["IARD", C.grey], ["Ancré", C.navy, 1], ["Kakemonos", C.burg, 1], ["cohérence", C.ink], ["Naming", C.red], ["Design", C.purple],
+    const ITEMS = [["IARD", C.ink2], ["Ancré", C.navy, 1], ["Kakemonos", C.burg, 1], ["cohérence", C.ink], ["Naming", C.red], ["Design", C.purple],
       ["dirigeants", C.ink2], ["Cartes de vœux", C.burg, 1], ["LinkedIn", C.fblue], ["Architecte", C.navy, 1], ["Agent IA", C.purple], ["Stratégie", C.purple],
-      ["Pédagogue", C.navy, 1], ["marché", C.ink2], ["Plaquettes B2B", C.navy, 1], ["Éditorial", C.yellow], ["Team player", C.navy, 1], ["Cabinet", C.grey],
-      ["Production", C.cyan], ["verticales", C.ink2], ["Clientèle privée", C.slate, 1], ["IA", C.red], ["Marque acquise", C.grey], ["Architecture de marque", C.cyan]];
+      ["Pédagogue", C.navy, 1], ["marché", C.ink2], ["Plaquettes B2B", C.navy, 1], ["Éditorial", "#6E6828"], ["Team player", C.navy, 1], ["Cabinet", C.ink2],
+      ["Production", "#3B7880"], ["verticales", C.ink2], ["Clientèle privée", C.slate, 1], ["IA", C.red], ["Marque acquise", C.ink2], ["Architecture de marque", "#3B7880"]];
     // items orbit on an ellipse and spiral in; text stays upright (position-only transforms)
     const vortex = el("g", { "data-layout-allow-overlap": "" }, svg);
     ITEMS.forEach(([w, col, serif], i) => {
@@ -43,15 +44,15 @@
         item.setAttribute("opacity", st.o.toFixed(3));
       };
       put();
-      const t0 = 0.9 + (i % 8) * 0.22 + Math.floor(i / 8) * 0.12;
+      const t0 = (0.9 + (i % 8) * 0.22 + Math.floor(i / 8) * 0.12) * KT;
       tl.fromTo(st, { a: a0, k: 1.6, s: 1, o: 0 }, { a: a0 + 1.2, k: 1, o: 1, duration: 0.9, ease: "power2.out", onUpdate: put }, 0.05 + i * 0.03);
-      tl.fromTo(st, { a: a0 + 1.2, k: 1, s: 1, o: 1 }, { a: a0 + 1.2 + 4.2, k: 0, s: 0.15, o: 0, duration: 2.8, ease: "power3.in", onUpdate: put, immediateRender: false }, t0);
+      tl.fromTo(st, { a: a0 + 1.2, k: 1, s: 1, o: 1 }, { a: a0 + 1.2 + 4.2, k: 0, s: 0, o: 1, duration: 2.8 * KT, ease: "power3.in", onUpdate: put, immediateRender: false }, t0);
     });
-    th.draw(tl, 0, 1, 0, 4.6, "power2.inOut");
+    th.draw(tl, 0, 1, 0, 4.6 * KT, "power2.inOut");
 
     const dot = el("circle", { cx: CX, cy: CY, r: 10, fill: C.pink }, svg);
-    tl.fromTo(dot, { attr: { r: 6 }, opacity: 0 }, { attr: { r: 18 }, opacity: 1, duration: 3.6, ease: "power2.in" }, 0.8);
-    tl.to(th.group, { opacity: 0, duration: 0.6 }, 4.6);
+    tl.fromTo(dot, { attr: { r: 6 }, opacity: 0 }, { attr: { r: 18 }, opacity: 1, duration: 3.6 * KT, ease: "power2.in" }, 0.8 * KT);
+    tl.to(th.group, { opacity: 0, duration: 0.6 }, 4.6 * KT);
 
     tl.fromTo($("a"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, VO.experts);
     tl.fromTo($("b"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, VO.confiance);

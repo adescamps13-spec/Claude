@@ -1,21 +1,262 @@
 {
-  "_note": "Scene durations (s) and in-scene voice cues (s from scene start). Estimates until the real Algieba takes land; then replace from the transcript and rebuild.",
-  "scenes": [
-    {"id": "s01-chaos",        "dur": 9,    "vo": {"start": 0.4, "acquisitions": 2.2, "courtier": 5.0, "clientes": 6.6}},
-    {"id": "s02-coherence",    "dur": 9,    "vo": {"start": 0.3, "logo": 2.4, "coherence": 4.0, "defi": 5.4, "appauvrir": 7.0}},
-    {"id": "s03-comprendre",   "dur": 8,    "vo": {"start": 0.3, "dirigeants": 2.0, "collaborateurs": 2.7, "metiers": 3.5, "marche": 4.1, "vraiment": 5.6}},
-    {"id": "s04-reveler",      "dur": 9,    "vo": {"start": 0.3, "groupe": 2.4, "cabinet": 3.6, "risques": 5.0, "suffit": 7.0}},
-    {"id": "s05-intelligence", "dur": 4.5,  "vo": {"start": 0.2, "intelligence": 1.2}},
-    {"id": "s06-organiser",    "dur": 10.5, "vo": {"start": 0.3, "architecture": 2.8, "verticales": 3.6, "naming": 4.3, "marque": 5.4, "lisible": 8.2}},
-    {"id": "s07-exprimer",     "dur": 8,    "vo": {"start": 0.3, "logo": 1.9, "identite": 2.8, "voix": 3.6, "stature": 4.6, "humain": 6.6}},
-    {"id": "s08-deployer",     "dur": 12,   "vo": {"start": 0.3, "plaquettes": 1.9, "kakemonos": 2.6, "cartes": 3.3, "presentations": 4.0, "voeux": 4.6, "linkedin": 5.2, "site": 5.8, "agent": 7.4, "finaxy": 9.6}},
-    {"id": "s09-equipe",       "dur": 9,    "vo": {"start": 0.3, "d0": 0.3, "d1": 0.9, "d2": 1.8, "d3": 2.4, "d4": 2.9, "d5": 3.5, "d6": 4.1, "equipe": 6.0, "seule": 7.6}},
-    {"id": "s10-couture",      "dur": 10.5, "vo": {"start": 0.3, "agence": 2.2, "autour": 4.4, "relax": 5.6, "client": 7.2, "couture": 8.7}},
-    {"id": "s11-tourbillon",   "dur": 6,    "vo": {"start": 0.3, "experts": 0.4, "confiance": 2.6}},
-    {"id": "s12-relax",        "dur": 7,    "vo": {"inhale": 0.5, "exhale": 2.3, "logo": 3.6, "signature": 4.6}}
-  ],
-  "audio": [
-    {"id": "bgm", "src": "assets/audio/bed.wav", "start": 0, "volume": 1, "track": 2},
-    {"id": "breath", "src": "assets/audio/breath.wav", "scene": 11, "offset": 0.4, "volume": 1, "track": 3}
-  ]
+ "_note": "Scene durations (s) and in-scene voice cues (s from scene start), from the real Algieba takes (tools/vo-cues.json, lead 0.4s). Rebuild with tools/build.py.",
+ "scenes": [
+  {
+   "id": "s01-chaos",
+   "dur": 13.5,
+   "vo": {
+    "start": 0.4,
+    "acquisitions": 2.93,
+    "courtier": 7.98,
+    "clientes": 10.45
+   }
+  },
+  {
+   "id": "s02-coherence",
+   "dur": 10.6,
+   "vo": {
+    "start": 0.68,
+    "logo": 2.78,
+    "coherence": 4.38,
+    "defi": 5.82,
+    "appauvrir": 8.46
+   }
+  },
+  {
+   "id": "s03-comprendre",
+   "dur": 11.9,
+   "vo": {
+    "start": 0.66,
+    "dirigeants": 3.52,
+    "collaborateurs": 4.32,
+    "metiers": 5.62,
+    "marche": 6.56,
+    "vraiment": 8.85
+   }
+  },
+  {
+   "id": "s04-reveler",
+   "dur": 13.0,
+   "vo": {
+    "start": 0.4,
+    "groupe": 1.61,
+    "cabinet": 4.2,
+    "risques": 6.14,
+    "suffit": 8.13
+   }
+  },
+  {
+   "id": "s05-intelligence",
+   "dur": 6.4,
+   "vo": {
+    "start": 0.4,
+    "intelligence": 2.47
+   }
+  },
+  {
+   "id": "s06-organiser",
+   "dur": 13.2,
+   "vo": {
+    "start": 0.4,
+    "architecture": 3.99,
+    "verticales": 5.18,
+    "naming": 6.4,
+    "marque": 7.36,
+    "lisible": 10.84
+   }
+  },
+  {
+   "id": "s07-exprimer",
+   "dur": 10.1,
+   "vo": {
+    "start": 0.66,
+    "logo": 2.31,
+    "identite": 3.16,
+    "voix": 4.55,
+    "stature": 5.9,
+    "humain": 7.53
+   }
+  },
+  {
+   "id": "s08-deployer",
+   "dur": 16.6,
+   "vo": {
+    "start": 0.4,
+    "plaquettes": 2.89,
+    "kakemonos": 3.82,
+    "cartes": 4.89,
+    "presentations": 6.13,
+    "voeux": 7.29,
+    "linkedin": 8.53,
+    "site": 9.55,
+    "agent": 10.77,
+    "finaxy": 12.79
+   }
+  },
+  {
+   "id": "s09-equipe",
+   "dur": 16.5,
+   "vo": {
+    "start": 0.4,
+    "d0": 0.67,
+    "d1": 2.0,
+    "d2": 3.53,
+    "d3": 4.76,
+    "d4": 6.02,
+    "d5": 7.55,
+    "d6": 8.89,
+    "equipe": 11.48,
+    "seule": 14.1
+   }
+  },
+  {
+   "id": "s10-couture",
+   "dur": 14.5,
+   "vo": {
+    "start": 0.77,
+    "agence": 0.77,
+    "autour": 3.92,
+    "relax": 7.09,
+    "client": 9.66,
+    "couture": 12.21
+   }
+  },
+  {
+   "id": "s11-tourbillon",
+   "dur": 8.9,
+   "vo": {
+    "start": 0.4,
+    "experts": 0.63,
+    "confiance": 4.55
+   }
+  },
+  {
+   "id": "s12-relax",
+   "dur": 7,
+   "vo": {
+    "inhale": 0.5,
+    "exhale": 2.3,
+    "logo": 3.6,
+    "signature": 4.6
+   }
+  }
+ ],
+ "audio": [
+  {
+   "id": "bgm",
+   "src": "assets/audio/bed.wav",
+   "start": 0,
+   "volume": 1,
+   "track": 2,
+   "group": "music"
+  },
+  {
+   "id": "breath",
+   "src": "assets/audio/breath.wav",
+   "scene": 11,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 3,
+   "group": "sfx"
+  },
+  {
+   "id": "vo01",
+   "src": "assets/voice/line-01.wav",
+   "scene": 0,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  },
+  {
+   "id": "vo02",
+   "src": "assets/voice/line-02.wav",
+   "scene": 1,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  },
+  {
+   "id": "vo03",
+   "src": "assets/voice/line-03.wav",
+   "scene": 2,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  },
+  {
+   "id": "vo04",
+   "src": "assets/voice/line-04.wav",
+   "scene": 3,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  },
+  {
+   "id": "vo05",
+   "src": "assets/voice/line-05.wav",
+   "scene": 4,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  },
+  {
+   "id": "vo06",
+   "src": "assets/voice/line-06.wav",
+   "scene": 5,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  },
+  {
+   "id": "vo07",
+   "src": "assets/voice/line-07.wav",
+   "scene": 6,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  },
+  {
+   "id": "vo08",
+   "src": "assets/voice/line-08.wav",
+   "scene": 7,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  },
+  {
+   "id": "vo09",
+   "src": "assets/voice/line-09.wav",
+   "scene": 8,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  },
+  {
+   "id": "vo10",
+   "src": "assets/voice/line-10.wav",
+   "scene": 9,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  },
+  {
+   "id": "vo11",
+   "src": "assets/voice/line-11.wav",
+   "scene": 10,
+   "offset": 0.4,
+   "volume": 1,
+   "track": 1,
+   "group": "voiceover"
+  }
+ ]
 }
