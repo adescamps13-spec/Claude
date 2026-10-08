@@ -1,0 +1,107 @@
+<style>
+  #§pink{background:#FF0055}
+  #§k1{position:absolute;left:120px;top:250px;font-weight:300;font-size:56px;color:#FFFFFF}
+  .§big{position:absolute;left:110px;height:300px;overflow:hidden}
+  .§big span{display:block;font-family:Unbounded;font-weight:600;font-size:250px;line-height:300px;letter-spacing:-.04em;color:#FFFFFF;white-space:nowrap}
+  #§rows{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  .§row{position:absolute;left:0;height:190px;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:150px;line-height:190px;letter-spacing:-.03em}
+  #§mpill{position:absolute;left:510px;top:478px;width:900px;height:124px;border-radius:62px;background:#FFFFFF;color:#212C34;font-family:Unbounded;font-weight:500;font-size:44px;line-height:124px;text-align:center;box-shadow:0 30px 60px rgba(80,0,30,.35)}
+  #§ink{background:#16131F}
+  #§lone{position:absolute;left:760px;top:470px;width:400px;height:100px;border-radius:50px;background:#FFFFFF;color:#212C34;font-weight:500;font-size:38px;line-height:100px;text-align:center}
+  .§risk{position:absolute;left:0;top:0;height:64px;padding:0 28px;border-radius:32px;border:2px solid #FF0055;color:#FFFFFF;font-weight:500;font-size:28px;line-height:60px;white-space:nowrap;background:rgba(255,0,85,.12)}
+  .§ally{position:absolute;left:0;top:0;width:240px;height:84px;border-radius:42px;background:#D4CCEE;color:#16131F;font-weight:500;font-size:28px;line-height:84px;text-align:center}
+  #§cap{position:absolute;left:0;right:0;top:850px;text-align:center;font-family:Unbounded;font-weight:500;font-size:48px;color:#FFFFFF}
+</style>
+<div class="full" id="§pink">
+  <div id="§k1">Une proposition de</div>
+  <div class="§big" style="top:330px"><span id="§b1">valeur clé</span></div>
+  <div id="§rows"></div>
+  <div id="§mpill" data-layout-allow-overlap>le risque est devenu multiple</div>
+  {{HUD:#16131F|02 — RÉVÉLER}}
+</div>
+<div class="full" id="§ink">
+  <div id="§field"></div>
+  <div id="§lone">une expertise</div>
+  <div id="§cap">aucune expertise isolée ne suffit.</div>
+  {{HUD:#9A93AE|02 — RÉVÉLER}}
+</div>
+
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["2.3"], b = VO["2.4"], c = VO["2.5"];
+    // two plans, hard cut on "aucune expertise isolée"
+    const vis = { t: 0 };
+    const cut = () => { $("pink").style.display = vis.t < c - 0.1 ? "block" : "none"; $("ink").style.display = vis.t < c - 0.1 ? "none" : "block"; };
+    tl.fromTo(vis, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: cut }, 0);
+    cut();
+    // the colour block wipes up, the words land
+    tl.fromTo("#§pink", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "expo.out" }, 0);
+    tl.fromTo("#§k1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a);
+    tl.fromTo("#§b1", { y: 300 }, { y: 0, duration: 0.8, ease: "expo.out" }, a + 0.2);
+    tl.to(["#§k1", "#§b1"], { y: -340, opacity: 0, duration: 0.5, ease: "expo.in" }, b - 0.4);
+    // "le risque est devenu multiple": the risks of the manifesto multiply in giant crossing rows
+    const RISKS = ["climatique", "humain", "cyber", "réglementaire", "géopolitique", "réputationnel"];
+    const rows = [];
+    for (let i = 0; i < 6; i++) {
+      const r = document.createElement("div");
+      r.className = ID + "-row";
+      r.style.top = (-30 + i * 190) + "px";
+      const seq = [...RISKS.slice(i), ...RISKS.slice(0, i)];
+      r.textContent = [...seq, ...seq].join("  ·  ");
+      r.style.color = i % 2 ? "#16131F" : "#FFFFFF";
+      r.setAttribute("data-layout-allow-overlap", "");
+      $("rows").appendChild(r);
+      rows.push(r);
+    }
+    rows.forEach((r, i) => {
+      const dir = i % 2 ? 1 : -1, x0 = dir > 0 ? -2600 : 0;
+      tl.fromTo(r, { x: x0 + dir * -1400, opacity: 0 }, { x: x0, opacity: 1, duration: 0.7, ease: "expo.out" }, b - 0.2 + i * 0.05);
+      tl.to(r, { x: x0 + dir * 700, duration: c - b, ease: "none" }, b + 0.5 + i * 0.05);
+    });
+    tl.fromTo("#§mpill", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, b + 0.55);
+
+    // "aucune expertise isolée ne suffit": one pill alone, the risks close in from every side
+    const field = $("field"), r = KIT.rng(7), risks = [];
+    for (let i = 0; i < 9; i++) {
+      const p = document.createElement("div");
+      p.className = ID + "-risk";
+      p.textContent = RISKS[i % 6];
+      field.appendChild(p);
+      const ang = (i / 9) * Math.PI * 2 + r() * 0.25, rad = 300 + (i % 3) * 60;
+      risks.push({ el: p, ang, rad });
+    }
+    const orbit = { t: 0 };
+    const drawOrbit = () => risks.forEach((o, i) => {
+      const k = Math.min(1, orbit.t * 1.6), ang = o.ang + orbit.t * 0.7;
+      const rad = o.rad * (2.4 - 1.4 * (1 - Math.pow(1 - k, 3))) * (1 - 0.18 * Math.max(0, orbit.t - 0.6));
+      o.el.style.transform = `translate(${(960 + Math.cos(ang) * rad * 1.5 - 110).toFixed(1)}px,${(490 + Math.sin(ang) * rad * 0.62 - 32).toFixed(1)}px)`;
+    });
+    drawOrbit();
+    tl.fromTo(orbit, { t: 0 }, { t: 1, duration: 2.0, ease: "none", onUpdate: drawOrbit, immediateRender: false }, c - 0.1);
+    tl.fromTo("#§lone", { scale: 1.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "expo.out" }, c - 0.1);
+    tl.to("#§lone", { scale: 0.82, opacity: 0.55, duration: 1.4, ease: "power2.in" }, c + 0.6);
+    tl.fromTo("#§cap", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, c + 0.3);
+    // …so the expertises gather: the risks are pushed out, allies dock around the pill
+    const ALLY = 6, allies = [];
+    for (let i = 0; i < ALLY; i++) {
+      const p = document.createElement("div");
+      p.className = ID + "-ally";
+      p.textContent = "une expertise";
+      field.appendChild(p);
+      allies.push(p);
+    }
+    const g = c + 2.0;
+    tl.to(risks.map((o) => o.el), { opacity: 0, scale: 0.6, duration: 0.5, ease: "power2.in", stagger: 0.02 }, g);
+    tl.to("#§lone", { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, g + 0.2);
+    allies.forEach((p, i) => {
+      const ang = (i / ALLY) * Math.PI * 2 - Math.PI / 2, X = 960 + Math.cos(ang) * 420 - 120, Y = 520 + Math.sin(ang) * 190 - 42;
+      tl.fromTo(p, { x: 960 + Math.cos(ang) * 1300 - 120, y: 520 + Math.sin(ang) * 800 - 42, opacity: 0 },
+        { x: X, y: Y, opacity: 1, duration: 0.8, ease: "expo.out" }, g + 0.15 + i * 0.06);
+    });
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

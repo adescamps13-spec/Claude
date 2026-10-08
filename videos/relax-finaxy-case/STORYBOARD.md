@@ -1,164 +1,105 @@
 ---
 format: 1920x1080
-duration: 100s
-message: "Les meilleurs talents au service de votre projet, coordonnés comme une seule équipe : chez Relax, on construit l'équipe autour du projet."
-arc: Constat → écouter / révéler → organiser / exprimer → déployer → le rôle de Relax → respiration → relax•
+duration: 100.3s
+message: "Les meilleurs experts pour votre projet, coordonnés par un partenaire de confiance : chez Relax, on construit l'équipe autour du projet."
+arc: Constat → écouter / comprendre / révéler → organiser / exprimer → déployer → le rôle de Relax → respiration → relax•
 audience: Dirigeants et directions marketing/communication, prospects de l'agence Relax
 mode: collaborative
 ---
 
-# Storyboard v4 — Relax × Finaxy (direction v2 : l'effet domino)
+# Storyboard v5 — Relax × Finaxy (langage du prototype)
 
-- **Retour client sur v1 :** trop descriptif, pas assez moderne ; constat rapide, effet domino, puis la force de Relax ; voix féminine.
-- **Texte :** script du client (SCRIPT.md), voix Sulafat, 5 prises (une par acte).
-- **Langage :** références Jerry (carrousel à plis de verre irisé) et Stephan (aplats plein cadre, typo géante, contours répétés, habillage interface en mono) ; 3D isométrique pour la ville, l'architecture et l'équipe ; l'effet domino relie les actes.
-- **DA :** Relax (blanc, verre irisé cyan/lavande/rose, aplats violet #6955AA et rose #FF0055, nuit #16131F, Unbounded + DM Sans + mono). Finaxy uniquement sur les livrables.
-- **Fin :** respiration calme et discrète, relax•, signature « Relax, on s'occupe de tout. »
+- **Retours intégrés :** constat rapide, effet domino, puis la force de Relax ; plus de 3D isométrique ni de petits traits ; DA Relax en fond, la DA Finaxy seulement sur les livrables ; voix Sulafat ; respiration calme ; signature « Relax, on s'occupe de tout. »
+- **Langage :**
+  - typo géante recadrée traversée d'objets 3D (Socoloff) ;
+  - pellicule courbe irisée avec titres entre accolades (Jerry) ;
+  - aplats plein cadre (Stephan) ;
+  - morphoses d'interface : pilules, barre d'onglets, cadre de focus.
+- **Timing :** `tools/plan.py` cale chaque scène sur les phrases réelles des 5 prises (`tools/vo-cues.json`) → `tools/timing.json` → `tools/build.py`.
+- **Textes Finaxy réels :**
+  - « Une intelligence collective du risque » ;
+  - « Ensemble, protégeons ce qui compte » ;
+  - les risques du manifeste ;
+  - les 3 verticales du site ;
+  - la phrase de la charte éditoriale dans l'agent IA ;
+  - les traits Ancré · Team player · Pédagogue.
 
 ## Still open
 
-- Validation de la planche v4.
-- Troisième référence (stevelauda_) inaccessible.
+- Variante 4:5.
+- Carte de vœux, masque de présentation, plaquettes, kakemonos, cartes de visite, réseaux sociaux : maquettes reconstituées dans la DA Finaxy (pas de fichiers sources des supports réels).
 
 ## Frame 1 — 11ᵉ courtier
-
-- scene: Aplat violet, « 11 » géant, habillage interface (coins, mono), point rose
-- status: built
-- src: compositions/v2-01.html
-- act: A — Le constat
+- scene: Aplat violet, « 11 » géant qui monte du bas du cadre, « e » rose, « courtier français » ; zoom à travers le blanc du 1
+- src: compositions/a1-onze.html
 - voiceover: "Finaxy est le onzième courtier français."
-- cue: line 1 @ 0.70s
 
-## Frame 2 — A grandi vite
+## Frame 2 — Grandi vite / ne plus refléter
+- scene: Les cartes cabinet · entreprise · marque se divisent comme des cellules (1 → 128) ; la mosaïque bascule en 3D et floute, l'ancien logo FINAXY GROUP reste trop petit puis se défait en lamelles
+- src: compositions/a2-groupe.html
+- voiceover: "Un groupe qui a grandi vite. Et une marque… Qui n'arrivait plus à le raconter."
 
-- scene: Ville isométrique qui pousse en rafale ; pastilles de verre Cabinets · Entreprises · Marques · Acquisitions
-- status: built
-- src: compositions/v2-02.html
-- act: A — Le constat
-- voiceover: "Un groupe qui a grandi vite."
-- cue: line 1 @ 3.35s
+## Frame 3 — Cohérence
+- scene: Noir ; « Pas juste un problème de logo : » (logo barré rose), « un sujet de », COHÉRENCE géante traversée par la carte de l'ancien logo, lettres qui s'écartent à son passage
+- src: compositions/a4-coherence.html
+- voiceover: "Pas juste un problème de logo : un sujet de cohérence."
 
-## Frame 3 — Ne racontait plus
+## Frame 4 — Écouter → comprendre → révéler
+- scene: Pellicule courbe irisée ; { écouter } onde vivante (dirigeants, collaborateurs, métiers, marché) → { comprendre } La force d'un groupe + L'esprit d'un cabinet → { révéler } « Une intelligence collective du risque. »
+- src: compositions/b1-ecouter.html
+- voiceover: "On a commencé par écouter… une intelligence collective du risque."
 
-- scene: L'ancien logo FINAXY GROUP se dédouble et se désynchronise (glitch, flou)
-- status: built
-- src: compositions/v2-03.html
-- act: A — Le constat
-- voiceover: "Et une marque qui avait fini par ne plus refléter ce que l'entreprise était devenue."
-- cue: line 1 @ 5.05s
+## Frame 5 — Le risque est devenu multiple
+- scene: Aplat rose « valeur clé » ; rangées géantes de risques du manifeste qui se croisent ; coupe sur nuit : une expertise seule encerclée, puis rejointe par d'autres
+- src: compositions/b2-multiple.html
+- voiceover: "Une proposition de valeur clé… aucune expertise isolée ne suffit."
 
-## Frame 4 — Cohérence
+## Frame 6 — Rendre le groupe lisible
+- scene: Les pièces éparses en 3D se rangent en 3 familles → les 3 verticales réelles du site ; barre d'onglets architecture · catégories · naming · place des marques et cadre de focus rose
+- src: compositions/c1-organiser.html
+- voiceover: "De cette idée, nous avons tout décliné…"
 
-- scene: Noir ; « logo » barré ; « COHÉRENCE » en contours répétés puis plein
-- status: built
-- src: compositions/v2-04.html
-- act: A — Le constat
-- voiceover: "Pas juste un problème de logo :"
-- cue: line 1 @ 10.74s
+## Frame 7 — Du corps
+- scene: « DU CORPS » géant ; la carte de l'ancien logo se retourne sur le nouveau logo ; nuancier Finaxy en éventail 3D ; « Ensemble, protégeons ce qui compte. »
+- src: compositions/c2-corps.html
+- voiceover: "Ensuite, nous lui avons donné du corps…"
 
-## Frame 5 — Écouter
+## Frame 8 — Stature, humain
+- scene: « Notre ambition », STATURE qui se dresse lettre à lettre, puis la vraie photo Finaxy qui monte et chasse le mot ; « mettre en avant l'humain »
+- src: compositions/c3-stature.html
+- voiceover: "Notre ambition : valoriser la stature, mettre en avant l'humain."
 
-- scene: Le ruban irisé traverse 4 cartes de verre : dirigeants, collaborateurs, métiers, marché
-- status: built
-- src: compositions/v2-05.html
-- act: B — Écouter, comprendre
-- voiceover: "On a commencé par écouter."
-- cue: line 2 @ 0.67s
+## Frame 9 — Les supports
+- scene: Pellicule courbe : cartes de vœux, présentations, plaquettes, kakemonos, cartes de visite, réseaux sociaux ; le titre { … } défile avec la pellicule
+- src: compositions/d1-supports.html
+- voiceover: "Et enfin, les supports… pages réseaux sociaux…"
 
-## Frame 6 — Intelligence collective
+## Frame 10 — Le site
+- scene: Le vrai finaxy.com se redresse depuis le sol en 3D puis défile ; « neuf » géant derrière
+- src: compositions/d2-site.html
+- voiceover: "Et bien sûr, un nouveau site flambant neuf."
 
-- scene: Deux cartes (La force d'un groupe / L'esprit d'un cabinet) fusionnent en panneau Finaxy « Une intelligence collective du risque. »
-- status: built
-- src: compositions/v2-06.html
-- act: B — Écouter, comprendre
-- voiceover: "Et on a compris ce que Finaxy était vraiment :"
-- cue: line 2 @ 2.75s
+## Frame 11 — La cerise : l'agent IA
+- scene: Gâteau à étages (plateforme, identité, supports, site), la cerise tombe dessus ; plongée dans la cerise → agent éditorial Finaxy sur aplat rose, réponse dans la voix de la charte ; les équipes autour
+- src: compositions/d3-agent.html
+- voiceover: "La cerise sur le gâteau ?… écrire comme Finaxy."
 
-## Frame 7 — Proposition de valeur
+## Frame 12 — Notre rôle
+- scene: Aplat violet « Notre rôle ? » ; les talents en pilules s'allument à chaque étape puis fusionnent en « une seule équipe »
+- src: compositions/e1-role.html
+- voiceover: "Notre rôle là-dedans ?… comme une seule équipe."
 
-- scene: Risques qui se multiplient autour d'un point isolé ; à droite le réseau d'experts tient ; « Le risque est devenu multiple. »
-- status: built
-- src: compositions/v2-07.html
-- act: B — Écouter, comprendre
-- voiceover: "Une proposition de valeur clé :"
-- cue: line 2 @ 8.65s
+## Frame 13 — Autour du projet
+- scene: « chez Relax » ; le projet écrasé pour entrer dans la boîte « une agence » ressort ; les talents orbitent et se placent autour de « votre projet »
+- src: compositions/e2-autour.html
+- voiceover: "Parce que chez Relax… On construit l'équipe autour de votre projet."
 
-## Frame 8 — Rendre lisible
+## Frame 14 — La promesse
+- scene: Écran partagé : Côté Relax, les tuiles bougent sans arrêt / Côté client, une seule pilule ; la couture se referme ; « Les meilleurs experts pour votre projet, coordonnés par un partenaire de confiance. »
+- src: compositions/e3-promesse.html
+- voiceover: "Côté Relax : du mouvement… C'est ça, notre promesse."
 
-- scene: La ville se range en 3 tours isométriques (verticales réelles) ; « Une idée : rendre le groupe lisible. » ; dominos qui basculent
-- status: built
-- src: compositions/v2-08.html
-- act: C — Organiser, exprimer
-- voiceover: "De cette idée,"
-- cue: line 3 @ 0.73s
-
-## Frame 9 — Du corps
-
-- scene: Logo Finaxy en relief + balayage de lumière ; palette et 4 traits en éventail
-- status: built
-- src: compositions/v2-09.html
-- act: C — Organiser, exprimer
-- voiceover: "Ensuite,"
-- cue: line 3 @ 6.27s
-
-## Frame 10 — Stature · humain
-
-- scene: Aplat rose ; « STATURE » / « humain »
-- status: built
-- src: compositions/v2-10.html
-- act: C — Organiser, exprimer
-- voiceover: "Notre ambition :"
-- cue: line 3 @ 13.79s
-
-## Frame 11 — Les supports
-
-- scene: Carrousel à plis de verre irisé : plaquettes, kakemonos, cartes de visite, réseaux sociaux, vrai site finaxy.com
-- status: built
-- src: compositions/v2-11.html
-- act: D — Déployer
-- voiceover: "Et enfin,"
-- cue: line 4 @ 0.69s
-
-## Frame 12 — Agent IA
-
-- scene: La cerise (point rose) tombe sur l'interface de l'agent éditorial IA qui écrit en voix Finaxy
-- status: built
-- src: compositions/v2-12.html
-- act: D — Déployer
-- voiceover: "La cerise sur le gâteau ?"
-- cue: line 4 @ 11.65s
-
-## Frame 13 — Notre rôle
-
-- scene: Noir ; les talents (Stratégie, Naming, Design, Édito, Développement, Production) se verrouillent autour du projet
-- status: built
-- src: compositions/v2-13.html
-- act: E — Le rôle de Relax
-- voiceover: "Notre rôle là-dedans ?"
-- cue: line 5 @ 0.70s
-
-## Frame 14 — Autour du projet
-
-- scene: 3D isométrique : le cube « agence » rejette le projet, puis les experts se placent autour
-- status: built
-- src: compositions/v2-14.html
-- act: E — Le rôle de Relax
-- voiceover: "Parce que chez Relax,"
-- cue: line 5 @ 8.58s
-
-## Frame 15 — La promesse
-
-- scene: Écran partagé : Côté Relax du mouvement / Côté client un seul fil, zéro couture ; « C'est ça, notre promesse. »
-- status: built
-- src: compositions/v2-15.html
-- act: E — Le rôle de Relax
-- voiceover: "Côté Relax :"
-- cue: line 5 @ 15.73s
-
-## Frame 16 — Respiration
-
-- scene: Ondes qui s'ouvrent sur une respiration calme, relax• se pose, « Relax, on s'occupe de tout. »
-- status: built
-- src: compositions/v2-16.html
-- act: Final
+## Frame 15 — Respiration
+- scene: Tout ce que le projet a produit tourbillonne et se rassemble à l'inspiration, se dissout à l'expiration ; relax• se pose, « Relax, on s'occupe de tout. »
+- src: compositions/f-relax.html
 - voiceover: "(respiration)"

@@ -1,0 +1,68 @@
+<style>
+  #§purple{background:#6955AA}
+  #§q{position:absolute;left:0;right:0;top:330px;height:400px;overflow:hidden;text-align:center;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:236px;line-height:400px;letter-spacing:-.04em;color:#FFFFFF}
+  #§q span{display:inline-block}
+  #§grey{background:#E7E7EC}
+  #§lead{position:absolute;left:0;right:0;top:300px;text-align:center;font-weight:300;font-size:46px;color:#4F575D}
+  #§row{position:absolute;left:0;top:470px;width:1920px;height:110px}
+  .§pill{position:absolute;top:0;height:110px;border-radius:55px;background:#212C34;color:#FFFFFF;font-weight:500;font-size:40px;line-height:110px;text-align:center;white-space:nowrap;overflow:hidden}
+  #§one{position:absolute;left:560px;top:470px;width:800px;height:110px;border-radius:55px;background:#212C34;color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:22px;font-family:Unbounded;font-weight:500;font-size:42px}
+  #§one i{display:block;width:30px;height:30px;border-radius:15px;background:#FF0055}
+  #§cap{position:absolute;left:0;right:0;top:650px;text-align:center;font-weight:300;font-size:38px;color:#4F575D}
+</style>
+<div class="full" id="§purple"><div id="§q"></div></div>
+<div class="full" id="§grey">
+  <div id="§lead">Les bons talents, au service du projet.</div>
+  <div id="§row"></div>
+  <div id="§one"><i></i><span>une seule équipe</span></div>
+  <div id="§cap">à chaque étape</div>
+</div>
+{{HUD:#62666B|06 — NOTRE RÔLE}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["5.0"], t = VO["5.1"], st = VO["5.2"], j = VO["5.3"], CUT = t - 0.1;
+    const vis = { t: 0 };
+    const cut = () => { $("purple").style.display = vis.t < CUT ? "block" : "none"; $("grey").style.display = vis.t < CUT ? "none" : "block"; };
+    tl.fromTo(vis, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: cut }, 0);
+    cut();
+    // "Notre rôle là-dedans ?" — giant, the question mark lands last
+    const ls = KIT.letters($("q"), "Notre rôle ?");
+    ls[ls.length - 1].style.color = "#FF0055";
+    tl.fromTo(ls, { y: 400 }, { y: 0, duration: 0.7, ease: "expo.out", stagger: 0.035 }, a - 0.1);
+    tl.fromTo("#§q", { scale: 1 }, { scale: 1.08, duration: CUT, ease: "none" }, 0);
+    // the right talents, one per step
+    const TAL = ["Stratégie", "Naming", "Design", "Édito", "Développement", "Production"];
+    const W = TAL.map((s) => 84 + s.length * 22), G = 24, TW = W.reduce((x, y) => x + y, 0) + G * (TAL.length - 1);
+    let x0 = (1920 - TW) / 2;
+    const pills = TAL.map((s, i) => {
+      const p = document.createElement("div");
+      p.className = ID + "-pill";
+      p.textContent = s;
+      p.style.width = W[i] + "px";
+      p.style.left = x0 + "px";
+      p.dataset.cx = x0 + W[i] / 2;
+      x0 += W[i] + G;
+      $("row").appendChild(p);
+      return p;
+    });
+    tl.fromTo("#§lead", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, CUT + 0.1);
+    pills.forEach((p, i) => tl.fromTo(p, { x: 260, opacity: 0, scale: 0.92 }, { x: 0, opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, CUT + 0.15 + i * 0.08));
+    // "à chaque étape": the steps light up in turn
+    tl.fromTo("#§cap", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, st - 0.1);
+    pills.forEach((p, i) => {
+      tl.to(p, { backgroundColor: "#FF0055", scale: 1.06, duration: 0.14, ease: "power2.out" }, st + i * 0.11);
+      tl.to(p, { backgroundColor: "#212C34", scale: 1, duration: 0.25, ease: "power2.in" }, st + i * 0.11 + 0.16);
+    });
+    // "en les faisant jouer comme une seule équipe": they draw together and become one
+    tl.to(["#§cap", "#§lead"], { opacity: 0, duration: 0.3 }, j + 0.4);
+    pills.forEach((p, i) => tl.to(p, { x: 960 - +p.dataset.cx, scaleX: 0.25, opacity: 0, duration: 0.7, ease: "expo.inOut" }, j + 0.55 + Math.abs(i - 2.5) * 0.04));
+    tl.fromTo("#§one", { scaleX: 0.15, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)" }, j + 1.05);
+    tl.fromTo("#§one span", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, j + 1.45);
+    tl.fromTo("#§one i", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(3)" }, j + 1.35);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+
+      </style>
+      <div id="root" data-composition-id="d3-agent" data-width="1920" data-height="1080" data-duration="7.81">
+<style>
+  #d3-agent-q{position:absolute;left:0;right:0;top:150px;text-align:center;font-weight:300;font-size:54px;color:#212C34}
+  #d3-agent-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1700px;perspective-origin:960px 300px}
+  #d3-agent-cake{position:absolute;left:560px;top:420px;width:800px;height:460px;transform-style:preserve-3d;transform:rotateX(60deg) rotateZ(-28deg)}
+  .d3-agent-slab{position:absolute;inset:0;border-radius:40px;transform-style:preserve-3d}
+  .d3-agent-slab b{position:absolute;left:56px;bottom:46px;font-family:Unbounded;font-weight:500;font-size:58px;color:#FFFFFF;letter-spacing:-.01em}
+  .d3-agent-side{position:absolute;inset:0;border-radius:40px}
+  #d3-agent-cherry{position:absolute;left:890px;top:0;width:140px;height:140px;border-radius:70px;background:radial-gradient(circle at 34% 30%,#FF8FB4 0%,#FF0055 38%,#C2003F 78%,#8E002E 100%);box-shadow:0 18px 30px rgba(140,0,46,.35)}
+  #d3-agent-pink{background:#FF0055}
+  #d3-agent-chat{position:absolute;left:370px;top:200px;width:1180px;height:660px;border-radius:36px;background:#FFFFFF;box-shadow:0 50px 100px rgba(120,0,40,.35);overflow:hidden}
+  #d3-agent-av{position:absolute;left:44px;top:40px;width:54px;height:54px;border-radius:27px;background:radial-gradient(circle at 34% 30%,#FF8FB4 0%,#FF0055 45%,#C2003F 100%)}
+  #d3-agent-name{position:absolute;left:118px;top:42px;font-weight:600;font-size:30px;color:#212C34}
+  #d3-agent-sub{position:absolute;left:118px;top:80px;font-weight:400;font-size:20px;color:#6B7278}
+  #d3-agent-ia{position:absolute;right:44px;top:46px;height:44px;padding:0 20px;border-radius:22px;background:#D4CCEE;color:#3D2F7A;font-weight:600;font-size:20px;line-height:44px;letter-spacing:.08em}
+  #d3-agent-ask{position:absolute;right:44px;top:150px;height:70px;padding:0 34px;border-radius:35px;background:#212C34;color:#FFFFFF;font-size:28px;line-height:70px;white-space:nowrap;overflow:hidden}
+  #d3-agent-ans{position:absolute;left:44px;top:262px;width:1090px;font-family:'Instrument Serif';font-size:54px;line-height:1.12;color:#191853}
+  #d3-agent-ans span{opacity:0}
+  #d3-agent-traits{position:absolute;left:44px;top:560px;display:flex;gap:14px}
+  #d3-agent-traits div{height:52px;padding:0 24px;border-radius:26px;background:#F1EEF9;color:#3D2F7A;font-weight:600;font-size:22px;line-height:52px}
+  .d3-agent-who{position:absolute;height:64px;padding:0 28px 0 54px;border-radius:32px;background:#FFFFFF;color:#212C34;font-weight:500;font-size:26px;line-height:64px;white-space:nowrap;box-shadow:0 16px 30px rgba(120,0,40,.25)}
+  .d3-agent-who::before{content:"";position:absolute;left:22px;top:22px;width:20px;height:20px;border-radius:10px;background:#6955AA}
+</style>
+<div class="full studio" id="d3-agent-white">
+  <div id="d3-agent-q">La cerise sur le gâteau ?</div>
+  <div id="d3-agent-stage"><div id="d3-agent-cake"></div></div>
+  <div id="d3-agent-cherry"></div>
+</div>
+<div class="full" id="d3-agent-pink">
+  <div id="d3-agent-chat">
+    <div id="d3-agent-av"></div><div id="d3-agent-name">Agent éditorial Finaxy</div><div id="d3-agent-sub">écrit avec la charte éditoriale</div><div id="d3-agent-ia">IA</div>
+    <div id="d3-agent-ask"><span id="d3-agent-typed"></span></div>
+    <div id="d3-agent-ans"></div>
+    <div id="d3-agent-traits"><div>Ancré</div><div>Team player</div><div>Pédagogue</div></div>
+  </div>
+</div>
+<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">05 — DÉPLOYER</div>
+<script>
+  (function () {
+    const ID = "d3-agent", D = 7.81, VO = {"1.0": -60.04, "1.1": -57.39, "1.2": -55.69, "1.3": -51.74, "1.4": -50.0, "1.5": -47.99, "2.0": -45.47, "2.1": -43.39, "2.2": -40.34, "2.3": -37.49, "2.4": -35.2, "2.5": -32.69, "3.0": -29.25, "3.1": -28.28, "3.2": -26.57, "3.3": -25.89, "3.4": -25.31, "3.5": -24.94, "3.6": -23.71, "3.7": -22.74, "3.8": -21.32, "3.9": -20.16, "3.10": -17.7, "3.11": -16.19, "3.12": -14.83, "3.13": -13.16, "4.0": -10.81, "4.1": -10.28, "4.2": -7.81, "4.3": -7.01, "4.4": -6.28, "4.5": -5.03, "4.6": -3.43, "4.7": -2.55, "4.8": 0.15, "4.9": 2.05, "4.10": 4.06, "5.0": 7.96, "5.1": 9.51, "5.2": 12.13, "5.3": 12.93, "5.4": 15.84, "5.5": 16.83, "5.6": 19.53, "5.7": 22.99, "5.8": 24.01, "5.9": 25.26, "5.10": 26.49, "5.11": 27.79, "5.12": 29.54, "5.13": 30.39, "breath": 32.24, "exhale": 33.99};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["4.8"], ag = VO["4.9"], ch = VO["4.10"], CUT = ag - 0.12;
+    const vis = { t: 0 };
+    const cut = () => { $("white").style.display = vis.t < CUT ? "block" : "none"; $("pink").style.display = vis.t < CUT ? "none" : "block"; };
+    tl.fromTo(vis, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: cut }, 0);
+    cut();
+    // the cake: every layer of the project, stacked — platform, identity, supports, site
+    const LAY = [["la plateforme", "#6955AA", "#4E3F86"], ["l’identité", "#56A0AA", "#3F7A82"], ["les supports", "#212C34", "#11181D"], ["le site", "#D4CCEE", "#A99FCF"]];
+    LAY.forEach(([t, c, d], i) => {
+      const s = document.createElement("div");
+      s.className = ID + "-slab";
+      s.innerHTML = `<div class="${ID}-side" style="background:${d};transform:translateZ(0px)"></div><div class="${ID}-side" style="background:${d};transform:translateZ(16px)"></div><div class="${ID}-side" style="background:${c};transform:translateZ(34px)"><b data-layout-allow-overlap style="color:${i === 3 ? "#3D2F7A" : "#FFFFFF"}">${t}</b></div>`;
+      $("cake").appendChild(s);
+      tl.fromTo(s, { z: 900 + i * 120, opacity: 0 }, { z: i * 70, opacity: 1, duration: 0.7, ease: "expo.out" }, Math.max(0, a - 0.3) + i * 0.12);
+    });
+    tl.fromTo("#d3-agent-cake", { rotationZ: -36 }, { rotationZ: -22, duration: CUT, ease: "sine.inOut" }, 0);
+    tl.fromTo("#d3-agent-q", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a);
+    // the cherry drops on top…
+    tl.fromTo("#d3-agent-cherry", { y: -260 }, { y: 360, duration: 0.75, ease: "bounce.out" }, a + 0.55);
+    // …and the camera dives into it: the cherry becomes the agent
+    tl.to("#d3-agent-cherry", { scale: 16, duration: 0.5, ease: "expo.in" }, CUT - 0.5);
+    tl.fromTo("#d3-agent-chat", { y: 260, scale: 0.9, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, CUT);
+    tl.fromTo("#d3-agent-av", { scale: 4 }, { scale: 1, duration: 0.7, ease: "expo.out" }, CUT);
+    // a request, typed…
+    const ASK = "Présente notre accompagnement à un dirigeant de PME.", typed = $("typed"), ty = { n: 0 };
+    tl.fromTo(ty, { n: 0 }, { n: ASK.length, duration: 0.9, ease: "none", immediateRender: false, onUpdate: () => (typed.textContent = ASK.slice(0, Math.round(ty.n))) }, CUT + 0.35);
+    tl.fromTo("#d3-agent-ask", { opacity: 0 }, { opacity: 1, duration: 0.2 }, CUT + 0.3);
+    // …answered in the Finaxy voice (a line from its editorial charter)
+    const ANS = "Un dirigeant de PME n’a pas le temps de devenir expert du risque. C’est exactement pour ça qu’on est là.";
+    $("ans").innerHTML = ANS.split(" ").map((w) => `<span>${w} </span>`).join("");
+    tl.to(`#d3-agent-ans span`, { opacity: 1, duration: 0.12, stagger: 0.075 }, CUT + 1.35);
+    tl.fromTo("#d3-agent-traits div", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(2)", stagger: 0.08 }, CUT + 1.35 + 21 * 0.075);
+    // "pour que chacun puisse écrire comme Finaxy": every team gets the same voice
+    const WHO = [["Direction", 120, 120], ["Commercial", 1560, 150], ["Gestion", 70, 900], ["Ressources humaines", 1330, 930], ["Communication", 1590, 520], ["Agences", 110, 520]];
+    WHO.forEach(([t, x, y], i) => {
+      const d = document.createElement("div");
+      d.className = ID + "-who";
+      d.textContent = t;
+      d.style.left = x + "px";
+      d.style.top = y + "px";
+      $("pink").appendChild(d);
+      tl.fromTo(d, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.2)" }, ch - 0.1 + i * 0.12);
+      tl.to(d, { y: (i % 2 ? -1 : 1) * 14, duration: D - ch, ease: "sine.inOut" }, ch + 0.4);
+    });
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

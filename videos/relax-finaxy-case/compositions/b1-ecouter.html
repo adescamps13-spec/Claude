@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+
+      </style>
+      <div id="root" data-composition-id="b1-ecouter" data-width="1920" data-height="1080" data-duration="7.98">
+<style>
+  #b1-ecouter-title{position:absolute;left:560px;top:140px;width:800px;height:110px}
+  #b1-ecouter-title .b1-ecouter-br{position:absolute;top:0;font-weight:300;font-size:104px;line-height:104px;color:#898991}
+  #b1-ecouter-slot{position:absolute;left:70px;right:70px;top:6px;height:100px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
+  #b1-ecouter-words{position:absolute;left:0;top:0;white-space:nowrap;font-family:Unbounded;font-weight:500;font-size:68px;line-height:100px;letter-spacing:-.02em;color:#212C34}
+  #b1-ecouter-stage{position:absolute;left:0;top:320px;width:1920px;height:480px;perspective:1500px;perspective-origin:960px 240px}
+  #b1-ecouter-film{position:absolute;inset:0;transform-style:preserve-3d}
+  #b1-ecouter-mirror{position:absolute;left:0;top:812px;width:1920px;height:200px;filter:blur(18px);opacity:.3}
+  #b1-ecouter-live{position:absolute;left:540px;top:320px;width:840px;height:480px;border-radius:26px;overflow:hidden}
+  #b1-ecouter-bars{position:absolute;left:70px;right:70px;top:110px;height:200px;display:flex;align-items:center;justify-content:space-between;background:#FFFFFF}
+  #b1-ecouter-bars i{display:block;width:14px;border-radius:7px;background:#6955AA;height:40px}
+  #b1-ecouter-sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.22) 48%,transparent 60%);background-size:260% 100%}
+</style>
+<div class="full studio"></div>
+<div id="b1-ecouter-title"><span class="b1-ecouter-br" style="left:0">{</span><span class="b1-ecouter-br" style="right:0">}</span><div id="b1-ecouter-slot"><div id="b1-ecouter-words"></div></div></div>
+<div id="b1-ecouter-mirror"></div>
+<div id="b1-ecouter-stage"><div id="b1-ecouter-film"></div></div>
+<div id="b1-ecouter-live"><div id="b1-ecouter-bars"></div><div id="b1-ecouter-sheen"></div></div>
+<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">02 — COMPRENDRE</div>
+<script>
+  (function () {
+    const ID = "b1-ecouter", D = 7.98, VO = {"1.0": -14.42, "1.1": -11.77, "1.2": -10.07, "1.3": -6.12, "1.4": -4.38, "1.5": -2.37, "2.0": 0.15, "2.1": 2.23, "2.2": 5.28, "2.3": 8.13, "2.4": 10.42, "2.5": 12.93, "3.0": 16.37, "3.1": 17.34, "3.2": 19.05, "3.3": 19.73, "3.4": 20.31, "3.5": 20.68, "3.6": 21.91, "3.7": 22.88, "3.8": 24.3, "3.9": 25.46, "3.10": 27.92, "3.11": 29.43, "3.12": 30.79, "3.13": 32.46, "4.0": 34.81, "4.1": 35.34, "4.2": 37.81, "4.3": 38.61, "4.4": 39.34, "4.5": 40.59, "4.6": 42.19, "4.7": 43.07, "4.8": 45.77, "4.9": 47.67, "4.10": 49.68, "5.0": 53.58, "5.1": 55.13, "5.2": 57.75, "5.3": 58.55, "5.4": 61.46, "5.5": 62.45, "5.6": 65.15, "5.7": 68.61, "5.8": 69.63, "5.9": 70.88, "5.10": 72.11, "5.11": 73.41, "5.12": 75.16, "5.13": 76.01, "breath": 77.86, "exhale": 79.61};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const IMGS = ["assets/cards/ecouter.png", "assets/cards/comprendre.png", "assets/cards/intel.png"];
+    const F = KIT.film({ el: $("film"), mirror: $("mirror"), imgs: IMGS });
+    const SW = 660, wx = KIT.slot($("words"), ["écouter", "comprendre", "révéler"], SW);
+    const live = $("live"), bars = [];
+    $("bars").innerHTML = Array.from({ length: 34 }, () => "<i></i>").join("");
+    bars.push(...$("bars").children);
+    const scroll = { v: -F.STEP * 0.9 }, clock = { t: 0 };
+    const draw = () => {
+      const k = F.place(scroll.v);
+      live.style.opacity = k >= 0 ? 1 : 0;
+      live.style.backgroundImage = k >= 0 ? `url(${IMGS[k]})` : "none";
+      $("bars").style.visibility = k === 0 ? "visible" : "hidden";
+      const tt = clock.t;
+      bars.forEach((b, i) => (b.style.height = (26 + 150 * Math.abs(Math.sin(tt * 6 + i * 0.55) * Math.cos(tt * 2.2 + i * 0.21))).toFixed(1) + "px"));
+    };
+    live.style.backgroundSize = "840px 480px";
+    draw();
+    const S = F.STEP, a = VO["2.0"], b = VO["2.1"], c = VO["2.2"];
+    const glide = (from, to, at, dur, ease) => tl.fromTo(scroll, { v: from }, { v: to, duration: dur, ease, onUpdate: draw, immediateRender: false }, at);
+    tl.fromTo(scroll, { v: -S * 0.9 }, { v: 0, duration: 1.2, ease: "expo.out", onUpdate: draw }, a - 0.15);
+    glide(0, S, b - 0.35, 1.1, "expo.inOut");
+    glide(S, 2 * S, c - 0.45, 1.1, "expo.inOut");
+    glide(2 * S, 3.2 * S, D - 0.55, 0.55, "expo.in");
+    tl.fromTo(clock, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: draw, immediateRender: false }, 0);
+    tl.fromTo("#b1-ecouter-words", { x: SW }, { x: wx(0), duration: 1.2, ease: "expo.out" }, a - 0.15);
+    tl.fromTo("#b1-ecouter-words", { x: wx(0) }, { x: wx(1), duration: 1.1, ease: "expo.inOut", immediateRender: false }, b - 0.35);
+    tl.fromTo("#b1-ecouter-words", { x: wx(1) }, { x: wx(2), duration: 1.1, ease: "expo.inOut", immediateRender: false }, c - 0.45);
+    tl.fromTo("#b1-ecouter-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0);
+    tl.fromTo("#b1-ecouter-sheen", { backgroundPosition: "140% 0%" }, { backgroundPosition: "-60% 0%", duration: 1.4, ease: "power2.inOut" }, c + 0.8);
+    tl.to("#b1-ecouter-title", { opacity: 0, y: -30, duration: 0.4, ease: "power2.in" }, D - 0.45);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

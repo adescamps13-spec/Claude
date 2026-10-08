@@ -1,0 +1,88 @@
+<style>
+  #§q{position:absolute;left:0;right:0;top:150px;text-align:center;font-weight:300;font-size:54px;color:#212C34}
+  #§stage{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1700px;perspective-origin:960px 300px}
+  #§cake{position:absolute;left:560px;top:420px;width:800px;height:460px;transform-style:preserve-3d;transform:rotateX(60deg) rotateZ(-28deg)}
+  .§slab{position:absolute;inset:0;border-radius:40px;transform-style:preserve-3d}
+  .§slab b{position:absolute;left:56px;bottom:46px;font-family:Unbounded;font-weight:500;font-size:58px;color:#FFFFFF;letter-spacing:-.01em}
+  .§side{position:absolute;inset:0;border-radius:40px}
+  #§cherry{position:absolute;left:890px;top:0;width:140px;height:140px;border-radius:70px;background:radial-gradient(circle at 34% 30%,#FF8FB4 0%,#FF0055 38%,#C2003F 78%,#8E002E 100%);box-shadow:0 18px 30px rgba(140,0,46,.35)}
+  #§pink{background:#FF0055}
+  #§chat{position:absolute;left:370px;top:200px;width:1180px;height:660px;border-radius:36px;background:#FFFFFF;box-shadow:0 50px 100px rgba(120,0,40,.35);overflow:hidden}
+  #§av{position:absolute;left:44px;top:40px;width:54px;height:54px;border-radius:27px;background:radial-gradient(circle at 34% 30%,#FF8FB4 0%,#FF0055 45%,#C2003F 100%)}
+  #§name{position:absolute;left:118px;top:42px;font-weight:600;font-size:30px;color:#212C34}
+  #§sub{position:absolute;left:118px;top:80px;font-weight:400;font-size:20px;color:#6B7278}
+  #§ia{position:absolute;right:44px;top:46px;height:44px;padding:0 20px;border-radius:22px;background:#D4CCEE;color:#3D2F7A;font-weight:600;font-size:20px;line-height:44px;letter-spacing:.08em}
+  #§ask{position:absolute;right:44px;top:150px;height:70px;padding:0 34px;border-radius:35px;background:#212C34;color:#FFFFFF;font-size:28px;line-height:70px;white-space:nowrap;overflow:hidden}
+  #§ans{position:absolute;left:44px;top:262px;width:1090px;font-family:'Instrument Serif';font-size:54px;line-height:1.12;color:#191853}
+  #§ans span{opacity:0}
+  #§traits{position:absolute;left:44px;top:560px;display:flex;gap:14px}
+  #§traits div{height:52px;padding:0 24px;border-radius:26px;background:#F1EEF9;color:#3D2F7A;font-weight:600;font-size:22px;line-height:52px}
+  .§who{position:absolute;height:64px;padding:0 28px 0 54px;border-radius:32px;background:#FFFFFF;color:#212C34;font-weight:500;font-size:26px;line-height:64px;white-space:nowrap;box-shadow:0 16px 30px rgba(120,0,40,.25)}
+  .§who::before{content:"";position:absolute;left:22px;top:22px;width:20px;height:20px;border-radius:10px;background:#6955AA}
+</style>
+<div class="full studio" id="§white">
+  <div id="§q">La cerise sur le gâteau ?</div>
+  <div id="§stage"><div id="§cake"></div></div>
+  <div id="§cherry"></div>
+</div>
+<div class="full" id="§pink">
+  <div id="§chat">
+    <div id="§av"></div><div id="§name">Agent éditorial Finaxy</div><div id="§sub">écrit avec la charte éditoriale</div><div id="§ia">IA</div>
+    <div id="§ask"><span id="§typed"></span></div>
+    <div id="§ans"></div>
+    <div id="§traits"><div>Ancré</div><div>Team player</div><div>Pédagogue</div></div>
+  </div>
+</div>
+{{HUD:#62666B|05 — DÉPLOYER}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["4.8"], ag = VO["4.9"], ch = VO["4.10"], CUT = ag - 0.12;
+    const vis = { t: 0 };
+    const cut = () => { $("white").style.display = vis.t < CUT ? "block" : "none"; $("pink").style.display = vis.t < CUT ? "none" : "block"; };
+    tl.fromTo(vis, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: cut }, 0);
+    cut();
+    // the cake: every layer of the project, stacked — platform, identity, supports, site
+    const LAY = [["la plateforme", "#6955AA", "#4E3F86"], ["l’identité", "#56A0AA", "#3F7A82"], ["les supports", "#212C34", "#11181D"], ["le site", "#D4CCEE", "#A99FCF"]];
+    LAY.forEach(([t, c, d], i) => {
+      const s = document.createElement("div");
+      s.className = ID + "-slab";
+      s.innerHTML = `<div class="${ID}-side" style="background:${d};transform:translateZ(0px)"></div><div class="${ID}-side" style="background:${d};transform:translateZ(16px)"></div><div class="${ID}-side" style="background:${c};transform:translateZ(34px)"><b data-layout-allow-overlap style="color:${i === 3 ? "#3D2F7A" : "#FFFFFF"}">${t}</b></div>`;
+      $("cake").appendChild(s);
+      tl.fromTo(s, { z: 900 + i * 120, opacity: 0 }, { z: i * 70, opacity: 1, duration: 0.7, ease: "expo.out" }, Math.max(0, a - 0.3) + i * 0.12);
+    });
+    tl.fromTo("#§cake", { rotationZ: -36 }, { rotationZ: -22, duration: CUT, ease: "sine.inOut" }, 0);
+    tl.fromTo("#§q", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a);
+    // the cherry drops on top…
+    tl.fromTo("#§cherry", { y: -260 }, { y: 360, duration: 0.75, ease: "bounce.out" }, a + 0.55);
+    // …and the camera dives into it: the cherry becomes the agent
+    tl.to("#§cherry", { scale: 16, duration: 0.5, ease: "expo.in" }, CUT - 0.5);
+    tl.fromTo("#§chat", { y: 260, scale: 0.9, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.8, ease: "expo.out" }, CUT);
+    tl.fromTo("#§av", { scale: 4 }, { scale: 1, duration: 0.7, ease: "expo.out" }, CUT);
+    // a request, typed…
+    const ASK = "Présente notre accompagnement à un dirigeant de PME.", typed = $("typed"), ty = { n: 0 };
+    tl.fromTo(ty, { n: 0 }, { n: ASK.length, duration: 0.9, ease: "none", immediateRender: false, onUpdate: () => (typed.textContent = ASK.slice(0, Math.round(ty.n))) }, CUT + 0.35);
+    tl.fromTo("#§ask", { opacity: 0 }, { opacity: 1, duration: 0.2 }, CUT + 0.3);
+    // …answered in the Finaxy voice (a line from its editorial charter)
+    const ANS = "Un dirigeant de PME n’a pas le temps de devenir expert du risque. C’est exactement pour ça qu’on est là.";
+    $("ans").innerHTML = ANS.split(" ").map((w) => `<span>${w} </span>`).join("");
+    tl.to(`#§ans span`, { opacity: 1, duration: 0.12, stagger: 0.075 }, CUT + 1.35);
+    tl.fromTo("#§traits div", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(2)", stagger: 0.08 }, CUT + 1.35 + 21 * 0.075);
+    // "pour que chacun puisse écrire comme Finaxy": every team gets the same voice
+    const WHO = [["Direction", 120, 120], ["Commercial", 1560, 150], ["Gestion", 70, 900], ["Ressources humaines", 1330, 930], ["Communication", 1590, 520], ["Agences", 110, 520]];
+    WHO.forEach(([t, x, y], i) => {
+      const d = document.createElement("div");
+      d.className = ID + "-who";
+      d.textContent = t;
+      d.style.left = x + "px";
+      d.style.top = y + "px";
+      $("pink").appendChild(d);
+      tl.fromTo(d, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.2)" }, ch - 0.1 + i * 0.12);
+      tl.to(d, { y: (i % 2 ? -1 : 1) * 14, duration: D - ch, ease: "sine.inOut" }, ch + 0.4);
+    });
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

@@ -1,0 +1,70 @@
+<style>
+  #§spot{background:radial-gradient(48% 52% at 50% 50%,#24203A 0%,#14111D 70%,#0E0C14 100%)}
+  #§word{position:absolute;left:0;top:300px;height:480px;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:470px;line-height:480px;letter-spacing:-.04em;color:#221E33}
+  #§stage{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1600px;perspective-origin:960px 520px}
+  #§deck{position:absolute;inset:0;transform-style:preserve-3d}
+  #§card{position:absolute;left:700px;top:375px;width:520px;height:330px;transform-style:preserve-3d}
+  .§face{position:absolute;inset:0;border-radius:26px;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+  #§front{background:url(assets/cards/oldlogo.png) 0 0/520px 330px}
+  #§back{background:url(assets/cards/newlogo.png) 0 0/520px 330px;transform:rotateY(180deg);overflow:hidden}
+  #§sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 32%,rgba(255,255,255,.3) 47%,transparent 60%);background-size:260% 100%}
+  .§sw{position:absolute;left:850px;top:390px;width:220px;height:300px;border-radius:18px;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+  .§sw b{position:absolute;left:20px;bottom:46px;font-weight:600;font-size:22px}
+  .§sw i{position:absolute;left:20px;bottom:20px;font-style:normal;font-weight:600;font-size:15px;letter-spacing:.12em;opacity:.75}
+  .§sw.§aa span{position:absolute;left:20px;top:26px;font-family:'Instrument Serif';font-size:130px;line-height:1;color:#191853}
+  #§tag{position:absolute;left:0;right:0;top:420px;text-align:center;font-family:'Instrument Serif';font-size:128px;line-height:1.05;color:#F4F1EB}
+  .§ln{display:block;overflow:hidden;height:136px}
+  .§ln span{display:inline-block}
+  #§label{position:absolute;left:0;right:0;top:200px;text-align:center;font-weight:600;font-size:18px;letter-spacing:.2em;color:#8E87A6}
+</style>
+<div class="full" id="§spot"></div>
+<div id="§word" data-layout-allow-overlap>DU CORPS</div>
+<div id="§label">LOGO · IDENTITÉ · VOIX</div>
+<div id="§stage"><div id="§deck">
+  <div id="§card"><div class="§face" id="§front"></div><div class="§face" id="§back"><div id="§sheen"></div></div></div>
+</div></div>
+<div id="§tag"><span class="§ln"><span id="§t1">Ensemble, protégeons</span></span><span class="§ln"><span id="§t2">ce qui compte.</span></span></div>
+{{HUD:#6F6A80|04 — EXPRIMER}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["3.6"], body = VO["3.7"], logo = VO["3.8"], idt = VO["3.9"], voice = VO["3.10"];
+    // the old mark comes forward out of the dark, idling in 3D
+    tl.fromTo("#§card", { z: -900, rotationY: -30, rotationX: 20, opacity: 0 }, { z: 0, rotationY: -12, rotationX: 6, opacity: 1, duration: 1.1, ease: "expo.out" }, a - 0.1);
+    tl.to("#§card", { rotationY: 10, rotationX: -4, duration: logo - a - 1.35, ease: "sine.inOut" }, a + 1.05);
+    tl.fromTo("#§word", { x: 600, opacity: 0 }, { x: 40, opacity: 1, duration: 0.9, ease: "expo.out" }, body - 0.1);
+    tl.to("#§word", { x: -900, duration: voice - body, ease: "none" }, body + 0.8);
+    // "un nouveau logo": the card turns over
+    tl.to("#§card", { rotationY: 180, rotationX: 0, z: 120, duration: 0.95, ease: "expo.inOut" }, logo - 0.25);
+    tl.fromTo("#§sheen", { backgroundPosition: "140% 0%" }, { backgroundPosition: "-60% 0%", duration: 1.0, ease: "power2.inOut" }, logo + 0.5);
+    // "une nouvelle identité": the system fans out from behind the mark
+    const SW = [["#191853", "Marine", "#191853", "#F4F1EB"], ["#5A80D9", "Bleu", "#5A80D9", "#FFFFFF"], ["#4A5892", "Ardoise", "#4A5892", "#FFFFFF"],
+      ["#F4F1EB", "Crème", "#F4F1EB", "#191853"], ["#9C0A3F", "Bordeaux", "#9C0A3F", "#FFFFFF"], ["aa"]];
+    const deck = $("deck"), sws = SW.map((s, i) => {
+      const d = document.createElement("div");
+      d.className = ID + "-sw" + (s[0] === "aa" ? " " + ID + "-aa" : "");
+      if (s[0] === "aa") { d.style.background = "#F4F1EB"; d.innerHTML = `<span>Aa</span><b data-layout-allow-overlap style="color:#191853;font-size:18px;white-space:nowrap">Instrument Serif</b><i style="color:#191853">TITRES</i>`; }
+      else { d.style.background = s[0]; d.innerHTML = `<b data-layout-allow-overlap style="color:${s[3]}">${s[1]}</b><i data-layout-allow-overlap style="color:${s[3]}">${s[2]}</i>`; }
+      deck.insertBefore(d, $("card"));
+      return d;
+    });
+    tl.to("#§card", { y: -40, scale: 0.78, duration: 0.8, ease: "expo.inOut" }, idt - 0.2);
+    sws.forEach((d, i) => {
+      const k = i - 2.5;
+      tl.fromTo(d, { x: 0, y: 0, z: -60, rotationZ: 0, rotationY: 0, opacity: 0 },
+        { x: k * 250, y: 120 + Math.abs(k) * 26, z: -40 - Math.abs(k) * 30, rotationZ: k * 5, rotationY: -k * 6, opacity: 1, duration: 0.9, ease: "expo.out" }, idt + 0.05 + Math.abs(k) * 0.05);
+      tl.to(d, { y: "-=30", rotationY: -k * 10, duration: voice - idt - 0.9, ease: "sine.inOut" }, idt + 0.95);
+      tl.to(d, { x: 0, y: 60, rotationZ: 0, opacity: 0, duration: 0.5, ease: "expo.in" }, voice - 0.35);
+    });
+    tl.fromTo("#§label", { opacity: 0 }, { opacity: 1, duration: 0.4 }, idt + 0.2);
+    tl.to("#§label", { opacity: 0, duration: 0.3 }, voice - 0.35);
+    // "une voix plus affirmée": the mark steps back, the brand speaks
+    tl.to("#§card", { y: -300, scale: 0.42, duration: 0.7, ease: "expo.inOut" }, voice - 0.3);
+    tl.to("#§word", { opacity: 0, duration: 0.4 }, voice - 0.3);
+    tl.fromTo(["#§t1", "#§t2"], { y: 140 }, { y: 0, duration: 0.8, ease: "expo.out", stagger: 0.14 }, voice + 0.05);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

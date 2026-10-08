@@ -1,41 +1,190 @@
-"""Synthesize the ambient bed to the cut's real length (ffmpeg only, no network).
+"""Synthesize the music bed and the transition whooshes for the v2 cut (numpy + ffmpeg, no network).
 
-The pad fades out just before the final breath (scene s12) and a soft resolving chord
-returns under the relax logo, on the exhale. Reads tools/timing.json.
+bed.wav    — 100 BPM pulse (soft kick, shaker, plucked arpeggio, pad, sub) in B minor; it builds
+             through the chain of decisions, thins out under the promise, is gone before the breath,
+             and a single D major chord opens on the exhale under relax•.
+whoosh.wav — air swells on the big moves (zoom-throughs, film glides, cuts).
+Reads tools/timing.json (python3 tools/plan.py first).
     python3 tools/make_bed.py
 """
 import json
 import subprocess
-import tempfile
+import wave
 from pathlib import Path
+
+import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
 T = json.loads((ROOT / "tools/timing.json").read_text())
-start = 0.0
-for sc in T["scenes"]:
-    if sc["id"] == "s12-relax":
-        s12, exhale = start, sc["vo"]["exhale"]
-    start += sc["dur"]
-total = start
-pad_len = s12 + 0.6  # pad fully gone as the inhale begins
-chord_at = s12 + exhale + 0.1
+SR = 48000
+TOTAL = T["total"]
+CUE = T["cue"]
+N = int(TOTAL * SR)
+rng = np.random.default_rng(7)
+t = np.arange(N) / SR
 
-tmp = Path(tempfile.mkdtemp())
-run = lambda *a: subprocess.run(["ffmpeg", "-y", "-loglevel", "error", *a], check=True)
-run("-f", "lavfi", "-i", f"sine=f=146.83:d={pad_len},volume=0.30", "-f", "lavfi", "-i", f"sine=f=220:d={pad_len}",
-    "-f", "lavfi", "-i", f"sine=f=369.99:d={pad_len}", "-f", "lavfi", "-i", f"sine=f=554.37:d={pad_len}",
-    "-f", "lavfi", "-i", f"anoisesrc=color=pink:amplitude=0.02:d={pad_len}:seed=9",
-    "-filter_complex", "[1]volume=0.22,tremolo=f=0.11:d=0.5[b];[2]volume=0.12,tremolo=f=0.1:d=0.6[c];"
-    "[3]volume=0.06,tremolo=f=0.13:d=0.7[d];[4]lowpass=f=900[n];[0][b][c][d][n]amix=inputs=5:normalize=0,"
-    f"lowpass=f=2200,aecho=0.8:0.7:220|390:0.35|0.25,afade=t=in:d=3,afade=t=out:st={pad_len - 2.8:.2f}:d=2.6",
-    "-ar", "48000", "-ac", "2", str(tmp / "a.wav"))
-run("-f", "lavfi", "-i", "sine=f=146.83:d=5", "-f", "lavfi", "-i", "sine=f=220:d=5", "-f", "lavfi", "-i", "sine=f=293.66:d=5",
-    "-f", "lavfi", "-i", "sine=f=440:d=5", "-filter_complex",
-    "[0]volume=0.25[a];[1]volume=0.2[b];[2]volume=0.14[c];[3]volume=0.07[d];[a][b][c][d]amix=inputs=4:normalize=0,"
-    "lowpass=f=1800,aecho=0.8:0.7:220|390:0.35|0.25,afade=t=in:d=0.9,afade=t=out:st=2.6:d=2.4",
-    "-ar", "48000", "-ac", "2", str(tmp / "b.wav"))
-ms = int(chord_at * 1000)
-run("-i", str(tmp / "a.wav"), "-i", str(tmp / "b.wav"), "-filter_complex",
-    f"[1]adelay={ms}|{ms}[b];[0][b]amix=inputs=2:duration=longest:normalize=0,volume=0.8,alimiter=limit=0.5,apad=whole_dur={total}",
-    "-ar", "48000", str(ROOT / "assets/audio/bed.wav"))
-print(f"bed.wav {total:.1f}s — pad out by {pad_len:.1f}s, chord at {chord_at:.1f}s")
+BPM = 100
+BEAT = 60 / BPM
+BAR = 4 * BEAT
+hz = lambda m: 440 * 2 ** ((m - 69) / 12)
+# Bm – G – D – A, two bars each
+PROG = [[47, 54, 59, 62, 66], [43, 50, 55, 59, 62], [50, 57, 62, 66, 69], [45, 52, 57, 61, 64]]
+
+
+def env_curve(points):
+    """piecewise-linear gain over time from [(sec, gain), ...]"""
+    xs, ys = zip(*points)
+    return np.interp(t, xs, ys)
+
+
+def lowpass(x, fc):
+    a = np.exp(-2 * np.pi * fc / SR)
+    y = np.empty_like(x)
+    acc = 0.0
+    # one-pole, vectorised in blocks via cumulative filter (scipy-free)
+    from itertools import accumulate
+    y[:] = list(accumulate(x * (1 - a), lambda p, v: p * a + v))
+    return y
+
+
+def place(buf, start, sig, gain=1.0):
+    i = int(start * SR)
+    if i >= len(buf):
+        return
+    j = min(len(buf), i + len(sig))
+    buf[i:j] += sig[: j - i] * gain
+
+
+breath, exhale = CUE["breath"], CUE["exhale"]
+drums_out = CUE["5.12"] - 0.4          # "C'est ça, notre promesse" — the pulse lets go
+pad_out = breath - 0.2                 # bed gone as the inhale starts
+L = np.zeros(N)
+R = np.zeros(N)
+
+# --- pad (chord tones, slow swell per chord)
+pad = np.zeros(N)
+nbars = int(TOTAL / BAR) + 1
+for b in range(0, nbars, 2):
+    ch = PROG[(b // 2) % 4]
+    st, ln = b * BAR, 2 * BAR + 0.6
+    n = int(ln * SR)
+    tt = np.arange(n) / SR
+    e = np.minimum(1, tt / 1.2) * np.minimum(1, (ln - tt) / 1.0)
+    s = sum(np.sin(2 * np.pi * hz(m + 12) * tt + k) * (0.5 if k == 0 else 0.3) for k, m in enumerate(ch[1:]))
+    s += 0.25 * np.sin(2 * np.pi * hz(ch[0] + 12) * tt * 1.003)
+    place(pad, st, s * e)
+pad *= 0.10
+
+# --- sub bass on each bar root
+sub = np.zeros(N)
+for b in range(nbars):
+    root = PROG[(b // 2) % 4][0] - 12
+    n = int(BAR * SR)
+    tt = np.arange(n) / SR
+    e = np.minimum(1, tt / 0.02) * np.exp(-tt * 0.9)
+    place(sub, b * BAR, np.sin(2 * np.pi * hz(root) * tt) * e)
+sub *= 0.22
+
+# --- plucked arpeggio, 8th notes
+arp = np.zeros(N)
+arpR = np.zeros(N)
+step = BEAT / 2
+pattern = [0, 2, 3, 4, 3, 2, 1, 3]
+for k in range(int(TOTAL / step)):
+    st = k * step
+    ch = PROG[int(st / (2 * BAR)) % 4]
+    m = ch[1 + pattern[k % 8] % 4] + 12
+    n = int(0.6 * SR)
+    tt = np.arange(n) / SR
+    e = np.minimum(1, tt / 0.004) * np.exp(-tt * 9)
+    s = (np.sin(2 * np.pi * hz(m) * tt) + 0.35 * np.sin(4 * np.pi * hz(m) * tt) * np.exp(-tt * 14)) * e
+    place(arp if k % 2 == 0 else arpR, st, s)
+arp *= 0.085
+arpR *= 0.085
+
+# --- soft kick on 1 and 3, shaker on the off-beats (16ths in the deploy act)
+kick = np.zeros(N)
+shk = np.zeros(N)
+nk = int(0.35 * SR)
+tk = np.arange(nk) / SR
+freq = 45 + 75 * np.exp(-tk * 30)
+kick_s = np.sin(2 * np.pi * np.cumsum(freq) / SR) * np.exp(-tk * 11)
+ns = int(0.08 * SR)
+noise = rng.standard_normal(ns)
+noise = noise - lowpass(noise, 5000)  # crude high-pass
+shk_s = noise * np.exp(-np.arange(ns) / SR * 60)
+for k in range(int(TOTAL / BEAT)):
+    st = k * BEAT
+    if k % 2 == 0:
+        place(kick, st, kick_s)
+    place(shk, st + BEAT / 2, shk_s)
+    if CUE["4.0"] - 0.2 < st < CUE["5.0"]:
+        place(shk, st + BEAT / 4, shk_s, 0.5)
+        place(shk, st + 3 * BEAT / 4, shk_s, 0.5)
+kick *= 0.30
+shk *= 0.05
+
+# --- arrangement (gain curves)
+a1, b0, c0, d0, e0 = CUE["1.1"] - 0.2, CUE["2.0"] - 0.2, CUE["3.0"] - 0.2, CUE["4.0"] - 0.2, CUE["5.0"] - 0.2
+g_drum = env_curve([(0, 0), (a1 - 0.01, 0), (a1, 0.8), (CUE["1.4"] - 0.2, 0.8), (CUE["1.4"], 0.0), (b0 - 0.01, 0), (b0, 0.85),
+                    (d0, 0.9), (d0 + 0.01, 1.0), (e0, 1.0), (e0 + 0.01, 0.85), (drums_out, 0.85), (drums_out + 1.2, 0), (TOTAL, 0)])
+g_arp = env_curve([(0, 0.6), (a1, 0.9), (CUE["1.4"], 0.6), (b0, 0.9), (d0, 1.0), (drums_out, 0.9), (pad_out, 0), (TOTAL, 0)])
+g_pad = env_curve([(0, 0), (1.5, 1), (pad_out - 2.0, 1), (pad_out, 0), (TOTAL, 0)])
+g_sub = env_curve([(0, 0), (a1, 0), (a1 + 0.01, 1), (drums_out, 1), (drums_out + 1.5, 0), (TOTAL, 0)])
+mono = pad * g_pad + sub * g_sub + kick * g_drum + shk * g_drum
+L = mono + arp * g_arp + 0.4 * arpR * g_arp
+R = mono + arpR * g_arp + 0.4 * arp * g_arp
+
+# --- the resolving chord on the exhale (D major, very soft, long tail)
+st = exhale + 0.1
+n = int((TOTAL - st) * SR)
+tt = np.arange(n) / SR
+e = np.minimum(1, tt / 1.6) * np.exp(-tt * 0.32)
+chord = sum(np.sin(2 * np.pi * hz(m) * tt) * g for m, g in [(50, 0.5), (57, 0.4), (62, 0.32), (66, 0.22), (69, 0.12)]) * e * 0.12
+place(L, st, chord)
+place(R, st, chord * 0.97)
+
+# --- whooshes: band-limited noise swells, peak at the given time
+W = np.zeros(N)
+def whoosh(at, ln=0.55, gain=1.0, bright=2400):
+    n = int(ln * SR)
+    x = rng.standard_normal(n)
+    x = lowpass(x, bright) - lowpass(x, 300)
+    tt = np.arange(n) / SR
+    e = np.where(tt < ln * 0.65, (tt / (ln * 0.65)) ** 2, np.exp(-(tt - ln * 0.65) * 14))
+    place(W, at - ln * 0.65, x * e * gain)
+
+c = CUE
+SW = [c["1.1"] - 0.32, c["1.2"] + 0.5, c["1.5"] + 0.35, c["2.0"] - 0.02, c["2.1"] + 0.2, c["2.2"] + 0.1, c["2.3"] - 0.3, c["2.3"],
+      c["2.4"] - 0.1, c["2.5"] - 0.12, c["3.1"] + 0.3, c["3.8"] + 0.2, c["3.9"] + 0.2, c["3.13"] + 0.0, c["4.0"] - 0.2,
+      c["4.1"] + 0.85, c["4.2"] - 0.02, c["4.3"] - 0.02, c["4.4"] - 0.02, c["4.5"] - 0.02, c["4.6"] - 0.1, c["4.6"] + 0.15,
+      c["4.9"] - 0.35, c["5.1"] - 0.12, c["5.3"] + 0.85, c["5.5"] + 1.1, c["5.6"] + 0.3, c["5.9"] - 0.1, c["5.11"] + 0.1]
+for i, at in enumerate(SW):
+    whoosh(at, 0.5 + 0.1 * (i % 3), 1.0, 1800 + 400 * (i % 4))
+
+
+def write(path, chans, target_peak):
+    x = np.stack(chans, axis=1)
+    x = x / (np.abs(x).max() + 1e-9) * target_peak
+    pcm = (x * 32767).astype("<i2")
+    with wave.open(str(path), "wb") as w:
+        w.setnchannels(2)
+        w.setsampwidth(2)
+        w.setframerate(SR)
+        w.writeframes(pcm.tobytes())
+
+
+def loudness_to(path, lufs):
+    """static gain to an integrated loudness target (no dynamic normalisation, fades stay intact)"""
+    out = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(path), "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
+    cur = float(out.rsplit("I:", 1)[1].split("LUFS")[0])
+    tmp = path.with_suffix(".tmp.wav")
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(path), "-af", f"volume={lufs - cur:.2f}dB,alimiter=limit=0.89", str(tmp)], check=True)
+    tmp.replace(path)
+
+
+write(ROOT / "assets/audio/bed.wav", [L, R], 0.8)
+loudness_to(ROOT / "assets/audio/bed.wav", -29)
+write(ROOT / "assets/audio/whoosh.wav", [W, W * 0.92], 0.5)
+loudness_to(ROOT / "assets/audio/whoosh.wav", -36)
+print(f"bed.wav + whoosh.wav {TOTAL:.1f}s — drums out {drums_out:.1f}s, pad out {pad_out:.1f}s, chord {exhale + 0.1:.1f}s, {len(SW)} whooshes")

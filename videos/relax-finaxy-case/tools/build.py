@@ -2,7 +2,8 @@
 
 Retiming to the real voiceover = edit tools/timing.json (scene durations, VO offsets), rerun:
     python3 tools/build.py
-Scene templates use placeholders: {{ID}} {{D}} {{FINAXY_NEW}} {{FINAXY_OLD}} {{RELAX}}
+Scene templates use placeholders: {{ID}} {{D}} {{VO}} {{HUD:color|label}} {{FINAXY_NEW}} {{FINAXY_OLD}} {{RELAX}};
+"§" is replaced by "<scene id>-" everywhere (ids, classes, selectors) to keep scenes isolated.
 """
 import json
 import re
@@ -34,40 +35,26 @@ def font_faces(prefix):
 
 BASE_CSS = """
 #root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
-#root .wash{position:absolute;inset:-10%;background:
-  radial-gradient(42% 46% at 14% 62%, rgba(86,160,170,.30) 0%, rgba(255,255,255,0) 100%),
-  radial-gradient(36% 40% at 84% 58%, rgba(171,162,86,.28) 0%, rgba(255,255,255,0) 100%),
-  radial-gradient(28% 30% at 50% 52%, rgba(105,85,170,.20) 0%, rgba(255,255,255,0) 100%)}
-#root svg.stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:visible}
-#root .t-title{font-family:Unbounded,sans-serif;font-weight:400;letter-spacing:-.01em}
-#root .t-serif{font-family:'Instrument Serif',serif;font-weight:400}
 #root .abs{position:absolute}
-#root .rail{position:absolute;left:120px;top:78px;display:flex;gap:56px;font-size:22px;font-weight:600;color:#747779}
-#root .rail .n{font-family:Unbounded,sans-serif;font-weight:500;margin-right:14px}
-#root .rail .on{color:#212C34}
-#root .rail .on .n{color:#6955AA}
-#root .rail .done{color:#4F575D}
-#root .rail-bar{position:absolute;left:120px;top:126px;height:3px;background:#6955AA;transform-origin:left center}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
 """
 
-RAIL_STEPS = ["Comprendre", "Révéler", "Organiser", "Exprimer", "Déployer"]
-RAIL_W = [262, 196, 236, 214, 214]  # measured text widths at 22px + gap, for the bar length
 
-
-def rail_html(active):
-    items = []
-    for i, s in enumerate(RAIL_STEPS, 1):
-        cls = "on" if i == active else ("done" if i < active else "")
-        items.append(f'<div class="{cls}"><span class="n">0{i}</span>{s}</div>')
-    bar = sum(RAIL_W[: active - 1]) + (active - 1) * 56 + RAIL_W[active - 1] - 30
-    return f'<div class="rail">{"".join(items)}</div><div class="rail-bar" style="width:{bar}px"></div>'
+def hud_html(spec):
+    color, label = spec.split("|", 1)
+    return (f'<div class="hud" style="left:70px;color:{color}">RELAX × FINAXY</div>'
+            f'<div class="hud" style="right:70px;color:{color}">{label}</div>')
 
 
 def build_scene(sc):
     src = (ROOT / "tools/scenes" / f'{sc["id"]}.html').read_text()
-    rail = re.search(r"\{\{RAIL:(\d)\}\}", src)
-    if rail:
-        src = src.replace(rail.group(0), rail_html(int(rail.group(1))))
+    src = re.sub(r"\{\{HUD:([^}]+)\}\}", lambda m: hud_html(m.group(1)), src)
+    src = src.replace("§", sc["id"] + "-")
     src = (src.replace("{{ID}}", sc["id"]).replace("{{D}}", str(sc["dur"]))
            .replace("{{FINAXY_NEW}}", inner_svg("finaxy-new.svg", id=f'{sc["id"]}-fxnew', class_="fxnew"))
            .replace("{{FINAXY_NEW_NAVY}}", inner_svg("finaxy-new.svg", id=f'{sc["id"]}-fxnavy', class_="fxnew").replace('fill="#F4F1EB"', 'fill="#191853"'))
@@ -98,7 +85,8 @@ def build_index():
     t, hosts = 0.0, []
     for i, sc in enumerate(T["scenes"]):
         sc["start"] = round(t, 3)
-        hosts.append(f'''      <div id="host-{sc["id"]}" class="clip" data-composition-id="{sc["id"]}" data-composition-src="compositions/{sc["id"]}.html"
+        if (ROOT / "compositions" / f'{sc["id"]}.html').exists():
+            hosts.append(f'''      <div id="host-{sc["id"]}" class="clip" data-composition-id="{sc["id"]}" data-composition-src="compositions/{sc["id"]}.html"
         data-start="{sc["start"]}" data-duration="{sc["dur"]}" data-track-index="0" data-width="{W}" data-height="{H}"></div>''')
         t += sc["dur"]
     total = round(t, 3)
@@ -127,7 +115,7 @@ def build_index():
     <meta name="viewport" content="width={W}, height={H}" />
     <title>Relax × Finaxy — case</title>
     <script src="assets/vendor/gsap.min.js"></script>
-    <script src="assets/fil.js"></script>
+    <script src="assets/kit.js"></script>
     <style>
 {font_faces("")}
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
@@ -152,6 +140,7 @@ def build_index():
 
 
 if __name__ == "__main__":
+    (ROOT / "compositions").mkdir(exist_ok=True)
     for sc in T["scenes"]:
         if (ROOT / "tools/scenes" / f'{sc["id"]}.html').exists():
             build_scene(sc)

@@ -1,0 +1,34 @@
+<style>
+  #§bg{background:radial-gradient(70% 70% at 50% 40%,#F2EFFA 0%,#E2DCF3 60%,#D4CCEE 100%)}
+  #§word{position:absolute;left:0;top:250px;height:600px;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:560px;line-height:600px;letter-spacing:-.05em;color:#C9BFEA}
+  #§stage{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1800px;perspective-origin:960px 700px}
+  #§win{position:absolute;left:320px;top:170px;width:1280px;height:790px;border-radius:22px;overflow:hidden;background:#FFFFFF;box-shadow:0 60px 120px rgba(25,24,83,.35),0 10px 30px rgba(25,24,83,.2)}
+  #§bar{position:absolute;left:0;top:0;width:1280px;height:46px;background:#F3F2F7}
+  #§bar i{position:absolute;top:17px;width:12px;height:12px;border-radius:6px}
+  #§url{position:absolute;left:470px;top:9px;width:340px;height:28px;border-radius:14px;background:#FFFFFF;color:#4A5892;font-size:15px;line-height:28px;text-align:center;font-weight:500}
+  #§view{position:absolute;left:0;top:46px;width:1280px;height:744px;overflow:hidden}
+  #§page{position:absolute;left:0;top:0;width:1280px;height:3024px;background:url(assets/cards/site-long.jpg) 0 0/1280px 3024px}
+  #§sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.35) 48%,transparent 60%);background-size:260% 100%}
+</style>
+<div class="full" id="§bg"></div>
+<div id="§word" data-layout-allow-overlap>neuf</div>
+<div id="§stage"><div id="§win">
+  <div id="§bar"><i style="left:20px;background:#FF5F57"></i><i style="left:40px;background:#FEBC2E"></i><i style="left:60px;background:#28C840"></i><div id="§url">finaxy.com</div></div>
+  <div id="§view"><div id="§page"></div></div><div id="§sheen"></div>
+</div></div>
+{{HUD:#6F6A8E|05 — DÉPLOYER}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["4.6"], s = VO["4.7"];
+    tl.fromTo("#§word", { x: 700 }, { x: -260, duration: D, ease: "power1.out" }, 0);
+    // the new site lands flat out of the floor, then scrolls
+    tl.fromTo("#§win", { y: 620, rotationX: 62, rotationZ: -7, scale: 0.78 }, { y: 0, rotationX: 0, rotationZ: 0, scale: 1, duration: 1.25, ease: "expo.out" }, a - 0.2);
+    tl.fromTo("#§sheen", { backgroundPosition: "140% 0%" }, { backgroundPosition: "-60% 0%", duration: 1.1, ease: "power2.inOut" }, s - 0.1);
+    tl.fromTo("#§page", { y: 0 }, { y: -1560, duration: D - s - 0.1, ease: "power2.inOut" }, s + 0.1);
+    tl.to("#§win", { scale: 1.04, duration: D - s - 0.25, ease: "none" }, s + 0.25);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

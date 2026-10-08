@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+
+      </style>
+      <div id="root" data-composition-id="c3-stature" data-width="1920" data-height="1080" data-duration="5.38">
+<style>
+  #c3-stature-pill{position:absolute;left:760px;top:170px;width:400px;height:80px;border-radius:40px;background:#212C34;color:#FFFFFF;font-weight:500;font-size:32px;line-height:80px;text-align:center}
+  #c3-stature-pre{position:absolute;left:150px;top:360px;font-weight:300;font-size:50px;color:#6B7278}
+  #c3-stature-big{position:absolute;left:0;right:0;top:420px;height:330px;overflow:hidden;text-align:center;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:300px;line-height:330px;letter-spacing:-.04em;color:#212C34}
+  #c3-stature-big span{display:inline-block}
+  #c3-stature-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1500px;perspective-origin:960px 600px}
+  #c3-stature-photo{position:absolute;left:410px;top:250px;width:1100px;height:600px;border-radius:30px;overflow:hidden;background:url(assets/cards/humain.jpg) 70% 30%/1180px auto;box-shadow:0 40px 80px rgba(33,44,52,.25)}
+  #c3-stature-hum{position:absolute;left:470px;top:770px;height:120px;padding:0 50px;border-radius:60px;background:#FF0055;color:#FFFFFF;font-family:Unbounded;font-weight:500;font-size:54px;line-height:120px;white-space:nowrap}
+</style>
+<div class="full studio"></div>
+<div id="c3-stature-pill">Notre ambition</div>
+<div id="c3-stature-pre">valoriser la</div>
+<div id="c3-stature-big"></div>
+<div id="c3-stature-stage"><div id="c3-stature-photo"></div></div>
+<div id="c3-stature-hum">mettre en avant l’humain</div>
+<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">04 — EXPRIMER</div>
+<script>
+  (function () {
+    const ID = "c3-stature", D = 5.38, VO = {"1.0": -43.7, "1.1": -41.05, "1.2": -39.35, "1.3": -35.4, "1.4": -33.66, "1.5": -31.65, "2.0": -29.13, "2.1": -27.05, "2.2": -24.0, "2.3": -21.15, "2.4": -18.86, "2.5": -16.35, "3.0": -12.91, "3.1": -11.94, "3.2": -10.23, "3.3": -9.55, "3.4": -8.97, "3.5": -8.6, "3.6": -7.37, "3.7": -6.4, "3.8": -4.98, "3.9": -3.82, "3.10": -1.36, "3.11": 0.15, "3.12": 1.51, "3.13": 3.18, "4.0": 5.53, "4.1": 6.06, "4.2": 8.53, "4.3": 9.33, "4.4": 10.06, "4.5": 11.31, "4.6": 12.91, "4.7": 13.79, "4.8": 16.49, "4.9": 18.39, "4.10": 20.4, "5.0": 24.3, "5.1": 25.85, "5.2": 28.47, "5.3": 29.27, "5.4": 32.18, "5.5": 33.17, "5.6": 35.87, "5.7": 39.33, "5.8": 40.35, "5.9": 41.6, "5.10": 42.83, "5.11": 44.13, "5.12": 45.88, "5.13": 46.73, "breath": 48.58, "exhale": 50.33};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["3.11"], st = VO["3.12"], hu = VO["3.13"];
+    const ls = KIT.letters($("big"), "STATURE");
+    tl.fromTo("#c3-stature-pill", { scaleX: 0.2, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }, a - 0.1);
+    tl.fromTo("#c3-stature-pre", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, st - 0.3);
+    // the word stands up, letter by letter, from its baseline
+    tl.fromTo(ls, { y: 330, scaleY: 1.6, transformOrigin: "50% 100%" }, { y: 0, scaleY: 1, duration: 0.8, ease: "expo.out", stagger: 0.05 }, st - 0.1);
+    tl.to("#c3-stature-big", { scale: 1.06, duration: hu - st, ease: "none" }, st + 0.5);
+    // "mettre en avant l'humain": a real Finaxy photo rises from below and pushes the word away
+    tl.fromTo("#c3-stature-photo", { y: 900, rotationX: 38, scale: 0.86 }, { y: 0, rotationX: 0, scale: 1, duration: 1.0, ease: "expo.out" }, hu - 0.3);
+    tl.to(["#c3-stature-big", "#c3-stature-pre", "#c3-stature-pill"], { y: -520, opacity: 0, duration: 0.8, ease: "expo.inOut" }, hu - 0.35);
+    tl.fromTo("#c3-stature-photo", { backgroundPosition: "70% 40%" }, { backgroundPosition: "60% 30%", duration: D - hu + 0.3, ease: "none", immediateRender: false }, hu - 0.3);
+    tl.fromTo("#c3-stature-hum", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, hu + 0.25);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

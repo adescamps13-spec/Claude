@@ -1,0 +1,59 @@
+<style>
+  #§title{position:absolute;left:560px;top:140px;width:800px;height:110px}
+  #§title .§br{position:absolute;top:0;font-weight:300;font-size:104px;line-height:104px;color:#898991}
+  #§slot{position:absolute;left:70px;right:70px;top:6px;height:100px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
+  #§words{position:absolute;left:0;top:0;white-space:nowrap;font-family:Unbounded;font-weight:500;font-size:68px;line-height:100px;letter-spacing:-.02em;color:#212C34}
+  #§stage{position:absolute;left:0;top:320px;width:1920px;height:480px;perspective:1500px;perspective-origin:960px 240px}
+  #§film{position:absolute;inset:0;transform-style:preserve-3d}
+  #§mirror{position:absolute;left:0;top:812px;width:1920px;height:200px;filter:blur(18px);opacity:.3}
+  #§live{position:absolute;left:540px;top:320px;width:840px;height:480px;border-radius:26px;overflow:hidden}
+  #§bars{position:absolute;left:70px;right:70px;top:110px;height:200px;display:flex;align-items:center;justify-content:space-between;background:#FFFFFF}
+  #§bars i{display:block;width:14px;border-radius:7px;background:#6955AA;height:40px}
+  #§sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.22) 48%,transparent 60%);background-size:260% 100%}
+</style>
+<div class="full studio"></div>
+<div id="§title"><span class="§br" style="left:0">{</span><span class="§br" style="right:0">}</span><div id="§slot"><div id="§words"></div></div></div>
+<div id="§mirror"></div>
+<div id="§stage"><div id="§film"></div></div>
+<div id="§live"><div id="§bars"></div><div id="§sheen"></div></div>
+{{HUD:#62666B|02 — COMPRENDRE}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const IMGS = ["assets/cards/ecouter.png", "assets/cards/comprendre.png", "assets/cards/intel.png"];
+    const F = KIT.film({ el: $("film"), mirror: $("mirror"), imgs: IMGS });
+    const SW = 660, wx = KIT.slot($("words"), ["écouter", "comprendre", "révéler"], SW);
+    const live = $("live"), bars = [];
+    $("bars").innerHTML = Array.from({ length: 34 }, () => "<i></i>").join("");
+    bars.push(...$("bars").children);
+    const scroll = { v: -F.STEP * 0.9 }, clock = { t: 0 };
+    const draw = () => {
+      const k = F.place(scroll.v);
+      live.style.opacity = k >= 0 ? 1 : 0;
+      live.style.backgroundImage = k >= 0 ? `url(${IMGS[k]})` : "none";
+      $("bars").style.visibility = k === 0 ? "visible" : "hidden";
+      const tt = clock.t;
+      bars.forEach((b, i) => (b.style.height = (26 + 150 * Math.abs(Math.sin(tt * 6 + i * 0.55) * Math.cos(tt * 2.2 + i * 0.21))).toFixed(1) + "px"));
+    };
+    live.style.backgroundSize = "840px 480px";
+    draw();
+    const S = F.STEP, a = VO["2.0"], b = VO["2.1"], c = VO["2.2"];
+    const glide = (from, to, at, dur, ease) => tl.fromTo(scroll, { v: from }, { v: to, duration: dur, ease, onUpdate: draw, immediateRender: false }, at);
+    tl.fromTo(scroll, { v: -S * 0.9 }, { v: 0, duration: 1.2, ease: "expo.out", onUpdate: draw }, a - 0.15);
+    glide(0, S, b - 0.35, 1.1, "expo.inOut");
+    glide(S, 2 * S, c - 0.45, 1.1, "expo.inOut");
+    glide(2 * S, 3.2 * S, D - 0.55, 0.55, "expo.in");
+    tl.fromTo(clock, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: draw, immediateRender: false }, 0);
+    tl.fromTo("#§words", { x: SW }, { x: wx(0), duration: 1.2, ease: "expo.out" }, a - 0.15);
+    tl.fromTo("#§words", { x: wx(0) }, { x: wx(1), duration: 1.1, ease: "expo.inOut", immediateRender: false }, b - 0.35);
+    tl.fromTo("#§words", { x: wx(1) }, { x: wx(2), duration: 1.1, ease: "expo.inOut", immediateRender: false }, c - 0.45);
+    tl.fromTo("#§title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0);
+    tl.fromTo("#§sheen", { backgroundPosition: "140% 0%" }, { backgroundPosition: "-60% 0%", duration: 1.4, ease: "power2.inOut" }, c + 0.8);
+    tl.to("#§title", { opacity: 0, y: -30, duration: 0.4, ease: "power2.in" }, D - 0.45);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

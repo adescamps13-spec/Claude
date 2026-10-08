@@ -1,0 +1,38 @@
+<style>
+  #§bg{background:#6955AA}
+  #§cam{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:735px 610px}
+  #§num{position:absolute;left:150px;top:150px;height:900px;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:880px;line-height:880px;letter-spacing:-.06em;color:#FFFFFF}
+  #§num span{display:inline-block}
+  #§sup{position:absolute;left:965px;top:225px;font-family:Unbounded;font-weight:500;font-size:190px;line-height:190px;color:#FF0055}
+  #§lead{position:absolute;left:156px;top:118px;font-weight:300;font-size:44px;color:#ECE8FA}
+  .§l{position:absolute;left:1150px;overflow:hidden;height:104px}
+  .§l span{display:block;font-family:Unbounded;font-weight:500;font-size:84px;line-height:104px;color:#FFFFFF;letter-spacing:-.02em}
+</style>
+<div class="full" id="§bg"></div>
+<div id="§cam">
+  <div id="§lead">Finaxy est le</div>
+  <div id="§num"></div>
+  <div id="§sup">e</div>
+  <div class="§l" style="top:560px"><span id="§w1">courtier</span></div>
+  <div class="§l" style="top:664px"><span id="§w2">français</span></div>
+</div>
+{{HUD:#E6E1F7|01 — LE CONSTAT}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const digits = KIT.letters($("num"), "11");
+    const a = VO["1.0"];
+    // the figure rises out of the bottom edge, cropped by the frame
+    tl.fromTo(digits, { y: 900 }, { y: 0, duration: 0.9, ease: "expo.out", stagger: 0.08 }, a - 0.45);
+    tl.fromTo("#§lead", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a - 0.2);
+    tl.fromTo("#§sup", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.55, ease: "back.out(2.6)" }, a + 0.35);
+    tl.fromTo(["#§w1", "#§w2"], { y: 110 }, { y: 0, duration: 0.6, ease: "expo.out", stagger: 0.1 }, a + 0.55);
+    // slow camera push, then zoom through the white of the second 1 into the next scene
+    tl.fromTo("#§cam", { scale: 1 }, { scale: 1.05, duration: D - 0.6, ease: "none" }, 0);
+    tl.to("#§cam", { scale: 14, duration: 0.55, ease: "expo.in" }, D - 0.58);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

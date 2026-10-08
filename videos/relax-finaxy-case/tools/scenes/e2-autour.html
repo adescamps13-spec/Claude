@@ -1,0 +1,80 @@
+<style>
+  #§bg{background:#E7E7EC}
+  #§one{position:absolute;z-index:4;left:560px;top:470px;width:800px;height:110px;border-radius:55px;background:#212C34;color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:22px;font-family:Unbounded;font-weight:500;font-size:42px}
+  #§one .§tx{position:relative;width:470px;height:60px}
+  #§one .§tx span{position:absolute;left:0;right:0;top:0;line-height:60px;text-align:center;white-space:nowrap}
+  #§one i{display:block;width:30px;height:30px;border-radius:15px;background:#FF0055}
+  #§box{position:absolute;left:1150px;top:380px;width:500px;height:320px;border:4px solid #212C34;border-radius:26px}
+  #§box .§slotc{position:absolute;width:136px;height:116px;border:3px dashed #A7AEB4;border-radius:14px}
+  #§boxlbl{position:absolute;left:1150px;top:330px;font-weight:600;font-size:20px;letter-spacing:.16em;color:#4F575D}
+  #§proj{position:absolute;z-index:2;left:230px;top:330px;width:600px;height:420px;border-radius:36px;overflow:hidden;
+    background:linear-gradient(135deg,#C9F1F6 0%,#D4CCEE 40%,#F4C6E6 75%,#CDEBFA 100%);box-shadow:0 40px 80px rgba(105,85,170,.28)}
+  #§proj span{position:absolute;left:0;right:0;top:170px;text-align:center;font-family:Unbounded;font-weight:500;font-size:52px;color:#212C34}
+  #§proj em{position:absolute;left:0;right:0;top:250px;text-align:center;font-style:normal;font-weight:600;font-size:18px;letter-spacing:.2em;color:#5D4F96}
+  #§ring{position:absolute;inset:0}
+  .§pill{position:absolute;left:0;top:0;height:84px;border-radius:42px;background:#212C34;color:#FFFFFF;font-weight:500;font-size:32px;line-height:84px;text-align:center;white-space:nowrap}
+  .§pill i{display:inline-block;width:14px;height:14px;border-radius:7px;background:#FF0055;margin-right:14px;vertical-align:2px}
+  #§cap{position:absolute;left:0;right:0;top:930px;text-align:center;font-family:Unbounded;font-weight:500;font-size:42px;color:#212C34}
+</style>
+<div class="full" id="§bg"></div>
+<div id="§boxlbl">UNE AGENCE</div>
+<div id="§box"></div>
+<div id="§ring"></div>
+<div id="§proj"><span>votre projet</span><em>TEL QU’IL EST</em></div>
+<div id="§one"><i></i><div class="§tx"><span id="§o1">une seule équipe</span><span id="§o2">chez Relax</span></div></div>
+<div id="§cap">On construit l’équipe autour de votre projet.</div>
+{{HUD:#62666B|06 — NOTRE RÔLE}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["5.4"], e = VO["5.5"], c = VO["5.6"];
+    // the team pill from the previous shot becomes the speaker: "chez Relax"
+    tl.fromTo("#§o1", { y: 0, opacity: 1 }, { y: -40, opacity: 0, duration: 0.4, ease: "power2.in" }, a - 0.05);
+    tl.fromTo("#§o2", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, a + 0.2);
+    tl.to("#§one", { y: -330, scale: 0.7, duration: 0.7, ease: "expo.inOut" }, e - 0.3);
+    // a fixed agency box with predefined slots
+    for (let i = 0; i < 6; i++) {
+      const s = document.createElement("div");
+      s.className = ID + "-slotc";
+      s.style.left = 24 + (i % 3) * 152 + "px";
+      s.style.top = 30 + Math.floor(i / 3) * 132 + "px";
+      $("box").appendChild(s);
+    }
+    tl.fromTo(["#§box", "#§boxlbl"], { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.6, ease: "expo.out" }, e - 0.1);
+    tl.fromTo("#§proj", { opacity: 0, x: -200, rotationY: 20 }, { opacity: 1, x: 0, rotationY: 0, duration: 0.7, ease: "expo.out" }, e);
+    // "on ne fait pas entrer un projet dans une agence": squeezed to fit, it pops back out
+    tl.to("#§proj", { x: 870, y: 40, scaleX: 0.52, scaleY: 0.6, duration: 0.7, ease: "power3.in" }, e + 0.72);
+    tl.to("#§box", { x: 18, duration: 0.06, yoyo: true, repeat: 5, ease: "none" }, e + 1.4);
+    tl.to("#§proj", { x: 260, y: 0, scaleX: 1, scaleY: 1, duration: 0.84, ease: "elastic.out(1,0.5)" }, e + 1.45);
+    tl.to(["#§box", "#§boxlbl"], { opacity: 0, scale: 0.85, duration: 0.5, ease: "power2.in" }, c - 0.7);
+    // "on construit l'équipe autour de votre projet": the project in the centre, the talents orbit and dock
+    tl.to("#§proj", { x: 430, y: -20, scale: 0.78, duration: 0.8, ease: "expo.inOut" }, c - 0.4);
+    const TAL = ["Stratégie", "Naming", "Design", "Édito", "Développement", "Production"];
+    const pills = TAL.map((s) => {
+      const p = document.createElement("div");
+      p.className = ID + "-pill";
+      p.innerHTML = `<i></i>${s}`;
+      p.style.width = 110 + s.length * 19 + "px";
+      $("ring").appendChild(p);
+      return { el: p, w: 110 + s.length * 19 };
+    });
+    const orb = { t: 0 };
+    const drawRing = () => {
+      const k = orb.t, spin = (1 - Math.pow(1 - k, 3)) * Math.PI * 2.2, rx = 900 - 330 * k, ry = 470 - 210 * k;
+      pills.forEach((p, i) => {
+        const th = (i / 6) * Math.PI * 2 - Math.PI / 2 + spin - Math.PI * 2.2, depth = Math.sin(th);
+        const sc = 0.82 + 0.18 * (depth + 1) / 2 * (1 - k) + 0.18 * k;
+        p.el.style.transform = `translate(${(960 + Math.cos(th) * rx - p.w / 2).toFixed(1)}px,${(545 + depth * ry - 42).toFixed(1)}px) scale(${sc.toFixed(3)})`;
+        p.el.style.opacity = Math.min(1, k * 4).toFixed(3);
+        p.el.style.zIndex = depth < 0 && k < 0.8 ? 0 : 3;
+      });
+    };
+    drawRing();
+    tl.fromTo(orb, { t: 0 }, { t: 1, duration: 2.2, ease: "none", onUpdate: drawRing }, c - 0.2);
+    tl.fromTo("#§cap", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, c + 0.5);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+
+      </style>
+      <div id="root" data-composition-id="d2-site" data-width="1920" data-height="1080" data-duration="3.58">
+<style>
+  #d2-site-bg{background:radial-gradient(70% 70% at 50% 40%,#F2EFFA 0%,#E2DCF3 60%,#D4CCEE 100%)}
+  #d2-site-word{position:absolute;left:0;top:250px;height:600px;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:560px;line-height:600px;letter-spacing:-.05em;color:#C9BFEA}
+  #d2-site-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1800px;perspective-origin:960px 700px}
+  #d2-site-win{position:absolute;left:320px;top:170px;width:1280px;height:790px;border-radius:22px;overflow:hidden;background:#FFFFFF;box-shadow:0 60px 120px rgba(25,24,83,.35),0 10px 30px rgba(25,24,83,.2)}
+  #d2-site-bar{position:absolute;left:0;top:0;width:1280px;height:46px;background:#F3F2F7}
+  #d2-site-bar i{position:absolute;top:17px;width:12px;height:12px;border-radius:6px}
+  #d2-site-url{position:absolute;left:470px;top:9px;width:340px;height:28px;border-radius:14px;background:#FFFFFF;color:#4A5892;font-size:15px;line-height:28px;text-align:center;font-weight:500}
+  #d2-site-view{position:absolute;left:0;top:46px;width:1280px;height:744px;overflow:hidden}
+  #d2-site-page{position:absolute;left:0;top:0;width:1280px;height:3024px;background:url(assets/cards/site-long.jpg) 0 0/1280px 3024px}
+  #d2-site-sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.35) 48%,transparent 60%);background-size:260% 100%}
+</style>
+<div class="full" id="d2-site-bg"></div>
+<div id="d2-site-word" data-layout-allow-overlap>neuf</div>
+<div id="d2-site-stage"><div id="d2-site-win">
+  <div id="d2-site-bar"><i style="left:20px;background:#FF5F57"></i><i style="left:40px;background:#FEBC2E"></i><i style="left:60px;background:#28C840"></i><div id="d2-site-url">finaxy.com</div></div>
+  <div id="d2-site-view"><div id="d2-site-page"></div></div><div id="d2-site-sheen"></div>
+</div></div>
+<div class="hud" style="left:70px;color:#6F6A8E">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#6F6A8E">05 — DÉPLOYER</div>
+<script>
+  (function () {
+    const ID = "d2-site", D = 3.58, VO = {"1.0": -56.46, "1.1": -53.81, "1.2": -52.11, "1.3": -48.16, "1.4": -46.42, "1.5": -44.41, "2.0": -41.89, "2.1": -39.81, "2.2": -36.76, "2.3": -33.91, "2.4": -31.62, "2.5": -29.11, "3.0": -25.67, "3.1": -24.7, "3.2": -22.99, "3.3": -22.31, "3.4": -21.73, "3.5": -21.36, "3.6": -20.13, "3.7": -19.16, "3.8": -17.74, "3.9": -16.58, "3.10": -14.12, "3.11": -12.61, "3.12": -11.25, "3.13": -9.58, "4.0": -7.23, "4.1": -6.7, "4.2": -4.23, "4.3": -3.43, "4.4": -2.7, "4.5": -1.45, "4.6": 0.15, "4.7": 1.03, "4.8": 3.73, "4.9": 5.63, "4.10": 7.64, "5.0": 11.54, "5.1": 13.09, "5.2": 15.71, "5.3": 16.51, "5.4": 19.42, "5.5": 20.41, "5.6": 23.11, "5.7": 26.57, "5.8": 27.59, "5.9": 28.84, "5.10": 30.07, "5.11": 31.37, "5.12": 33.12, "5.13": 33.97, "breath": 35.82, "exhale": 37.57};
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["4.6"], s = VO["4.7"];
+    tl.fromTo("#d2-site-word", { x: 700 }, { x: -260, duration: D, ease: "power1.out" }, 0);
+    // the new site lands flat out of the floor, then scrolls
+    tl.fromTo("#d2-site-win", { y: 620, rotationX: 62, rotationZ: -7, scale: 0.78 }, { y: 0, rotationX: 0, rotationZ: 0, scale: 1, duration: 1.25, ease: "expo.out" }, a - 0.2);
+    tl.fromTo("#d2-site-sheen", { backgroundPosition: "140% 0%" }, { backgroundPosition: "-60% 0%", duration: 1.1, ease: "power2.inOut" }, s - 0.1);
+    tl.fromTo("#d2-site-page", { y: 0 }, { y: -1560, duration: D - s - 0.1, ease: "power2.inOut" }, s + 0.1);
+    tl.to("#d2-site-win", { scale: 1.04, duration: D - s - 0.25, ease: "none" }, s + 0.25);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

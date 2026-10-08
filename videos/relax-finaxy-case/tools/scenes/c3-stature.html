@@ -1,0 +1,37 @@
+<style>
+  #§pill{position:absolute;left:760px;top:170px;width:400px;height:80px;border-radius:40px;background:#212C34;color:#FFFFFF;font-weight:500;font-size:32px;line-height:80px;text-align:center}
+  #§pre{position:absolute;left:150px;top:360px;font-weight:300;font-size:50px;color:#6B7278}
+  #§big{position:absolute;left:0;right:0;top:420px;height:330px;overflow:hidden;text-align:center;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:300px;line-height:330px;letter-spacing:-.04em;color:#212C34}
+  #§big span{display:inline-block}
+  #§stage{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1500px;perspective-origin:960px 600px}
+  #§photo{position:absolute;left:410px;top:250px;width:1100px;height:600px;border-radius:30px;overflow:hidden;background:url(assets/cards/humain.jpg) 70% 30%/1180px auto;box-shadow:0 40px 80px rgba(33,44,52,.25)}
+  #§hum{position:absolute;left:470px;top:770px;height:120px;padding:0 50px;border-radius:60px;background:#FF0055;color:#FFFFFF;font-family:Unbounded;font-weight:500;font-size:54px;line-height:120px;white-space:nowrap}
+</style>
+<div class="full studio"></div>
+<div id="§pill">Notre ambition</div>
+<div id="§pre">valoriser la</div>
+<div id="§big"></div>
+<div id="§stage"><div id="§photo"></div></div>
+<div id="§hum">mettre en avant l’humain</div>
+{{HUD:#62666B|04 — EXPRIMER}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["3.11"], st = VO["3.12"], hu = VO["3.13"];
+    const ls = KIT.letters($("big"), "STATURE");
+    tl.fromTo("#§pill", { scaleX: 0.2, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }, a - 0.1);
+    tl.fromTo("#§pre", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, st - 0.3);
+    // the word stands up, letter by letter, from its baseline
+    tl.fromTo(ls, { y: 330, scaleY: 1.6, transformOrigin: "50% 100%" }, { y: 0, scaleY: 1, duration: 0.8, ease: "expo.out", stagger: 0.05 }, st - 0.1);
+    tl.to("#§big", { scale: 1.06, duration: hu - st, ease: "none" }, st + 0.5);
+    // "mettre en avant l'humain": a real Finaxy photo rises from below and pushes the word away
+    tl.fromTo("#§photo", { y: 900, rotationX: 38, scale: 0.86 }, { y: 0, rotationX: 0, scale: 1, duration: 1.0, ease: "expo.out" }, hu - 0.3);
+    tl.to(["#§big", "#§pre", "#§pill"], { y: -520, opacity: 0, duration: 0.8, ease: "expo.inOut" }, hu - 0.35);
+    tl.fromTo("#§photo", { backgroundPosition: "70% 40%" }, { backgroundPosition: "60% 30%", duration: D - hu + 0.3, ease: "none", immediateRender: false }, hu - 0.3);
+    tl.fromTo("#§hum", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, hu + 0.25);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
