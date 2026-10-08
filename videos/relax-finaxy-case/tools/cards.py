@@ -65,7 +65,7 @@ cards["intel"] = f"""<div class="card" style="background:radial-gradient(80% 90%
 
 # real Finaxy deliverables (files supplied by the client / Relax, assets/real/), never mock-ups:
 # each is laid on an 840x480 card, full bleed when the ratio allows, otherwise contained on its own edge colour
-REAL = {"voeux": ("voeux-2026.jpg", "contain"), "enseigne": ("enseigne.jpg", "cover"), "affiches": ("affiches.jpg", "cover"),
+REAL = {"voeux": ("voeux-2026.jpg", "contain"), "enseigne": ("enseigne.jpg", "cover"), "affiches": ("affiches.jpg", "cover"), "plaquette": ("plaquette.jpg", "contain"),
         "kakemono": ("kakemono.jpg", "contain"), "cartes": ("cartes-visite.jpg", "contain"), "reseaux": ("linkedin.jpg", "contain")}
 
 

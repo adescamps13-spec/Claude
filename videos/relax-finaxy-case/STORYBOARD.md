@@ -27,7 +27,7 @@ mode: collaborative
 ## Still open
 
 - Variante 4:5.
-- Carte de vœux, masque de présentation, plaquettes, kakemonos, cartes de visite, réseaux sociaux : maquettes reconstituées dans la DA Finaxy (pas de fichiers sources des supports réels).
+- Supports : uniquement des fichiers réels (assets/real) — carte de vœux, affiches, enseigne, plaquette, kakemono, cartes de visite, page LinkedIn. Agent IA : simple animation « en plus », pas de capture d’interface.
 
 ## Frame 1 — 11ᵉ courtier
 - scene: Aplat violet, « 11 » géant qui monte du bas du cadre, « e » rose, « courtier français » ; zoom à travers le blanc du 1

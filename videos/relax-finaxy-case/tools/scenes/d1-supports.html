@@ -18,10 +18,10 @@
     const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
     const $ = (s) => document.getElementById(ID + "-" + s);
     const tl = gsap.timeline({ paused: true });
-    const NAMES = ["voeux", "enseigne", "affiches", "kakemono", "cartes", "reseaux"]; // real deliverables only (assets/real)
+    const NAMES = ["voeux", "affiches", "enseigne", "plaquette", "kakemono", "cartes", "reseaux"]; // real deliverables only (assets/real)
     const F = KIT.film({ el: $("film"), mirror: $("mirror"), imgs: NAMES.map((n) => `assets/cards/${n}.png`) });
     const W = 820;
-    KIT.slot($("words"), ["exprimer", "cartes de vœux", "signalétique", "affiches", "kakemonos", "cartes de visite", "réseaux sociaux", ""], W);
+    KIT.slot($("words"), ["exprimer", "cartes de vœux", "affiches", "signalétique", "plaquettes", "kakemonos", "cartes de visite", "réseaux sociaux", ""], W);
     const S = F.STEP, scroll = { v: -1.4 * S };
     // the title word rides with the film: card k centred = word k+1 in the slot
     const draw = () => { F.place(scroll.v); $("words").style.transform = `translateX(${(-(scroll.v / S + 1) * W).toFixed(1)}px)`; };
@@ -30,12 +30,12 @@
     const glide = (from, to, t, dur, ease) => tl.fromTo(scroll, { v: from }, { v: to, duration: dur, ease, onUpdate: draw, immediateRender: false }, t);
     tl.fromTo(scroll, { v: -1.4 * S }, { v: -S, duration: 0.7, ease: "expo.out", onUpdate: draw }, 0);
     // "les supports pour exprimer tout ça": a long fast run — the deliverables keep coming
-    glide(-S, at(1), VO["4.1"] - 0.1, 1.9, "expo.inOut");
-    glide(at(1), at(2), VO["4.2"] - 0.32, 0.62, "expo.inOut");
-    glide(at(2), at(3), VO["4.3"] - 0.32, 0.62, "expo.inOut");
-    glide(at(3), at(4), VO["4.4"] - 0.32, 0.62, "expo.inOut");
-    glide(at(4), at(5), VO["4.5"] - 0.32, 0.62, "expo.inOut");
-    glide(at(5), at(6.4), D - 0.5, 0.5, "expo.in");
+    glide(-S, at(2), VO["4.1"] - 0.1, 2.1, "expo.inOut");
+    glide(at(2), at(3), VO["4.2"] - 0.32, 0.62, "expo.inOut");
+    glide(at(3), at(4), VO["4.3"] - 0.32, 0.62, "expo.inOut");
+    glide(at(4), at(5), VO["4.4"] - 0.32, 0.62, "expo.inOut");
+    glide(at(5), at(6), VO["4.5"] - 0.32, 0.62, "expo.inOut");
+    glide(at(6), at(7.4), D - 0.5, 0.5, "expo.in");
     tl.fromTo("#§title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.05);
     tl.to("#§title", { opacity: 0, y: -30, duration: 0.35, ease: "power2.in" }, D - 0.4);
     window.__timelines = window.__timelines || {};
