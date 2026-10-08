@@ -1,412 +1,286 @@
 {
  "1": {
-  "frame": 1,
-  "seconds": 12.16,
+  "frame": "A",
+  "seconds": 14.0,
   "phrases": [
    {
-    "text": "Finaxy avait grandi vite.",
-    "start": 0.0,
-    "end": 1.53
+    "text": "Finaxy est le onzième courtier français.",
+    "start": 0.3,
+    "end": 2.51
    },
    {
-    "text": "Très vite.",
-    "start": 1.53,
-    "end": 2.14
+    "text": "Un groupe qui a grandi vite.",
+    "start": 2.95,
+    "end": 4.31
    },
    {
-    "text": "Des acquisitions,",
-    "start": 2.53,
-    "end": 3.13
+    "text": "Et une marque qui avait fini par ne plus refléter ce que l'entreprise était devenue.",
+    "start": 4.65,
+    "end": 8.2
    },
    {
-    "text": "des cabinets,",
-    "start": 3.68,
-    "end": 4.82
+    "text": "Qui n'arrivait plus à le raconter.",
+    "start": 8.6,
+    "end": 9.99
    },
    {
-    "text": "des expertises,",
-    "start": 4.82,
-    "end": 6.13
+    "text": "Pas juste un problème de logo :",
+    "start": 10.34,
+    "end": 11.91
    },
    {
-    "text": "des marques…",
-    "start": 6.13,
-    "end": 7.18
-   },
-   {
-    "text": "Onzième courtier français.",
-    "start": 7.58,
-    "end": 9.25
-   },
-   {
-    "text": "Plus de douze mille entreprises clientes.",
-    "start": 10.05,
-    "end": 11.9
+    "text": "un sujet de cohérence.",
+    "start": 12.35,
+    "end": 13.69
    }
   ]
  },
  "2": {
-  "frame": 2,
-  "seconds": 9.32,
+  "frame": "B",
+  "seconds": 15.56,
   "phrases": [
    {
-    "text": "L'enjeu n'était pas un simple problème de logo,",
-    "start": 0.28,
-    "end": 2.79
+    "text": "On a commencé par écouter.",
+    "start": 0.27,
+    "end": 1.81
    },
    {
-    "text": "mais un sujet de cohérence.",
-    "start": 3.38,
-    "end": 4.81
+    "text": "Et on a compris ce que Finaxy était vraiment :",
+    "start": 2.35,
+    "end": 5.13
    },
    {
-    "text": "Le défi :",
-    "start": 5.42,
-    "end": 5.94
+    "text": "une intelligence collective du risque.",
+    "start": 5.4,
+    "end": 7.8
    },
    {
-    "text": "simplifier,",
-    "start": 6.69,
-    "end": 7.51
+    "text": "Une proposition de valeur clé :",
+    "start": 8.25,
+    "end": 10.2
    },
    {
-    "text": "sans appauvrir.",
-    "start": 8.06,
-    "end": 9.0
-   }
-  ]
- },
- "3": {
-  "frame": 3,
-  "seconds": 10.68,
-  "phrases": [
-   {
-    "text": "Alors on a commencé par écouter.",
-    "start": 0.26,
-    "end": 2.4
-   },
-   {
-    "text": "Dirigeants,",
-    "start": 3.12,
-    "end": 3.92
-   },
-   {
-    "text": "collaborateurs,",
-    "start": 3.92,
-    "end": 5.0
-   },
-   {
-    "text": "métiers,",
-    "start": 5.22,
-    "end": 5.74
-   },
-   {
-    "text": "marché.",
-    "start": 6.16,
-    "end": 6.61
-   },
-   {
-    "text": "Pour comprendre ce que Finaxy était vraiment.",
-    "start": 7.45,
-    "end": 10.41
-   }
-  ]
- },
- "4": {
-  "frame": 4,
-  "seconds": 11.8,
-  "phrases": [
-   {
-    "text": "Et une singularité est apparue.",
-    "start": 0.0,
-    "end": 0.73
-   },
-   {
-    "text": "La force d'un groupe.",
-    "start": 1.21,
-    "end": 2.92
-   },
-   {
-    "text": "L'esprit d'un cabinet.",
-    "start": 3.8,
-    "end": 5.02
-   },
-   {
-    "text": "Face à des risques multiples,",
-    "start": 5.74,
-    "end": 6.83
+    "text": "dans un monde où le risque est devenu multiple,",
+    "start": 10.54,
+    "end": 12.77
    },
    {
     "text": "aucune expertise isolée ne suffit.",
-    "start": 7.73,
-    "end": 11.36
-   }
-  ]
- },
- "5": {
-  "frame": 5,
-  "seconds": 4.57,
-  "phrases": [
-   {
-    "text": "Finaxy,",
-    "start": 0.0,
-    "end": 0.99
-   },
-   {
-    "text": "c'est l'intelligence collective du risque.",
-    "start": 1.77,
-    "end": 4.57
-   }
-  ]
- },
- "6": {
-  "frame": 6,
-  "seconds": 11.8,
-  "phrases": [
-   {
-    "text": "Cette idée est devenue un principe d'organisation.",
-    "start": 0.0,
-    "end": 2.74
-   },
-   {
-    "text": "Architecture,",
-    "start": 3.59,
-    "end": 4.39
-   },
-   {
-    "text": "verticales,",
-    "start": 4.78,
-    "end": 5.57
-   },
-   {
-    "text": "naming,",
-    "start": 6.0,
-    "end": 6.6
-   },
-   {
-    "text": "place de chaque marque :",
-    "start": 6.96,
-    "end": 8.03
-   },
-   {
-    "text": "le groupe,",
-    "start": 8.69,
-    "end": 9.41
-   },
-   {
-    "text": "lui aussi,",
-    "start": 9.41,
-    "end": 10.14
-   },
-   {
-    "text": "est devenu lisible.",
-    "start": 10.44,
-    "end": 11.56
-   }
-  ]
- },
- "7": {
-  "frame": 7,
-  "seconds": 8.8,
-  "phrases": [
-   {
-    "text": "Puis elle a pris corps.",
-    "start": 0.26,
-    "end": 1.35
-   },
-   {
-    "text": "Un logo,",
-    "start": 1.91,
-    "end": 2.76
-   },
-   {
-    "text": "une identité,",
-    "start": 2.76,
-    "end": 4.15
-   },
-   {
-    "text": "une voix.",
-    "start": 4.15,
-    "end": 5.11
-   },
-   {
-    "text": "Plus de stature,",
-    "start": 5.5,
-    "end": 6.51
-   },
-   {
-    "text": "sans rien perdre d'humain.",
-    "start": 7.13,
-    "end": 8.54
-   }
-  ]
- },
- "8": {
-  "frame": 8,
-  "seconds": 15.2,
-  "phrases": [
-   {
-    "text": "Et le système s'est mis à produire.",
-    "start": 0.0,
-    "end": 1.94
-   },
-   {
-    "text": "Plaquettes,",
-    "start": 2.49,
-    "end": 3.11
-   },
-   {
-    "text": "kakemonos,",
-    "start": 3.42,
-    "end": 4.24
-   },
-   {
-    "text": "cartes de visite,",
-    "start": 4.49,
-    "end": 5.43
-   },
-   {
-    "text": "présentations,",
-    "start": 5.73,
-    "end": 6.89
-   },
-   {
-    "text": "cartes de vœux,",
-    "start": 6.89,
-    "end": 8.13
-   },
-   {
-    "text": "LinkedIn,",
-    "start": 8.13,
-    "end": 8.88
-   },
-   {
-    "text": "le nouveau site…",
-    "start": 9.15,
-    "end": 9.93
-   },
-   {
-    "text": "Jusqu'à un agent IA,",
-    "start": 10.37,
-    "end": 12.09
-   },
-   {
-    "text": "pour que chacun écrive comme Finaxy.",
-    "start": 12.39,
-    "end": 14.84
-   }
-  ]
- },
- "9": {
-  "frame": 9,
-  "seconds": 15.2,
-  "phrases": [
-   {
-    "text": "Stratégie,",
-    "start": 0.27,
-    "end": 1.01
-   },
-   {
-    "text": "architecture,",
-    "start": 1.6,
-    "end": 2.53
-   },
-   {
-    "text": "naming,",
-    "start": 3.13,
-    "end": 3.7
-   },
-   {
-    "text": "design,",
-    "start": 4.36,
-    "end": 5.11
-   },
-   {
-    "text": "éditorial,",
-    "start": 5.62,
-    "end": 6.51
-   },
-   {
-    "text": "production,",
-    "start": 7.15,
-    "end": 7.72
-   },
-   {
-    "text": "IA.",
-    "start": 8.49,
-    "end": 8.8
-   },
-   {
-    "text": "Pour chaque enjeu,",
-    "start": 9.42,
-    "end": 10.61
-   },
-   {
-    "text": "Relax a réuni la bonne équipe.",
-    "start": 11.08,
-    "end": 13.03
-   },
-   {
-    "text": "Et l'a fait jouer comme une seule.",
-    "start": 13.7,
+    "start": 13.05,
     "end": 15.2
    }
   ]
  },
- "10": {
-  "frame": 10,
-  "seconds": 12.88,
+ "3": {
+  "frame": "C",
+  "seconds": 17.88,
   "phrases": [
    {
-    "text": "On ne fait pas entrer un projet dans une agence.",
-    "start": 0.37,
-    "end": 3.04
+    "text": "De cette idée,",
+    "start": 0.33,
+    "end": 0.99
    },
    {
-    "text": "On construit l'équipe autour du projet.",
-    "start": 3.52,
-    "end": 5.8
+    "text": "nous avons tout décliné :",
+    "start": 1.3,
+    "end": 2.53
    },
    {
-    "text": "Côté Relax,",
-    "start": 6.69,
-    "end": 7.48
+    "text": "architecture,",
+    "start": 3.01,
+    "end": 3.69
    },
    {
-    "text": "beaucoup de mouvement.",
-    "start": 7.76,
-    "end": 8.38
+    "text": "catégories,",
+    "start": 3.69,
+    "end": 4.27
    },
    {
-    "text": "Côté client,",
-    "start": 9.26,
-    "end": 9.94
+    "text": "naming,",
+    "start": 4.27,
+    "end": 4.64
    },
    {
-    "text": "un seul fil.",
-    "start": 10.5,
-    "end": 11.19
+    "text": "place des marques.",
+    "start": 4.64,
+    "end": 5.59
    },
    {
-    "text": "Aucune couture.",
-    "start": 11.81,
-    "end": 12.56
+    "text": "Ensuite,",
+    "start": 5.87,
+    "end": 6.52
+   },
+   {
+    "text": "nous lui avons donné du corps :",
+    "start": 6.84,
+    "end": 8.26
+   },
+   {
+    "text": "un nouveau logo,",
+    "start": 8.26,
+    "end": 9.0
+   },
+   {
+    "text": "une nouvelle identité,",
+    "start": 9.42,
+    "end": 11.61
+   },
+   {
+    "text": "une voix plus affirmée.",
+    "start": 11.88,
+    "end": 12.95
+   },
+   {
+    "text": "Notre ambition :",
+    "start": 13.39,
+    "end": 14.29
+   },
+   {
+    "text": "valoriser la stature,",
+    "start": 14.75,
+    "end": 16.05
+   },
+   {
+    "text": "mettre en avant l'humain.",
+    "start": 16.42,
+    "end": 17.51
    }
   ]
  },
- "11": {
-  "frame": 11,
-  "seconds": 7.61,
+ "4": {
+  "frame": "D",
+  "seconds": 18.16,
   "phrases": [
    {
-    "text": "Les meilleurs experts pour votre projet.",
-    "start": 0.23,
-    "end": 3.32
+    "text": "Et enfin,",
+    "start": 0.29,
+    "end": 0.82
    },
    {
-    "text": "Coordonnés par un partenaire de confiance.",
-    "start": 4.15,
-    "end": 7.61
+    "text": "les supports pour exprimer tout ça :",
+    "start": 0.82,
+    "end": 2.92
+   },
+   {
+    "text": "plaquettes,",
+    "start": 3.29,
+    "end": 4.09
+   },
+   {
+    "text": "kakemonos,",
+    "start": 4.09,
+    "end": 4.82
+   },
+   {
+    "text": "cartes de visite,",
+    "start": 4.82,
+    "end": 6.07
+   },
+   {
+    "text": "pages réseaux sociaux…",
+    "start": 6.07,
+    "end": 7.67
+   },
+   {
+    "text": "Et bien sûr,",
+    "start": 7.67,
+    "end": 8.55
+   },
+   {
+    "text": "un nouveau site flambant neuf.",
+    "start": 8.55,
+    "end": 10.74
+   },
+   {
+    "text": "La cerise sur le gâteau ?",
+    "start": 11.25,
+    "end": 13.15
+   },
+   {
+    "text": "Un agent éditorial IA,",
+    "start": 13.15,
+    "end": 14.82
+   },
+   {
+    "text": "pour que chacun puisse écrire comme Finaxy.",
+    "start": 15.16,
+    "end": 17.83
+   }
+  ]
+ },
+ "5": {
+  "frame": "E",
+  "seconds": 23.88,
+  "phrases": [
+   {
+    "text": "Notre rôle là-dedans ?",
+    "start": 0.3,
+    "end": 1.28
+   },
+   {
+    "text": "Mettre les bons talents au service du projet,",
+    "start": 1.85,
+    "end": 4.14
+   },
+   {
+    "text": "à chaque étape,",
+    "start": 4.47,
+    "end": 5.27
+   },
+   {
+    "text": "en les faisant jouer comme une seule équipe.",
+    "start": 5.27,
+    "end": 7.6
+   },
+   {
+    "text": "Parce que chez Relax,",
+    "start": 8.18,
+    "end": 9.17
+   },
+   {
+    "text": "on ne fait pas entrer un projet dans une agence.",
+    "start": 9.17,
+    "end": 11.42
+   },
+   {
+    "text": "On construit l'équipe autour de votre projet.",
+    "start": 11.87,
+    "end": 14.64
+   },
+   {
+    "text": "Côté Relax :",
+    "start": 15.33,
+    "end": 16.01
+   },
+   {
+    "text": "du mouvement.",
+    "start": 16.35,
+    "end": 16.94
+   },
+   {
+    "text": "Côté client :",
+    "start": 17.6,
+    "end": 18.18
+   },
+   {
+    "text": "un seul fil,",
+    "start": 18.83,
+    "end": 19.61
+   },
+   {
+    "text": "zéro couture.",
+    "start": 20.13,
+    "end": 21.09
+   },
+   {
+    "text": "C'est ça,",
+    "start": 21.88,
+    "end": 22.31
+   },
+   {
+    "text": "notre promesse.",
+    "start": 22.73,
+    "end": 23.51
    }
   ]
  }

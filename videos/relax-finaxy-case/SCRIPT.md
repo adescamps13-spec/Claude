@@ -1,90 +1,49 @@
-# SCRIPT — relax-finaxy-case
+# SCRIPT — relax-finaxy-case (v2)
 
-**Voice:** Algieba (Google Gemini TTS, prebuilt voice)
-**Voice settings:** model gemini-3.8-flash-tts (fallback gemini-2.5-pro-preview-tts) · speed 1 · one take per line
-**Voice direction:** Voix française posée, chaleureuse et sûre d'elle. Rythme calme, de vraies respirations entre les phrases. Narrateur de film de marque haut de gamme, jamais commercial, jamais emphatique.
+**Voice:** Sulafat (Google Gemini TTS, prebuilt voice)
+**Voice settings:** model gemini-3.1-flash-tts-preview · one take per act (phrase cues from real pauses)
+**Voice direction:** Voix féminine française, chaleureuse et vivante. Rythme soutenu mais jamais pressé, de petites respirations entre les phrases. Narratrice de film de marque moderne, complice, jamais commerciale ni emphatique.
 
-Locked text: `tools/vo-lines.json` is generated from the indented blocks below — edit here, not there.
+Text written by the client (2026-10-08), only spelling fixed; two wording changes flagged in chat:
+« supports » for « assets » (no English on screen/VO) and « Et une marque qui… » for « Pour une marque qui… ».
 
 ---
 
-## Line 1 — Chaos hérité (Frame 1)
+## Line 1 — Le constat (Act A)
 
-**Time:** 0.0 – 9.0s
-**Delivery:** Un peu plus d'allant, comme un constat qui s'accélère ; les chiffres posés, détachés.
+**Time:** 0 – 15s
+**Delivery:** Assuré, un peu d'élan ; marquer la bascule sur « cohérence ».
 
-    Finaxy avait grandi vite. Très vite. Des acquisitions, des cabinets, des expertises, des marques… Onzième courtier français. Plus de douze mille entreprises clientes.
+    Finaxy est le onzième courtier français. Un groupe qui a grandi vite. Et une marque qui avait fini par ne plus refléter ce que l'entreprise était devenue. Qui n'arrivait plus à le raconter. Pas juste un problème de logo : un sujet de cohérence.
 
-## Line 2 — Le vrai sujet (Frame 2)
+## Line 2 — Écouter, comprendre (Act B)
 
-**Time:** 9.0 – 18.0s
-**Delivery:** Le recadrage, calme et net ; petite pause avant « cohérence ».
+**Time:** 15 – 32s
+**Delivery:** Plus posé, curieux ; « une intelligence collective du risque » comme une évidence.
 
-    L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence. Le défi : simplifier, sans appauvrir.
+    On a commencé par écouter. Et on a compris ce que Finaxy était vraiment : une intelligence collective du risque. Une proposition de valeur clé : dans un monde où le risque est devenu multiple, aucune expertise isolée ne suffit.
 
-## Line 3 — Comprendre (Frame 3)
+## Line 3 — Organiser, exprimer (Act C)
 
-**Time:** 18.0 – 26.0s
-**Delivery:** Posé, attentif, une écoute.
+**Time:** 32 – 50s
+**Delivery:** Structuré, qui avance ; un léger sourire sur « mettre en avant l'humain ».
 
-    Alors on a commencé par écouter. Dirigeants, collaborateurs, métiers, marché. Pour comprendre ce que Finaxy était vraiment.
+    De cette idée, nous avons tout décliné : architecture, catégories, naming, place des marques. Ensuite, nous lui avons donné du corps : un nouveau logo, une nouvelle identité, une voix plus affirmée. Notre ambition : valoriser la stature, mettre en avant l'humain.
 
-## Line 4 — Révéler (Frame 4)
+## Line 4 — Déployer (Act D)
 
-**Time:** 26.0 – 35.0s
-**Delivery:** Une découverte ; les deux formules bien séparées.
+**Time:** 50 – 66s
+**Delivery:** L'énumération prend de l'élan ; complice sur « la cerise sur le gâteau ».
 
-    Et une singularité est apparue. La force d'un groupe. L'esprit d'un cabinet. Face à des risques multiples, aucune expertise isolée ne suffit.
+    Et enfin, les supports pour exprimer tout ça : plaquettes, kakemonos, cartes de visite, pages réseaux sociaux… Et bien sûr, un nouveau site flambant neuf. La cerise sur le gâteau ? Un agent éditorial IA, pour que chacun puisse écrire comme Finaxy.
 
-## Line 5 — L'intelligence collective (Frame 5)
+## Line 5 — Le rôle de Relax (Act E)
 
-**Time:** 35.0 – 39.5s
-**Delivery:** Lent, comme une évidence. Laisser respirer après.
+**Time:** 66 – 92s
+**Delivery:** Conviction tranquille ; ralentir sur la fin, « C'est ça, notre promesse. » posé, souriant.
 
-    Finaxy, c'est l'intelligence collective du risque.
+    Notre rôle là-dedans ? Mettre les bons talents au service du projet, à chaque étape, en les faisant jouer comme une seule équipe. Parce que chez Relax, on ne fait pas entrer un projet dans une agence. On construit l'équipe autour de votre projet. Côté Relax : du mouvement. Côté client : un seul fil, zéro couture. C'est ça, notre promesse.
 
-## Line 6 — Organiser (Frame 6)
+## Final — Respiration (no voice)
 
-**Time:** 39.5 – 50.0s
-**Delivery:** Structuré, clair, un léger soulagement sur « lisible ».
-
-    Cette idée est devenue un principe d'organisation. Architecture, verticales, naming, place de chaque marque : le groupe, lui aussi, est devenu lisible.
-
-## Line 7 — Exprimer (Frame 7)
-
-**Time:** 50.0 – 58.0s
-**Delivery:** Plus chaleureux, presque souriant.
-
-    Puis elle a pris corps. Un logo, une identité, une voix. Plus de stature, sans rien perdre d'humain.
-
-## Line 8 — Déployer (Frame 8)
-
-**Time:** 58.0 – 70.0s
-**Delivery:** Une énumération qui prend de l'élan, sans se presser ; ralentir sur « agent IA ».
-
-    Et le système s'est mis à produire. Plaquettes, kakemonos, cartes de visite, présentations, cartes de vœux, LinkedIn, le nouveau site… Jusqu'à un agent IA, pour que chacun écrive comme Finaxy.
-
-## Line 9 — La bonne équipe (Frame 9)
-
-**Time:** 70.0 – 79.0s
-**Delivery:** La liste des disciplines égrenée, puis la phrase clé posée.
-
-    Stratégie, architecture, naming, design, éditorial, production, IA. Pour chaque enjeu, Relax a réuni la bonne équipe. Et l'a fait jouer comme une seule.
-
-## Line 10 — Sans couture (Frame 10)
-
-**Time:** 79.0 – 89.5s
-**Delivery:** Conviction tranquille ; « Aucune couture. » très doux, en retrait.
-
-    On ne fait pas entrer un projet dans une agence. On construit l'équipe autour du projet. Côté Relax, beaucoup de mouvement. Côté client, un seul fil. Aucune couture.
-
-## Line 11 — Tourbillon (Frame 11)
-
-**Time:** 89.5 – 95.5s
-**Delivery:** Le plus lent du film, presque murmuré, apaisé.
-
-    Les meilleurs experts pour votre projet. Coordonnés par un partenaire de confiance.
-
-## Frame 12 — Respiration (no voice)
-
-Sound only: one deep, calm inhale (~1.6s, held) then a long relaxed exhale (~2.4s). Not spoken by the TTS voice.
+A calm, natural breath — soft inhale, relaxed exhale — quiet, close to silence (not a gust). Then the relax• logo and the on-screen signature « Relax, on s'occupe de tout. »

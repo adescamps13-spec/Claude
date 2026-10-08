@@ -6,7 +6,9 @@
 // If GEMINI_API_KEY is set locally it is used instead.
 //
 // Usage: node tools/gemini-vo.mjs [--voice Algieba] [--only 2,5] [--probe]
+//   [--model gemini-3.1-flash-tts-preview] pins one model (no fallback)
 //   writes assets/voice/line-NN.wav and assets/voice/vo-manifest.json
+// Node needs NODE_USE_ENV_PROXY=1 in the cloud container so fetch goes through the proxy.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -22,7 +24,7 @@ const ONLY = opt("only", "")
   .split(",")
   .filter(Boolean)
   .map(Number);
-const MODELS = ["gemini-3.8-flash-tts", "gemini-2.5-pro-preview-tts", "gemini-2.5-flash-preview-tts"];
+const MODELS = opt("model", "") ? [opt("model")] : ["gemini-3.8-flash-tts", "gemini-2.5-pro-preview-tts", "gemini-2.5-flash-preview-tts"];
 const BASE = "https://generativelanguage.googleapis.com/v1beta";
 const headers = { "Content-Type": "application/json" };
 if (process.env.GEMINI_API_KEY) headers["x-goog-api-key"] = process.env.GEMINI_API_KEY;
@@ -32,7 +34,7 @@ function parseScript() {
   const direction = /\*\*Voice direction:\*\*\s*(.+)/.exec(md)?.[1].trim() ?? "";
   const lines = [];
   for (const sec of md.split(/\n## /).slice(1)) {
-    const m = /^Line (\d+) — ([^(]+)\(Frame (\d+)\)/.exec(sec);
+    const m = /^Line (\d+) — ([^(]+)\((?:Frame|Act) ([0-9A-Z]+)\)/.exec(sec);
     if (!m) continue;
     const delivery = /\*\*Delivery:\*\*\s*(.+)/.exec(sec)?.[1].trim() ?? "";
     const text = sec
@@ -40,7 +42,7 @@ function parseScript() {
       .filter((l) => l.startsWith("    "))
       .map((l) => l.trim())
       .join(" ");
-    lines.push({ n: +m[1], label: m[2].trim(), frame: +m[3], text, style: `${direction} ${delivery}`.trim() });
+    lines.push({ n: +m[1], label: m[2].trim(), frame: m[3], text, style: `${direction} ${delivery}`.trim() });
   }
   return lines;
 }
