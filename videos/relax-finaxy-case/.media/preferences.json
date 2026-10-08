@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "preferences": {
+    "aspect": {
+      "value": "1920x1080",
+      "confirmed_in": [
+        "relax-finaxy-case"
+      ],
+      "updated_at": "2026-10-08T09:31:12.477Z"
+    },
+    "language": {
+      "value": "fr",
+      "confirmed_in": [
+        "relax-finaxy-case"
+      ],
+      "updated_at": "2026-10-08T09:31:12.550Z"
+    },
+    "flow": {
+      "value": "automation",
+      "confirmed_in": [
+        "relax-finaxy-case"
+      ],
+      "updated_at": "2026-10-08T09:31:12.630Z"
+    },
+    "storyboard": {
+      "value": "yes",
+      "confirmed_in": [
+        "relax-finaxy-case"
+      ],
+      "updated_at": "2026-10-08T09:31:12.707Z"
+    },
+    "voice": {
+      "value": "gemini:Algieba",
+      "confirmed_in": [
+        "relax-finaxy-case"
+      ],
+      "updated_at": "2026-10-08T09:31:12.787Z"
+    },
+    "destination": {
+      "value": "website",
+      "confirmed_in": [
+        "relax-finaxy-case"
+      ],
+      "updated_at": "2026-10-08T09:31:12.864Z"
+    }
+  },
+  "sightings": {}
+}
