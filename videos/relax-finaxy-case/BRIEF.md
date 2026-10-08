@@ -9,7 +9,7 @@ language: fr
 audience: "Dirigeants et directions marketing/communication (prospects Relax), visiteurs du site de l'agence et des réseaux sociaux"
 length: 90s
 angle: "Case client Finaxy — de la complexité à la cohérence (complexe → intelligible), montré comme une chaîne de décisions"
-voice: gemini:Algieba
+voice: gemini:Sulafat
 ---
 
 ## Intent
@@ -42,7 +42,7 @@ Ton validé : direct, posé.
 
 ## Customizations
 
-- Voix off Google Gemini TTS, voix Algieba (choisie explicitement par l'utilisateur), français.
+- Voix off Google Gemini TTS, voix Sulafat (féminine, chaleureuse — choisie en v2 ; Algieba en v1), français.
 - Déploiement montré avec un effet exponentiel : les supports se démultiplient (plaquettes B2B, kakemonos, cartes de visite, masques de présentation, cartes de vœux, LinkedIn, site, agent IA).
 - Final : plein d'éléments qui tourbillonnent et s'agrègent ; une respiration apaisée — grande inspiration puis expiration relâchée, détendue — fait apparaître le logo Relax.
 - Déclinaison 4:5 (1080x1350) après validation de la version 16:9, même voix off.

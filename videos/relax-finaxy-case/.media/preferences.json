@@ -30,11 +30,11 @@
       "updated_at": "2026-10-08T09:31:12.707Z"
     },
     "voice": {
-      "value": "gemini:Algieba",
+      "value": "gemini:Sulafat",
       "confirmed_in": [
         "relax-finaxy-case"
       ],
-      "updated_at": "2026-10-08T09:31:12.787Z"
+      "updated_at": "2026-10-08T11:51:59.511Z"
     },
     "destination": {
       "value": "website",
