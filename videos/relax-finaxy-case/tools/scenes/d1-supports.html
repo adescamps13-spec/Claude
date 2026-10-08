@@ -18,10 +18,10 @@
     const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
     const $ = (s) => document.getElementById(ID + "-" + s);
     const tl = gsap.timeline({ paused: true });
-    const NAMES = ["voeux", "masque", "plaquette", "kakemono", "cartes", "reseaux"];
+    const NAMES = ["voeux", "enseigne", "affiches", "kakemono", "cartes", "reseaux"]; // real deliverables only (assets/real)
     const F = KIT.film({ el: $("film"), mirror: $("mirror"), imgs: NAMES.map((n) => `assets/cards/${n}.png`) });
     const W = 820;
-    KIT.slot($("words"), ["exprimer", "cartes de vœux", "présentations", "plaquettes", "kakemonos", "cartes de visite", "réseaux sociaux", ""], W);
+    KIT.slot($("words"), ["exprimer", "cartes de vœux", "signalétique", "affiches", "kakemonos", "cartes de visite", "réseaux sociaux", ""], W);
     const S = F.STEP, scroll = { v: -1.4 * S };
     // the title word rides with the film: card k centred = word k+1 in the slot
     const draw = () => { F.place(scroll.v); $("words").style.transform = `translateX(${(-(scroll.v / S + 1) * W).toFixed(1)}px)`; };

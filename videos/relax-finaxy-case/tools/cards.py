@@ -63,64 +63,25 @@ cards["intel"] = f"""<div class="card" style="background:radial-gradient(80% 90%
 <div class="a" style="left:380px;top:332px;width:80px;height:5px;border-radius:3px;background:#9C0A3F"></div>
 <div class="a" style="left:345px;top:384px">{NEW(150)}</div></div>"""
 
-cards["voeux"] = f"""<div class="card" style="background:#E6E1F1">
-<div class="a sh" style="left:262px;top:96px;width:330px;height:236px;background:#EFEAE0;transform:rotate(7deg);border-radius:4px"></div>
-<div class="a sh" style="left:300px;top:52px;width:250px;height:350px;background:#191853;transform:rotate(-6deg);border-radius:4px;overflow:hidden">
-<div class="a" style="left:28px;top:30px">{NEW(96)}</div>
-<div class="a serif" style="left:28px;top:150px;font-size:46px;line-height:1;color:#F4F1EB"><i>Meilleurs</i><br><i>vœux</i></div>
-<div class="a serif" style="left:28px;top:262px;font-size:58px;color:#5A80D9">2026</div>
-<div class="a" style="right:0;top:0;width:60px;height:350px;background:#9C0A3F"></div></div>
-<div class="tag" style="color:#6955AA">CARTES DE VŒUX</div></div>"""
+# real Finaxy deliverables (files supplied by the client / Relax, assets/real/), never mock-ups:
+# each is laid on an 840x480 card, full bleed when the ratio allows, otherwise contained on its own edge colour
+REAL = {"voeux": ("voeux-2026.jpg", "contain"), "enseigne": ("enseigne.jpg", "cover"), "affiches": ("affiches.jpg", "cover"),
+        "kakemono": ("kakemono.jpg", "contain"), "cartes": ("cartes-visite.jpg", "contain"), "reseaux": ("linkedin.jpg", "contain")}
 
-cards["masque"] = f"""<div class="card" style="background:#DCE3F5">
-<div class="a sh" style="left:110px;top:66px;width:620px;height:349px;background:#F4F1EB;border-radius:6px;overflow:hidden">
-<div class="a" style="left:0;top:0;width:200px;height:349px;background:#191853"></div>
-<div class="a" style="left:30px;top:30px">{NEW(110)}</div>
-<div class="a" style="left:30px;bottom:30px;font-size:13px;letter-spacing:.14em;color:#A9AFD6;font-weight:600">01 / 24</div>
-<div class="a serif" style="left:238px;top:96px;width:350px;font-size:44px;line-height:1.05;color:#191853">Ensemble, protégeons ce qui compte.</div>
-<div class="a" style="left:240px;top:230px;width:60px;height:4px;background:#9C0A3F"></div>
-<div class="a" style="left:240px;top:256px;width:300px;font-size:14px;line-height:1.5;color:#4A5892">Réunir les meilleures expertises pour vous conseiller et bâtir, ensemble, des solutions d’assurance adaptées.</div></div>
-<div class="tag" style="color:#4A5892">MASQUES DE PRÉSENTATION</div></div>"""
 
-broch = lambda x, rot, bg, title, z: f"""<div class="a sh" style="left:{x}px;top:72px;width:230px;height:326px;background:{bg};transform:rotate({rot}deg);border-radius:3px;overflow:hidden;z-index:{z}">
-<div class="a" style="left:22px;top:24px">{NEW(84)}</div>
-<div class="a serif" style="left:22px;top:170px;font-size:31px;line-height:1.04;color:#F4F1EB">{title}</div>
-<div class="a" style="left:22px;top:284px;width:40px;height:3px;background:#F4F1EB;opacity:.7"></div></div>"""
-cards["plaquette"] = f"""<div class="card" style="background:#F1EEE6">
-{broch(150, -8, '#4A5892', 'Clientèle<br>privée', 1)}{broch(310, -1, '#5A80D9', 'Affinitaire &amp;<br>partenariats', 2)}{broch(470, 6, '#191853', 'Entreprises &amp;<br>institutions', 3)}
-<div class="tag" style="color:#4A5892">PLAQUETTES</div></div>"""
+def edge_colour(path):
+    im = Image.open(path).convert("RGB")
+    w, h = im.size
+    px = [im.getpixel((x, y)) for x in (2, w // 2, w - 3) for y in (2, h - 3)]
+    return "#%02X%02X%02X" % tuple(sorted(c[i] for c in px)[len(px) // 2] for i in range(3))
 
-kak = lambda x, bg, fg, line, logo_svg: f"""<div class="a" style="left:{x}px;top:40px;width:150px;height:380px;background:{bg};box-shadow:0 24px 40px rgba(25,24,83,.25);overflow:hidden">
-<div class="a" style="left:20px;top:26px">{logo_svg}</div>
-<div class="a serif" style="left:20px;top:150px;width:116px;font-size:28px;line-height:1.05;color:{fg}">{line}</div>
-<div class="a" style="left:0;bottom:0;width:150px;height:44px;background:#9C0A3F"></div></div>
-<div class="a" style="left:{x - 14}px;top:420px;width:178px;height:14px;border-radius:7px;background:#B7B4C4"></div>"""
-cards["kakemono"] = f"""<div class="card" style="background:#E6E1F1">
-{kak(250, '#191853', '#F4F1EB', 'Ensemble, protégeons ce qui compte.', NEW(108))}{kak(440, '#F4F1EB', '#191853', 'Une intelligence collective du risque.', NEW(108, '#191853'))}
-<div class="tag" style="color:#6955AA">KAKEMONOS</div></div>"""
 
-cards["cartes"] = f"""<div class="card" style="background:#DCE3F5">
-<div class="a sh" style="left:150px;top:118px;width:360px;height:206px;background:#191853;border-radius:8px;transform:rotate(-9deg)">
-<div class="a" style="left:96px;top:72px">{NEW(170)}</div></div>
-<div class="a sh" style="left:360px;top:176px;width:360px;height:206px;background:#F4F1EB;border-radius:8px;transform:rotate(5deg)">
-<div class="a serif" style="left:28px;top:30px;font-size:34px;color:#191853">Prénom Nom</div>
-<div class="a" style="left:28px;top:76px;font-size:14px;color:#4A5892">Fonction</div>
-<div class="a" style="left:28px;bottom:26px;font-size:13px;color:#191853">finaxy.com</div>
-<div class="a" style="right:24px;bottom:24px">{NEW(88, '#191853')}</div></div>
-<div class="tag" style="color:#4A5892">CARTES DE VISITE</div></div>"""
-
-cards["reseaux"] = f"""<div class="card" style="background:#F1EEE6">
-<div class="a sh" style="left:300px;top:40px;width:500px;height:400px;background:#fff;border-radius:16px;overflow:hidden">
-<div class="a" style="left:0;top:0;width:500px;height:120px;background:linear-gradient(120deg,#191853 0%,#262577 60%,#5A80D9 100%)"></div>
-<div class="a" style="right:26px;top:36px">{NEW(120)}</div>
-<div class="a serif" style="left:26px;top:76px;width:88px;height:88px;border-radius:44px;background:#191853;border:4px solid #fff;color:#F4F1EB;font-size:60px;line-height:78px;text-align:center">F</div>
-<div class="a" style="left:26px;top:176px;font-weight:600;font-size:22px;color:#191853">Finaxy</div>
-<div class="a" style="left:26px;top:206px;font-size:14px;color:#4A5892">Conseil et courtage en assurances</div>
-<div class="a" style="right:26px;top:180px;padding:8px 22px;border-radius:20px;background:#191853;color:#F4F1EB;font-size:14px;font-weight:600">Suivre</div>
-<div class="a" style="left:26px;top:246px;width:448px;height:130px;border-radius:12px;background:#F4F1EB;overflow:hidden">
-<div class="a" style="left:0;top:0;width:130px;height:130px;background:#191853"><div class="a" style="left:22px;top:52px">{NEW(86)}</div></div>
-<div class="a serif" style="left:150px;top:22px;width:280px;font-size:22px;line-height:1.12;color:#191853">La nouvelle identité de marque Finaxy, à l’image de ce que nous sommes devenus</div></div></div>
-<div class="tag" style="color:#4A5892">PAGES RÉSEAUX SOCIAUX</div></div>"""
+for k, (fn, mode) in REAL.items():
+    src = ROOT / "assets/real" / fn
+    if mode == "cover":
+        cards[k] = f'''<div class="card" style="background:url('file://{src}') center/cover"></div>'''
+    else:
+        cards[k] = f'''<div class="card" style="background:{edge_colour(src)} url('file://{src}') center/contain no-repeat"></div>'''
 
 cards["oldlogo"] = f"""<div class="card" style="background:#FFFFFF;width:520px;height:330px">
 <div class="a" style="left:110px;top:115px">{OLD(300)}</div></div>"""

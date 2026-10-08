@@ -15,11 +15,13 @@
   #§tag{position:absolute;left:0;right:0;top:420px;text-align:center;font-family:'Instrument Serif';font-size:128px;line-height:1.05;color:#F4F1EB}
   .§ln{display:block;overflow:hidden;height:136px}
   .§ln span{display:inline-block}
+  #§sig{position:absolute;left:0;right:0;top:350px;text-align:center;font-weight:600;font-size:18px;letter-spacing:.2em;color:#FF5C8D}
   #§label{position:absolute;left:0;right:0;top:200px;text-align:center;font-weight:600;font-size:18px;letter-spacing:.2em;color:#8E87A6}
 </style>
 <div class="full" id="§spot"></div>
 <div id="§word" data-layout-allow-overlap>DU CORPS</div>
 <div id="§label">LOGO · IDENTITÉ · VOIX</div>
+<div id="§sig">LA SIGNATURE</div>
 <div id="§stage"><div id="§deck">
   <div id="§card"><div class="§face" id="§front"></div><div class="§face" id="§back"><div id="§sheen"></div></div></div>
 </div></div>
@@ -40,13 +42,13 @@
     tl.to("#§card", { rotationY: 180, rotationX: 0, z: 120, duration: 0.95, ease: "expo.inOut" }, logo - 0.25);
     tl.fromTo("#§sheen", { backgroundPosition: "140% 0%" }, { backgroundPosition: "-60% 0%", duration: 1.0, ease: "power2.inOut" }, logo + 0.5);
     // "une nouvelle identité": the system fans out from behind the mark
-    const SW = [["#191853", "Marine", "#191853", "#F4F1EB"], ["#5A80D9", "Bleu", "#5A80D9", "#FFFFFF"], ["#4A5892", "Ardoise", "#4A5892", "#FFFFFF"],
-      ["#F4F1EB", "Crème", "#F4F1EB", "#191853"], ["#9C0A3F", "Bordeaux", "#9C0A3F", "#FFFFFF"], ["aa"]];
+    const SW = [["#191853", "#191853", "#F4F1EB"], ["#5A80D9", "#5A80D9", "#FFFFFF"], ["#4A5892", "#4A5892", "#FFFFFF"],
+      ["#F4F1EB", "#F4F1EB", "#191853"], ["#9C0A3F", "#9C0A3F", "#FFFFFF"], ["aa"]];
     const deck = $("deck"), sws = SW.map((s, i) => {
       const d = document.createElement("div");
       d.className = ID + "-sw" + (s[0] === "aa" ? " " + ID + "-aa" : "");
       if (s[0] === "aa") { d.style.background = "#F4F1EB"; d.innerHTML = `<span>Aa</span>`; }
-      else { d.style.background = s[0]; d.innerHTML = `<i data-layout-allow-overlap style="color:${s[3]}">${s[2]}</i>`; }
+      else { d.style.background = s[0]; d.innerHTML = `<i data-layout-allow-overlap style="color:${s[2]}">${s[1]}</i>`; }
       deck.insertBefore(d, $("card"));
       return d;
     });
@@ -63,6 +65,7 @@
     // "une voix plus affirmée": the mark steps back, the brand speaks
     tl.to("#§card", { y: -300, scale: 0.42, duration: 0.7, ease: "expo.inOut" }, voice - 0.3);
     tl.to("#§word", { opacity: 0, duration: 0.4 }, voice - 0.3);
+    tl.fromTo("#§sig", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, voice + 0.3);
     tl.fromTo(["#§t1", "#§t2"], { y: 140 }, { y: 0, duration: 0.8, ease: "expo.out", stagger: 0.14 }, voice + 0.05);
     window.__timelines = window.__timelines || {};
     window.__timelines[ID] = tl;
