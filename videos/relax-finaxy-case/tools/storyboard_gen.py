@@ -109,18 +109,23 @@ def f01():
             continue
         s += node(x, y, r=rng.choice([6, 8, 11]), label=lab, lsize=22, lfill=GREY)
     s += logo(old_logo, 790, 450, 340, opacity=0.85)
-    s += t(120, 1000, "+ 12 000", 120, fam=TITLE, weight=500)
-    s += t(800, 1000, "entreprises clientes", 40, fill=INK2, weight=300)
+    s += t(120, 1000, "11", 140, fam=TITLE, weight=500)
+    s += t(300, 960, "e", 44, fam=TITLE, weight=500)
+    s += t(300, 1004, "courtier français", 30, fill=INK2, weight=300)
+    s += t(760, 1000, "430", 96, fam=TITLE, weight=400)
+    s += t(980, 1000, "collaborateurs", 30, fill=INK2, weight=300)
+    s += t(1300, 1000, "18", 96, fam=TITLE, weight=400)
+    s += t(1450, 1000, "implantations en France", 30, fill=INK2, weight=300)
     return s
 
 
 def f02():
     s = washes()
-    s += t(120, 330, "Bien au-delà d'un simple", 54, fill=INK2, weight=300)
+    s += t(120, 330, "Pas un simple", 54, fill=INK2, weight=300)
     s += t(120, 460, "problème de logo.", 96, fam=TITLE, fill=GREY, weight=400)
     s += f'<line x1="110" y1="428" x2="1150" y2="428" stroke="{PINK}" stroke-width="6"/>'
-    s += t(120, 600, "Un problème de", 54, weight=300)
-    s += t(120, 740, "cohérence globale.", 110, fam=TITLE, weight=500)
+    s += t(120, 600, "Mais un sujet de", 54, weight=300)
+    s += t(120, 740, "cohérence.", 130, fam=TITLE, weight=500)
     pts = [(1360, 260), (1520, 400), (1700, 250), (1420, 860), (1640, 880), (1760, 620)]
     for i, (x, y) in enumerate(pts):
         s += node(x, y, r=10, fill=PURPLE if i == 0 else GREY, ring=i == 0)
@@ -322,9 +327,9 @@ def f12():
 
 FRAMES = [
     ("01", "Chaos hérité", "0:00–0:09", f01, "cut",
-     "<b>Ça part vite.</b> Des nœuds gris dérivent et tremblent ; l'ancien logo flotte sans hiérarchie ; « + 12 000 » se compte. Pas encore de fil."),
+     "<b>Ça part vite.</b> Des nœuds gris dérivent et tremblent ; l'ancien logo flotte sans hiérarchie ; « 11ᵉ courtier · 430 collaborateurs · 18 implantations » se comptent. Pas encore de fil."),
     ("02", "Le vrai sujet", "0:09–0:19", f02, "cut",
-     "<b>« problème de logo » se barre</b> ; « cohérence globale » s'écrit. Le fil entre par le bas-gauche et calme le premier nœud."),
+     "<b>« problème de logo » se barre</b> ; « cohérence » s'écrit. Le fil entre par le bas-gauche et calme le premier nœud."),
     ("03", "Comprendre", "0:19–0:27", f03, "fil",
      "<b>Le fil court de nœud en nœud</b>, sa tête rose devant ; chaque contact fait naître un mot d'enquête. Le rail des 5 étapes s'installe."),
     ("04", "Révéler", "0:27–0:36", f04, "fil",
@@ -403,7 +408,7 @@ h1 .dot{{color:{PINK}}}
   <p class="dek">Case agence : Relax réunit et coordonne, sans couture, les meilleurs experts autour du projet — le client, lui, ne voit qu'un seul fil. Le film parle en Relax ; l'identité Finaxy y apparaît comme le travail réalisé.</p></div>
   <span class="tag">1920×1080 · ~100 s · 12 scènes · VO Algieba</span>
 </header>
-<div class="changes"><b>Changements depuis v1</b> — DA du film = DA Relax (fond blanc et lavis pastel du site, Unbounded + DM Sans, le ruban lavande comme fil, le point rose du logo comme tête du fil). L'identité Finaxy (marine, crème, bordeaux, serif) n'apparaît plus que sur les livrables montrés. VO scène 02 : « bien au-delà d'un simple problème de logo… un problème de cohérence globale ». Scène 06 : les 3 vraies verticales de finaxy.com. Scène 12 : le vrai logo relax•.</div>
+<div class="changes"><b>Changements depuis v1</b> — DA du film = DA Relax (fond blanc et lavis pastel du site, Unbounded + DM Sans, le ruban lavande comme fil, le point rose du logo comme tête du fil). L'identité Finaxy (marine, crème, bordeaux, serif) n'apparaît plus que sur les livrables montrés. VO scène 02 : « L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence. » Scène 01 : chiffres de finaxy.com. Scène 06 : les 3 vraies verticales de finaxy.com. Scène 12 : le vrai logo relax•.</div>
 <div class="grid">
 {cells}
 <div class="act">Repères</div>

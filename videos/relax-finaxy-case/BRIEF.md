@@ -52,4 +52,4 @@ Ton validé : direct, posé.
 - Aucun anglais à l'écran ni dans la VO, sauf « naming » et « Team player » (gardés volontairement — termes du projet).
 - Ne jamais écrire « From complexity to coherence » : c'est l'idée de l'angle, pas un texte.
 - Éviter l'effet catalogue (Strategy / Branding / Identity / Editorial / Website en cartes successives).
-- Chiffres réels uniquement : « plus de 12 000 entreprises clientes », « plusieurs centaines de collaborateurs », top 10 des courtiers français.
+- Chiffres réels uniquement, repris de finaxy.com : 11ᵉ courtier en assurances français, 430 collaborateurs, 18 implantations en France et 8 dans le monde, + 800 M€ de primes intermédiées.

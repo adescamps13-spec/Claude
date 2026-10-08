@@ -7,7 +7,7 @@ audience: Dirigeants et directions marketing/communication, prospects de l'agenc
 mode: collaborative
 ---
 
-# Storyboard v2 — Relax × Finaxy
+# Storyboard v3 — Relax × Finaxy
 
 **Ce film dit aux dirigeants et directions marketing que Relax réunit et coordonne, sans couture, les
 meilleurs experts autour de leur projet — pour qu'eux n'aient plus à gérer la complexité.**
@@ -38,6 +38,12 @@ meilleurs experts autour de leur projet — pour qu'eux n'aient plus à gérer l
   Finaxy = artefacts).
 - Frame 6 : les 3 verticales réelles de finaxy.com. Frame 12 : vrai logo relax• (relax-agency.com).
 
+## Changes from v2
+
+- « Je dirai plutôt simplement : "L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence." » → VO Frame 2.
+- « Prend les infos du site » → Frame 1 : 11ᵉ courtier français, 430 collaborateurs, 18 implantations en France (finaxy.com).
+- Narration verrouillée dans SCRIPT.md.
+
 ## Still open
 
 - Signature finale optionnelle « Maintenant, relax, on s'occupe du reste. » (site Relax) — oui / non.
@@ -50,12 +56,12 @@ meilleurs experts autour de leur projet — pour qu'eux n'aient plus à gérer l
 
 ## Frame 1 — Chaos hérité
 
-- scene: Des dizaines de nœuds épars dérivent vite ; noms de cabinets, expertises, sigles ; ancien logo FINAXY GROUP au milieu ; « 12 000 » s'inscrit
+- scene: Des dizaines de nœuds épars dérivent vite ; noms de cabinets, expertises, sigles ; ancien logo FINAXY GROUP au milieu ; « 11ᵉ courtier français · 430 collaborateurs · 18 implantations » se comptent (finaxy.com)
 - duration: 9s
 - transition_in: cut
 - status: built
 - src: compositions/01-chaos.html
-- voiceover: "Finaxy avait grandi vite. Très vite. Des acquisitions, des cabinets, des expertises, des marques… Plus de douze mille entreprises clientes."
+- voiceover: "Finaxy avait grandi vite. Très vite. Des acquisitions, des cabinets, des expertises, des marques… Onzième courtier français. Quatre cent trente collaborateurs. Dix-huit implantations en France."
 - motion: rules — drift-jitter, stagger-pop, count-up
 - poster: 6s
 
@@ -65,12 +71,12 @@ clientes » arrive en compteur Manrope. Pas de fil encore. Why : poser la puissa
 
 ## Frame 2 — Le vrai sujet
 
-- scene: « Bien au-delà d'un simple problème de logo. » barré ; « Un problème de cohérence globale. » en Unbounded ; le fil entre par le bas-gauche et touche le premier nœud qui cesse de trembler
+- scene: « Pas un simple problème de logo. » barré ; « Mais un sujet de cohérence. » en Unbounded ; le fil entre par le bas-gauche et touche le premier nœud qui cesse de trembler
 - duration: 9s
 - transition_in: cut
 - status: built
 - src: compositions/02-coherence.html
-- voiceover: "Mais l'enjeu allait bien au-delà d'un simple problème de logo. C'était un problème de cohérence globale. Le défi : simplifier, sans appauvrir."
+- voiceover: "L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence. Le défi : simplifier, sans appauvrir."
 - motion: rules — strike-through, line-draw, settle
 - poster: 7s
 
