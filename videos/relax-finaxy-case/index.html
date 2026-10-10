@@ -69,6 +69,10 @@
         data-start="105.04" data-duration="2.4" data-track-index="0" data-width="1920" data-height="1080"></div>
       <div id="host-f-relax" class="clip" data-composition-id="f-relax" data-composition-src="compositions/f-relax.html"
         data-start="107.44" data-duration="7.65" data-track-index="0" data-width="1920" data-height="1080"></div>
+      <div id="host-zz-trans" class="clip" data-composition-id="zz-trans" data-composition-src="compositions/zz-trans.html"
+        data-start="0" data-duration="115.09" data-track-index="5" data-width="1920" data-height="1080"></div>
+      <div id="host-zz-hud" class="clip" data-composition-id="zz-hud" data-composition-src="compositions/zz-hud.html"
+        data-start="0" data-duration="115.09" data-track-index="6" data-width="1920" data-height="1080"></div>
       <audio id="bgm" src="assets/audio/bed.wav" data-start="0" data-duration="115.09" data-track-index="2" data-volume="1" data-audio-group="music" data-fx-carve="{&quot;enabled&quot;:true,&quot;sources&quot;:[&quot;voiceover&quot;],&quot;strength&quot;:0.8}" data-fx-chain="{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;type&quot;:&quot;peaking&quot;,&quot;id&quot;:&quot;n1&quot;,&quot;fromCarve&quot;:true,&quot;params&quot;:{&quot;frequency&quot;:160,&quot;gain&quot;:-7.4,&quot;q&quot;:2.06}},{&quot;type&quot;:&quot;peaking&quot;,&quot;id&quot;:&quot;n2&quot;,&quot;fromCarve&quot;:true,&quot;params&quot;:{&quot;frequency&quot;:250,&quot;gain&quot;:-7.4,&quot;q&quot;:2.06}},{&quot;type&quot;:&quot;peaking&quot;,&quot;id&quot;:&quot;n3&quot;,&quot;fromCarve&quot;:true,&quot;params&quot;:{&quot;frequency&quot;:400,&quot;gain&quot;:-7.4,&quot;q&quot;:2.06}},{&quot;type&quot;:&quot;peaking&quot;,&quot;id&quot;:&quot;n4&quot;,&quot;fromCarve&quot;:true,&quot;params&quot;:{&quot;frequency&quot;:1000,&quot;gain&quot;:-7.4,&quot;q&quot;:2.06}},{&quot;type&quot;:&quot;peaking&quot;,&quot;id&quot;:&quot;n5&quot;,&quot;fromCarve&quot;:true,&quot;params&quot;:{&quot;frequency&quot;:1600,&quot;gain&quot;:-14.8,&quot;q&quot;:2.06}},{&quot;type&quot;:&quot;peaking&quot;,&quot;id&quot;:&quot;n6&quot;,&quot;fromCarve&quot;:true,&quot;params&quot;:{&quot;frequency&quot;:2500,&quot;gain&quot;:-12.32,&quot;q&quot;:2.06}},{&quot;type&quot;:&quot;gain&quot;,&quot;id&quot;:&quot;n7&quot;,&quot;fromCarve&quot;:true,&quot;params&quot;:{&quot;gain&quot;:0}}]}"></audio>
       <audio id="breath" src="assets/audio/breath.wav" data-start="107.74" data-duration="4.19" data-track-index="3" data-volume="1" data-audio-group="sfx"></audio>
       <audio id="whoosh" src="assets/audio/whoosh.wav" data-start="0" data-duration="115.09" data-track-index="4" data-volume="1" data-audio-group="sfx"></audio>
@@ -80,6 +84,27 @@
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#host-a1-rang", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 3.44, ease: "none", immediateRender: false }, 0.0);
+      tl.fromTo("#host-a2-croissance", { scale: 1, x: 0 }, { scale: 1.03, x: 14, duration: 1.79, ease: "none", immediateRender: false }, 3.44);
+      tl.fromTo("#host-a3-marque", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 8.23, ease: "none", immediateRender: false }, 5.23);
+      tl.fromTo("#host-a4-coherence", { scale: 1, x: 0 }, { scale: 1.03, x: 14, duration: 2.75, ease: "none", immediateRender: false }, 13.46);
+      tl.fromTo("#host-b1-ecouter", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 5.14, ease: "none", immediateRender: false }, 16.21);
+      tl.fromTo("#host-b2-deux-mondes", { scale: 1, x: 0 }, { scale: 1.03, x: 14, duration: 8.8, ease: "none", immediateRender: false }, 21.35);
+      tl.fromTo("#host-b3-reseau", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 7.44, ease: "none", immediateRender: false }, 30.15);
+      tl.fromTo("#host-b4-multiple", { scale: 1, x: 0 }, { scale: 1.03, x: 14, duration: 4.72, ease: "none", immediateRender: false }, 37.59);
+      tl.fromTo("#host-b5-isolee", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 3.18, ease: "none", immediateRender: false }, 42.31);
+      tl.fromTo("#host-c1-structure", { scale: 1, x: 0 }, { scale: 1.03, x: 14, duration: 7.16, ease: "none", immediateRender: false }, 45.49);
+      tl.fromTo("#host-c2-corps", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 7.12, ease: "none", immediateRender: false }, 52.65);
+      tl.fromTo("#host-c3-stature", { scale: 1, x: 0 }, { scale: 1.03, x: 14, duration: 5.86, ease: "none", immediateRender: false }, 59.77);
+      tl.fromTo("#host-d0-decliner", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 3.68, ease: "none", immediateRender: false }, 65.63);
+      tl.fromTo("#host-d1-supports", { scale: 1, x: 0 }, { scale: 1.03, x: 14, duration: 4.16, ease: "none", immediateRender: false }, 69.31);
+      tl.fromTo("#host-d2-site", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 2.67, ease: "none", immediateRender: false }, 73.47);
+      tl.fromTo("#host-d3-agent", { scale: 1, x: 0 }, { scale: 1.03, x: 14, duration: 7.31, ease: "none", immediateRender: false }, 76.14);
+      tl.fromTo("#host-e1-role", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 8.07, ease: "none", immediateRender: false }, 83.45);
+      tl.fromTo("#host-e2-organigramme", { scale: 1, x: 0 }, { scale: 1.03, x: 14, duration: 4.55, ease: "none", immediateRender: false }, 91.52);
+      tl.fromTo("#host-e3-autour", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 3.17, ease: "none", immediateRender: false }, 96.07);
+      tl.fromTo("#host-e4-cotes", { scale: 1, x: 0 }, { scale: 1.03, x: 14, duration: 5.8, ease: "none", immediateRender: false }, 99.24);
+      tl.fromTo("#host-e5-promesse", { scale: 1, x: 0 }, { scale: 1.03, x: -14, duration: 2.4, ease: "none", immediateRender: false }, 105.04);
       window.__timelines["main"] = tl;
     </script>
   </body>

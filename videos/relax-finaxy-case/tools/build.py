@@ -58,13 +58,18 @@ BASE_CSS = """
 
 
 def hud_html(spec):
-    color, label = spec.split("|", 1)
-    return (f'<div class="hud" style="left:70px;color:{color}">RELAX × FINAXY</div>'
-            f'<div class="hud" style="right:70px;color:{color}">{label}</div>')
+    # the per-scene HUD gave way to one interface frame over the whole film (tools/overlays/zz-hud.html)
+    return ""
 
 
-def build_scene(sc):
-    src = (ROOT / "tools/scenes" / f'{sc["id"]}.html').read_text()
+def build_scene(sc, folder="tools/scenes"):
+    src = (ROOT / folder / f'{sc["id"]}.html').read_text()
+    if "{{SCENES}}" in src:
+        starts, t = [], 0.0
+        for x in T["scenes"]:
+            starts.append([x["id"], round(t, 3), x["dur"]])
+            t += x["dur"]
+        src = src.replace("{{SCENES}}", json.dumps(starts))
     src = re.sub(r"\{\{HUD:([^}]+)\}\}", lambda m: hud_html(m.group(1)), src)
     src = src.replace("§", sc["id"] + "-")
     src = src.replace("{{THREE}}", '<script src="assets/vendor/three.global.js"></script>\n<script src="assets/vendor/three-addons.js"></script>\n<script src="assets/t3.js"></script>')
@@ -84,7 +89,7 @@ def build_scene(sc):
 {font_faces("")}
 {BASE_CSS}
       </style>
-      <div id="root" data-composition-id="{sc["id"]}" data-width="{W}" data-height="{H}" data-duration="{sc["dur"]}">
+      <div id="root"{' style="background:transparent"' if folder != "tools/scenes" else ""} data-composition-id="{sc["id"]}" data-width="{W}" data-height="{H}" data-duration="{sc["dur"]}">
 {src}
       </div>
     </template>
@@ -103,6 +108,17 @@ def build_index():
         data-start="{sc["start"]}" data-duration="{sc["dur"]}" data-track-index="0" data-width="{W}" data-height="{H}"></div>''')
         t += sc["dur"]
     total = round(t, 3)
+    # overlays across the whole film: interface frame + cut transitions
+    for k, ov in enumerate(OVERLAYS):
+        hosts.append(f'''      <div id="host-{ov}" class="clip" data-composition-id="{ov}" data-composition-src="compositions/{ov}.html"
+        data-start="0" data-duration="{total}" data-track-index="{5 + k}" data-width="{W}" data-height="{H}"></div>''')
+    # a living camera: every shot drifts in slowly (alternating direction)
+    cam = []
+    for i, sc in enumerate(T["scenes"]):
+        if sc["id"] in ("f-relax",):
+            continue
+        dx = 14 if i % 2 else -14
+        cam.append(f'      tl.fromTo("#host-{sc["id"]}", {{ scale: 1, x: 0 }}, {{ scale: 1.03, x: {dx}, duration: {sc["dur"]}, ease: "none", immediateRender: false }}, {sc["start"]});')
     audio = []
     for a in T.get("audio", []):
         start = a["start"] if "start" in a else T["scenes"][a["scene"]]["start"] + a.get("offset", 0)
@@ -143,6 +159,7 @@ def build_index():
     </div>
     <script>
       const tl = gsap.timeline({{ paused: true }});
+{chr(10).join(cam)}
       window.__timelines["main"] = tl;
     </script>
   </body>
@@ -152,8 +169,13 @@ def build_index():
     return total
 
 
+OVERLAYS = ["zz-trans", "zz-hud"]
+
 if __name__ == "__main__":
     (ROOT / "compositions").mkdir(exist_ok=True)
+    _total = round(sum(x["dur"] for x in T["scenes"]), 3)
+    for ov in OVERLAYS:
+        build_scene({"id": ov, "dur": _total, "vo": {}}, "tools/overlays")
     for sc in T["scenes"]:
         if (ROOT / "tools/scenes" / f'{sc["id"]}.html').exists():
             build_scene(sc)

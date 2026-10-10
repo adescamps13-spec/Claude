@@ -1,0 +1,39 @@
+<style>
+  #§tr{position:absolute;inset:0;pointer-events:none}
+  .§blk{position:absolute;left:-200px;top:-100px;width:2320px;height:1280px;transform:skewX(-12deg) translateX(-2600px)}
+  .§blk i{position:absolute;top:0;bottom:0;width:60px;background:#FF0055}
+  .§cir{position:absolute;left:960px;top:540px;width:2400px;height:2400px;margin:-1200px 0 0 -1200px;border-radius:50%;transform:scale(0)}
+</style>
+<div id="§tr"></div>
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, SC = {{SCENES}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    // pastel colour blocks sweeping across (Stephan) and circular irises (twoclipping) hide the cuts;
+    // continuous hand-offs (pill → dot, dive into the brochure, project → team, promise → sphere) keep no wipe
+    const CONT = new Set(["a2-croissance", "a3-marque", "b5-isolee", "d1-supports", "e3-autour", "e4-cotes", "f-relax"]);
+    const COLS = ["#CAC3E1", "#C3DDE1", "#E1C3C3", "#E0DEC3", "#D4CCEE"];
+    let k = 0;
+    SC.forEach(([id, start]) => {
+      if (start === 0 || CONT.has(id)) return;
+      const col = COLS[k % COLS.length], type = k % 2 ? "cir" : "blk";
+      k++;
+      const d = document.createElement("div");
+      d.className = ID + "-" + type;
+      d.style.background = col;
+      if (type === "blk") d.innerHTML = `<i style="right:-60px"></i>`;
+      $("tr").appendChild(d);
+      if (type === "blk") {
+        tl.fromTo(d, { x: -2600, skewX: -12 }, { x: 0, duration: 0.24, ease: "power3.in", immediateRender: false }, start - 0.24);
+        tl.to(d, { x: 2600, duration: 0.3, ease: "power3.out" }, start + 0.02);
+      } else {
+        tl.fromTo(d, { scale: 0 }, { scale: 1, duration: 0.26, ease: "power3.in", immediateRender: false }, start - 0.26);
+        tl.to(d, { yPercent: -110, duration: 0.32, ease: "power3.out" }, start + 0.02);
+      }
+    });
+    tl.set({}, {}, D);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

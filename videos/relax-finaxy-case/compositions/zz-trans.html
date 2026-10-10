@@ -38,40 +38,42 @@
 #root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
 
       </style>
-      <div id="root" data-composition-id="c3-stature" data-width="1920" data-height="1080" data-duration="5.86">
+      <div id="root" style="background:transparent" data-composition-id="zz-trans" data-width="1920" data-height="1080" data-duration="115.09">
 <style>
-  #c3-stature-pill{position:absolute;left:760px;top:170px;width:400px;height:80px;border-radius:40px;font-size:32px;line-height:80px}
-  #c3-stature-pre{position:absolute;left:150px;top:360px;font-weight:300;font-size:50px;color:#6B7278}
-  #c3-stature-big{position:absolute;left:0;right:0;top:420px;height:330px;overflow:hidden;text-align:center;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:300px;line-height:330px;letter-spacing:-.04em;color:#212C34}
-  #c3-stature-big span{display:inline-block}
-  #c3-stature-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1500px;perspective-origin:960px 600px}
-  #c3-stature-photo{position:absolute;left:410px;top:250px;width:1100px;height:600px;border-radius:30px;overflow:hidden;background:url(assets/cards/humain.jpg) 70% 30%/1180px auto;box-shadow:0 40px 80px rgba(33,44,52,.25)}
-  #c3-stature-hum{position:absolute;left:470px;top:770px;height:120px;padding:0 50px;border-radius:60px;background:#FF0055;color:#FFFFFF;font-family:Unbounded;font-weight:500;font-size:54px;line-height:120px;white-space:nowrap}
+  #zz-trans-tr{position:absolute;inset:0;pointer-events:none}
+  .zz-trans-blk{position:absolute;left:-200px;top:-100px;width:2320px;height:1280px;transform:skewX(-12deg) translateX(-2600px)}
+  .zz-trans-blk i{position:absolute;top:0;bottom:0;width:60px;background:#FF0055}
+  .zz-trans-cir{position:absolute;left:960px;top:540px;width:2400px;height:2400px;margin:-1200px 0 0 -1200px;border-radius:50%;transform:scale(0)}
 </style>
-<div class="full wash"></div>
-<div class="btn" id="c3-stature-pill">Notre ambition</div>
-<div id="c3-stature-pre">valoriser la</div>
-<div id="c3-stature-big"></div>
-<div id="c3-stature-stage"><div id="c3-stature-photo"></div></div>
-<div id="c3-stature-hum">mettre en avant l’humain</div>
-
+<div id="zz-trans-tr"></div>
 <script>
   (function () {
-    const ID = "c3-stature", D = 5.86, VO = {"1.0": -59.04, "1.1": -56.18, "1.2": -54.39, "1.3": -51.77, "1.4": -48.05, "1.5": -46.16, "2.0": -43.41, "2.1": -41.16, "2.2": -38.27, "2.3": -36.26, "2.4": -34.07, "2.5": -32.47, "2.6": -31.39, "2.7": -29.47, "2.8": -28.99, "2.9": -26.51, "2.10": -22.03, "2.11": -19.97, "2.12": -17.31, "3.0": -14.13, "3.1": -13.14, "3.2": -11.39, "3.3": -10.25, "3.4": -9.3, "3.5": -8.33, "3.6": -6.97, "3.7": -6.25, "3.8": -4.42, "3.9": -3.29, "3.10": 0.15, "3.11": 1.26, "3.12": 3.06, "4.0": 6.01, "4.1": 8.19, "4.2": 9.69, "4.3": 10.5, "4.4": 11.46, "4.5": 12.71, "4.6": 13.85, "4.7": 16.52, "4.8": 18.04, "4.9": 19.52, "5.0": 23.83, "5.1": 25.38, "5.2": 28.15, "5.3": 28.95, "5.4": 31.9, "5.5": 33.11, "5.6": 36.45, "5.7": 39.62, "5.8": 40.66, "5.9": 41.99, "5.10": 42.93, "5.11": 43.9, "5.12": 45.42, "5.13": 46.19, "breath": 47.97, "exhale": 49.72};
+    const ID = "zz-trans", D = 115.09, SC = [["a1-rang", 0.0, 3.44], ["a2-croissance", 3.44, 1.79], ["a3-marque", 5.23, 8.23], ["a4-coherence", 13.46, 2.75], ["b1-ecouter", 16.21, 5.14], ["b2-deux-mondes", 21.35, 8.8], ["b3-reseau", 30.15, 7.44], ["b4-multiple", 37.59, 4.72], ["b5-isolee", 42.31, 3.18], ["c1-structure", 45.49, 7.16], ["c2-corps", 52.65, 7.12], ["c3-stature", 59.77, 5.86], ["d0-decliner", 65.63, 3.68], ["d1-supports", 69.31, 4.16], ["d2-site", 73.47, 2.67], ["d3-agent", 76.14, 7.31], ["e1-role", 83.45, 8.07], ["e2-organigramme", 91.52, 4.55], ["e3-autour", 96.07, 3.17], ["e4-cotes", 99.24, 5.8], ["e5-promesse", 105.04, 2.4], ["f-relax", 107.44, 7.65]];
     const $ = (s) => document.getElementById(ID + "-" + s);
     const tl = gsap.timeline({ paused: true });
-    const a = VO["3.10"], st = VO["3.11"], hu = VO["3.12"];
-    const ls = KIT.letters($("big"), "STATURE");
-    tl.fromTo("#c3-stature-pill", { scaleX: 0.2, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }, a - 0.1);
-    tl.fromTo("#c3-stature-pre", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, st - 0.3);
-    // the word stands up, letter by letter, from its baseline
-    tl.fromTo(ls, { y: 330, scaleY: 1.6, transformOrigin: "50% 100%" }, { y: 0, scaleY: 1, duration: 0.8, ease: "expo.out", stagger: 0.05 }, st - 0.1);
-    tl.to("#c3-stature-big", { scale: 1.06, duration: hu - st, ease: "none" }, st + 0.5);
-    // "mettre en avant l'humain": a real Finaxy photo rises from below and pushes the word away
-    tl.fromTo("#c3-stature-photo", { y: 900, rotationX: 38, scale: 0.86 }, { y: 0, rotationX: 0, scale: 1, duration: 1.0, ease: "expo.out" }, hu - 0.3);
-    tl.to(["#c3-stature-big", "#c3-stature-pre", "#c3-stature-pill"], { y: -520, opacity: 0, duration: 0.8, ease: "expo.inOut" }, hu - 0.35);
-    tl.fromTo("#c3-stature-photo", { backgroundPosition: "70% 40%" }, { backgroundPosition: "60% 30%", duration: D - hu + 0.3, ease: "none", immediateRender: false }, hu - 0.3);
-    tl.fromTo("#c3-stature-hum", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, hu + 0.25);
+    // pastel colour blocks sweeping across (Stephan) and circular irises (twoclipping) hide the cuts;
+    // continuous hand-offs (pill → dot, dive into the brochure, project → team, promise → sphere) keep no wipe
+    const CONT = new Set(["a2-croissance", "a3-marque", "b5-isolee", "d1-supports", "e3-autour", "e4-cotes", "f-relax"]);
+    const COLS = ["#CAC3E1", "#C3DDE1", "#E1C3C3", "#E0DEC3", "#D4CCEE"];
+    let k = 0;
+    SC.forEach(([id, start]) => {
+      if (start === 0 || CONT.has(id)) return;
+      const col = COLS[k % COLS.length], type = k % 2 ? "cir" : "blk";
+      k++;
+      const d = document.createElement("div");
+      d.className = ID + "-" + type;
+      d.style.background = col;
+      if (type === "blk") d.innerHTML = `<i style="right:-60px"></i>`;
+      $("tr").appendChild(d);
+      if (type === "blk") {
+        tl.fromTo(d, { x: -2600, skewX: -12 }, { x: 0, duration: 0.24, ease: "power3.in", immediateRender: false }, start - 0.24);
+        tl.to(d, { x: 2600, duration: 0.3, ease: "power3.out" }, start + 0.02);
+      } else {
+        tl.fromTo(d, { scale: 0 }, { scale: 1, duration: 0.26, ease: "power3.in", immediateRender: false }, start - 0.26);
+        tl.to(d, { yPercent: -110, duration: 0.32, ease: "power3.out" }, start + 0.02);
+      }
+    });
+    tl.set({}, {}, D);
     window.__timelines = window.__timelines || {};
     window.__timelines[ID] = tl;
   })();

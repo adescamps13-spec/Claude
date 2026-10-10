@@ -1,0 +1,50 @@
+<style>
+  /* a thin interface frame over the whole film (after the Jason Zhou / ajith references) */
+  #§hud{position:absolute;inset:0;pointer-events:none;font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;letter-spacing:.16em;color:#62666B}
+  .§c{position:absolute;width:30px;height:30px;border-color:#8E899E;border-style:solid;border-width:0}
+  .§t{position:absolute;white-space:nowrap}
+  #§rec{display:inline-block;width:9px;height:9px;border-radius:5px;background:#FF0055;margin-right:10px;vertical-align:1px}
+  #§bar{position:absolute;left:70px;right:70px;bottom:44px;height:2px;background:rgba(142,137,158,.25)}
+  #§fill{position:absolute;left:0;top:0;bottom:0;width:100%;background:#6955AA;transform-origin:left center}
+  #§ticks{position:absolute;left:0;right:0;top:-4px;height:10px}
+  #§ticks i{position:absolute;top:0;width:2px;height:10px;background:rgba(142,137,158,.5)}
+</style>
+<div id="§hud">
+  <div class="§c" style="left:40px;top:40px;border-left-width:2px;border-top-width:2px"></div>
+  <div class="§c" style="right:40px;top:40px;border-right-width:2px;border-top-width:2px"></div>
+  <div class="§c" style="left:40px;bottom:40px;border-left-width:2px;border-bottom-width:2px"></div>
+  <div class="§c" style="right:40px;bottom:40px;border-right-width:2px;border-bottom-width:2px"></div>
+  <div class="§t" style="left:84px;top:52px"><span id="§rec"></span>RELAX × FINAXY</div>
+  <div class="§t" id="§chap" style="right:84px;top:52px">01 — LE CONSTAT</div>
+  <div class="§t" id="§tc" style="left:84px;bottom:60px">00:00:00:00</div>
+  <div class="§t" style="right:84px;bottom:60px">ÉTUDE DE CAS · 2026</div>
+  <div id="§bar"><div id="§ticks"></div><div id="§fill"></div></div>
+</div>
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, SC = {{SCENES}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const CH = (id) => id.startsWith("a") ? "01 — LE CONSTAT" : id === "b1-ecouter" ? "02 — ÉCOUTER" : id.startsWith("b") ? "02 — RÉVÉLER"
+      : id === "c1-structure" ? "03 — ORGANISER" : id.startsWith("c") ? "04 — EXPRIMER" : id.startsWith("d") ? "05 — DÉPLOYER" : id.startsWith("e") ? "06 — NOTRE RÔLE" : "07 — RELAX";
+    $("ticks").innerHTML = SC.map((s) => `<i style="left:${((s[1] / D) * 100).toFixed(2)}%"></i>`).join("");
+    const clock = { t: 0 };
+    const draw = () => {
+      const t = clock.t, f = Math.floor(t * 30);
+      const pad = (n) => String(n).padStart(2, "0");
+      $("tc").textContent = `00:${pad(Math.floor(t / 60))}:${pad(Math.floor(t) % 60)}:${pad(f % 30)}`;
+      $("fill").style.transform = `scaleX(${(t / D).toFixed(4)})`;
+      let cur = SC[0][0];
+      for (const s of SC) if (t >= s[1]) cur = s[0];
+      $("chap").textContent = CH(cur);
+      $("rec").style.opacity = Math.floor(t * 1.6) % 2 ? 0.35 : 1;
+    };
+    tl.fromTo(clock, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: draw }, 0);
+    draw();
+    // the frame lets go on the final breath
+    const last = SC[SC.length - 1][1];
+    tl.fromTo("#§hud", { opacity: 1 }, { opacity: 0, duration: 0.8, ease: "power2.inOut", immediateRender: false }, last + 0.2);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
