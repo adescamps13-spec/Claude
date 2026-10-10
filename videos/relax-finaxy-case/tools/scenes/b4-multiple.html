@@ -1,27 +1,49 @@
 <style>
-  #§k1{position:absolute;left:150px;top:300px;font-weight:400;font-size:52px;color:#6B7278}
-  .§big{position:absolute;left:140px;height:300px;overflow:hidden}
-  .§big span{display:block;font-family:Unbounded;font-weight:600;font-size:240px;line-height:300px;letter-spacing:-.04em;color:#212C34;white-space:nowrap}
-  .§big em{font-style:normal;color:#6955AA}
+  #§gl{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  #§ring{position:absolute;left:810px;top:390px;width:300px;height:300px;border-radius:50%;border:4px solid #FF0055;opacity:0}
   #§rows{position:absolute;left:0;top:0;width:1920px;height:1080px}
   .§row{position:absolute;left:0;height:190px;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:150px;line-height:190px;letter-spacing:-.03em}
   #§mpill{position:absolute;left:460px;top:478px;width:1000px;height:124px;font-family:Unbounded;font-size:44px;line-height:124px;box-shadow:0 30px 60px rgba(33,44,52,.25)}
+  #§mpill span{display:inline-block}
 </style>
 <div class="full wash"></div>
-<div id="§k1">Une proposition de</div>
-<div class="§big" style="top:370px"><span id="§b1">valeur <em>clé</em></span></div>
+<canvas id="§gl" width="1920" height="1080"></canvas>
+<div id="§ring"></div>
 <div id="§rows"></div>
-<div class="btn" id="§mpill" data-layout-allow-overlap>le risque est devenu multiple</div>
+<div class="btn" id="§mpill" data-layout-allow-overlap><span id="§mt">le risque est devenu multiple</span></div>
 {{HUD:#62666B|02 — RÉVÉLER}}
+{{THREE}}
 <script>
   (function () {
     const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
     const $ = (s) => document.getElementById(ID + "-" + s);
     const tl = gsap.timeline({ paused: true });
     const a = VO["2.10"], b = VO["2.11"];
-    tl.fromTo("#§k1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a - 0.05);
-    tl.fromTo("#§b1", { y: 300 }, { y: 0, duration: 0.8, ease: "expo.out" }, a + 0.15);
-    tl.to(["#§k1", "#§b1"], { y: -340, opacity: 0, duration: 0.5, ease: "expo.in" }, b - 0.45);
+    // "une proposition de valeur clé": said, not written — a glossy key turns
+    const S = T3.stage($("gl"), { w: 1920, h: 1080, fov: 28, camZ: 13 });
+    const key = new THREE.Group(), km = T3.glossy(0xb7a8f5, { irid: 0.9, roughness: 0.14 });
+    const bow = new THREE.Mesh(new THREE.TorusGeometry(0.85, 0.3, 32, 96), km); bow.position.x = -1.7; key.add(bow);
+    const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 3.0, 40), km); shaft.rotation.z = Math.PI / 2; shaft.position.x = 0.35; key.add(shaft);
+    [[1.25, 0.42], [1.75, 0.6]].forEach(([x, h]) => { const t = new THREE.Mesh(T3.rbox(0.32, h, 0.36, 0.08), km); t.position.set(x, -h / 2 - 0.05, 0); key.add(t); });
+    const tip = new THREE.Mesh(new THREE.SphereGeometry(0.22, 32, 24), km); tip.position.x = 1.88; key.add(tip);
+    const gem = new THREE.Mesh(new THREE.SphereGeometry(0.34, 48, 32), T3.glossy(0xff2a6d, { irid: 0.3, roughness: 0.1 })); gem.position.x = -1.7; key.add(gem);
+    S.scene.add(key);
+    const k = { fly: 0, turn: 0, out: 0 };
+    const draw = (t) => {
+      const E = T3.ease, f = E.out(k.fly);
+      key.position.set(-9 * (1 - f) + 7 * k.out, 0.2 + Math.sin(t * 1.4) * 0.08, -6 * (1 - f));
+      key.rotation.set(E.inOut(k.turn) * Math.PI / 2, -2.6 * (1 - f) + Math.sin(t * 0.8) * 0.12, 0.08);
+      key.scale.setScalar(Math.max(0.001, 1 - k.out * 0.8));
+      S.render();
+    };
+    const p = { t: 0 };
+    tl.fromTo(p, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: () => draw(p.t) }, 0);
+    tl.set(k, { fly: 0, turn: 0, out: 0 }, 0);
+    tl.to(k, { fly: 1, duration: 1.0, ease: "none", onUpdate: () => draw(p.t) }, a - 0.1);
+    tl.to(k, { turn: 1, duration: 0.5, ease: "none", onUpdate: () => draw(p.t) }, a + 1.05);
+    tl.fromTo("#§ring", { scale: 0.4, opacity: 0.9 }, { scale: 2.2, opacity: 0, duration: 0.7, ease: "power2.out", immediateRender: false }, a + 1.45);
+    tl.to(k, { out: 1, duration: 0.45, ease: "none", onUpdate: () => draw(p.t) }, b - 0.45);
+    draw(0);
     // the risks of the manifesto multiply in giant crossing rows
     const RISKS = ["climatique", "humain", "cyber", "réglementaire", "géopolitique", "réputationnel"];
     const COLS = ["#212C34", "#7E6CC4", "#212C34", "#4B8A93", "#212C34", "#AA5655"];
@@ -42,7 +64,12 @@
       tl.fromTo(r, { x: x0 + dir * -1400, opacity: 0 }, { x: x0, opacity: 1, duration: 0.7, ease: "expo.out" }, b - 0.25 + i * 0.05);
       tl.to(r, { x: x0 + dir * 600, duration: D - b, ease: "none" }, b + 0.45 + i * 0.05);
     });
+    tl.to(rows, { opacity: 0, duration: 0.35, ease: "power2.in" }, D - 0.5);
     tl.fromTo("#§mpill", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, b + 0.45);
+    // the pill closes into a single point — the next shot starts from it
+    tl.to("#§mt", { opacity: 0, duration: 0.2 }, D - 0.6);
+    tl.to("#§mpill", { width: 36, height: 36, x: 482, y: 4, borderRadius: 18, boxShadow: "0 0 0 rgba(0,0,0,0)", duration: 0.5, ease: "expo.inOut" }, D - 0.55);
+    tl.set("#§mpill", { backgroundImage: "none", backgroundColor: "#FF0055" }, D - 0.3);
     window.__timelines = window.__timelines || {};
     window.__timelines[ID] = tl;
   })();

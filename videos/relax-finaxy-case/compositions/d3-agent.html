@@ -43,15 +43,11 @@
   #d3-agent-gl{position:absolute;left:0;top:0;width:1920px;height:1080px}
   #d3-agent-q{position:absolute;left:0;right:0;top:120px;text-align:center;font-family:Unbounded;font-weight:500;font-size:60px;color:#212C34}
   #d3-agent-ui{position:absolute;left:0;top:0;width:1920px;height:1080px}
-  .d3-agent-res{position:absolute;left:110px;width:400px;height:132px;border-radius:24px;background:#FFFFFF;box-shadow:0 16px 36px rgba(42,34,68,.10);overflow:hidden}
-  .d3-agent-res .d3-agent-th{position:absolute;left:14px;top:14px;width:180px;height:104px;border-radius:12px;background-size:cover;background-position:center}
-  .d3-agent-res b{position:absolute;left:212px;top:30px;width:170px;font-weight:600;font-size:20px;line-height:1.2;color:#2A2244}
-  .d3-agent-res i{position:absolute;left:212px;bottom:24px;font-style:normal;font-weight:500;font-size:15px;color:#2F6C74}
-  .d3-agent-res .d3-agent-glow{position:absolute;inset:0;border-radius:24px;box-shadow:inset 0 0 0 3px #A99CF0;opacity:0}
-  #d3-agent-rl{position:absolute;left:112px;top:170px;font-weight:600;font-size:17px;letter-spacing:.16em;color:#6B7278}
-  #d3-agent-chat{position:absolute;left:580px;top:170px;width:880px;height:720px;border-radius:32px;background:#FFFFFF;box-shadow:0 40px 90px rgba(42,34,68,.16);overflow:hidden}
+  #d3-agent-chat{position:absolute;left:330px;top:170px;width:880px;height:720px;border-radius:32px;background:#FFFFFF;box-shadow:0 40px 90px rgba(42,34,68,.16);overflow:hidden}
   #d3-agent-hd{position:absolute;left:0;right:0;top:0;height:96px;border-bottom:1px solid #EEEAF6}
-  #d3-agent-av{position:absolute;left:30px;top:24px;width:48px;height:48px;border-radius:24px;background:radial-gradient(circle at 34% 30%,#FF8FB4 0%,#FF0055 45%,#C2003F 100%)}
+  #d3-agent-av{position:absolute;left:30px;top:22px;width:52px;height:52px;border-radius:16px;background:linear-gradient(160deg,#FFFFFF,#E3DCFA);box-shadow:inset 0 0 0 2px #D4CCEE}
+  #d3-agent-av::before{content:"";position:absolute;left:8px;top:14px;width:36px;height:22px;border-radius:8px;background:#2A2244}
+  #d3-agent-av::after{content:"";position:absolute;left:16px;top:21px;width:6px;height:8px;border-radius:3px;background:#FF3D80;box-shadow:14px 0 0 #FF3D80}
   #d3-agent-nm{position:absolute;left:96px;top:24px;font-weight:600;font-size:24px;color:#212C34}
   #d3-agent-st{position:absolute;left:96px;top:56px;font-size:16px;color:#2F6C74}
   #d3-agent-hd .tag{position:absolute;right:30px;top:26px}
@@ -61,20 +57,18 @@
   #d3-agent-src{position:absolute;left:34px;top:540px;display:flex;gap:12px}
   #d3-agent-src div{height:40px;padding:0 18px;border-radius:20px;background:#CCEAEE;color:#224044;font-weight:500;font-size:17px;line-height:40px}
   #d3-agent-in{position:absolute;left:30px;right:30px;bottom:26px;height:68px;border-radius:34px;background:#F4F2FA;color:#8E899E;font-size:20px;line-height:68px;padding-left:30px;color:#5E5A72}
-  #d3-agent-wl{position:absolute;left:1530px;top:170px;font-weight:600;font-size:17px;letter-spacing:.16em;color:#6B7278}
-  .d3-agent-who{position:absolute;left:1530px;height:62px;padding:0 26px 0 66px;border-radius:31px;background:#FFFFFF;color:#212C34;font-weight:500;font-size:22px;line-height:62px;white-space:nowrap;box-shadow:0 12px 28px rgba(42,34,68,.10)}
+  #d3-agent-wl{position:absolute;left:1340px;top:170px;font-weight:600;font-size:17px;letter-spacing:.16em;color:#6B7278}
+  .d3-agent-who{position:absolute;left:1340px;height:62px;padding:0 26px 0 66px;border-radius:31px;background:#FFFFFF;color:#212C34;font-weight:500;font-size:22px;line-height:62px;white-space:nowrap;box-shadow:0 12px 28px rgba(42,34,68,.10)}
   .d3-agent-who u{position:absolute;left:12px;top:11px;width:40px;height:40px;border-radius:20px;color:#FFFFFF;font-weight:600;font-size:17px;line-height:40px;text-align:center;text-decoration:none}
 </style>
 <div class="full wash"></div>
 <canvas id="d3-agent-gl" width="1920" height="1080"></canvas>
 <div id="d3-agent-q">Cerise sur le gâteau ?</div>
 <div id="d3-agent-ui">
-  <div id="d3-agent-rl">RESSOURCES</div>
   <div id="d3-agent-chat">
     <div id="d3-agent-hd"><div id="d3-agent-av"></div><div id="d3-agent-nm">Agent éditorial Finaxy</div><div id="d3-agent-st">nourri par la charte et la plateforme</div><span class="tag tag-p">IA</span></div>
     <div id="d3-agent-u"><span id="d3-agent-ut"></span></div>
     <div id="d3-agent-b"></div>
-    <div id="d3-agent-src"><div>Charte éditoriale</div><div>Plateforme de marque</div></div>
     <div id="d3-agent-in">Écrire un message…</div>
   </div>
   <div id="d3-agent-wl">POUR CHACUN</div>
@@ -102,23 +96,32 @@
     }, 0);
     const shC = T3.shadow(2.6, 0.22); shC.position.y = 0.01; cake.add(shC);
     S.scene.add(cake);
+    // the robot head (the agent) that lands on top instead of a cherry
     const cherry = new THREE.Group();
-    const berry = new THREE.Mesh(new THREE.SphereGeometry(0.42, 64, 48), T3.glossy(0xff1f66, { irid: 0.25, roughness: 0.12 }));
+    const shell = T3.glossy(0xece7fc, { irid: 0.8, roughness: 0.16 });
+    const berry = new THREE.Mesh(T3.rbox(1.3, 1.0, 1.05, 0.3, 6), shell);
     cherry.add(berry);
-    const stemCurve = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0.3, 0), new THREE.Vector3(0.08, 0.7, 0), new THREE.Vector3(0.3, 0.95, 0)]);
-    const stem = new THREE.Mesh(new THREE.TubeGeometry(stemCurve, 24, 0.035, 8), T3.clay(0x6e8f5a));
-    cherry.add(stem);
+    const visor = new THREE.Mesh(T3.rbox(1.02, 0.6, 0.1, 0.2, 4), new THREE.MeshPhysicalMaterial({ color: 0x2a2244, roughness: 0.1, clearcoat: 1, clearcoatRoughness: 0.05 }));
+    visor.position.set(0, 0.02, 0.5); cherry.add(visor);
+    const eyeMat = new THREE.MeshBasicMaterial({ color: 0xff3d80 });
+    const eyes = [-0.24, 0.24].map((x) => { const e = new THREE.Mesh(new THREE.CapsuleGeometry(0.075, 0.12, 8, 16), eyeMat); e.position.set(x, 0.04, 0.57); cherry.add(e); return e; });
+    [-0.7, 0.7].forEach((x) => { const ear = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.16, 40), T3.glossy(0xf4a3d2, { irid: 0.4 })); ear.rotation.z = Math.PI / 2; ear.position.x = x; cherry.add(ear); });
+    const ant = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.42, 12), T3.clay(0x8e899e)); ant.position.y = 0.7; cherry.add(ant);
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.11, 32, 24), T3.glossy(0xff1f66, { irid: 0.3, roughness: 0.1 })); bulb.position.y = 0.95; cherry.add(bulb);
     S.scene.add(cherry);
-    const TOP = 2.12 + 0.42;
+    const TOP = 2.12 + 0.5;
     const draw = (t) => {
       const k = T3.ease.clamp((t - a - 0.35) / 0.55);
       // drop with a bounce, squash on landing
       const fall = k < 1 ? 6 * (1 - k * k) : 0, land = T3.ease.clamp((t - a - 0.9) / 0.35);
       cherry.position.set(0, TOP + fall + Math.sin(land * Math.PI) * 0.35 * (1 - land), 0);
       const sq = land > 0 && land < 1 ? 1 - 0.18 * Math.sin(land * Math.PI) : 1;
-      berry.scale.set(1 / Math.sqrt(sq), sq, 1 / Math.sqrt(sq));
+      cherry.scale.set(1 / Math.sqrt(sq), sq, 1 / Math.sqrt(sq));
+      const blink = Math.abs(Math.sin(t * 2.3)) > 0.97 ? 0.15 : 1;
+      eyes.forEach((e) => e.scale.set(1, blink, 1));
       cake.rotation.y = -0.4 + t * 0.35;
-      cherry.rotation.y = cake.rotation.y;
+      cherry.rotation.y = 0.35 + Math.sin(t * 1.2) * 0.25 * land;
+      cherry.rotation.z = Math.sin(t * 0.9) * 0.06 * land;
       S.camera.position.x = Math.sin(t * 0.4) * 1.2;
       S.camera.lookAt(0, 2.0, 0);
       S.render();
@@ -128,34 +131,20 @@
     draw(0);
     tl.fromTo("#d3-agent-q", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, a - 0.05);
     tl.fromTo("#d3-agent-gl", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, 0);
-    // ── cut: the cherry becomes the agent's avatar ──
+    // ── cut: the robot becomes the agent's avatar ──
     tl.set(["#d3-agent-gl", "#d3-agent-q"], { display: "none" }, CUT);
     tl.fromTo("#d3-agent-ui", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, CUT);
     tl.fromTo("#d3-agent-chat", { y: 120, scale: 0.94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.6, ease: "expo.out" }, CUT);
     tl.fromTo("#d3-agent-av", { scale: 3 }, { scale: 1, duration: 0.6, ease: "expo.out" }, CUT);
-    // every resource the agent writes from (real Finaxy documents)
-    const RES = [["charte-1.png", "Charte éditoriale", "assets/real/"], ["plateforme-01.png", "Plateforme de marque", "assets/real/"], ["site-long.jpg", "Site finaxy.com", "assets/cards/"], ["kakemono.jpg", "Supports & signature", "assets/real/"]];
-    const res = RES.map(([f, l, dir], i) => {
-      const d = document.createElement("div");
-      d.className = ID + "-res";
-      d.style.top = 210 + i * 162 + "px";
-      d.innerHTML = `<div class="${ID}-th" style="background-image:url(${dir}${f})"></div><b>${l}</b><i>● connecté</i><div class="${ID}-glow"></div>`;
-      $("ui").appendChild(d);
-      tl.fromTo(d, { x: -80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, CUT + 0.15 + i * 0.08);
-      return d;
-    });
-    tl.fromTo("#d3-agent-rl", { opacity: 0 }, { opacity: 1, duration: 0.3 }, CUT + 0.1);
     // a request, typed
     const ASK = "Rédige l’annonce de notre nouvelle identité.", ty = { n: 0 };
     tl.fromTo("#d3-agent-u", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25 }, CUT + 0.35);
     tl.fromTo(ty, { n: 0 }, { n: ASK.length, duration: 0.8, ease: "none", immediateRender: false, onUpdate: () => ($("ut").textContent = ASK.slice(0, Math.round(ty.n))) }, CUT + 0.35);
-    // the resources light up as it answers, in the Finaxy voice (first line of Finaxy's own announcement)
-    res.forEach((d, i) => tl.to(d.querySelector("." + ID + "-glow"), { opacity: 1, duration: 0.2, yoyo: true, repeat: 1 }, CUT + 1.2 + i * 0.15));
+    // it answers in the Finaxy voice (first line of Finaxy's own announcement)
     const ANS = "Dix-sept ans après sa création, Finaxy ouvre un nouveau chapitre de son histoire. Ensemble, protégeons ce qui compte.";
     $("b").innerHTML = ANS.split(" ").map((w) => `<span>${w} </span>`).join("");
     tl.fromTo("#d3-agent-b", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25 }, CUT + 1.25);
     tl.to("#d3-agent-b span", { opacity: 1, duration: 0.08, stagger: 0.07 }, CUT + 1.35);
-    tl.fromTo("#d3-agent-src div", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", stagger: 0.08 }, CUT + 1.35 + 18 * 0.07);
     // "pour que chacun puisse écrire comme Finaxy": every team, the same voice
     const WHO = [["Direction", "D", "#6955AA"], ["Commercial", "C", "#3E7C85"], ["Gestion", "G", "#8E3F3E"], ["Ressources humaines", "RH", "#6E6830"], ["Communication", "Co", "#6955AA"], ["Agences", "A", "#3E7C85"]];
     WHO.forEach(([l, ini, c], i) => {

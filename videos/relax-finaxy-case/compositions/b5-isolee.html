@@ -40,14 +40,17 @@
       </style>
       <div id="root" data-composition-id="b5-isolee" data-width="1920" data-height="1080" data-duration="3.18">
 <style>
-  #b5-isolee-cam{position:absolute;left:0;top:0;width:1920px;height:1080px}
-  .b5-isolee-r{position:absolute;left:0;top:0;padding:26px 44px;border-radius:32px;font-family:Unbounded;font-weight:600;font-size:76px;letter-spacing:-.02em;white-space:nowrap;box-shadow:0 30px 60px rgba(42,34,68,.12)}
-  #b5-isolee-lone{position:absolute;left:880px;top:505px;width:160px;height:44px;border-radius:22px;background:#FFFFFF;color:#212C34;font-weight:500;font-size:18px;line-height:44px;text-align:center;box-shadow:0 10px 24px rgba(42,34,68,.18);z-index:3}
-  #b5-isolee-cap{position:absolute;left:460px;width:1000px;top:890px;height:110px;font-family:Unbounded;font-size:40px;line-height:110px;z-index:4;box-shadow:0 30px 60px rgba(33,44,52,.25)}
+  #b5-isolee-rings{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  #b5-isolee-rings text{font-family:Unbounded;font-weight:600;letter-spacing:.06em}
+  #b5-isolee-dot{position:absolute;left:942px;top:482px;width:36px;height:36px;border-radius:18px;background:#FF0055;box-shadow:0 0 0 10px rgba(255,0,85,.12)}
+  #b5-isolee-lbl{position:absolute;left:0;right:0;top:532px;text-align:center;font-weight:500;font-size:20px;color:#4F575D}
+  #b5-isolee-cap{position:absolute;left:460px;width:1000px;top:950px;height:110px;font-family:Unbounded;font-size:40px;line-height:110px;box-shadow:0 30px 60px rgba(33,44,52,.25)}
   #b5-isolee-cap em{font-style:normal;color:#FF7AA5}
 </style>
 <div class="full wash"></div>
-<div id="b5-isolee-cam"><div id="b5-isolee-risks"></div><div id="b5-isolee-lone">une expertise</div></div>
+<svg id="b5-isolee-rings" viewBox="0 0 1920 1080" data-layout-allow-overlap></svg>
+<div id="b5-isolee-dot"></div>
+<div id="b5-isolee-lbl">une expertise</div>
 <div class="btn" id="b5-isolee-cap">aucune expertise <em>isolée</em> ne suffit.</div>
 <div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">02 — RÉVÉLER</div>
 <script>
@@ -56,28 +59,41 @@
     const $ = (s) => document.getElementById(ID + "-" + s);
     const tl = gsap.timeline({ paused: true });
     const a = VO["2.12"];
-    // one small, isolated expertise; every risk around it is huge
-    const R = [["cyber", "card-p", -620, -330], ["climatique", "card-c", 340, -360], ["géopolitique", "card-y", 420, 250], ["réglementaire", "card-r", -760, 230],
-      ["humain", "card-c", -180, 330], ["réputationnel", "card-p", 120, -120]];
-    const els = R.map(([t, c, x, y], i) => {
-      const d = document.createElement("div");
-      d.className = ID + "-r " + c;
-      d.textContent = t;
-      d.setAttribute("data-layout-allow-overlap", "");
-      $("risks").appendChild(d);
-      return { el: d, x: 960 + x - 200, y: 540 + y - 70 };
+    // rings of every kind of risk circle a tiny point and close in on it (after the ajith reference)
+    const NS = "http://www.w3.org/2000/svg", svg = $("rings");
+    const RISKS = "CLIMATIQUE · HUMAIN · CYBER · RÉGLEMENTAIRE · GÉOPOLITIQUE · RÉPUTATIONNEL · ";
+    const RINGS = [[395, 268, 42, "#212C34", 1], [295, 190, 33, "#7E6CC4", -1], [205, 122, 25, "#AA5655", 1], [132, 70, 18, "#4B8A93", -1]];
+    const groups = RINGS.map(([r0, r1, fs, col, dir], i) => {
+      const g = document.createElementNS(NS, "g");
+      const path = document.createElementNS(NS, "path");
+      const pid = `${ID}-rp${i}`;
+      path.setAttribute("id", pid);
+      path.setAttribute("d", `M 960 ${500 - r0} a ${r0} ${r0} 0 1 1 -0.01 0`);
+      path.setAttribute("fill", "none");
+      const txt = document.createElementNS(NS, "text");
+      txt.setAttribute("font-size", fs);
+      txt.setAttribute("fill", col);
+      const tp = document.createElementNS(NS, "textPath");
+      tp.setAttribute("href", "#" + pid);
+      const n = Math.max(1, Math.round((2 * Math.PI * r0) / (fs * 0.78 * RISKS.length)));
+      tp.textContent = RISKS.repeat(n);
+      txt.appendChild(tp);
+      g.appendChild(path);
+      g.appendChild(txt);
+      svg.appendChild(g);
+      return { g, r0, r1, dir };
     });
-    els[5].x = 1110; els[5].y = 500; // keep the centre clear around the small pill
-    els.forEach((e, i) => {
-      tl.fromTo(e.el, { x: e.x * 1.25 - 240, y: e.y * 1.25 - 135, scale: 0.6, opacity: 0, rotation: (i % 2 ? 6 : -6) },
-        { x: e.x, y: e.y, scale: 1, opacity: 1, rotation: 0, duration: 0.7, ease: "expo.out" }, a - 0.1 + i * 0.06);
-      // they keep closing in
-      tl.to(e.el, { x: e.x + (960 - e.x - 200) * 0.12, y: e.y + (540 - e.y - 70) * 0.12, scale: 1.08, duration: D - a - 0.7, ease: "none" }, a + 0.6 + i * 0.06);
+    // rings tighten (scale about the centre) while turning
+    groups.forEach((o, i) => {
+      gsap.set(o.g, { svgOrigin: "960 500" });
+      tl.fromTo(o.g, { scale: 1.5, opacity: 0, rotation: o.dir * -40 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.7, ease: "expo.out" }, a - 0.1 + i * 0.07);
+      tl.to(o.g, { scale: o.r1 / o.r0, rotation: o.dir * 70, duration: D - a - 0.6, ease: "power1.in" }, a + 0.6 + i * 0.07);
     });
-    tl.fromTo("#b5-isolee-lone", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, a);
-    tl.to("#b5-isolee-lone", { x: 4, duration: 0.05, yoyo: true, repeat: 9, ease: "none" }, a + 1.2);
-    tl.fromTo("#b5-isolee-cam", { scale: 1.1 }, { scale: 0.96, duration: D, ease: "power1.out" }, 0);
-    tl.fromTo("#b5-isolee-cap", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a + 0.2);
+    tl.fromTo("#b5-isolee-dot", { scale: 1 }, { scale: 0.62, duration: D - a, ease: "power1.in" }, a);
+    tl.to("#b5-isolee-dot", { x: 3, duration: 0.05, yoyo: true, repeat: 11, ease: "none" }, a + 1.4);
+    tl.fromTo("#b5-isolee-lbl", { opacity: 0 }, { opacity: 1, duration: 0.3 }, a + 0.3);
+    tl.to("#b5-isolee-lbl", { opacity: 0, duration: 0.3 }, a + 1.6);
+    tl.fromTo("#b5-isolee-cap", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a + 0.25);
     window.__timelines = window.__timelines || {};
     window.__timelines[ID] = tl;
   })();

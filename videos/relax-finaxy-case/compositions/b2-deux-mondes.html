@@ -88,21 +88,55 @@
     const shS = T3.shadow(1.5, 0.25); shS.position.y = 0.01; shop.add(shS);
     S.scene.add(shop);
     const COLD = new THREE.Color(0xa7b3c2), WARM = new THREE.Color(0xc9bdf5);
-    const st = { tower: 0, shop: 0, merge: 0, warm: 0 };
+    // the fusion: both bodies melt into one glossy matter (metaballs)…
+    const fuseMat = T3.glossy(0xffffff, { irid: 0.7, roughness: 0.18 });
+    fuseMat.vertexColors = true;
+    const mc = new THREE.MarchingCubes(64, fuseMat, false, true, 160000);
+    const MS = 6, MY = 2.6;
+    mc.scale.set(MS, MS, MS);
+    mc.position.set(0, MY, 0);
+    S.scene.add(mc);
+    const nx = (x) => x / (2 * MS) + 0.5, ny = (y) => (y - MY) / (2 * MS) + 0.5;
+    const CCOLD = new THREE.Color(0xa7b3c2), CPINK = new THREE.Color(0xf4b8c8), CFUSE = new THREE.Color(0xb3a3f3), tmp = new THREE.Color();
+    // …out of which a new building rises: three glossy towers of different heights, warm windows, the awning at its foot
+    const warmTex = tex((g, w, h) => { g.fillStyle = "#ffffff"; g.fillRect(0, 0, w, h); g.fillStyle = "#ffe3c4"; for (let y = 14; y < h; y += 30) for (let x = 16; x < w; x += 40) g.fillRect(x, y, 24, 16); });
+    const edifice = new THREE.Group();
+    [[1.6, 5.4, -0.9, -0.5, 0xc9bdf5], [1.35, 4.1, 0.75, 0.1, 0xf2c4e3], [1.2, 3.0, -0.05, 0.95, 0xbfe6ec]].forEach(([w, h, x, z, c]) => {
+      const m = new THREE.Mesh(T3.rbox(w, h, w, 0.22), new THREE.MeshPhysicalMaterial({ color: c, map: warmTex, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.08, iridescence: 0.6, iridescenceIOR: 1.3 }));
+      m.position.set(x, h / 2, z);
+      edifice.add(m);
+    });
+    const awn2 = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.06, 0.5), new THREE.MeshStandardMaterial({ map: awnTex, roughness: 0.5 }));
+    awn2.position.set(-0.05, 1.05, 1.75); awn2.rotation.x = 0.45; edifice.add(awn2);
+    const shE = T3.shadow(3.2, 0.24); shE.position.y = 0.01; edifice.add(shE);
+    S.scene.add(edifice);
+    const st = { tower: 0, shop: 0, melt: 0, fuse: 0, rise: 0 };
     const a = VO["2.2"], b = VO["2.3"], c = VO["2.4"], d = VO["2.5"], e = VO["2.6"];
     const draw = (t) => {
-      const E = T3.ease, mg = E.inOut(st.merge);
-      tower.scale.set(1, Math.max(0.001, E.out(st.tower)) * (1 - 0.22 * mg), 1);
-      tower.position.set(-3.1 * (1 - mg), 0, -0.4 * mg);
-      tower.rotation.y = -0.5 + 0.35 * mg + Math.sin(t * 0.5) * 0.05;
+      const E = T3.ease, m = E.inOut(st.melt), f = E.inOut(st.fuse), rz = E.out(st.rise);
+      tower.scale.set(1, Math.max(0.001, E.out(st.tower) * (1 - m)), 1);
+      tower.position.set(-3.1, 0, 0);
+      tower.rotation.y = -0.5 + Math.sin(t * 0.5) * 0.05;
       const sp = E.out(st.shop), bounce = st.shop < 1 ? Math.sin(st.shop * Math.PI) * 0.35 : 0;
-      shop.scale.setScalar(Math.max(0.001, sp * (1 - 0.18 * mg)));
-      shop.position.set(3.1 * (1 - mg) + 0 * mg, bounce, 1.6 * mg);
-      shop.rotation.y = 0.45 - 0.45 * mg + Math.sin(t * 0.6) * 0.05;
-      towerMat.color.copy(COLD).lerp(WARM, st.warm);
-      towerMat.iridescence = 0.75 * st.warm;
-      towerMat.emissive = towerMat.emissive || new THREE.Color();
-      towerMat.emissive.setRGB(0.12 * st.warm, 0.08 * st.warm, 0.1 * st.warm);
+      shop.scale.setScalar(Math.max(0.001, sp * (1 - m)));
+      shop.position.set(3.1, bounce, 0);
+      shop.rotation.y = 0.45 + Math.sin(t * 0.6) * 0.05;
+      tower.visible = m < 0.995; shop.visible = m < 0.995;
+      mc.reset();
+      const blob = Math.min(1, m * 1.6) * (1 - rz * 0.98);
+      if (blob > 0.01) {
+        const lerp = (x0, x1) => x0 + (x1 - x0) * f;
+        tmp.copy(CCOLD).lerp(CFUSE, f);
+        [1.4, 3.2, 5.0].forEach((y, k) => mc.addBall(nx(lerp(-3.1, -0.3 + k * 0.2)), ny(lerp(y, 2.0 + k * 0.4)), 0.5, 0.17 * blob, 12, tmp.clone()));
+        tmp.copy(CPINK).lerp(CFUSE, f);
+        mc.addBall(nx(lerp(3.1, 0.4)), ny(lerp(0.8, 1.8)), 0.5, 0.15 * blob, 12, tmp.clone());
+        mc.addBall(nx(0), ny(2.2), 0.5, 0.2 * blob * f, 12, CFUSE);
+      }
+      mc.update();
+      mc.visible = blob > 0.01;
+      edifice.scale.set(Math.max(0.001, 0.6 + 0.4 * rz), Math.max(0.001, rz), Math.max(0.001, 0.6 + 0.4 * rz));
+      edifice.visible = rz > 0.001;
+      edifice.rotation.y = -0.35 + t * 0.12;
       S.camera.position.x = Math.sin(t * 0.25) * 0.6;
       S.camera.lookAt(0, 2.6, 0);
       S.render();
@@ -110,11 +144,12 @@
     const p = { t: 0 };
     tl.fromTo(p, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: () => draw(p.t) }, 0);
     const prox = (k, v, at, dur) => tl.fromTo(st, { [k]: st[k] }, { [k]: v, duration: dur, ease: "none", onUpdate: () => draw(p.t), immediateRender: false }, at);
-    tl.set(st, { tower: 0, shop: 0, merge: 0, warm: 0 }, 0);
+    tl.set(st, { tower: 0, shop: 0, melt: 0, fuse: 0, rise: 0 }, 0);
     prox("tower", 1, a - 0.1, 1.0);
     prox("shop", 1, b - 0.1, 0.8);
-    prox("merge", 1, c + 0.2, 1.4);
-    prox("warm", 1, d - 0.1, 1.0);
+    prox("melt", 1, c + 0.1, 0.9);   // "Finaxy cumulait": both melt
+    prox("fuse", 1, c + 0.5, 1.4);   // and flow into one body
+    prox("rise", 1, d + 0.2, 1.2);   // "par sa structure": a new building rises from it
     draw(0);
     tl.fromTo("#b2-deux-mondes-lead", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0);
     tl.to("#b2-deux-mondes-lead", { opacity: 0, duration: 0.3 }, a + 0.6);

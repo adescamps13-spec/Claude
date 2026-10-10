@@ -41,9 +41,8 @@
       <div id="root" data-composition-id="d0-decliner" data-width="1920" data-height="1080" data-duration="3.68">
 <style>
   #d0-decliner-cam{position:absolute;left:0;top:0;width:1920px;height:1080px}
-  .d0-decliner-t{position:absolute;left:0;top:0;width:360px;height:206px;border-radius:14px;box-shadow:0 18px 40px rgba(42,34,68,.16);background:#191853}
+  .d0-decliner-t{position:absolute;left:0;top:0;width:360px;height:206px;border-radius:14px;box-shadow:0 18px 40px rgba(42,34,68,.16);background:#FFFFFF}
   .d0-decliner-t .d0-decliner-im{position:absolute;inset:0;border-radius:14px;background-size:cover;background-position:center}
-  .d0-decliner-t .d0-decliner-lg{position:absolute;inset:0;border-radius:14px;background:url(assets/cards/newlogo.png) center/cover}
   .d0-decliner-lb{position:absolute;left:0;top:-30px;font-weight:500;font-size:17px;color:#6B7278;white-space:nowrap}
   #d0-decliner-sel{position:absolute;left:0;top:0;border:2px solid #6955AA;background:rgba(105,85,170,.08);border-radius:6px;opacity:0}
   #d0-decliner-title{position:absolute;left:0;right:0;top:110px;text-align:center;font-family:Unbounded;font-weight:500;font-size:52px;color:#212C34}
@@ -66,7 +65,7 @@
     const tiles = T.map(([n, l], i) => {
       const d = document.createElement("div");
       d.className = ID + "-t";
-      d.innerHTML = `<div class="${ID}-im" style="background-image:url(assets/cards/${n}.png)"></div><div class="${ID}-lg"></div><div class="${ID}-lb">${l}</div>`;
+      d.innerHTML = `<div class="${ID}-im" style="background-image:url(assets/cards/${n}.png)"></div><div class="${ID}-lb">${l}</div>`;
       $("grid").appendChild(d);
       return d;
     });
@@ -75,10 +74,9 @@
     tiles.forEach((d, i) => {
       const P = pos(i), parent = i === 0 ? 0 : i < 2 ? 0 : i < 4 ? i - 2 : i - 4;
       gsap.set(d, { x: C.x, y: C.y });
-      tl.fromTo(d, { x: C.x, y: C.y, scale: i === 0 ? 0.2 : 1, opacity: i === 0 ? 0 : 0 },
-        { x: P.x, y: P.y, scale: 1, opacity: 1, duration: 0.7, ease: "expo.out" }, i === 0 ? a - 0.1 : a + 0.4 + Math.floor(Math.log2(i + 0.01) + 1) * 0.2);
-      tl.to(d.querySelector("." + ID + "-lg"), { opacity: 0, duration: 0.35 }, a + 0.9 + i * 0.06);
-      tl.fromTo(d.querySelector("." + ID + "-lb"), { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.3 }, a + 1.2 + i * 0.04);
+      tl.fromTo(d, { x: C.x, y: C.y, scale: 0.4, opacity: 0, rotation: (i % 2 ? 6 : -6) },
+        { x: P.x, y: P.y, scale: 1, opacity: 1, rotation: 0, duration: 0.75, ease: "expo.out" }, a - 0.1 + i * 0.07); // straight to the real supports
+      tl.fromTo(d.querySelector("." + ID + "-lb"), { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.3 }, a + 0.6 + i * 0.04);
     });
     tl.fromTo("#d0-decliner-title", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a);
     // the cursor marquee-selects the whole set
@@ -86,7 +84,7 @@
     tl.fromTo("#d0-decliner-cur", { x: 1700, y: 1000 }, { x: 140, y: 290, duration: 0.5, ease: "power3.inOut" }, a + 1.1);
     tl.fromTo("#d0-decliner-sel", { width: 0, height: 0, opacity: 1 }, { width: 1640, height: 600, opacity: 1, duration: 0.5, ease: "power2.inOut", immediateRender: false }, a + 1.6);
     tl.to("#d0-decliner-cur", { x: 1780, y: 890, duration: 0.5, ease: "power2.inOut" }, a + 1.6);
-    tl.to("#d0-decliner-sel", { opacity: 0, duration: 0.2 }, b - 0.1);
+    tl.to("#d0-decliner-sel", { opacity: 0, duration: 0.2 }, b - 0.05);
     tl.to("#d0-decliner-cur", { opacity: 0, duration: 0.2 }, b);
     // dive into the brochure: the next shot shows it full size
     const P3 = pos(3);
