@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
+
+      </style>
+      <div id="root" data-composition-id="a2-croissance" data-width="1920" data-height="1080" data-duration="1.79">
+<style>
+  #a2-croissance-gl{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  .a2-croissance-pill{position:absolute;left:0;top:0;transform-origin:50% 50%}
+  #a2-croissance-cap{position:absolute;left:0;right:0;top:860px;text-align:center;font-family:Unbounded;font-weight:500;font-size:64px;letter-spacing:-.01em;color:#212C34}
+  #a2-croissance-cap em{font-style:normal;color:#6955AA;display:inline-block}
+</style>
+<div class="full wash"></div>
+<canvas id="a2-croissance-gl" width="1920" height="1080"></canvas>
+<div id="a2-croissance-pills"></div>
+<div id="a2-croissance-cap">un groupe qui a grandi <em id="a2-croissance-vite">vite.</em></div>
+<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">01 — LE CONSTAT</div>
+<script src="assets/vendor/three.global.js"></script>
+<script src="assets/vendor/three-addons.js"></script>
+<script src="assets/t3.js"></script>
+<script>
+  (function () {
+    const ID = "a2-croissance", D = 1.79, VO = {"1.0": -2.71, "1.1": 0.15, "1.2": 1.94, "1.3": 4.56, "1.4": 8.28, "1.5": 10.17, "2.0": 12.92, "2.1": 15.17, "2.2": 18.06, "2.3": 20.07, "2.4": 22.26, "2.5": 23.86, "2.6": 24.94, "2.7": 26.86, "2.8": 27.34, "2.9": 29.82, "2.10": 34.3, "2.11": 36.36, "2.12": 39.02, "3.0": 42.2, "3.1": 43.19, "3.2": 44.94, "3.3": 46.08, "3.4": 47.03, "3.5": 48.0, "3.6": 49.36, "3.7": 50.08, "3.8": 51.91, "3.9": 53.04, "3.10": 56.48, "3.11": 57.59, "3.12": 59.39, "4.0": 62.34, "4.1": 64.52, "4.2": 66.02, "4.3": 66.83, "4.4": 67.79, "4.5": 69.04, "4.6": 70.18, "4.7": 72.85, "4.8": 74.37, "4.9": 75.85, "5.0": 80.16, "5.1": 81.71, "5.2": 84.48, "5.3": 85.28, "5.4": 88.23, "5.5": 89.44, "5.6": 92.78, "5.7": 95.95, "5.8": 96.99, "5.9": 98.32, "5.10": 99.26, "5.11": 100.23, "5.12": 101.75, "5.13": 102.52, "breath": 104.3, "exhale": 106.05};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    // one glossy body that absorbs the cabinets, companies and brands drifting toward it (metaballs)
+    const S = T3.stage($("gl"), { w: 1920, h: 1080, fov: 30, camZ: 15 });
+    const mat = T3.glossy(0xffffff, { irid: 0.6, roughness: 0.2 });
+    mat.vertexColors = true;
+    const mc = new THREE.MarchingCubes(60, mat, false, true, 140000);
+    mc.scale.set(4.2, 4.2, 4.2);
+    mc.position.y = 0.35;
+    S.scene.add(mc);
+    const sh = T3.shadow(2.6, 0.22);
+    sh.position.y = -2.7;
+    S.scene.add(sh);
+    const r = KIT.rng(4);
+    const COL = [new THREE.Color(0xff8fb8), new THREE.Color(0x8fd3dc), new THREE.Color(0xb6a6f5), new THREE.Color(0xd8cf8a)];
+    const BODY = new THREE.Color(0x9c88f0);
+    const N = 7, LABELS = ["cabinet", "marque", "entreprise", "cabinet", "marque", "entreprise", "cabinet"], TAGS = ["tag-p", "tag-c", "tag-r", "tag-y"];
+    const balls = Array.from({ length: N }, (_, i) => {
+      const a = (i / N) * Math.PI * 2 + 0.5, rad = 0.34 + r() * 0.06;
+      return { x: 0.5 + Math.cos(a) * rad, y: 0.5 + Math.sin(a) * rad * 0.62, z: 0.5 + (r() - 0.5) * 0.1, t0: 0.12 + i * 0.16, c: COL[i % COL.length] };
+    });
+    const pills = balls.map((b, i) => {
+      const d = document.createElement("div");
+      d.className = ID + "-pill tag " + TAGS[i % 4];
+      d.textContent = LABELS[i];
+      $("pills").appendChild(d);
+      return d;
+    });
+    const g = { t: 0 }, A = VO["1.1"];
+    const world = (b) => {
+      // marching-cube space (0..1) → screen px, for the HTML labels
+      const v = new THREE.Vector3((b.x - 0.5) * 2 * 4.2, (b.y - 0.5) * 2 * 4.2 + 0.35, (b.z - 0.5) * 2 * 4.2).project(S.camera);
+      return [(v.x + 1) * 960, (1 - v.y) * 540];
+    };
+    const draw = () => {
+      const t = g.t;
+      mc.reset();
+      let eaten = 0;
+      balls.forEach((b, i) => {
+        const k = T3.ease.clamp((t - A - b.t0) / 0.55), e = T3.ease.inOut(k);
+        if (k >= 1) eaten++;
+        const x = b.x + (0.5 - b.x) * e, y = b.y + (0.5 - b.y) * e, z = b.z + (0.5 - b.z) * e;
+        if (k < 1) mc.addBall(x, y, z, 0.26 * (1 - 0.6 * e), 12, b.c);
+        const [sx, sy] = world({ x, y: y + 0.075, z });
+        pills[i].style.transform = `translate(${(sx - 70).toFixed(1)}px,${(sy - 22).toFixed(1)}px) scale(${(1 - e).toFixed(3)})`;
+        pills[i].style.opacity = (T3.ease.clamp((t - A - b.t0 + 0.5) / 0.2) * (1 - e)).toFixed(3);
+      });
+      const grow = 0.42 + 0.16 * eaten + 0.04 * Math.sin(t * 3);
+      mc.addBall(0.5, 0.5, 0.5, grow, 12, BODY);
+      mc.update();
+      mc.rotation.y = t * 0.4;
+      S.camera.position.z = 15 - 2.2 * T3.ease.inOut(T3.ease.clamp(t / D));
+      sh.scale.setScalar(0.7 + eaten * 0.06);
+      S.render();
+    };
+    tl.fromTo(g, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: draw }, 0);
+    draw();
+    tl.fromTo("#a2-croissance-cap", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, A - 0.05);
+    tl.fromTo("#a2-croissance-vite", { scale: 0.4, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, A + 0.75);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

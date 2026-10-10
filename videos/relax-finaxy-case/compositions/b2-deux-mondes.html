@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
+
+      </style>
+      <div id="root" data-composition-id="b2-deux-mondes" data-width="1920" data-height="1080" data-duration="8.8">
+<style>
+  #b2-deux-mondes-gl{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  .b2-deux-mondes-cap{position:absolute;top:800px;width:640px;text-align:center}
+  .b2-deux-mondes-cap .h-uni{display:block;margin-top:16px;font-size:44px;color:#212C34}
+  .b2-deux-mondes-cap .h-uni s{text-decoration:none;position:relative}
+  .b2-deux-mondes-x{position:absolute;left:-6px;right:-6px;top:52%;height:6px;border-radius:3px;background:#FF0055;transform-origin:left center}
+  #b2-deux-mondes-both{position:absolute;left:0;right:0;top:820px;text-align:center;font-family:Unbounded;font-weight:500;font-size:78px;letter-spacing:-.01em;color:#212C34}
+  #b2-deux-mondes-both em{font-style:normal;background:linear-gradient(100deg,#6955AA,#F4A3D2,#56A0AA);-webkit-background-clip:text;background-clip:text;color:transparent}
+  #b2-deux-mondes-lead{position:absolute;left:0;right:0;top:150px;text-align:center;font-weight:400;font-size:40px;color:#6B7278}
+</style>
+<div class="full wash"></div>
+<canvas id="b2-deux-mondes-gl" width="1920" height="1080"></canvas>
+<div id="b2-deux-mondes-lead">Finaxy, vraiment ?</div>
+<div class="b2-deux-mondes-cap" id="b2-deux-mondes-c1" style="left:180px"><span class="tag tag-c">pas un grand groupe</span><span class="h-uni">déshumanisé</span></div>
+<div class="b2-deux-mondes-cap" id="b2-deux-mondes-c2" style="left:1100px"><span class="tag tag-r">pas un petit courtier</span><span class="h-uni">de proximité</span></div>
+<div id="b2-deux-mondes-both">la force <em>des deux.</em></div>
+<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">02 — RÉVÉLER</div>
+<script src="assets/vendor/three.global.js"></script>
+<script src="assets/vendor/three-addons.js"></script>
+<script src="assets/t3.js"></script>
+<script>
+  (function () {
+    const ID = "b2-deux-mondes", D = 8.8, VO = {"1.0": -20.62, "1.1": -17.76, "1.2": -15.97, "1.3": -13.35, "1.4": -9.63, "1.5": -7.74, "2.0": -4.99, "2.1": -2.74, "2.2": 0.15, "2.3": 2.16, "2.4": 4.35, "2.5": 5.95, "2.6": 7.03, "2.7": 8.95, "2.8": 9.43, "2.9": 11.91, "2.10": 16.39, "2.11": 18.45, "2.12": 21.11, "3.0": 24.29, "3.1": 25.28, "3.2": 27.03, "3.3": 28.17, "3.4": 29.12, "3.5": 30.09, "3.6": 31.45, "3.7": 32.17, "3.8": 34.0, "3.9": 35.13, "3.10": 38.57, "3.11": 39.68, "3.12": 41.48, "4.0": 44.43, "4.1": 46.61, "4.2": 48.11, "4.3": 48.92, "4.4": 49.88, "4.5": 51.13, "4.6": 52.27, "4.7": 54.94, "4.8": 56.46, "4.9": 57.94, "5.0": 62.25, "5.1": 63.8, "5.2": 66.57, "5.3": 67.37, "5.4": 70.32, "5.5": 71.53, "5.6": 74.87, "5.7": 78.04, "5.8": 79.08, "5.9": 80.41, "5.10": 81.35, "5.11": 82.32, "5.12": 83.84, "5.13": 84.61, "breath": 86.39, "exhale": 88.14};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const S = T3.stage($("gl"), { w: 1920, h: 1080, fov: 28, camZ: 25, camY: 2.6 });
+    S.camera.lookAt(0, 1.4, 0);
+    const tex = (draw, w = 256, h = 512) => { const c = document.createElement("canvas"); c.width = w; c.height = h; draw(c.getContext("2d"), w, h); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; };
+    // the cold corporate tower: tall, grey-blue, a grid of identical windows
+    const winTex = tex((g, w, h) => { g.fillStyle = "#ffffff"; g.fillRect(0, 0, w, h); g.fillStyle = "#c9d2dc"; for (let y = 14; y < h; y += 30) for (let x = 16; x < w; x += 40) g.fillRect(x, y, 24, 16); });
+    const towerMat = new THREE.MeshPhysicalMaterial({ color: 0xa7b3c2, map: winTex, roughness: 0.25, clearcoat: 1, clearcoatRoughness: 0.1, iridescence: 0 });
+    const tower = new THREE.Group();
+    const t1 = new THREE.Mesh(T3.rbox(2.0, 5.2, 2.0, 0.16), towerMat); t1.position.y = 2.6; tower.add(t1);
+    const t2 = new THREE.Mesh(T3.rbox(1.5, 1.4, 1.5, 0.14), towerMat); t2.position.y = 5.9; tower.add(t2);
+    const t3 = new THREE.Mesh(T3.rbox(0.9, 0.7, 0.9, 0.12), towerMat); t3.position.y = 6.95; tower.add(t3);
+    const shT = T3.shadow(2.2, 0.25); shT.position.y = 0.01; tower.add(shT);
+    S.scene.add(tower);
+    // the small local office: warm, friendly, a striped awning
+    const awnTex = tex((g, w, h) => { for (let x = 0; x < w; x += 32) { g.fillStyle = (x / 32) % 2 ? "#ffffff" : "#ff8fb8"; g.fillRect(x, 0, 32, h); } }, 256, 64);
+    const shop = new THREE.Group();
+    const body = new THREE.Mesh(T3.rbox(1.6, 1.15, 1.2, 0.14), T3.clay(0xf6d3d3, { roughness: 0.45 })); body.position.y = 0.58; shop.add(body);
+    const roof = new THREE.Mesh(T3.rbox(1.8, 0.22, 1.35, 0.08), T3.clay(0xe9a9bd)); roof.position.y = 1.25; shop.add(roof);
+    const awn = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.05, 0.42), new THREE.MeshStandardMaterial({ map: awnTex, roughness: 0.5 })); awn.position.set(0, 0.98, 0.78); awn.rotation.x = 0.45; shop.add(awn);
+    const door = new THREE.Mesh(T3.rbox(0.36, 0.62, 0.06, 0.05), T3.clay(0x6955aa)); door.position.set(-0.35, 0.33, 0.61); shop.add(door);
+    const win = new THREE.Mesh(T3.rbox(0.5, 0.36, 0.06, 0.06), T3.glossy(0xcceaee, { irid: 0.3 })); win.position.set(0.35, 0.6, 0.61); shop.add(win);
+    const plant = new THREE.Mesh(new THREE.SphereGeometry(0.2, 24, 16), T3.clay(0x9fd3b5)); plant.position.set(0.85, 0.22, 0.55); shop.add(plant);
+    const shS = T3.shadow(1.5, 0.25); shS.position.y = 0.01; shop.add(shS);
+    S.scene.add(shop);
+    const COLD = new THREE.Color(0xa7b3c2), WARM = new THREE.Color(0xc9bdf5);
+    const st = { tower: 0, shop: 0, merge: 0, warm: 0 };
+    const a = VO["2.2"], b = VO["2.3"], c = VO["2.4"], d = VO["2.5"], e = VO["2.6"];
+    const draw = (t) => {
+      const E = T3.ease, mg = E.inOut(st.merge);
+      tower.scale.set(1, Math.max(0.001, E.out(st.tower)) * (1 - 0.22 * mg), 1);
+      tower.position.set(-3.1 * (1 - mg), 0, -0.4 * mg);
+      tower.rotation.y = -0.5 + 0.35 * mg + Math.sin(t * 0.5) * 0.05;
+      const sp = E.out(st.shop), bounce = st.shop < 1 ? Math.sin(st.shop * Math.PI) * 0.35 : 0;
+      shop.scale.setScalar(Math.max(0.001, sp * (1 - 0.18 * mg)));
+      shop.position.set(3.1 * (1 - mg) + 0 * mg, bounce, 1.6 * mg);
+      shop.rotation.y = 0.45 - 0.45 * mg + Math.sin(t * 0.6) * 0.05;
+      towerMat.color.copy(COLD).lerp(WARM, st.warm);
+      towerMat.iridescence = 0.75 * st.warm;
+      towerMat.emissive = towerMat.emissive || new THREE.Color();
+      towerMat.emissive.setRGB(0.12 * st.warm, 0.08 * st.warm, 0.1 * st.warm);
+      S.camera.position.x = Math.sin(t * 0.25) * 0.6;
+      S.camera.lookAt(0, 2.6, 0);
+      S.render();
+    };
+    const p = { t: 0 };
+    tl.fromTo(p, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: () => draw(p.t) }, 0);
+    const prox = (k, v, at, dur) => tl.fromTo(st, { [k]: st[k] }, { [k]: v, duration: dur, ease: "none", onUpdate: () => draw(p.t), immediateRender: false }, at);
+    tl.set(st, { tower: 0, shop: 0, merge: 0, warm: 0 }, 0);
+    prox("tower", 1, a - 0.1, 1.0);
+    prox("shop", 1, b - 0.1, 0.8);
+    prox("merge", 1, c + 0.2, 1.4);
+    prox("warm", 1, d - 0.1, 1.0);
+    draw(0);
+    tl.fromTo("#b2-deux-mondes-lead", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0);
+    tl.to("#b2-deux-mondes-lead", { opacity: 0, duration: 0.3 }, a + 0.6);
+    tl.fromTo("#b2-deux-mondes-c1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a + 0.2);
+    tl.fromTo("#b2-deux-mondes-c2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, b + 0.2);
+    tl.to(["#b2-deux-mondes-c1", "#b2-deux-mondes-c2"], { opacity: 0, y: 30, duration: 0.4, ease: "power2.in" }, c);
+    tl.fromTo("#b2-deux-mondes-both", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }, e - 0.15);
+    tl.fromTo("#b2-deux-mondes-both em", { backgroundPosition: "0% 0%" }, { backgroundPosition: "100% 0%", duration: 1.2, ease: "none" }, e);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

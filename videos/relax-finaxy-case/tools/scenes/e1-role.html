@@ -1,17 +1,17 @@
 <style>
-  #§purple{background:#6955AA}
-  #§q{position:absolute;left:0;right:0;top:330px;height:400px;overflow:hidden;text-align:center;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:236px;line-height:400px;letter-spacing:-.04em;color:#FFFFFF}
+  #§purple{}
+  #§q{position:absolute;left:0;right:0;top:330px;height:400px;overflow:hidden;text-align:center;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:236px;line-height:400px;letter-spacing:-.04em;color:#212C34}
   #§q span{display:inline-block}
-  #§grey{background:#E7E7EC}
-  #§lead{position:absolute;left:0;right:0;top:300px;text-align:center;font-weight:300;font-size:46px;color:#4F575D}
+  #§grey{}
+  #§lead{position:absolute;left:0;right:0;top:300px;text-align:center;font-weight:400;font-size:46px;color:#4F575D}
   #§row{position:absolute;left:0;top:470px;width:1920px;height:110px}
-  .§pill{position:absolute;top:0;height:110px;border-radius:55px;background:#212C34;color:#FFFFFF;font-weight:500;font-size:40px;line-height:110px;text-align:center;white-space:nowrap;overflow:hidden}
-  #§one{position:absolute;left:560px;top:470px;width:800px;height:110px;border-radius:55px;background:#212C34;color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:22px;font-family:Unbounded;font-weight:500;font-size:42px}
+  .§pill{position:absolute;top:0;height:110px;border-radius:55px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;font-size:40px;line-height:110px;text-align:center;white-space:nowrap;overflow:hidden}
+  #§one{position:absolute;left:560px;top:470px;width:800px;height:110px;border-radius:55px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:22px;font-family:Unbounded;font-weight:500;font-size:42px}
   #§one i{display:block;width:30px;height:30px;border-radius:15px;background:#FF0055}
   #§cap{position:absolute;left:0;right:0;top:650px;text-align:center;font-weight:300;font-size:38px;color:#4F575D}
 </style>
-<div class="full" id="§purple"><div id="§q"></div></div>
-<div class="full" id="§grey">
+<div class="full wash" id="§purple"><div id="§q"></div></div>
+<div class="full wash" id="§grey">
   <div id="§lead">Les bons talents, au service du projet.</div>
   <div id="§row"></div>
   <div id="§one"><i></i><span>une seule équipe</span></div>
@@ -53,8 +53,10 @@
     // "à chaque étape": the steps light up in turn
     tl.fromTo("#§cap", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, st - 0.1);
     pills.forEach((p, i) => {
-      tl.to(p, { backgroundColor: "#FF0055", scale: 1.06, duration: 0.14, ease: "power2.out" }, st + i * 0.11);
-      tl.to(p, { backgroundColor: "#212C34", scale: 1, duration: 0.25, ease: "power2.in" }, st + i * 0.11 + 0.16);
+      tl.set(p, { backgroundImage: "none", backgroundColor: "#FF0055" }, st + i * 0.11);
+      tl.to(p, { scale: 1.06, duration: 0.14, ease: "power2.out" }, st + i * 0.11);
+      tl.set(p, { backgroundImage: "linear-gradient(90deg,#1F1F1F,#5D5D5D)" }, st + i * 0.11 + 0.3);
+      tl.to(p, { scale: 1, duration: 0.25, ease: "power2.in" }, st + i * 0.11 + 0.16);
     });
     // "en les faisant jouer comme une seule équipe": they draw together and become one
     tl.to(["#§cap", "#§lead"], { opacity: 0, duration: 0.3 }, j + 0.4);

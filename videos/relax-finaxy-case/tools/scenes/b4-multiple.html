@@ -1,0 +1,49 @@
+<style>
+  #§k1{position:absolute;left:150px;top:300px;font-weight:400;font-size:52px;color:#6B7278}
+  .§big{position:absolute;left:140px;height:300px;overflow:hidden}
+  .§big span{display:block;font-family:Unbounded;font-weight:600;font-size:240px;line-height:300px;letter-spacing:-.04em;color:#212C34;white-space:nowrap}
+  .§big em{font-style:normal;color:#6955AA}
+  #§rows{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  .§row{position:absolute;left:0;height:190px;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:150px;line-height:190px;letter-spacing:-.03em}
+  #§mpill{position:absolute;left:460px;top:478px;width:1000px;height:124px;font-family:Unbounded;font-size:44px;line-height:124px;box-shadow:0 30px 60px rgba(33,44,52,.25)}
+</style>
+<div class="full wash"></div>
+<div id="§k1">Une proposition de</div>
+<div class="§big" style="top:370px"><span id="§b1">valeur <em>clé</em></span></div>
+<div id="§rows"></div>
+<div class="btn" id="§mpill" data-layout-allow-overlap>le risque est devenu multiple</div>
+{{HUD:#62666B|02 — RÉVÉLER}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["2.10"], b = VO["2.11"];
+    tl.fromTo("#§k1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a - 0.05);
+    tl.fromTo("#§b1", { y: 300 }, { y: 0, duration: 0.8, ease: "expo.out" }, a + 0.15);
+    tl.to(["#§k1", "#§b1"], { y: -340, opacity: 0, duration: 0.5, ease: "expo.in" }, b - 0.45);
+    // the risks of the manifesto multiply in giant crossing rows
+    const RISKS = ["climatique", "humain", "cyber", "réglementaire", "géopolitique", "réputationnel"];
+    const COLS = ["#212C34", "#7E6CC4", "#212C34", "#4B8A93", "#212C34", "#AA5655"];
+    const rows = [];
+    for (let i = 0; i < 6; i++) {
+      const r = document.createElement("div");
+      r.className = ID + "-row";
+      r.style.top = (-30 + i * 190) + "px";
+      const seq = [...RISKS.slice(i), ...RISKS.slice(0, i)];
+      r.textContent = [...seq, ...seq].join("  ·  ");
+      r.style.color = COLS[i];
+      r.setAttribute("data-layout-allow-overlap", "");
+      $("rows").appendChild(r);
+      rows.push(r);
+    }
+    rows.forEach((r, i) => {
+      const dir = i % 2 ? 1 : -1, x0 = dir > 0 ? -2600 : 0;
+      tl.fromTo(r, { x: x0 + dir * -1400, opacity: 0 }, { x: x0, opacity: 1, duration: 0.7, ease: "expo.out" }, b - 0.25 + i * 0.05);
+      tl.to(r, { x: x0 + dir * 600, duration: D - b, ease: "none" }, b + 0.45 + i * 0.05);
+    });
+    tl.fromTo("#§mpill", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, b + 0.45);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

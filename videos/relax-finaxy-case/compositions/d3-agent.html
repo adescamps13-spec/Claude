@@ -24,75 +24,149 @@
 #root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
 #root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
 #root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
 
       </style>
-      <div id="root" data-composition-id="d3-agent" data-width="1920" data-height="1080" data-duration="7.81">
+      <div id="root" data-composition-id="d3-agent" data-width="1920" data-height="1080" data-duration="7.31">
 <style>
-  #d3-agent-q{position:absolute;left:0;right:0;top:150px;text-align:center;font-weight:300;font-size:54px;color:#212C34}
-  #d3-agent-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1700px;perspective-origin:960px 300px}
-  #d3-agent-cake{position:absolute;left:560px;top:420px;width:800px;height:460px;transform-style:preserve-3d;transform:rotateX(60deg) rotateZ(-28deg)}
-  .d3-agent-slab{position:absolute;inset:0;border-radius:40px;transform-style:preserve-3d}
-  .d3-agent-slab b{position:absolute;left:56px;bottom:46px;font-family:Unbounded;font-weight:500;font-size:58px;color:#FFFFFF;letter-spacing:-.01em}
-  .d3-agent-side{position:absolute;inset:0;border-radius:40px}
-  #d3-agent-cherry{position:absolute;left:890px;top:0;width:140px;height:140px;border-radius:70px;background:radial-gradient(circle at 34% 30%,#FF8FB4 0%,#FF0055 38%,#C2003F 78%,#8E002E 100%);box-shadow:0 18px 30px rgba(140,0,46,.35)}
-  #d3-agent-ring{position:absolute;opacity:0;left:870px;top:340px;width:180px;height:180px;border-radius:90px;border:3px solid #FF0055}
-  #d3-agent-bub{position:absolute;left:1130px;top:250px;width:640px;height:230px;border-radius:32px;background:#FFFFFF;box-shadow:0 30px 70px rgba(33,44,52,.16);transform-origin:0% 60%}
-  #d3-agent-bub::before{content:"";position:absolute;left:-14px;top:150px;width:30px;height:30px;background:#FFFFFF;transform:rotate(45deg);border-radius:4px}
-  #d3-agent-lbl{position:absolute;left:40px;top:34px;font-weight:600;font-size:20px;letter-spacing:.16em;color:#62666B}
-  #d3-agent-lbl i{display:inline-block;width:14px;height:14px;border-radius:7px;background:#FF0055;margin-right:12px;vertical-align:1px}
-  #d3-agent-line{position:absolute;left:40px;top:92px;width:570px;font-family:Unbounded;font-weight:500;font-size:44px;line-height:1.2;color:#212C34;white-space:nowrap}
-  #d3-agent-caret{display:inline-block;width:4px;height:46px;margin-left:6px;vertical-align:-8px;background:#FF0055}
-  .d3-agent-who{position:absolute;height:58px;padding:0 26px 0 50px;border-radius:29px;background:#212C34;color:#FFFFFF;font-weight:500;font-size:24px;line-height:58px;white-space:nowrap}
-  .d3-agent-who::before{content:"";position:absolute;left:22px;top:21px;width:16px;height:16px;border-radius:8px;background:#FF0055}
+  #d3-agent-gl{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  #d3-agent-q{position:absolute;left:0;right:0;top:120px;text-align:center;font-family:Unbounded;font-weight:500;font-size:60px;color:#212C34}
+  #d3-agent-ui{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  .d3-agent-res{position:absolute;left:110px;width:400px;height:132px;border-radius:24px;background:#FFFFFF;box-shadow:0 16px 36px rgba(42,34,68,.10);overflow:hidden}
+  .d3-agent-res .d3-agent-th{position:absolute;left:14px;top:14px;width:180px;height:104px;border-radius:12px;background-size:cover;background-position:center}
+  .d3-agent-res b{position:absolute;left:212px;top:30px;width:170px;font-weight:600;font-size:20px;line-height:1.2;color:#2A2244}
+  .d3-agent-res i{position:absolute;left:212px;bottom:24px;font-style:normal;font-weight:500;font-size:15px;color:#2F6C74}
+  .d3-agent-res .d3-agent-glow{position:absolute;inset:0;border-radius:24px;box-shadow:inset 0 0 0 3px #A99CF0;opacity:0}
+  #d3-agent-rl{position:absolute;left:112px;top:170px;font-weight:600;font-size:17px;letter-spacing:.16em;color:#6B7278}
+  #d3-agent-chat{position:absolute;left:580px;top:170px;width:880px;height:720px;border-radius:32px;background:#FFFFFF;box-shadow:0 40px 90px rgba(42,34,68,.16);overflow:hidden}
+  #d3-agent-hd{position:absolute;left:0;right:0;top:0;height:96px;border-bottom:1px solid #EEEAF6}
+  #d3-agent-av{position:absolute;left:30px;top:24px;width:48px;height:48px;border-radius:24px;background:radial-gradient(circle at 34% 30%,#FF8FB4 0%,#FF0055 45%,#C2003F 100%)}
+  #d3-agent-nm{position:absolute;left:96px;top:24px;font-weight:600;font-size:24px;color:#212C34}
+  #d3-agent-st{position:absolute;left:96px;top:56px;font-size:16px;color:#2F6C74}
+  #d3-agent-hd .tag{position:absolute;right:30px;top:26px}
+  #d3-agent-u{position:absolute;right:34px;top:140px;max-width:620px;padding:20px 26px;border-radius:24px 24px 6px 24px;background:#E5E0F5;color:#2A2244;font-size:24px;line-height:1.35}
+  #d3-agent-b{position:absolute;left:34px;top:290px;width:700px;padding:24px 28px;border-radius:24px 24px 24px 6px;background:#F7F6FB;border:1px solid #EEEAF6;color:#191853;font-size:27px;line-height:1.42}
+  #d3-agent-b span{opacity:0}
+  #d3-agent-src{position:absolute;left:34px;top:540px;display:flex;gap:12px}
+  #d3-agent-src div{height:40px;padding:0 18px;border-radius:20px;background:#CCEAEE;color:#224044;font-weight:500;font-size:17px;line-height:40px}
+  #d3-agent-in{position:absolute;left:30px;right:30px;bottom:26px;height:68px;border-radius:34px;background:#F4F2FA;color:#8E899E;font-size:20px;line-height:68px;padding-left:30px;color:#5E5A72}
+  #d3-agent-wl{position:absolute;left:1530px;top:170px;font-weight:600;font-size:17px;letter-spacing:.16em;color:#6B7278}
+  .d3-agent-who{position:absolute;left:1530px;height:62px;padding:0 26px 0 66px;border-radius:31px;background:#FFFFFF;color:#212C34;font-weight:500;font-size:22px;line-height:62px;white-space:nowrap;box-shadow:0 12px 28px rgba(42,34,68,.10)}
+  .d3-agent-who u{position:absolute;left:12px;top:11px;width:40px;height:40px;border-radius:20px;color:#FFFFFF;font-weight:600;font-size:17px;line-height:40px;text-align:center;text-decoration:none}
 </style>
-<div class="full studio"></div>
-<div id="d3-agent-q">La cerise sur le gâteau ?</div>
-<div id="d3-agent-stage"><div id="d3-agent-cake"></div></div>
-<div id="d3-agent-ring"></div>
-<div id="d3-agent-cherry"></div>
-<div id="d3-agent-bub"><div id="d3-agent-lbl"><i></i>AGENT ÉDITORIAL IA</div><div id="d3-agent-line"><span id="d3-agent-typed"></span><span id="d3-agent-caret"></span></div></div>
-<div id="d3-agent-who"></div>
+<div class="full wash"></div>
+<canvas id="d3-agent-gl" width="1920" height="1080"></canvas>
+<div id="d3-agent-q">Cerise sur le gâteau ?</div>
+<div id="d3-agent-ui">
+  <div id="d3-agent-rl">RESSOURCES</div>
+  <div id="d3-agent-chat">
+    <div id="d3-agent-hd"><div id="d3-agent-av"></div><div id="d3-agent-nm">Agent éditorial Finaxy</div><div id="d3-agent-st">nourri par la charte et la plateforme</div><span class="tag tag-p">IA</span></div>
+    <div id="d3-agent-u"><span id="d3-agent-ut"></span></div>
+    <div id="d3-agent-b"></div>
+    <div id="d3-agent-src"><div>Charte éditoriale</div><div>Plateforme de marque</div></div>
+    <div id="d3-agent-in">Écrire un message…</div>
+  </div>
+  <div id="d3-agent-wl">POUR CHACUN</div>
+</div>
 <div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">05 — DÉPLOYER</div>
+<script src="assets/vendor/three.global.js"></script>
+<script src="assets/vendor/three-addons.js"></script>
+<script src="assets/t3.js"></script>
 <script>
   (function () {
-    const ID = "d3-agent", D = 7.81, VO = {"1.0": -60.04, "1.1": -57.39, "1.2": -55.69, "1.3": -51.74, "1.4": -50.0, "1.5": -47.99, "2.0": -45.47, "2.1": -43.39, "2.2": -40.34, "2.3": -37.49, "2.4": -35.2, "2.5": -32.69, "3.0": -29.25, "3.1": -28.28, "3.2": -26.57, "3.3": -25.89, "3.4": -25.31, "3.5": -24.94, "3.6": -23.71, "3.7": -22.74, "3.8": -21.32, "3.9": -20.16, "3.10": -17.7, "3.11": -16.19, "3.12": -14.83, "3.13": -13.16, "4.0": -10.81, "4.1": -10.28, "4.2": -7.81, "4.3": -7.01, "4.4": -6.28, "4.5": -5.03, "4.6": -3.43, "4.7": -2.55, "4.8": 0.15, "4.9": 2.05, "4.10": 4.06, "5.0": 7.96, "5.1": 9.51, "5.2": 12.13, "5.3": 12.93, "5.4": 15.84, "5.5": 16.83, "5.6": 19.53, "5.7": 22.99, "5.8": 24.01, "5.9": 25.26, "5.10": 26.49, "5.11": 27.79, "5.12": 29.54, "5.13": 30.39, "breath": 32.24, "exhale": 33.99};
+    const ID = "d3-agent", D = 7.31, VO = {"1.0": -75.41, "1.1": -72.55, "1.2": -70.76, "1.3": -68.14, "1.4": -64.42, "1.5": -62.53, "2.0": -59.78, "2.1": -57.53, "2.2": -54.64, "2.3": -52.63, "2.4": -50.44, "2.5": -48.84, "2.6": -47.76, "2.7": -45.84, "2.8": -45.36, "2.9": -42.88, "2.10": -38.4, "2.11": -36.34, "2.12": -33.68, "3.0": -30.5, "3.1": -29.51, "3.2": -27.76, "3.3": -26.62, "3.4": -25.67, "3.5": -24.7, "3.6": -23.34, "3.7": -22.62, "3.8": -20.79, "3.9": -19.66, "3.10": -16.22, "3.11": -15.11, "3.12": -13.31, "4.0": -10.36, "4.1": -8.18, "4.2": -6.68, "4.3": -5.87, "4.4": -4.91, "4.5": -3.66, "4.6": -2.52, "4.7": 0.15, "4.8": 1.67, "4.9": 3.15, "5.0": 7.46, "5.1": 9.01, "5.2": 11.78, "5.3": 12.58, "5.4": 15.53, "5.5": 16.74, "5.6": 20.08, "5.7": 23.25, "5.8": 24.29, "5.9": 25.62, "5.10": 26.56, "5.11": 27.53, "5.12": 29.05, "5.13": 29.82, "breath": 31.6, "exhale": 33.35};
     const $ = (s) => document.getElementById(ID + "-" + s);
     const tl = gsap.timeline({ paused: true });
-    const a = VO["4.8"], ag = VO["4.9"], ch = VO["4.10"];
-    // the cake: every layer of the project, stacked — platform, identity, supports, site
-    const LAY = [["la plateforme", "#6955AA", "#4E3F86"], ["l’identité", "#56A0AA", "#3F7A82"], ["les supports", "#212C34", "#11181D"], ["le site", "#D4CCEE", "#A99FCF"]];
-    LAY.forEach(([t, c, d], i) => {
-      const s = document.createElement("div");
-      s.className = ID + "-slab";
-      s.innerHTML = `<div class="${ID}-side" style="background:${d};transform:translateZ(0px)"></div><div class="${ID}-side" style="background:${d};transform:translateZ(16px)"></div><div class="${ID}-side" style="background:${c};transform:translateZ(34px)"><b data-layout-allow-overlap style="color:${i === 3 ? "#3D2F7A" : "#FFFFFF"}">${t}</b></div>`;
-      $("cake").appendChild(s);
-      tl.fromTo(s, { z: 900 + i * 120, opacity: 0 }, { z: i * 70, opacity: 1, duration: 0.7, ease: "expo.out" }, Math.max(0, a - 0.3) + i * 0.12);
+    const a = VO["4.7"], ag = VO["4.8"], ch = VO["4.9"], CUT = ag - 0.12;
+    // ── the cake and its cherry, a small glossy 3D object ──
+    const S = T3.stage($("gl"), { w: 1920, h: 1080, fov: 26, camZ: 14, camY: 3.2 });
+    S.camera.lookAt(0, 0.9, 0);
+    const cake = new THREE.Group();
+    [[1.75, 0.8, 0xbdb0f2], [1.35, 0.7, 0xf6eee2], [0.95, 0.62, 0xf4b3dc]].reduce((y, [rad, h, c]) => {
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(rad, rad, h, 64, 1), T3.clay(c, { roughness: 0.42 }));
+      m.position.y = y + h / 2; cake.add(m);
+      const lip = new THREE.Mesh(new THREE.TorusGeometry(rad, 0.07, 16, 80), T3.clay(0xffffff, { roughness: 0.35 }));
+      lip.rotation.x = Math.PI / 2; lip.position.y = y + h; cake.add(lip);
+      return y + h;
+    }, 0);
+    const shC = T3.shadow(2.6, 0.22); shC.position.y = 0.01; cake.add(shC);
+    S.scene.add(cake);
+    const cherry = new THREE.Group();
+    const berry = new THREE.Mesh(new THREE.SphereGeometry(0.42, 64, 48), T3.glossy(0xff1f66, { irid: 0.25, roughness: 0.12 }));
+    cherry.add(berry);
+    const stemCurve = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0.3, 0), new THREE.Vector3(0.08, 0.7, 0), new THREE.Vector3(0.3, 0.95, 0)]);
+    const stem = new THREE.Mesh(new THREE.TubeGeometry(stemCurve, 24, 0.035, 8), T3.clay(0x6e8f5a));
+    cherry.add(stem);
+    S.scene.add(cherry);
+    const TOP = 2.12 + 0.42;
+    const draw = (t) => {
+      const k = T3.ease.clamp((t - a - 0.35) / 0.55);
+      // drop with a bounce, squash on landing
+      const fall = k < 1 ? 6 * (1 - k * k) : 0, land = T3.ease.clamp((t - a - 0.9) / 0.35);
+      cherry.position.set(0, TOP + fall + Math.sin(land * Math.PI) * 0.35 * (1 - land), 0);
+      const sq = land > 0 && land < 1 ? 1 - 0.18 * Math.sin(land * Math.PI) : 1;
+      berry.scale.set(1 / Math.sqrt(sq), sq, 1 / Math.sqrt(sq));
+      cake.rotation.y = -0.4 + t * 0.35;
+      cherry.rotation.y = cake.rotation.y;
+      S.camera.position.x = Math.sin(t * 0.4) * 1.2;
+      S.camera.lookAt(0, 2.0, 0);
+      S.render();
+    };
+    const p = { t: 0 };
+    tl.fromTo(p, { t: 0 }, { t: CUT, duration: CUT, ease: "none", onUpdate: () => draw(p.t) }, 0);
+    draw(0);
+    tl.fromTo("#d3-agent-q", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, a - 0.05);
+    tl.fromTo("#d3-agent-gl", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, 0);
+    // ── cut: the cherry becomes the agent's avatar ──
+    tl.set(["#d3-agent-gl", "#d3-agent-q"], { display: "none" }, CUT);
+    tl.fromTo("#d3-agent-ui", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, CUT);
+    tl.fromTo("#d3-agent-chat", { y: 120, scale: 0.94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.6, ease: "expo.out" }, CUT);
+    tl.fromTo("#d3-agent-av", { scale: 3 }, { scale: 1, duration: 0.6, ease: "expo.out" }, CUT);
+    // every resource the agent writes from (real Finaxy documents)
+    const RES = [["charte-1.png", "Charte éditoriale", "assets/real/"], ["plateforme-01.png", "Plateforme de marque", "assets/real/"], ["site-long.jpg", "Site finaxy.com", "assets/cards/"], ["kakemono.jpg", "Supports & signature", "assets/real/"]];
+    const res = RES.map(([f, l, dir], i) => {
+      const d = document.createElement("div");
+      d.className = ID + "-res";
+      d.style.top = 210 + i * 162 + "px";
+      d.innerHTML = `<div class="${ID}-th" style="background-image:url(${dir}${f})"></div><b>${l}</b><i>● connecté</i><div class="${ID}-glow"></div>`;
+      $("ui").appendChild(d);
+      tl.fromTo(d, { x: -80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, CUT + 0.15 + i * 0.08);
+      return d;
     });
-    tl.fromTo("#d3-agent-cake", { rotationZ: -36 }, { rotationZ: -24, duration: D, ease: "sine.inOut" }, 0);
-    tl.fromTo("#d3-agent-q", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a);
-    // the cherry drops on top
-    tl.fromTo("#d3-agent-cherry", { y: -260 }, { y: 360, duration: 0.75, ease: "bounce.out" }, a + 0.55);
-    // "Un agent éditorial IA": the little extra on top — the cherry glows and speaks, in a small bubble beside it
-    tl.to("#d3-agent-q", { opacity: 0, y: -20, duration: 0.35, ease: "power2.in" }, ag - 0.3);
-    tl.to(["#d3-agent-stage", "#d3-agent-cherry"], { x: -330, duration: 0.8, ease: "expo.inOut" }, ag - 0.3);
-    tl.fromTo("#d3-agent-ring", { x: -330, scale: 0.7, opacity: 0.85 }, { x: -330, scale: 1.6, opacity: 0, duration: 1.0, ease: "power2.out", immediateRender: false }, ag + 0.3);
-    tl.fromTo("#d3-agent-bub", { x: -330, scale: 0.2, opacity: 0 }, { x: -330, scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }, ag + 0.35);
-    // it writes in the brand's voice (an example line from the Finaxy editorial charter)
-    const LINE = "On regarde ça ensemble.", typed = $("typed"), ty = { n: 0 };
-    tl.fromTo(ty, { n: 0 }, { n: LINE.length, duration: 1.0, ease: "none", immediateRender: false, onUpdate: () => (typed.textContent = LINE.slice(0, Math.round(ty.n))) }, ag + 0.85);
-    tl.fromTo("#d3-agent-caret", { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "steps(1)", repeat: Math.floor((D - ag) / 0.5), yoyo: true }, ag + 0.4);
-    // "pour que chacun puisse écrire comme Finaxy": the teams gather round the same voice
-    const WHO = [["Direction", 1010, 560], ["Commercial", 1290, 600], ["Gestion", 1560, 560], ["Ressources humaines", 1080, 680], ["Communication", 1440, 680]];
-    WHO.forEach(([t, x, y], i) => {
+    tl.fromTo("#d3-agent-rl", { opacity: 0 }, { opacity: 1, duration: 0.3 }, CUT + 0.1);
+    // a request, typed
+    const ASK = "Rédige l’annonce de notre nouvelle identité.", ty = { n: 0 };
+    tl.fromTo("#d3-agent-u", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25 }, CUT + 0.35);
+    tl.fromTo(ty, { n: 0 }, { n: ASK.length, duration: 0.8, ease: "none", immediateRender: false, onUpdate: () => ($("ut").textContent = ASK.slice(0, Math.round(ty.n))) }, CUT + 0.35);
+    // the resources light up as it answers, in the Finaxy voice (first line of Finaxy's own announcement)
+    res.forEach((d, i) => tl.to(d.querySelector("." + ID + "-glow"), { opacity: 1, duration: 0.2, yoyo: true, repeat: 1 }, CUT + 1.2 + i * 0.15));
+    const ANS = "Dix-sept ans après sa création, Finaxy ouvre un nouveau chapitre de son histoire. Ensemble, protégeons ce qui compte.";
+    $("b").innerHTML = ANS.split(" ").map((w) => `<span>${w} </span>`).join("");
+    tl.fromTo("#d3-agent-b", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25 }, CUT + 1.25);
+    tl.to("#d3-agent-b span", { opacity: 1, duration: 0.08, stagger: 0.07 }, CUT + 1.35);
+    tl.fromTo("#d3-agent-src div", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", stagger: 0.08 }, CUT + 1.35 + 18 * 0.07);
+    // "pour que chacun puisse écrire comme Finaxy": every team, the same voice
+    const WHO = [["Direction", "D", "#6955AA"], ["Commercial", "C", "#3E7C85"], ["Gestion", "G", "#8E3F3E"], ["Ressources humaines", "RH", "#6E6830"], ["Communication", "Co", "#6955AA"], ["Agences", "A", "#3E7C85"]];
+    WHO.forEach(([l, ini, c], i) => {
       const d = document.createElement("div");
       d.className = ID + "-who";
-      d.textContent = t;
-      d.style.left = x + "px";
-      d.style.top = y + "px";
-      $("who").appendChild(d);
-      tl.fromTo(d, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.2)" }, ch - 0.1 + i * 0.12);
+      d.style.top = 214 + i * 96 + "px";
+      d.innerHTML = `<u style="background:${c}">${ini}</u>${l}`;
+      $("ui").appendChild(d);
+      tl.fromTo(d, { x: 60, opacity: 0, scale: 0.8 }, { x: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, ch - 0.05 + i * 0.12);
     });
-    tl.to("#d3-agent-who", { y: -10, duration: D - ch, ease: "sine.inOut" }, ch + 0.4);
+    tl.fromTo("#d3-agent-wl", { opacity: 0 }, { opacity: 1, duration: 0.3 }, ch - 0.1);
     window.__timelines = window.__timelines || {};
     window.__timelines[ID] = tl;
   })();

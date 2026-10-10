@@ -30,11 +30,11 @@ cue["breath"], cue["exhale"] = breath, exhale
 
 # (scene id, phrase that opens it)
 SCENES = [
-    ("a1-onze", None), ("a2-groupe", "1.1"), ("a4-coherence", "1.4"),
-    ("b1-ecouter", "2.0"), ("b2-multiple", "2.3"),
-    ("c1-organiser", "3.0"), ("c2-corps", "3.6"), ("c3-stature", "3.11"),
-    ("d1-supports", "4.0"), ("d2-site", "4.6"), ("d3-agent", "4.8"),
-    ("e1-role", "5.0"), ("e2-autour", "5.4"), ("e3-promesse", "5.7"),
+    ("a1-rang", None), ("a2-croissance", "1.1"), ("a3-marque", "1.2"), ("a4-coherence", "1.5"),
+    ("b1-ecouter", "2.0"), ("b2-deux-mondes", "2.2"), ("b3-reseau", "2.7"), ("b4-multiple", "2.10"), ("b5-isolee", "2.12"),
+    ("c1-structure", "3.0"), ("c2-corps", "3.6"), ("c3-stature", "3.10"),
+    ("d0-decliner", "4.0"), ("d1-supports", "4.2"), ("d2-site", "4.6"), ("d3-agent", "4.7"),
+    ("e1-role", "5.0"), ("e2-organigramme", "5.4"), ("e3-autour", "5.6"), ("e4-cotes", "5.7"), ("e5-promesse", "5.12"),
     ("f-relax", "breath"),
 ]
 starts = [0.0 if k is None else round(cue[k] - (0.3 if k == "breath" else LEAD), 3) for _, k in SCENES]

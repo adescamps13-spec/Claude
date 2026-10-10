@@ -24,51 +24,64 @@
 #root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
 #root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
 #root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
 
       </style>
-      <div id="root" data-composition-id="c2-corps" data-width="1920" data-height="1080" data-duration="7.52">
+      <div id="root" data-composition-id="c2-corps" data-width="1920" data-height="1080" data-duration="7.12">
 <style>
-  #c2-corps-spot{background:radial-gradient(48% 52% at 50% 50%,#24203A 0%,#14111D 70%,#0E0C14 100%)}
-  #c2-corps-word{position:absolute;left:0;top:300px;height:480px;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:470px;line-height:480px;letter-spacing:-.04em;color:#221E33}
+  #c2-corps-spot{}
+  #c2-corps-word{position:absolute;left:0;top:300px;height:480px;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:470px;line-height:480px;letter-spacing:-.04em;color:#ECE8F7}
+  #c2-corps-word::before{content:"DU CORPS"}
   #c2-corps-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1600px;perspective-origin:960px 520px}
   #c2-corps-deck{position:absolute;inset:0;transform-style:preserve-3d}
   #c2-corps-card{position:absolute;left:700px;top:375px;width:520px;height:330px;transform-style:preserve-3d}
-  .c2-corps-face{position:absolute;inset:0;border-radius:26px;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+  .c2-corps-face{position:absolute;inset:0;border-radius:26px;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 40px 80px rgba(42,34,68,.28)}
   #c2-corps-front{background:url(assets/cards/oldlogo.png) 0 0/520px 330px}
   #c2-corps-back{background:url(assets/cards/newlogo.png) 0 0/520px 330px;transform:rotateY(180deg);overflow:hidden}
   #c2-corps-sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 32%,rgba(255,255,255,.3) 47%,transparent 60%);background-size:260% 100%}
-  .c2-corps-sw{position:absolute;left:850px;top:390px;width:220px;height:300px;border-radius:18px;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+  .c2-corps-sw{position:absolute;left:850px;top:390px;width:220px;height:300px;border-radius:18px;box-shadow:0 30px 60px rgba(42,34,68,.22)}
   .c2-corps-sw b{position:absolute;left:20px;bottom:46px;font-weight:600;font-size:22px}
-  .c2-corps-sw i{position:absolute;left:20px;bottom:20px;font-style:normal;font-weight:600;font-size:15px;letter-spacing:.12em;opacity:.75}
+  .c2-corps-sw i{position:absolute;left:20px;bottom:20px;font-style:normal;font-weight:700;font-size:20px;letter-spacing:.08em}
   .c2-corps-sw.c2-corps-aa span{position:absolute;left:20px;top:26px;font-family:'Instrument Serif';font-size:130px;line-height:1;color:#191853}
-  #c2-corps-tag{position:absolute;left:0;right:0;top:420px;text-align:center;font-family:'Instrument Serif';font-size:128px;line-height:1.05;color:#F4F1EB}
+  #c2-corps-tag{position:absolute;left:0;right:0;top:420px;text-align:center;font-family:'Instrument Serif';font-size:128px;line-height:1.05;color:#191853}
   .c2-corps-ln{display:block;overflow:hidden;height:136px}
   .c2-corps-ln span{display:inline-block}
-  #c2-corps-sig{position:absolute;left:0;right:0;top:350px;text-align:center;font-weight:600;font-size:18px;letter-spacing:.2em;color:#FF5C8D}
-  #c2-corps-label{position:absolute;left:0;right:0;top:200px;text-align:center;font-weight:600;font-size:18px;letter-spacing:.2em;color:#8E87A6}
+  #c2-corps-sig{position:absolute;left:0;right:0;top:350px;text-align:center;font-weight:600;font-size:18px;letter-spacing:.2em;color:#FF0055}
+  #c2-corps-label{position:absolute;left:0;right:0;top:200px;text-align:center;font-weight:600;font-size:18px;letter-spacing:.2em;color:#6B7278}
 </style>
-<div class="full" id="c2-corps-spot"></div>
-<div id="c2-corps-word" data-layout-allow-overlap>DU CORPS</div>
+<div class="full wash" id="c2-corps-spot"></div>
+<div id="c2-corps-word" aria-hidden="true"></div>
 <div id="c2-corps-label">LOGO · IDENTITÉ · VOIX</div>
 <div id="c2-corps-sig">LA SIGNATURE</div>
 <div id="c2-corps-stage"><div id="c2-corps-deck">
   <div id="c2-corps-card"><div class="c2-corps-face" id="c2-corps-front"></div><div class="c2-corps-face" id="c2-corps-back"><div id="c2-corps-sheen"></div></div></div>
 </div></div>
 <div id="c2-corps-tag"><span class="c2-corps-ln"><span id="c2-corps-t1">Ensemble, protégeons</span></span><span class="c2-corps-ln"><span id="c2-corps-t2">ce qui compte.</span></span></div>
-<div class="hud" style="left:70px;color:#6F6A80">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#6F6A80">04 — EXPRIMER</div>
+<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">04 — EXPRIMER</div>
 <script>
   (function () {
-    const ID = "c2-corps", D = 7.52, VO = {"1.0": -36.18, "1.1": -33.53, "1.2": -31.83, "1.3": -27.88, "1.4": -26.14, "1.5": -24.13, "2.0": -21.61, "2.1": -19.53, "2.2": -16.48, "2.3": -13.63, "2.4": -11.34, "2.5": -8.83, "3.0": -5.39, "3.1": -4.42, "3.2": -2.71, "3.3": -2.03, "3.4": -1.45, "3.5": -1.08, "3.6": 0.15, "3.7": 1.12, "3.8": 2.54, "3.9": 3.7, "3.10": 6.16, "3.11": 7.67, "3.12": 9.03, "3.13": 10.7, "4.0": 13.05, "4.1": 13.58, "4.2": 16.05, "4.3": 16.85, "4.4": 17.58, "4.5": 18.83, "4.6": 20.43, "4.7": 21.31, "4.8": 24.01, "4.9": 25.91, "4.10": 27.92, "5.0": 31.82, "5.1": 33.37, "5.2": 35.99, "5.3": 36.79, "5.4": 39.7, "5.5": 40.69, "5.6": 43.39, "5.7": 46.85, "5.8": 47.87, "5.9": 49.12, "5.10": 50.35, "5.11": 51.65, "5.12": 53.4, "5.13": 54.25, "breath": 56.1, "exhale": 57.85};
+    const ID = "c2-corps", D = 7.12, VO = {"1.0": -51.92, "1.1": -49.06, "1.2": -47.27, "1.3": -44.65, "1.4": -40.93, "1.5": -39.04, "2.0": -36.29, "2.1": -34.04, "2.2": -31.15, "2.3": -29.14, "2.4": -26.95, "2.5": -25.35, "2.6": -24.27, "2.7": -22.35, "2.8": -21.87, "2.9": -19.39, "2.10": -14.91, "2.11": -12.85, "2.12": -10.19, "3.0": -7.01, "3.1": -6.02, "3.2": -4.27, "3.3": -3.13, "3.4": -2.18, "3.5": -1.21, "3.6": 0.15, "3.7": 0.87, "3.8": 2.7, "3.9": 3.83, "3.10": 7.27, "3.11": 8.38, "3.12": 10.18, "4.0": 13.13, "4.1": 15.31, "4.2": 16.81, "4.3": 17.62, "4.4": 18.58, "4.5": 19.83, "4.6": 20.97, "4.7": 23.64, "4.8": 25.16, "4.9": 26.64, "5.0": 30.95, "5.1": 32.5, "5.2": 35.27, "5.3": 36.07, "5.4": 39.02, "5.5": 40.23, "5.6": 43.57, "5.7": 46.74, "5.8": 47.78, "5.9": 49.11, "5.10": 50.05, "5.11": 51.02, "5.12": 52.54, "5.13": 53.31, "breath": 55.09, "exhale": 56.84};
     const $ = (s) => document.getElementById(ID + "-" + s);
     const tl = gsap.timeline({ paused: true });
-    const a = VO["3.6"], body = VO["3.7"], logo = VO["3.8"], idt = VO["3.9"], voice = VO["3.10"];
+    const a = VO["3.6"], body = VO["3.7"], logo = VO["3.8"], idt = VO["3.9"], voice = VO["3.9"] + 1.5; // "et une voix plus affirmée" (fine silence at +1.50 s)
     // the old mark comes forward out of the dark, idling in 3D
     tl.fromTo("#c2-corps-card", { z: -900, rotationY: -30, rotationX: 20, opacity: 0 }, { z: 0, rotationY: -12, rotationX: 6, opacity: 1, duration: 1.1, ease: "expo.out" }, a - 0.1);
     tl.to("#c2-corps-card", { rotationY: 10, rotationX: -4, duration: logo - a - 1.35, ease: "sine.inOut" }, a + 1.05);
     tl.fromTo("#c2-corps-word", { x: 600, opacity: 0 }, { x: 40, opacity: 1, duration: 0.9, ease: "expo.out" }, body - 0.1);
     tl.to("#c2-corps-word", { x: -900, duration: voice - body, ease: "none" }, body + 0.8);
     // "un nouveau logo": the card turns over
-    tl.to("#c2-corps-card", { rotationY: 180, rotationX: 0, z: 120, duration: 0.95, ease: "expo.inOut" }, logo - 0.25);
+    tl.to("#c2-corps-card", { rotationY: 180, rotationX: 0, z: 120, duration: 0.6, ease: "expo.inOut" }, logo - 0.05); // the switch lands on "un nouveau logo"
     tl.fromTo("#c2-corps-sheen", { backgroundPosition: "140% 0%" }, { backgroundPosition: "-60% 0%", duration: 1.0, ease: "power2.inOut" }, logo + 0.5);
     // "une nouvelle identité": the system fans out from behind the mark
     const SW = [["#191853", "#191853", "#F4F1EB"], ["#5A80D9", "#5A80D9", "#FFFFFF"], ["#4A5892", "#4A5892", "#FFFFFF"],

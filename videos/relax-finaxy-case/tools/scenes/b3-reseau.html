@@ -1,0 +1,85 @@
+<style>
+  #§title{position:absolute;left:0;right:0;top:110px;text-align:center;font-family:Unbounded;font-weight:500;font-size:54px;letter-spacing:-.01em;color:#212C34}
+  #§title em{font-style:normal;background:linear-gradient(100deg,#6955AA,#F4A3D2 50%,#56A0AA);-webkit-background-clip:text;background-clip:text;color:transparent}
+  #§net{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  .§n{position:absolute;left:0;top:0;height:58px;padding:0 24px 0 46px;border-radius:29px;background:#FFFFFF;color:#2A2244;font-weight:500;font-size:24px;line-height:58px;white-space:nowrap;box-shadow:0 12px 28px rgba(42,34,68,.10)}
+  .§n::before{content:"";position:absolute;left:20px;top:21px;width:16px;height:16px;border-radius:8px;background:var(--c)}
+  #§prob{position:absolute;left:120px;top:540px;height:84px;padding:0 40px;font-size:30px;line-height:84px}
+  #§pulse{position:absolute;left:0;top:0;width:200px;height:200px;border-radius:50%;border:3px solid #A99CF0;opacity:0}
+</style>
+<div class="full wash"></div>
+<svg id="§net" viewBox="0 0 1920 1080"></svg>
+<div id="§nodes"></div>
+<div id="§pulse"></div>
+<div class="btn" id="§prob">une problématique dédiée</div>
+<div id="§title">une <em>intelligence collective</em> du risque</div>
+{{HUD:#62666B|02 — RÉVÉLER}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    // real Finaxy expertises (finaxy.com menu)
+    const EXP = ["Dommages aux biens", "Responsabilité civile", "Fraude et Cyber", "Flotte automobile", "Assurance santé", "Prévoyance",
+      "Retraite", "Protection des dirigeants", "Assurance-crédit", "Caution", "Assurance voyages", "Plaisance", "Univers équin", "Forêts et lacs"];
+    const COL = ["#6955AA", "#56A0AA", "#AA5655", "#8C853F"];
+    const POS = [[560, 300], [900, 250], [1260, 300], [1600, 360], [700, 450], [1080, 420], [1440, 500], [560, 620], [880, 600], [1240, 640], [1620, 680], [700, 800], [1060, 820], [1420, 850]];
+    const PICK = [1, 2, 7]; // the ones this problem needs
+    const nodes = EXP.map((t, i) => {
+      const d = document.createElement("div");
+      d.className = ID + "-n";
+      d.textContent = t;
+      d.style.setProperty("--c", COL[i % 4]);
+      $("nodes").appendChild(d);
+      return { el: d, x: POS[i][0], y: POS[i][1] };
+    });
+    nodes.forEach((n) => gsap.set(n.el, { x: n.x, y: n.y }));
+    // links between neighbours (dashed, like layout guides)
+    const svg = $("net"), NS = "http://www.w3.org/2000/svg", links = [];
+    const cx = (n) => n.x + n.el.offsetWidth / 2 || n.x + 120, cy = (n) => n.y + 29;
+    nodes.forEach((a, i) => nodes.forEach((b, j) => {
+      if (j <= i) return;
+      const dd = Math.hypot(a.x - b.x, a.y - b.y);
+      if (dd > 420) return;
+      const l = document.createElementNS(NS, "line");
+      l.setAttribute("x1", a.x + 110); l.setAttribute("y1", a.y + 29); l.setAttribute("x2", b.x + 110); l.setAttribute("y2", b.y + 29);
+      l.setAttribute("stroke", "#B9B2D3"); l.setAttribute("stroke-width", "2"); l.setAttribute("stroke-dasharray", "6 8");
+      svg.appendChild(l);
+      links.push(l);
+    }));
+    const hot = PICK.map((i) => {
+      const l = document.createElementNS(NS, "line");
+      l.setAttribute("x1", 420); l.setAttribute("y1", 582); l.setAttribute("x2", nodes[i].x + 110); l.setAttribute("y2", nodes[i].y + 29);
+      l.setAttribute("stroke", "#FF0055"); l.setAttribute("stroke-width", "4"); l.setAttribute("stroke-linecap", "round");
+      l.setAttribute("pathLength", "1"); l.setAttribute("stroke-dasharray", "1"); l.setAttribute("stroke-dashoffset", "1");
+      svg.appendChild(l);
+      return l;
+    });
+    const a = VO["2.7"], b = VO["2.8"], c = VO["2.9"];
+    tl.fromTo("#§title", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, b - 0.1);
+    nodes.forEach((n, i) => tl.fromTo(n.el, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, a + 0.1 + i * 0.09));
+    tl.fromTo(links, { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.02 }, a + 0.6);
+    // the network breathes while it waits
+    nodes.forEach((n, i) => tl.to(n.el, { y: n.y + (i % 2 ? -8 : 8), duration: 1.6, ease: "sine.inOut", yoyo: true, repeat: 1 }, a + 1.5));
+    // "qui va chercher et activer la bonne expertise sur une problématique dédiée"
+    tl.fromTo("#§prob", { x: -500, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7, ease: "expo.out" }, c - 0.1);
+    tl.set("#§pulse", { x: 320, y: 482 }, 0);
+    tl.fromTo("#§pulse", { scale: 0.5, opacity: 0.9 }, { scale: 16, opacity: 0, duration: 1.4, ease: "power1.out", immediateRender: false }, c + 0.5);
+    nodes.forEach((n, i) => {
+      const at = c + 0.5 + (Math.hypot(n.x - 420, n.y - 582) / 1500) * 1.4;
+      tl.to(n.el, { backgroundColor: "#E5E0F5", duration: 0.12, yoyo: true, repeat: 1 }, at);
+    });
+    hot.forEach((l, k) => tl.to(l, { attr: { "stroke-dashoffset": 0 }, duration: 0.45, ease: "power2.out" }, c + 1.6 + k * 0.12));
+    PICK.forEach((i, k) => tl.to(nodes[i].el, { backgroundColor: "#FF0055", color: "#FFFFFF", scale: 1.12, duration: 0.3, ease: "back.out(2)" }, c + 1.9 + k * 0.12));
+    tl.to(nodes.filter((_, i) => !PICK.includes(i)).map((n) => n.el), { opacity: 0.25, duration: 0.5 }, c + 2.1);
+    tl.to(links, { opacity: 0.15, duration: 0.5 }, c + 2.1);
+    // the right experts gather on the problem
+    PICK.forEach((i, k) => {
+      tl.to(nodes[i].el, { x: 610, y: 466 + k * 76, scale: 1, duration: 0.8, ease: "expo.inOut" }, c + 2.75 + k * 0.08);
+    });
+    tl.to(hot, { opacity: 0, duration: 0.3 }, c + 2.75);
+    tl.to("#§prob", { x: -20, duration: 0.8, ease: "expo.inOut" }, c + 2.75);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

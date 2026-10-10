@@ -24,11 +24,23 @@
 #root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
 #root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
 #root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
 
       </style>
-      <div id="root" data-composition-id="c3-stature" data-width="1920" data-height="1080" data-duration="5.38">
+      <div id="root" data-composition-id="c3-stature" data-width="1920" data-height="1080" data-duration="5.86">
 <style>
-  #c3-stature-pill{position:absolute;left:760px;top:170px;width:400px;height:80px;border-radius:40px;background:#212C34;color:#FFFFFF;font-weight:500;font-size:32px;line-height:80px;text-align:center}
+  #c3-stature-pill{position:absolute;left:760px;top:170px;width:400px;height:80px;border-radius:40px;font-size:32px;line-height:80px}
   #c3-stature-pre{position:absolute;left:150px;top:360px;font-weight:300;font-size:50px;color:#6B7278}
   #c3-stature-big{position:absolute;left:0;right:0;top:420px;height:330px;overflow:hidden;text-align:center;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:300px;line-height:330px;letter-spacing:-.04em;color:#212C34}
   #c3-stature-big span{display:inline-block}
@@ -36,8 +48,8 @@
   #c3-stature-photo{position:absolute;left:410px;top:250px;width:1100px;height:600px;border-radius:30px;overflow:hidden;background:url(assets/cards/humain.jpg) 70% 30%/1180px auto;box-shadow:0 40px 80px rgba(33,44,52,.25)}
   #c3-stature-hum{position:absolute;left:470px;top:770px;height:120px;padding:0 50px;border-radius:60px;background:#FF0055;color:#FFFFFF;font-family:Unbounded;font-weight:500;font-size:54px;line-height:120px;white-space:nowrap}
 </style>
-<div class="full studio"></div>
-<div id="c3-stature-pill">Notre ambition</div>
+<div class="full wash"></div>
+<div class="btn" id="c3-stature-pill">Notre ambition</div>
 <div id="c3-stature-pre">valoriser la</div>
 <div id="c3-stature-big"></div>
 <div id="c3-stature-stage"><div id="c3-stature-photo"></div></div>
@@ -45,10 +57,10 @@
 <div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">04 — EXPRIMER</div>
 <script>
   (function () {
-    const ID = "c3-stature", D = 5.38, VO = {"1.0": -43.7, "1.1": -41.05, "1.2": -39.35, "1.3": -35.4, "1.4": -33.66, "1.5": -31.65, "2.0": -29.13, "2.1": -27.05, "2.2": -24.0, "2.3": -21.15, "2.4": -18.86, "2.5": -16.35, "3.0": -12.91, "3.1": -11.94, "3.2": -10.23, "3.3": -9.55, "3.4": -8.97, "3.5": -8.6, "3.6": -7.37, "3.7": -6.4, "3.8": -4.98, "3.9": -3.82, "3.10": -1.36, "3.11": 0.15, "3.12": 1.51, "3.13": 3.18, "4.0": 5.53, "4.1": 6.06, "4.2": 8.53, "4.3": 9.33, "4.4": 10.06, "4.5": 11.31, "4.6": 12.91, "4.7": 13.79, "4.8": 16.49, "4.9": 18.39, "4.10": 20.4, "5.0": 24.3, "5.1": 25.85, "5.2": 28.47, "5.3": 29.27, "5.4": 32.18, "5.5": 33.17, "5.6": 35.87, "5.7": 39.33, "5.8": 40.35, "5.9": 41.6, "5.10": 42.83, "5.11": 44.13, "5.12": 45.88, "5.13": 46.73, "breath": 48.58, "exhale": 50.33};
+    const ID = "c3-stature", D = 5.86, VO = {"1.0": -59.04, "1.1": -56.18, "1.2": -54.39, "1.3": -51.77, "1.4": -48.05, "1.5": -46.16, "2.0": -43.41, "2.1": -41.16, "2.2": -38.27, "2.3": -36.26, "2.4": -34.07, "2.5": -32.47, "2.6": -31.39, "2.7": -29.47, "2.8": -28.99, "2.9": -26.51, "2.10": -22.03, "2.11": -19.97, "2.12": -17.31, "3.0": -14.13, "3.1": -13.14, "3.2": -11.39, "3.3": -10.25, "3.4": -9.3, "3.5": -8.33, "3.6": -6.97, "3.7": -6.25, "3.8": -4.42, "3.9": -3.29, "3.10": 0.15, "3.11": 1.26, "3.12": 3.06, "4.0": 6.01, "4.1": 8.19, "4.2": 9.69, "4.3": 10.5, "4.4": 11.46, "4.5": 12.71, "4.6": 13.85, "4.7": 16.52, "4.8": 18.04, "4.9": 19.52, "5.0": 23.83, "5.1": 25.38, "5.2": 28.15, "5.3": 28.95, "5.4": 31.9, "5.5": 33.11, "5.6": 36.45, "5.7": 39.62, "5.8": 40.66, "5.9": 41.99, "5.10": 42.93, "5.11": 43.9, "5.12": 45.42, "5.13": 46.19, "breath": 47.97, "exhale": 49.72};
     const $ = (s) => document.getElementById(ID + "-" + s);
     const tl = gsap.timeline({ paused: true });
-    const a = VO["3.11"], st = VO["3.12"], hu = VO["3.13"];
+    const a = VO["3.10"], st = VO["3.11"], hu = VO["3.12"];
     const ls = KIT.letters($("big"), "STATURE");
     tl.fromTo("#c3-stature-pill", { scaleX: 0.2, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }, a - 0.1);
     tl.fromTo("#c3-stature-pre", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, st - 0.3);

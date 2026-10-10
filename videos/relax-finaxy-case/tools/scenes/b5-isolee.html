@@ -1,0 +1,43 @@
+<style>
+  #§cam{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  .§r{position:absolute;left:0;top:0;padding:26px 44px;border-radius:32px;font-family:Unbounded;font-weight:600;font-size:76px;letter-spacing:-.02em;white-space:nowrap;box-shadow:0 30px 60px rgba(42,34,68,.12)}
+  #§lone{position:absolute;left:880px;top:505px;width:160px;height:44px;border-radius:22px;background:#FFFFFF;color:#212C34;font-weight:500;font-size:18px;line-height:44px;text-align:center;box-shadow:0 10px 24px rgba(42,34,68,.18);z-index:3}
+  #§cap{position:absolute;left:460px;width:1000px;top:890px;height:110px;font-family:Unbounded;font-size:40px;line-height:110px;z-index:4;box-shadow:0 30px 60px rgba(33,44,52,.25)}
+  #§cap em{font-style:normal;color:#FF7AA5}
+</style>
+<div class="full wash"></div>
+<div id="§cam"><div id="§risks"></div><div id="§lone">une expertise</div></div>
+<div class="btn" id="§cap">aucune expertise <em>isolée</em> ne suffit.</div>
+{{HUD:#62666B|02 — RÉVÉLER}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["2.12"];
+    // one small, isolated expertise; every risk around it is huge
+    const R = [["cyber", "card-p", -620, -330], ["climatique", "card-c", 340, -360], ["géopolitique", "card-y", 420, 250], ["réglementaire", "card-r", -760, 230],
+      ["humain", "card-c", -180, 330], ["réputationnel", "card-p", 120, -120]];
+    const els = R.map(([t, c, x, y], i) => {
+      const d = document.createElement("div");
+      d.className = ID + "-r " + c;
+      d.textContent = t;
+      d.setAttribute("data-layout-allow-overlap", "");
+      $("risks").appendChild(d);
+      return { el: d, x: 960 + x - 200, y: 540 + y - 70 };
+    });
+    els[5].x = 1110; els[5].y = 500; // keep the centre clear around the small pill
+    els.forEach((e, i) => {
+      tl.fromTo(e.el, { x: e.x * 1.25 - 240, y: e.y * 1.25 - 135, scale: 0.6, opacity: 0, rotation: (i % 2 ? 6 : -6) },
+        { x: e.x, y: e.y, scale: 1, opacity: 1, rotation: 0, duration: 0.7, ease: "expo.out" }, a - 0.1 + i * 0.06);
+      // they keep closing in
+      tl.to(e.el, { x: e.x + (960 - e.x - 200) * 0.12, y: e.y + (540 - e.y - 70) * 0.12, scale: 1.08, duration: D - a - 0.7, ease: "none" }, a + 0.6 + i * 0.06);
+    });
+    tl.fromTo("#§lone", { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, a);
+    tl.to("#§lone", { x: 4, duration: 0.05, yoyo: true, repeat: 9, ease: "none" }, a + 1.2);
+    tl.fromTo("#§cam", { scale: 1.1 }, { scale: 0.96, duration: D, ease: "power1.out" }, 0);
+    tl.fromTo("#§cap", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a + 0.2);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

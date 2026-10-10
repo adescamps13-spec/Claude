@@ -24,64 +24,69 @@
 #root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
 #root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
 #root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
 
       </style>
-      <div id="root" data-composition-id="b1-ecouter" data-width="1920" data-height="1080" data-duration="7.98">
+      <div id="root" data-composition-id="b1-ecouter" data-width="1920" data-height="1080" data-duration="5.14">
 <style>
-  #b1-ecouter-title{position:absolute;left:560px;top:140px;width:800px;height:110px}
-  #b1-ecouter-title .b1-ecouter-br{position:absolute;top:0;font-weight:300;font-size:104px;line-height:104px;color:#898991}
-  #b1-ecouter-slot{position:absolute;left:70px;right:70px;top:6px;height:100px;overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
-  #b1-ecouter-words{position:absolute;left:0;top:0;white-space:nowrap;font-family:Unbounded;font-weight:500;font-size:68px;line-height:100px;letter-spacing:-.02em;color:#212C34}
-  #b1-ecouter-stage{position:absolute;left:0;top:320px;width:1920px;height:480px;perspective:1500px;perspective-origin:960px 240px}
+  #b1-ecouter-stage{position:absolute;left:0;top:250px;width:1920px;height:480px;perspective:1500px;perspective-origin:960px 240px}
   #b1-ecouter-film{position:absolute;inset:0;transform-style:preserve-3d}
-  #b1-ecouter-mirror{position:absolute;left:0;top:812px;width:1920px;height:200px;filter:blur(18px);opacity:.3}
-  #b1-ecouter-live{position:absolute;left:540px;top:320px;width:840px;height:480px;border-radius:26px;overflow:hidden}
-  #b1-ecouter-bars{position:absolute;left:70px;right:70px;top:110px;height:200px;display:flex;align-items:center;justify-content:space-between;background:#FFFFFF}
-  #b1-ecouter-bars i{display:block;width:14px;border-radius:7px;background:#6955AA;height:40px}
-  #b1-ecouter-sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.22) 48%,transparent 60%);background-size:260% 100%}
+  #b1-ecouter-mirror{position:absolute;left:0;top:742px;width:1920px;height:200px;filter:blur(18px);opacity:.25}
+  #b1-ecouter-title{position:absolute;left:0;right:0;top:120px;text-align:center;font-family:Unbounded;font-weight:500;font-size:56px;color:#212C34}
+  #b1-ecouter-wave{position:absolute;left:160px;right:160px;top:880px;height:130px;display:flex;align-items:center;justify-content:space-between}
+  #b1-ecouter-wave i{display:block;width:10px;border-radius:5px;background:linear-gradient(180deg,#A99CF0,#F4A3D2)}
+  #b1-ecouter-ring{position:absolute;left:910px;top:440px;width:100px;height:100px;border-radius:50%;border:4px solid #FF0055;opacity:0}
 </style>
-<div class="full studio"></div>
-<div id="b1-ecouter-title"><span class="b1-ecouter-br" style="left:0">{</span><span class="b1-ecouter-br" style="right:0">}</span><div id="b1-ecouter-slot"><div id="b1-ecouter-words"></div></div></div>
+<div class="full wash"></div>
+<div id="b1-ecouter-title">On a commencé par <span style="color:#6955AA">écouter</span>.</div>
 <div id="b1-ecouter-mirror"></div>
 <div id="b1-ecouter-stage"><div id="b1-ecouter-film"></div></div>
-<div id="b1-ecouter-live"><div id="b1-ecouter-bars"></div><div id="b1-ecouter-sheen"></div></div>
-<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">02 — COMPRENDRE</div>
+<div id="b1-ecouter-wave"></div>
+<div id="b1-ecouter-ring"></div>
+<div class="cursor" id="b1-ecouter-cur"></div>
+<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">02 — ÉCOUTER</div>
 <script>
   (function () {
-    const ID = "b1-ecouter", D = 7.98, VO = {"1.0": -14.42, "1.1": -11.77, "1.2": -10.07, "1.3": -6.12, "1.4": -4.38, "1.5": -2.37, "2.0": 0.15, "2.1": 2.23, "2.2": 5.28, "2.3": 8.13, "2.4": 10.42, "2.5": 12.93, "3.0": 16.37, "3.1": 17.34, "3.2": 19.05, "3.3": 19.73, "3.4": 20.31, "3.5": 20.68, "3.6": 21.91, "3.7": 22.88, "3.8": 24.3, "3.9": 25.46, "3.10": 27.92, "3.11": 29.43, "3.12": 30.79, "3.13": 32.46, "4.0": 34.81, "4.1": 35.34, "4.2": 37.81, "4.3": 38.61, "4.4": 39.34, "4.5": 40.59, "4.6": 42.19, "4.7": 43.07, "4.8": 45.77, "4.9": 47.67, "4.10": 49.68, "5.0": 53.58, "5.1": 55.13, "5.2": 57.75, "5.3": 58.55, "5.4": 61.46, "5.5": 62.45, "5.6": 65.15, "5.7": 68.61, "5.8": 69.63, "5.9": 70.88, "5.10": 72.11, "5.11": 73.41, "5.12": 75.16, "5.13": 76.01, "breath": 77.86, "exhale": 79.61};
+    const ID = "b1-ecouter", D = 5.14, VO = {"1.0": -15.48, "1.1": -12.62, "1.2": -10.83, "1.3": -8.21, "1.4": -4.49, "1.5": -2.6, "2.0": 0.15, "2.1": 2.4, "2.2": 5.29, "2.3": 7.3, "2.4": 9.49, "2.5": 11.09, "2.6": 12.17, "2.7": 14.09, "2.8": 14.57, "2.9": 17.05, "2.10": 21.53, "2.11": 23.59, "2.12": 26.25, "3.0": 29.43, "3.1": 30.42, "3.2": 32.17, "3.3": 33.31, "3.4": 34.26, "3.5": 35.23, "3.6": 36.59, "3.7": 37.31, "3.8": 39.14, "3.9": 40.27, "3.10": 43.71, "3.11": 44.82, "3.12": 46.62, "4.0": 49.57, "4.1": 51.75, "4.2": 53.25, "4.3": 54.06, "4.4": 55.02, "4.5": 56.27, "4.6": 57.41, "4.7": 60.08, "4.8": 61.6, "4.9": 63.08, "5.0": 67.39, "5.1": 68.94, "5.2": 71.71, "5.3": 72.51, "5.4": 75.46, "5.5": 76.67, "5.6": 80.01, "5.7": 83.18, "5.8": 84.22, "5.9": 85.55, "5.10": 86.49, "5.11": 87.46, "5.12": 88.98, "5.13": 89.75, "breath": 91.53, "exhale": 93.28};
     const $ = (s) => document.getElementById(ID + "-" + s);
     const tl = gsap.timeline({ paused: true });
-    const IMGS = ["assets/cards/ecouter.png", "assets/cards/comprendre.png", "assets/cards/intel.png"];
-    const F = KIT.film({ el: $("film"), mirror: $("mirror"), imgs: IMGS });
-    const SW = 660, wx = KIT.slot($("words"), ["écouter", "comprendre", "révéler"], SW);
-    const live = $("live"), bars = [];
-    $("bars").innerHTML = Array.from({ length: 34 }, () => "<i></i>").join("");
-    bars.push(...$("bars").children);
-    const scroll = { v: -F.STEP * 0.9 }, clock = { t: 0 };
+    // panels switch like screens on a curved strip: leaders, staff, trades, market
+    const F = KIT.film({ el: $("film"), mirror: $("mirror"), imgs: [0, 1, 2, 3].map((i) => `assets/cards/ecoute${i}.png`) });
+    const S = F.STEP, sc = { v: -0.9 * S }, ck = { t: 0 };
+    const bars = [];
+    $("wave").innerHTML = Array.from({ length: 72 }, () => "<i></i>").join("");
+    bars.push(...$("wave").children);
     const draw = () => {
-      const k = F.place(scroll.v);
-      live.style.opacity = k >= 0 ? 1 : 0;
-      live.style.backgroundImage = k >= 0 ? `url(${IMGS[k]})` : "none";
-      $("bars").style.visibility = k === 0 ? "visible" : "hidden";
-      const tt = clock.t;
-      bars.forEach((b, i) => (b.style.height = (26 + 150 * Math.abs(Math.sin(tt * 6 + i * 0.55) * Math.cos(tt * 2.2 + i * 0.21))).toFixed(1) + "px"));
+      F.place(sc.v);
+      const t = ck.t;
+      bars.forEach((b, i) => (b.style.height = (10 + 110 * Math.abs(Math.sin(t * 5.2 + i * 0.37) * Math.cos(t * 1.7 + i * 0.13))).toFixed(1) + "px"));
     };
-    live.style.backgroundSize = "840px 480px";
     draw();
-    const S = F.STEP, a = VO["2.0"], b = VO["2.1"], c = VO["2.2"];
-    const glide = (from, to, at, dur, ease) => tl.fromTo(scroll, { v: from }, { v: to, duration: dur, ease, onUpdate: draw, immediateRender: false }, at);
-    tl.fromTo(scroll, { v: -S * 0.9 }, { v: 0, duration: 1.2, ease: "expo.out", onUpdate: draw }, a - 0.15);
-    glide(0, S, b - 0.35, 1.1, "expo.inOut");
-    glide(S, 2 * S, c - 0.45, 1.1, "expo.inOut");
-    glide(2 * S, 3.2 * S, D - 0.55, 0.55, "expo.in");
-    tl.fromTo(clock, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: draw, immediateRender: false }, 0);
-    tl.fromTo("#b1-ecouter-words", { x: SW }, { x: wx(0), duration: 1.2, ease: "expo.out" }, a - 0.15);
-    tl.fromTo("#b1-ecouter-words", { x: wx(0) }, { x: wx(1), duration: 1.1, ease: "expo.inOut", immediateRender: false }, b - 0.35);
-    tl.fromTo("#b1-ecouter-words", { x: wx(1) }, { x: wx(2), duration: 1.1, ease: "expo.inOut", immediateRender: false }, c - 0.45);
-    tl.fromTo("#b1-ecouter-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0);
-    tl.fromTo("#b1-ecouter-sheen", { backgroundPosition: "140% 0%" }, { backgroundPosition: "-60% 0%", duration: 1.4, ease: "power2.inOut" }, c + 0.8);
-    tl.to("#b1-ecouter-title", { opacity: 0, y: -30, duration: 0.4, ease: "power2.in" }, D - 0.45);
+    const a = VO["2.0"], b = VO["2.1"];
+    tl.fromTo(ck, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: draw }, 0);
+    tl.fromTo(sc, { v: -0.9 * S }, { v: 0, duration: 0.8, ease: "expo.out", onUpdate: draw, immediateRender: false }, 0);
+    const steps = [a + 0.75, a + 1.45, a + 2.15];
+    steps.forEach((t0, k) => tl.fromTo(sc, { v: k * S }, { v: (k + 1) * S, duration: 0.55, ease: "expo.inOut", onUpdate: draw, immediateRender: false }, t0));
+    tl.fromTo("#b1-ecouter-title", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a - 0.1);
+    tl.fromTo("#b1-ecouter-wave", { opacity: 0, scaleY: 0.2 }, { opacity: 1, scaleY: 1, duration: 0.6, ease: "expo.out" }, a);
+    // "on a mis le doigt sur ce que Finaxy était vraiment": the cursor points, a focus ring locks on
+    tl.to("#b1-ecouter-title", { opacity: 0, y: -20, duration: 0.35 }, b - 0.2);
+    tl.fromTo("#b1-ecouter-cur", { x: 1560, y: 980 }, { x: 975, y: 505, duration: 0.9, ease: "power3.inOut" }, b + 0.2);
+    tl.to("#b1-ecouter-cur", { scale: 0.8, duration: 0.08, yoyo: true, repeat: 1 }, b + 1.15);
+    tl.fromTo("#b1-ecouter-ring", { scale: 3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "expo.out" }, b + 1.15);
+    tl.to(["#b1-ecouter-stage", "#b1-ecouter-mirror", "#b1-ecouter-wave"], { opacity: 0.25, filter: "blur(6px)", duration: 0.6, ease: "power2.inOut" }, b + 1.2);
+    tl.to("#b1-ecouter-ring", { scale: 30, opacity: 0, duration: 0.6, ease: "expo.in" }, D - 0.6);
     window.__timelines = window.__timelines || {};
     window.__timelines[ID] = tl;
   })();

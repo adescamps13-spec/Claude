@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
+
+      </style>
+      <div id="root" data-composition-id="e5-promesse" data-width="1920" data-height="1080" data-duration="2.4">
+<style>
+  #e5-promesse-tag{position:absolute;left:0;right:0;top:300px;text-align:center}
+  #e5-promesse-tag span{display:inline-block;height:60px;padding:0 30px;border-radius:30px;background:#FF0055;color:#FFFFFF;font-weight:600;font-size:24px;line-height:60px}
+  #e5-promesse-prom{position:absolute;left:0;right:0;top:400px;text-align:center;font-family:Unbounded;font-weight:500;font-size:68px;line-height:100px;letter-spacing:-.02em;color:#212C34}
+  #e5-promesse-prom .e5-promesse-w{display:inline-block;position:relative}
+  #e5-promesse-prom .e5-promesse-k{position:relative;z-index:1}
+  #e5-promesse-prom .e5-promesse-mk{position:absolute;left:-6px;right:-6px;bottom:14px;height:30px;border-radius:8px;background:linear-gradient(90deg,#D4CCEE,#F4C6E6);z-index:0;transform-origin:left center}
+</style>
+<div class="full wash"></div>
+<div id="e5-promesse-tag"><span>Notre promesse</span></div>
+<div id="e5-promesse-prom"></div>
+<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">06 — NOTRE RÔLE</div>
+<script>
+  (function () {
+    const ID = "e5-promesse", D = 2.4, VO = {"1.0": -104.31, "1.1": -101.45, "1.2": -99.66, "1.3": -97.04, "1.4": -93.32, "1.5": -91.43, "2.0": -88.68, "2.1": -86.43, "2.2": -83.54, "2.3": -81.53, "2.4": -79.34, "2.5": -77.74, "2.6": -76.66, "2.7": -74.74, "2.8": -74.26, "2.9": -71.78, "2.10": -67.3, "2.11": -65.24, "2.12": -62.58, "3.0": -59.4, "3.1": -58.41, "3.2": -56.66, "3.3": -55.52, "3.4": -54.57, "3.5": -53.6, "3.6": -52.24, "3.7": -51.52, "3.8": -49.69, "3.9": -48.56, "3.10": -45.12, "3.11": -44.01, "3.12": -42.21, "4.0": -39.26, "4.1": -37.08, "4.2": -35.58, "4.3": -34.77, "4.4": -33.81, "4.5": -32.56, "4.6": -31.42, "4.7": -28.75, "4.8": -27.23, "4.9": -25.75, "5.0": -21.44, "5.1": -19.89, "5.2": -17.12, "5.3": -16.32, "5.4": -13.37, "5.5": -12.16, "5.6": -8.82, "5.7": -5.65, "5.8": -4.61, "5.9": -3.28, "5.10": -2.34, "5.11": -1.37, "5.12": 0.15, "5.13": 0.92, "breath": 2.7, "exhale": 4.45};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["5.12"], b = VO["5.13"];
+    // the promise, word by word; the key words get marked
+    const L1 = "Les meilleurs experts pour votre projet,", L2 = "coordonnés par un partenaire de confiance.";
+    const KEY = ["meilleurs", "experts", "partenaire", "de", "confiance."];
+    const mk = (line, keyFrom) => line.split(" ").map((w, i) => {
+      const key = keyFrom(w, i);
+      return `<span class="${ID}-w"${key ? ' data-key="1"' : ""}>${key ? `<i class="${ID}-mk"></i>` : ""}<span class="${ID}-k">${w}</span></span>`;
+    }).join(" ");
+    $("prom").innerHTML = mk(L1, (w, i) => i === 1 || i === 2) + "<br>" + mk(L2, (w, i) => i >= 3);
+    const words = [...$("prom").querySelectorAll("." + ID + "-w")];
+    words.forEach((w) => w.setAttribute("data-layout-allow-overlap", ""));
+    tl.fromTo("#e5-promesse-tag span", { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, a - 0.05);
+    tl.fromTo(words, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out", stagger: 0.045 }, a + 0.05);
+    const marks = [...$("prom").querySelectorAll("." + ID + "-mk")];
+    tl.fromTo(marks, { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.inOut", stagger: 0.08 }, b);
+    tl.fromTo($("prom").querySelectorAll('[data-key="1"]'), { scale: 1 }, { scale: 1.06, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.out", stagger: 0.06 }, b + 0.1);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

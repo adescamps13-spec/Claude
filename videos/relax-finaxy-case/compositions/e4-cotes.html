@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
+
+      </style>
+      <div id="root" data-composition-id="e4-cotes" data-width="1920" data-height="1080" data-duration="5.8">
+<style>
+  #e4-cotes-seam{background:#D9D3EE}
+  #e4-cotes-left{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden}
+  #e4-cotes-lbg{position:absolute;inset:0;background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 45%,#E5E0F5 100%)}
+  #e4-cotes-world{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:960px 540px}
+  #e4-cotes-proj{position:absolute;left:750px;top:415px;width:420px;height:250px;transform:scale(1.12);border-radius:32px;background:linear-gradient(135deg,#C9F1F6 0%,#D4CCEE 40%,#F4C6E6 75%,#CDEBFA 100%);box-shadow:0 40px 80px rgba(105,85,170,.28);z-index:2}
+  #e4-cotes-proj span{position:absolute;left:0;right:0;top:96px;text-align:center;font-family:Unbounded;font-weight:500;font-size:40px;color:#212C34}
+  .e4-cotes-pill{position:absolute;left:0;top:0;height:84px;border-radius:42px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;font-size:32px;line-height:84px;text-align:center;white-space:nowrap;z-index:3}
+  .e4-cotes-pill i{display:inline-block;width:14px;height:14px;border-radius:7px;background:#FF0055;margin-right:14px;vertical-align:2px}
+  .e4-cotes-cu{position:absolute;left:0;top:0;z-index:5}
+  .e4-cotes-cu svg{display:block}
+  .e4-cotes-cu b{position:absolute;left:30px;top:30px;padding:4px 14px;border-radius:14px;color:#FFFFFF;font-weight:600;font-size:18px;white-space:nowrap}
+  .e4-cotes-art{position:absolute;left:0;top:0;width:180px;height:120px;border-radius:16px;z-index:1;box-shadow:0 14px 30px rgba(42,34,68,.12)}
+  .e4-cotes-lbl{position:absolute;top:120px;height:72px;padding:0 34px;border-radius:36px;font-weight:600;font-size:30px;line-height:72px;white-space:nowrap;z-index:6}
+  .e4-cotes-h{position:absolute;top:212px;font-family:Unbounded;font-weight:500;font-size:72px;letter-spacing:-.02em;white-space:nowrap;z-index:6}
+  #e4-cotes-right{position:absolute;left:0;top:0;width:1920px;height:1080px;background:#FFFFFF}
+  #e4-cotes-rib{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  #e4-cotes-one{position:absolute;left:1270px;top:560px;height:96px;padding:0 40px 0 76px;border-radius:48px;background:#FFFFFF;color:#212C34;font-family:Unbounded;font-weight:500;font-size:34px;line-height:96px;white-space:nowrap;box-shadow:0 24px 50px rgba(42,34,68,.16)}
+  #e4-cotes-one i{position:absolute;left:30px;top:34px;width:28px;height:28px;border-radius:14px;background:#FF0055}
+  #e4-cotes-zero{position:absolute;left:0;right:0;top:820px;text-align:center;font-family:Unbounded;font-weight:500;font-size:72px;letter-spacing:-.02em;color:#212C34}
+  #e4-cotes-zero em{font-style:normal;color:#6955AA}
+</style>
+<div class="full" id="e4-cotes-seam"></div>
+<div id="e4-cotes-right">
+  <svg id="e4-cotes-rib" viewBox="0 0 1920 1080"><defs><linearGradient id="e4-cotes-g" x1="0" x2="1"><stop offset="0" stop-color="#A99CF0"/><stop offset=".5" stop-color="#F4A3D2"/><stop offset="1" stop-color="#8FD3DC"/></linearGradient></defs>
+    <path id="e4-cotes-fil" d="M 980 610 C 1080 520, 1160 700, 1270 608" fill="none" stroke="url(#e4-cotes-g)" stroke-width="16" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+  <div class="e4-cotes-lbl" id="e4-cotes-rl" style="left:1050px;background:#212C34;color:#FFFFFF">Côté client</div>
+  <div class="e4-cotes-h" id="e4-cotes-rh" style="left:1050px;color:#212C34">un seul fil</div>
+  <div id="e4-cotes-one"><i></i>votre projet</div>
+  <div id="e4-cotes-zero">un seul fil, <em>zéro couture.</em></div>
+</div>
+<div id="e4-cotes-left">
+  <div id="e4-cotes-lbg"></div>
+  <div id="e4-cotes-world"><div id="e4-cotes-arts"></div><div id="e4-cotes-proj"><span>votre projet</span></div><div id="e4-cotes-ring"></div><div id="e4-cotes-curs"></div></div>
+  <div class="e4-cotes-lbl" id="e4-cotes-ll" style="left:90px;background:#6955AA;color:#FFFFFF">Côté Relax</div>
+  <div class="e4-cotes-h" id="e4-cotes-lh" style="left:90px;color:#2A2244">du mouvement</div>
+</div>
+<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">06 — NOTRE RÔLE</div>
+<script>
+  (function () {
+    const ID = "e4-cotes", D = 5.8, VO = {"1.0": -98.51, "1.1": -95.65, "1.2": -93.86, "1.3": -91.24, "1.4": -87.52, "1.5": -85.63, "2.0": -82.88, "2.1": -80.63, "2.2": -77.74, "2.3": -75.73, "2.4": -73.54, "2.5": -71.94, "2.6": -70.86, "2.7": -68.94, "2.8": -68.46, "2.9": -65.98, "2.10": -61.5, "2.11": -59.44, "2.12": -56.78, "3.0": -53.6, "3.1": -52.61, "3.2": -50.86, "3.3": -49.72, "3.4": -48.77, "3.5": -47.8, "3.6": -46.44, "3.7": -45.72, "3.8": -43.89, "3.9": -42.76, "3.10": -39.32, "3.11": -38.21, "3.12": -36.41, "4.0": -33.46, "4.1": -31.28, "4.2": -29.78, "4.3": -28.97, "4.4": -28.01, "4.5": -26.76, "4.6": -25.62, "4.7": -22.95, "4.8": -21.43, "4.9": -19.95, "5.0": -15.64, "5.1": -14.09, "5.2": -11.32, "5.3": -10.52, "5.4": -7.57, "5.5": -6.36, "5.6": -3.02, "5.7": 0.15, "5.8": 1.19, "5.9": 2.52, "5.10": 3.46, "5.11": 4.43, "5.12": 5.95, "5.13": 6.72, "breath": 8.5, "exhale": 10.25};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["5.7"], mv = VO["5.8"], cl = VO["5.9"], fil = VO["5.10"], cou = VO["5.11"];
+    // Relax side, continuing the last shot: the team keeps working around the project
+    const TAL = ["Stratégie", "Naming", "Design", "Édito", "Développement", "Production"];
+    const pills = TAL.map((s) => { const p = document.createElement("div"); p.className = ID + "-pill"; p.innerHTML = `<i></i>${s}`; p.style.width = 110 + s.length * 19 + "px"; $("ring").appendChild(p); return { el: p, w: 110 + s.length * 19 }; });
+    const ARTC = ["#CAC3E1", "#C3DDE1", "#E0DEC3", "#E1C3C3", "#D4CCEE", "#CCEAEE"];
+    const arts = ARTC.map((c, i) => { const d = document.createElement("div"); d.className = ID + "-art"; d.style.background = c; $("arts").appendChild(d); return d; });
+    const CU = [["Stratégie", "#6955AA"], ["Design", "#56A0AA"], ["Édito", "#AA5655"], ["Production", "#8C853F"]];
+    const curs = CU.map(([n, c]) => { const d = document.createElement("div"); d.className = ID + "-cu"; d.innerHTML = `<svg width="30" height="30" viewBox="0 0 44 44"><path d="M4 3 L40 17 L23 22 L17 40 Z" fill="${c}" stroke="white" stroke-width="3" stroke-linejoin="round"/></svg><b style="background:${c}">${n}</b>`; $("curs").appendChild(d); return d; });
+    const busy = { t: 0, k: 0 };
+    const drawL = () => {
+      const t = busy.t, k = busy.k; // k: 0 = calm docked ring (end of the previous shot) → 1 = busy
+      pills.forEach((p, i) => {
+        const th = (i / 6) * Math.PI * 2 - Math.PI / 2 + k * t * 0.9, rx = 600 + 60 * k * Math.sin(t * 2 + i), ry = 260 + 40 * k * Math.cos(t * 1.7 + i);
+        p.el.style.transform = `translate(${(960 + Math.cos(th) * rx - p.w / 2).toFixed(1)}px,${(540 + Math.sin(th) * ry - 42).toFixed(1)}px) scale(1)`;
+      });
+      arts.forEach((d, i) => {
+        const ph = (t * 0.8 + i / 6) % 1, ang = i * 1.05 + t * 0.3;
+        d.style.transform = `translate(${(960 + Math.cos(ang) * 420 - 90).toFixed(1)}px,${(540 + Math.sin(ang) * 330 - 60).toFixed(1)}px) scale(${(0.6 + 0.5 * Math.sin(ph * Math.PI)).toFixed(3)}) rotate(${(Math.sin(t + i) * 8).toFixed(1)}deg)`;
+        d.style.opacity = (k * Math.sin(ph * Math.PI)).toFixed(3);
+      });
+      curs.forEach((d, i) => {
+        const x = 960 + Math.sin(t * (1.3 + i * 0.37) + i * 2) * 520, y = 540 + Math.cos(t * (1.1 + i * 0.29) + i) * 300;
+        d.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`;
+        d.style.opacity = k.toFixed(3);
+      });
+    };
+    drawL();
+    tl.fromTo(busy, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: drawL }, 0);
+    tl.fromTo(busy, { k: 0 }, { k: 1, duration: 0.8, ease: "power2.inOut", onUpdate: drawL, immediateRender: false }, a);
+    tl.fromTo("#e4-cotes-ll", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, a - 0.05);
+    tl.fromTo("#e4-cotes-lh", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, mv - 0.1);
+    // "Côté client": the frame splits, the Relax side shrinks into the left half
+    tl.fromTo("#e4-cotes-left", { clipPath: "inset(0px 0px 0px 0px)" }, { clipPath: "inset(0px 968px 0px 0px)", duration: 0.8, ease: "expo.inOut" }, cl - 0.35);
+    tl.to("#e4-cotes-world", { scale: 0.55, x: -480, duration: 0.8, ease: "expo.inOut" }, cl - 0.35);
+    tl.fromTo("#e4-cotes-rl", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, cl);
+    // "un seul fil": one calm thread to one point of contact
+    tl.fromTo("#e4-cotes-rh", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, fil - 0.1);
+    tl.to("#e4-cotes-fil", { attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.inOut" }, fil);
+    tl.fromTo("#e4-cotes-one", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, fil + 0.35);
+    // "zéro couture": the seam closes; all that movement lives behind one seamless surface
+    tl.to("#e4-cotes-left", { xPercent: -100, duration: 0.8, ease: "expo.inOut" }, cou - 0.3);
+    tl.to(["#e4-cotes-rl", "#e4-cotes-rh"], { opacity: 0, duration: 0.3 }, cou - 0.3);
+    tl.to("#e4-cotes-fil", { attr: { d: "M 120 600 C 600 470, 1200 730, 1700 600" }, duration: 0.8, ease: "expo.inOut" }, cou - 0.3);
+    tl.to("#e4-cotes-one", { x: 960 - 1270 - 170, y: -40, duration: 0.8, ease: "expo.inOut" }, cou - 0.3);
+    tl.fromTo("#e4-cotes-zero", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, cou + 0.1);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

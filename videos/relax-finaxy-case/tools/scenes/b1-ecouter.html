@@ -1,58 +1,51 @@
 <style>
-  #§title{position:absolute;left:560px;top:140px;width:800px;height:110px}
-  #§title .§br{position:absolute;top:0;font-weight:300;font-size:104px;line-height:104px;color:#898991}
-  #§slot{position:absolute;left:70px;right:70px;top:6px;height:100px;overflow:hidden;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
-  #§words{position:absolute;left:0;top:0;white-space:nowrap;font-family:Unbounded;font-weight:500;font-size:68px;line-height:100px;letter-spacing:-.02em;color:#212C34}
-  #§stage{position:absolute;left:0;top:320px;width:1920px;height:480px;perspective:1500px;perspective-origin:960px 240px}
+  #§stage{position:absolute;left:0;top:250px;width:1920px;height:480px;perspective:1500px;perspective-origin:960px 240px}
   #§film{position:absolute;inset:0;transform-style:preserve-3d}
-  #§mirror{position:absolute;left:0;top:812px;width:1920px;height:200px;filter:blur(18px);opacity:.3}
-  #§live{position:absolute;left:540px;top:320px;width:840px;height:480px;border-radius:26px;overflow:hidden}
-  #§bars{position:absolute;left:70px;right:70px;top:110px;height:200px;display:flex;align-items:center;justify-content:space-between;background:#FFFFFF}
-  #§bars i{display:block;width:14px;border-radius:7px;background:#6955AA;height:40px}
-  #§sheen{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.22) 48%,transparent 60%);background-size:260% 100%}
+  #§mirror{position:absolute;left:0;top:742px;width:1920px;height:200px;filter:blur(18px);opacity:.25}
+  #§title{position:absolute;left:0;right:0;top:120px;text-align:center;font-family:Unbounded;font-weight:500;font-size:56px;color:#212C34}
+  #§wave{position:absolute;left:160px;right:160px;top:880px;height:130px;display:flex;align-items:center;justify-content:space-between}
+  #§wave i{display:block;width:10px;border-radius:5px;background:linear-gradient(180deg,#A99CF0,#F4A3D2)}
+  #§ring{position:absolute;left:910px;top:440px;width:100px;height:100px;border-radius:50%;border:4px solid #FF0055;opacity:0}
 </style>
-<div class="full studio"></div>
-<div id="§title"><span class="§br" style="left:0">{</span><span class="§br" style="right:0">}</span><div id="§slot"><div id="§words"></div></div></div>
+<div class="full wash"></div>
+<div id="§title">On a commencé par <span style="color:#6955AA">écouter</span>.</div>
 <div id="§mirror"></div>
 <div id="§stage"><div id="§film"></div></div>
-<div id="§live"><div id="§bars"></div><div id="§sheen"></div></div>
-{{HUD:#62666B|02 — COMPRENDRE}}
+<div id="§wave"></div>
+<div id="§ring"></div>
+<div class="cursor" id="§cur"></div>
+{{HUD:#62666B|02 — ÉCOUTER}}
 <script>
   (function () {
     const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
     const $ = (s) => document.getElementById(ID + "-" + s);
     const tl = gsap.timeline({ paused: true });
-    const IMGS = ["assets/cards/ecouter.png", "assets/cards/comprendre.png", "assets/cards/intel.png"];
-    const F = KIT.film({ el: $("film"), mirror: $("mirror"), imgs: IMGS });
-    const SW = 660, wx = KIT.slot($("words"), ["écouter", "comprendre", "révéler"], SW);
-    const live = $("live"), bars = [];
-    $("bars").innerHTML = Array.from({ length: 34 }, () => "<i></i>").join("");
-    bars.push(...$("bars").children);
-    const scroll = { v: -F.STEP * 0.9 }, clock = { t: 0 };
+    // panels switch like screens on a curved strip: leaders, staff, trades, market
+    const F = KIT.film({ el: $("film"), mirror: $("mirror"), imgs: [0, 1, 2, 3].map((i) => `assets/cards/ecoute${i}.png`) });
+    const S = F.STEP, sc = { v: -0.9 * S }, ck = { t: 0 };
+    const bars = [];
+    $("wave").innerHTML = Array.from({ length: 72 }, () => "<i></i>").join("");
+    bars.push(...$("wave").children);
     const draw = () => {
-      const k = F.place(scroll.v);
-      live.style.opacity = k >= 0 ? 1 : 0;
-      live.style.backgroundImage = k >= 0 ? `url(${IMGS[k]})` : "none";
-      $("bars").style.visibility = k === 0 ? "visible" : "hidden";
-      const tt = clock.t;
-      bars.forEach((b, i) => (b.style.height = (26 + 150 * Math.abs(Math.sin(tt * 6 + i * 0.55) * Math.cos(tt * 2.2 + i * 0.21))).toFixed(1) + "px"));
+      F.place(sc.v);
+      const t = ck.t;
+      bars.forEach((b, i) => (b.style.height = (10 + 110 * Math.abs(Math.sin(t * 5.2 + i * 0.37) * Math.cos(t * 1.7 + i * 0.13))).toFixed(1) + "px"));
     };
-    live.style.backgroundSize = "840px 480px";
     draw();
-    const S = F.STEP, a = VO["2.0"], b = VO["2.1"], c = VO["2.2"];
-    const glide = (from, to, at, dur, ease) => tl.fromTo(scroll, { v: from }, { v: to, duration: dur, ease, onUpdate: draw, immediateRender: false }, at);
-    tl.fromTo(scroll, { v: -S * 0.9 }, { v: 0, duration: 1.2, ease: "expo.out", onUpdate: draw }, a - 0.15);
-    glide(0, S, b - 0.35, 1.1, "expo.inOut");
-    glide(S, 2 * S, c - 0.45, 1.1, "expo.inOut");
-    glide(2 * S, 3.2 * S, D - 0.55, 0.55, "expo.in");
-    tl.fromTo(clock, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: draw, immediateRender: false }, 0);
-    tl.fromTo("#§words", { x: SW }, { x: wx(0), duration: 1.2, ease: "expo.out" }, a - 0.15);
-    tl.fromTo("#§words", { x: wx(0) }, { x: wx(1), duration: 1.1, ease: "expo.inOut", immediateRender: false }, b - 0.35);
-    tl.fromTo("#§words", { x: wx(1) }, { x: wx(2), duration: 1.1, ease: "expo.inOut", immediateRender: false }, c - 0.45);
-    tl.fromTo("#§title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0);
-    tl.fromTo("#§sheen", { backgroundPosition: "140% 0%" }, { backgroundPosition: "-60% 0%", duration: 1.4, ease: "power2.inOut" }, c + 0.8);
-    tl.to("#§title", { opacity: 0, y: -30, duration: 0.4, ease: "power2.in" }, D - 0.45);
+    const a = VO["2.0"], b = VO["2.1"];
+    tl.fromTo(ck, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: draw }, 0);
+    tl.fromTo(sc, { v: -0.9 * S }, { v: 0, duration: 0.8, ease: "expo.out", onUpdate: draw, immediateRender: false }, 0);
+    const steps = [a + 0.75, a + 1.45, a + 2.15];
+    steps.forEach((t0, k) => tl.fromTo(sc, { v: k * S }, { v: (k + 1) * S, duration: 0.55, ease: "expo.inOut", onUpdate: draw, immediateRender: false }, t0));
+    tl.fromTo("#§title", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a - 0.1);
+    tl.fromTo("#§wave", { opacity: 0, scaleY: 0.2 }, { opacity: 1, scaleY: 1, duration: 0.6, ease: "expo.out" }, a);
+    // "on a mis le doigt sur ce que Finaxy était vraiment": the cursor points, a focus ring locks on
+    tl.to("#§title", { opacity: 0, y: -20, duration: 0.35 }, b - 0.2);
+    tl.fromTo("#§cur", { x: 1560, y: 980 }, { x: 975, y: 505, duration: 0.9, ease: "power3.inOut" }, b + 0.2);
+    tl.to("#§cur", { scale: 0.8, duration: 0.08, yoyo: true, repeat: 1 }, b + 1.15);
+    tl.fromTo("#§ring", { scale: 3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "expo.out" }, b + 1.15);
+    tl.to(["#§stage", "#§mirror", "#§wave"], { opacity: 0.25, filter: "blur(6px)", duration: 0.6, ease: "power2.inOut" }, b + 1.2);
+    tl.to("#§ring", { scale: 30, opacity: 0, duration: 0.6, ease: "expo.in" }, D - 0.6);
     window.__timelines = window.__timelines || {};
     window.__timelines[ID] = tl;
   })();

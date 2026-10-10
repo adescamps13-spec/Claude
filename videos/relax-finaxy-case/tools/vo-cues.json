@@ -1,286 +1,311 @@
 {
  "1": {
   "frame": "A",
-  "seconds": 14.0,
+  "seconds": 15.08,
   "phrases": [
    {
     "text": "Finaxy est le onzième courtier français.",
-    "start": 0.3,
-    "end": 2.51
+    "start": 0.33,
+    "end": 3.14
    },
    {
     "text": "Un groupe qui a grandi vite.",
-    "start": 2.95,
-    "end": 4.31
+    "start": 3.19,
+    "end": 4.93
    },
    {
-    "text": "Et une marque qui avait fini par ne plus refléter ce que l'entreprise était devenue.",
-    "start": 4.65,
-    "end": 8.2
+    "text": "Mais une marque qui avait du mal à exister,",
+    "start": 4.98,
+    "end": 7.55
    },
    {
-    "text": "Qui n'arrivait plus à le raconter.",
-    "start": 8.6,
-    "end": 9.99
+    "text": "et qui surtout ne reflétait plus ce que l'entreprise était devenue.",
+    "start": 7.6,
+    "end": 11.27
    },
    {
     "text": "Pas juste un problème de logo :",
-    "start": 10.34,
-    "end": 11.91
+    "start": 11.32,
+    "end": 13.16
    },
    {
     "text": "un sujet de cohérence.",
-    "start": 12.35,
-    "end": 13.69
+    "start": 13.21,
+    "end": 14.72
    }
   ]
  },
  "2": {
   "frame": "B",
-  "seconds": 15.56,
+  "seconds": 28.68,
   "phrases": [
    {
-    "text": "On a commencé par écouter.",
-    "start": 0.27,
-    "end": 1.81
+    "text": "Alors on a commencé par écouter.",
+    "start": 0.28,
+    "end": 2.48
    },
    {
-    "text": "Et on a compris ce que Finaxy était vraiment :",
-    "start": 2.35,
-    "end": 5.13
+    "text": "Et on a mis le doigt sur ce que Finaxy était vraiment :",
+    "start": 2.53,
+    "end": 5.37
    },
    {
-    "text": "une intelligence collective du risque.",
-    "start": 5.4,
-    "end": 7.8
+    "text": "pas un grand groupe déshumanisé,",
+    "start": 5.42,
+    "end": 7.38
+   },
+   {
+    "text": "pas non plus un petit courtier de proximité.",
+    "start": 7.43,
+    "end": 9.57
+   },
+   {
+    "text": "Finaxy cumulait,",
+    "start": 9.62,
+    "end": 11.17
+   },
+   {
+    "text": "par sa structure,",
+    "start": 11.22,
+    "end": 12.25
+   },
+   {
+    "text": "la force des deux.",
+    "start": 12.3,
+    "end": 14.17
+   },
+   {
+    "text": "Finaxy,",
+    "start": 14.22,
+    "end": 14.65
+   },
+   {
+    "text": "c'est une intelligence collective du risque,",
+    "start": 14.7,
+    "end": 17.13
+   },
+   {
+    "text": "qui va chercher et activer la bonne expertise sur une problématique dédiée.",
+    "start": 17.18,
+    "end": 21.61
    },
    {
     "text": "Une proposition de valeur clé :",
-    "start": 8.25,
-    "end": 10.2
+    "start": 21.66,
+    "end": 23.67
    },
    {
     "text": "dans un monde où le risque est devenu multiple,",
-    "start": 10.54,
-    "end": 12.77
+    "start": 23.72,
+    "end": 26.33
    },
    {
     "text": "aucune expertise isolée ne suffit.",
-    "start": 13.05,
-    "end": 15.2
+    "start": 26.38,
+    "end": 28.26
    }
   ]
  },
  "3": {
   "frame": "C",
-  "seconds": 17.88,
+  "seconds": 19.44,
   "phrases": [
    {
-    "text": "De cette idée,",
-    "start": 0.33,
-    "end": 0.99
+    "text": "De cette promesse,",
+    "start": 0.28,
+    "end": 1.22
    },
    {
     "text": "nous avons tout décliné :",
-    "start": 1.3,
-    "end": 2.53
+    "start": 1.27,
+    "end": 2.97
    },
    {
     "text": "architecture,",
-    "start": 3.01,
-    "end": 3.69
+    "start": 3.02,
+    "end": 4.11
    },
    {
     "text": "catégories,",
-    "start": 3.69,
-    "end": 4.27
+    "start": 4.16,
+    "end": 5.06
    },
    {
     "text": "naming,",
-    "start": 4.27,
-    "end": 4.64
+    "start": 5.11,
+    "end": 6.03
    },
    {
     "text": "place des marques.",
-    "start": 4.64,
-    "end": 5.59
+    "start": 6.08,
+    "end": 7.39
    },
    {
     "text": "Ensuite,",
-    "start": 5.87,
-    "end": 6.52
+    "start": 7.44,
+    "end": 8.11
    },
    {
     "text": "nous lui avons donné du corps :",
-    "start": 6.84,
-    "end": 8.26
+    "start": 8.16,
+    "end": 9.94
    },
    {
     "text": "un nouveau logo,",
-    "start": 8.26,
-    "end": 9.0
+    "start": 9.99,
+    "end": 11.07
    },
    {
-    "text": "une nouvelle identité,",
-    "start": 9.42,
-    "end": 11.61
-   },
-   {
-    "text": "une voix plus affirmée.",
-    "start": 11.88,
-    "end": 12.95
+    "text": "une nouvelle identité et une voix plus affirmée.",
+    "start": 11.12,
+    "end": 14.51
    },
    {
     "text": "Notre ambition :",
-    "start": 13.39,
-    "end": 14.29
+    "start": 14.56,
+    "end": 15.62
    },
    {
     "text": "valoriser la stature,",
-    "start": 14.75,
-    "end": 16.05
+    "start": 15.67,
+    "end": 17.42
    },
    {
-    "text": "mettre en avant l'humain.",
-    "start": 16.42,
-    "end": 17.51
+    "text": "mais mettre en avant l'humain.",
+    "start": 17.47,
+    "end": 19.0
    }
   ]
  },
  "4": {
   "frame": "D",
-  "seconds": 18.16,
+  "seconds": 17.28,
   "phrases": [
    {
-    "text": "Et enfin,",
-    "start": 0.29,
-    "end": 0.82
+    "text": "Puis on a décliné ça sur des supports,",
+    "start": 0.38,
+    "end": 2.51
    },
    {
-    "text": "les supports pour exprimer tout ça :",
-    "start": 0.82,
-    "end": 2.92
+    "text": "pour exprimer tout ça :",
+    "start": 2.56,
+    "end": 4.01
    },
    {
     "text": "plaquettes,",
-    "start": 3.29,
-    "end": 4.09
-   },
-   {
-    "text": "kakemonos,",
-    "start": 4.09,
+    "start": 4.06,
     "end": 4.82
    },
    {
+    "text": "kakémonos,",
+    "start": 4.87,
+    "end": 5.78
+   },
+   {
     "text": "cartes de visite,",
-    "start": 4.82,
-    "end": 6.07
+    "start": 5.83,
+    "end": 7.03
    },
    {
     "text": "pages réseaux sociaux…",
-    "start": 6.07,
-    "end": 7.67
+    "start": 7.08,
+    "end": 8.17
    },
    {
-    "text": "Et bien sûr,",
-    "start": 7.67,
-    "end": 8.55
+    "text": "Et un nouveau site flambant neuf.",
+    "start": 8.22,
+    "end": 10.84
    },
    {
-    "text": "un nouveau site flambant neuf.",
-    "start": 8.55,
-    "end": 10.74
-   },
-   {
-    "text": "La cerise sur le gâteau ?",
-    "start": 11.25,
-    "end": 13.15
+    "text": "Cerise sur le gâteau ?",
+    "start": 10.89,
+    "end": 12.36
    },
    {
     "text": "Un agent éditorial IA,",
-    "start": 13.15,
-    "end": 14.82
+    "start": 12.41,
+    "end": 13.84
    },
    {
     "text": "pour que chacun puisse écrire comme Finaxy.",
-    "start": 15.16,
-    "end": 17.83
+    "start": 13.89,
+    "end": 16.84
    }
   ]
  },
  "5": {
   "frame": "E",
-  "seconds": 23.88,
+  "seconds": 23.76,
   "phrases": [
    {
     "text": "Notre rôle là-dedans ?",
-    "start": 0.3,
-    "end": 1.28
+    "start": 0.32,
+    "end": 1.82
    },
    {
     "text": "Mettre les bons talents au service du projet,",
-    "start": 1.85,
-    "end": 4.14
+    "start": 1.87,
+    "end": 4.59
    },
    {
     "text": "à chaque étape,",
-    "start": 4.47,
-    "end": 5.27
+    "start": 4.64,
+    "end": 5.39
    },
    {
     "text": "en les faisant jouer comme une seule équipe.",
-    "start": 5.27,
-    "end": 7.6
+    "start": 5.44,
+    "end": 8.34
    },
    {
     "text": "Parce que chez Relax,",
-    "start": 8.18,
-    "end": 9.17
+    "start": 8.39,
+    "end": 9.55
    },
    {
-    "text": "on ne fait pas entrer un projet dans une agence.",
-    "start": 9.17,
-    "end": 11.42
+    "text": "on ne fait pas rentrer un projet dans l'organigramme d'une agence.",
+    "start": 9.6,
+    "end": 12.89
    },
    {
     "text": "On construit l'équipe autour de votre projet.",
-    "start": 11.87,
-    "end": 14.64
+    "start": 12.94,
+    "end": 16.06
    },
    {
     "text": "Côté Relax :",
-    "start": 15.33,
-    "end": 16.01
+    "start": 16.11,
+    "end": 17.1
    },
    {
     "text": "du mouvement.",
-    "start": 16.35,
-    "end": 16.94
+    "start": 17.15,
+    "end": 18.43
    },
    {
     "text": "Côté client :",
-    "start": 17.6,
-    "end": 18.18
+    "start": 18.48,
+    "end": 19.37
    },
    {
     "text": "un seul fil,",
-    "start": 18.83,
-    "end": 19.61
+    "start": 19.42,
+    "end": 20.34
    },
    {
     "text": "zéro couture.",
-    "start": 20.13,
-    "end": 21.09
+    "start": 20.39,
+    "end": 21.86
    },
    {
     "text": "C'est ça,",
-    "start": 21.88,
-    "end": 22.31
+    "start": 21.91,
+    "end": 22.63
    },
    {
     "text": "notre promesse.",
-    "start": 22.73,
-    "end": 23.51
+    "start": 22.68,
+    "end": 23.37
    }
   ]
  }

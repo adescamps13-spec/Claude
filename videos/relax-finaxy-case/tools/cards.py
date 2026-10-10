@@ -63,6 +63,17 @@ cards["intel"] = f"""<div class="card" style="background:radial-gradient(80% 90%
 <div class="a" style="left:380px;top:332px;width:80px;height:5px;border-radius:3px;background:#9C0A3F"></div>
 <div class="a" style="left:345px;top:384px">{NEW(150)}</div></div>"""
 
+# Relax-charter listening panels (relax-agency.com service cards: pastel card, tag pill, Unbounded title)
+LISTEN = [("dirigeants", "#CAC3E1", "#6955AA", "#2A2244"), ("collaborateurs", "#C3DDE1", "#56A0AA", "#224044"),
+          ("métiers", "#E0DEC3", "#8C853F", "#3B3818"), ("marché", "#E1C3C3", "#AA5655", "#432222")]
+for i, (word, bg, tagc, ink) in enumerate(LISTEN):
+    hs = [abs(((j * 37 + i * 11) % 23) - 11) * 9 + 22 for j in range(30)]
+    bars = "".join(f'<i style="display:block;width:12px;border-radius:6px;height:{h}px;background:linear-gradient(180deg,{tagc},{tagc}99)"></i>' for h in hs)
+    cards[f"ecoute{i}"] = f"""<div class="card" style="background:{bg}">
+<div class="a" style="left:44px;top:40px;padding:0 22px;height:44px;line-height:44px;border-radius:22px;background:{tagc};color:#fff;font-weight:500;font-size:20px">On écoute</div>
+<div class="a" style="left:44px;top:112px;font-family:Unbounded;font-weight:500;font-size:64px;color:{ink};letter-spacing:-.01em">{word}</div>
+<div class="a" style="left:44px;right:44px;bottom:70px;height:190px;display:flex;align-items:center;justify-content:space-between">{bars}</div></div>"""
+
 # real Finaxy deliverables (files supplied by the client / Relax, assets/real/), never mock-ups:
 # each is laid on an 840x480 card, full bleed when the ratio allows, otherwise contained on its own edge colour
 REAL = {"voeux": ("voeux-2026.jpg", "contain"), "enseigne": ("enseigne.jpg", "cover"), "affiches": ("affiches.jpg", "cover"), "plaquette": ("plaquette.jpg", "contain"),

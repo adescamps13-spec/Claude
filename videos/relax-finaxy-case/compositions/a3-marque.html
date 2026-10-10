@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
+
+      </style>
+      <div id="root" data-composition-id="a3-marque" data-width="1920" data-height="1080" data-duration="8.23">
+<style>
+  #a3-marque-cv{position:absolute;left:510px;top:150px;width:900px;height:572px;filter:drop-shadow(0 30px 50px rgba(42,34,68,.18))}
+  #a3-marque-src{position:absolute;left:0;top:0;width:520px;height:330px;opacity:0;pointer-events:none}
+  #a3-marque-line{position:absolute;left:0;right:0;top:790px;text-align:center;font-family:Unbounded;font-weight:500;font-size:62px;letter-spacing:-.01em;color:#212C34;white-space:nowrap}
+  #a3-marque-logo{position:relative;display:inline-block}
+  #a3-marque-strike{position:absolute;left:-8px;right:-8px;top:52%;height:7px;border-radius:4px;background:#FF0055;transform-origin:left center}
+  #a3-marque-caret{display:inline-block;width:5px;height:64px;margin-left:6px;vertical-align:-10px;background:#FF0055}
+  #a3-marque-tag{position:absolute;left:510px;top:96px}
+</style>
+<div class="full wash"></div>
+<img id="a3-marque-src" src="assets/cards/oldlogo.png" alt="">
+<span class="tag tag-p" id="a3-marque-tag">l’ancienne marque</span>
+<canvas id="a3-marque-cv" width="900" height="572"></canvas>
+<div id="a3-marque-line"><span id="a3-marque-typed"></span><span id="a3-marque-logo"><span id="a3-marque-lw"></span><span id="a3-marque-strike"></span></span><span id="a3-marque-tail"></span><span id="a3-marque-caret"></span></div>
+<div class="hud" style="left:70px;color:#62666B">RELAX × FINAXY</div><div class="hud" style="right:70px;color:#62666B">01 — LE CONSTAT</div>
+<script>
+  (function () {
+    const ID = "a3-marque", D = 8.23, VO = {"1.0": -4.5, "1.1": -1.64, "1.2": 0.15, "1.3": 2.77, "1.4": 6.49, "1.5": 8.38, "2.0": 11.13, "2.1": 13.38, "2.2": 16.27, "2.3": 18.28, "2.4": 20.47, "2.5": 22.07, "2.6": 23.15, "2.7": 25.07, "2.8": 25.55, "2.9": 28.03, "2.10": 32.51, "2.11": 34.57, "2.12": 37.23, "3.0": 40.41, "3.1": 41.4, "3.2": 43.15, "3.3": 44.29, "3.4": 45.24, "3.5": 46.21, "3.6": 47.57, "3.7": 48.29, "3.8": 50.12, "3.9": 51.25, "3.10": 54.69, "3.11": 55.8, "3.12": 57.6, "4.0": 60.55, "4.1": 62.73, "4.2": 64.23, "4.3": 65.04, "4.4": 66.0, "4.5": 67.25, "4.6": 68.39, "4.7": 71.06, "4.8": 72.58, "4.9": 74.06, "5.0": 78.37, "5.1": 79.92, "5.2": 82.69, "5.3": 83.49, "5.4": 86.44, "5.5": 87.65, "5.6": 90.99, "5.7": 94.16, "5.8": 95.2, "5.9": 96.53, "5.10": 97.47, "5.11": 98.44, "5.12": 99.96, "5.13": 100.73, "breath": 102.51, "exhale": 104.26};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const cv = $("cv"), ctx = cv.getContext("2d"), img = $("src"), W = 900, H = 572, R = 46;
+    const r = KIT.rng(17);
+    // erosion: seeded bites that open from the edges and from a few cracks
+    const bites = Array.from({ length: 260 }, (_, i) => {
+      const edge = i % 3 !== 0;
+      const x = edge ? (r() < 0.5 ? r() * 120 : W - r() * 120) : 120 + r() * (W - 240);
+      const y = edge ? r() * H : (r() < 0.5 ? r() * 140 : H - r() * 140);
+      return { x: edge && r() < 0.4 ? r() * W : x, y, rad: 4 + r() * 16, t: r() };
+    });
+    // a few denser clusters (where the mark crumbles first)
+    for (let c = 0; c < 6; c++) { const cx = r() * W, cy = r() * H; for (let k = 0; k < 40; k++) bites.push({ x: cx + (r() - 0.5) * 160, y: cy + (r() - 0.5) * 110, rad: 3 + r() * 12, t: r() * 0.9 }); }
+    const st = { decay: 0, glitch: 0, grey: 0, flick: 1 };
+    const rr = (x, y, w, h, q) => { ctx.beginPath(); ctx.moveTo(x + q, y); ctx.arcTo(x + w, y, x + w, y + h, q); ctx.arcTo(x + w, y + h, x, y + h, q); ctx.arcTo(x, y + h, x, y, q); ctx.arcTo(x, y, x + w, y, q); ctx.closePath(); };
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+      if (!img.complete || !img.naturalWidth) return;
+      ctx.save();
+      ctx.globalAlpha = st.flick;
+      rr(0, 0, W, H, R);
+      ctx.clip();
+      // the mark slips in horizontal strips (it no longer holds together)
+      const STR = 9;
+      for (let k = 0; k < STR; k++) {
+        const off = Math.sin(k * 2.1 + 0.7) * 90 * st.glitch + (k % 2 ? 1 : -1) * 16 * st.glitch;
+        const sy = (k * 330) / STR, sh = 330 / STR + 1;
+        ctx.drawImage(img, 0, sy, 520, sh, off, (k * H) / STR, W, H / STR + 1);
+      }
+      // colour drains away
+      ctx.globalCompositeOperation = "saturation";
+      ctx.fillStyle = `rgba(128,128,128,${st.grey})`;
+      ctx.fillRect(0, 0, W, H);
+      // and it erodes
+      ctx.globalCompositeOperation = "destination-out";
+      for (const b of bites) {
+        const k = Math.max(0, Math.min(1, (st.decay - b.t * 0.85) / 0.15));
+        if (k <= 0) continue;
+        const q = b.rad * k * 2;
+        ctx.fillRect(Math.round((b.x - q / 2) / 4) * 4, Math.round((b.y - q / 2) / 4) * 4, Math.ceil(q / 4) * 4, Math.ceil(q / 4) * 4);
+      }
+      ctx.restore();
+    };
+    img.addEventListener("load", draw);
+    const p = { t: 0 };
+    tl.fromTo(p, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: draw }, 0);
+    const a = VO["1.2"], b = VO["1.3"], c = VO["1.4"];
+    // "une marque qui avait du mal à exister": it flickers, weak
+    tl.fromTo("#a3-marque-cv", { opacity: 0, scale: 0.92, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "expo.out" }, 0);
+    tl.fromTo("#a3-marque-tag", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.3);
+    tl.fromTo(st, { flick: 1 }, { flick: 0.35, duration: 0.09, repeat: 9, yoyo: true, ease: "steps(1)", onUpdate: draw }, a + 0.5);
+    tl.to("#a3-marque-cv", { scale: 0.9, duration: b - 0.7, ease: "sine.inOut" }, 0.7);
+    // "et qui surtout ne reflétait plus…": it deteriorates
+    tl.fromTo(st, { decay: 0, grey: 0, glitch: 0 }, { decay: 0.62, grey: 0.85, glitch: 0.45, duration: c - b - 0.2, ease: "power1.in", onUpdate: draw, immediateRender: false }, b);
+    tl.to(st, { glitch: 0.12, duration: 0.5, ease: "power2.out", onUpdate: draw }, c - 0.2);
+    tl.to(["#a3-marque-cv", "#a3-marque-tag"], { y: -60, duration: 0.6, ease: "expo.inOut" }, c - 0.35);
+    // "Pas juste un problème de logo :" typed under the old mark, "logo" struck through
+    const A = "Pas juste un problème de ", L = "logo", Z = " :", ty = { n: 0 };
+    const type = () => {
+      const n = Math.round(ty.n);
+      $("typed").textContent = A.slice(0, n);
+      $("lw").textContent = L.slice(0, Math.max(0, n - A.length));
+      $("tail").textContent = Z.slice(0, Math.max(0, n - A.length - L.length));
+    };
+    type();
+    tl.fromTo(ty, { n: 0 }, { n: A.length + L.length + Z.length, duration: 1.1, ease: "none", onUpdate: type, immediateRender: false }, c - 0.05);
+    tl.fromTo("#a3-marque-caret", { opacity: 0 }, { opacity: 1, duration: 0.01 }, c - 0.1);
+    tl.fromTo("#a3-marque-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.inOut" }, c + 1.25);
+    tl.to("#a3-marque-caret", { opacity: 0, duration: 0.2, repeat: 3, yoyo: true, ease: "steps(1)" }, c + 1.1);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

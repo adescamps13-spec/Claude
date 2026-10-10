@@ -1,0 +1,70 @@
+<style>
+  #§top{position:absolute;left:0;right:0;top:96px;text-align:center;font-weight:400;font-size:40px;color:#4F575D}
+  #§top .§rl{display:inline-block;width:150px;vertical-align:-10px;margin-left:10px}
+  #§top .§rl svg{width:150px;height:auto;display:block}
+  #§org{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  #§lines{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  .§bx{position:absolute;left:0;top:0;height:76px;border-radius:20px;font-weight:600;font-size:24px;line-height:76px;text-align:center;white-space:nowrap}
+  .§sm{position:absolute;left:0;top:0;width:150px;height:58px;border-radius:16px;background:#EEEBF6;color:#6B7278;font-weight:500;font-size:19px;line-height:58px;text-align:center}
+  #§tagO{position:absolute;left:150px;top:200px}
+  .§pc{position:absolute;left:0;top:0;width:140px;height:250px;overflow:hidden;border-radius:0}
+  .§pc div{position:absolute;top:0;width:420px;height:250px;border-radius:32px;background:linear-gradient(135deg,#C9F1F6 0%,#D4CCEE 40%,#F4C6E6 75%,#CDEBFA 100%)}
+  .§pc span{position:absolute;top:96px;width:420px;text-align:center;font-family:Unbounded;font-weight:500;font-size:40px;color:#212C34}
+</style>
+<div class="full wash"></div>
+<div id="§top">Parce que chez <span class="§rl">{{RELAX}}</span></div>
+<svg id="§lines" viewBox="0 0 1920 1080"></svg>
+<div id="§org"></div>
+<span class="tag tag-r" id="§tagO">l’organigramme d’une agence</span>
+<div id="§proj"></div>
+{{HUD:#62666B|06 — NOTRE RÔLE}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["5.4"], b = VO["5.5"];
+    // a rigid agency org chart
+    const NS = "http://www.w3.org/2000/svg", svg = $("lines"), org = $("org"), boxes = [];
+    const box = (txt, x, y, w, cls, style) => { const d = document.createElement("div"); d.className = cls; d.textContent = txt; d.style.cssText += style || ""; d.style.width = w + "px"; gsap.set(d, { x: x - w / 2, y }); org.appendChild(d); boxes.push(d); return d; };
+    const line = (x1, y1, x2, y2) => { const p = document.createElementNS(NS, "path"); const my = (y1 + y2) / 2; p.setAttribute("d", `M${x1} ${y1} V${my} H${x2} V${y2}`); p.setAttribute("fill", "none"); p.setAttribute("stroke", "#B9B2D3"); p.setAttribute("stroke-width", "2.5"); svg.appendChild(p); return p; };
+    const ls = [];
+    box("Direction", 960, 290, 300, ID + "-bx", "background:#CAC3E1;color:#2A2244");
+    const P = [["Pôle conseil", 560, "#C3DDE1", "#224044"], ["Pôle création", 960, "#E1C3C3", "#432222"], ["Pôle digital", 1360, "#E0DEC3", "#3B3818"]];
+    P.forEach(([t, x, bg, fg]) => {
+      ls.push(line(960, 366, x, 470));
+      box(t, x, 470, 300, ID + "-bx", `background:${bg};color:${fg}`);
+      [-90, 90].forEach((dx) => { ls.push(line(x, 546, x + dx, 640)); box("équipe", x + dx, 640, 150, ID + "-sm"); });
+    });
+    tl.fromTo("#§top", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, a - 0.1);
+    boxes.forEach((d, i) => tl.fromTo(d, { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, a + 0.3 + i * 0.04));
+    tl.fromTo(ls, { opacity: 0 }, { opacity: 1, duration: 0.4 }, a + 0.5);
+    tl.fromTo("#§tagO", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4 }, a + 0.6);
+    // the project arrives… and gets cut into the departments' boxes
+    const pieces = [0, 1, 2].map((k) => {
+      const d = document.createElement("div");
+      d.className = ID + "-pc";
+      d.innerHTML = `<div style="left:${-k * 140}px"></div><span style="left:${-k * 140}px">votre projet</span>`;
+      $("proj").appendChild(d);
+      return d;
+    });
+    const PX = 750, PY = 760;
+    pieces.forEach((d, k) => {
+      tl.fromTo(d, { x: PX + k * 140 + 700, y: PY, opacity: 0, borderRadius: k === 0 ? "32px 0 0 32px" : k === 2 ? "0 32px 32px 0" : "0" },
+        { x: PX + k * 140, y: PY, opacity: 1, duration: 0.6, ease: "expo.out" }, b - 0.1);
+      // pushed up into the chart: it splits, one piece per silo
+      tl.to(d, { x: P[k][1] - 70, y: 560, scaleY: 0.5, scaleX: 0.75, rotation: (k - 1) * 8, duration: 0.7, ease: "power3.inOut" }, b + 0.9 + k * 0.06);
+      tl.to(d, { opacity: 0.55, duration: 0.3 }, b + 1.5);
+    });
+    // "on ne fait pas…": the chart greys out and falls away, the pieces come back together
+    tl.to(boxes, { opacity: 0.2, filter: "grayscale(1)", duration: 0.4 }, b + 1.85);
+    tl.to(ls, { opacity: 0.15, duration: 0.4 }, b + 1.85);
+    tl.to("#§tagO", { opacity: 0, duration: 0.3 }, b + 1.85);
+    pieces.forEach((d, k) => tl.to(d, { x: 960 - 210 + k * 140, y: 415, scaleY: 1, scaleX: 1, rotation: 0, opacity: 1, duration: 0.8, ease: "expo.inOut" }, b + 2.15 + k * 0.05));
+    tl.to(boxes, { y: "+=420", opacity: 0, duration: 0.6, ease: "power2.in", stagger: 0.015 }, b + 2.3);
+    tl.to(ls, { opacity: 0, duration: 0.3 }, b + 2.3);
+    tl.to("#§top", { opacity: 0, duration: 0.3 }, D - 0.4);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

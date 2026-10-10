@@ -63,11 +63,27 @@ def align(ph, segs):
     return out
 
 
+# Phrase starts read by hand from fine silences (silencedetect -36dB / 80 ms) where the greedy
+# alignment drifts (micro-pauses inside long phrases). One start per script phrase.
+MANUAL = {
+    "1": [0.33, 3.19, 4.98, 7.60, 11.32, 13.21],
+    "2": [0.28, 2.53, 5.42, 7.43, 9.62, 11.22, 12.30, 14.22, 14.70, 17.18, 21.66, 23.72, 26.38],
+    "3": [0.28, 1.27, 3.02, 4.16, 5.11, 6.08, 7.44, 8.16, 9.99, 11.12, 14.56, 15.67, 17.47],
+    "4": [0.38, 2.56, 4.06, 4.87, 5.83, 7.08, 8.22, 10.89, 12.41, 13.89],
+    "5": [0.32, 1.87, 4.64, 5.44, 8.39, 9.60, 12.94, 16.11, 17.15, 18.48, 19.42, 20.39, 21.91, 22.68],
+}
+
 res = {}
 for k in sorted(man, key=int):
     m = man[k]
     segs, total = speech_segments(ROOT / m["file"])
-    res[k] = {"frame": m["frame"], "seconds": round(total, 2), "phrases": align(phrases(m["text"]), segs)}
+    ph = phrases(m["text"])
+    if k in MANUAL and len(MANUAL[k]) == len(ph):
+        st = MANUAL[k] + [segs[-1][1]]
+        al = [{"text": p, "start": st[i], "end": round(st[i + 1] - 0.05, 2)} for i, p in enumerate(ph)]
+    else:
+        al = align(ph, segs)
+    res[k] = {"frame": m["frame"], "seconds": round(total, 2), "phrases": al}
 (ROOT / "tools/vo-cues.json").write_text(json.dumps(res, ensure_ascii=False, indent=1))
 for k, v in res.items():
     print(f"line {k} ({v['seconds']}s)")
