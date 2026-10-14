@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
+
+      </style>
+      <div id="root" data-composition-id="d3-agent" data-width="1920" data-height="1080" data-duration="7.31">
+<style>
+  #d3-agent-gl{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  #d3-agent-q{position:absolute;left:0;right:0;top:120px;text-align:center;font-family:Unbounded;font-weight:500;font-size:60px;color:#212C34}
+  #d3-agent-ui{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  #d3-agent-chat{position:absolute;left:330px;top:170px;width:880px;height:720px;border-radius:32px;background:#FFFFFF;box-shadow:0 40px 90px rgba(42,34,68,.16);overflow:hidden}
+  #d3-agent-hd{position:absolute;left:0;right:0;top:0;height:96px;border-bottom:1px solid #EEEAF6}
+  #d3-agent-av{position:absolute;left:30px;top:22px;width:52px;height:52px;border-radius:16px;background:linear-gradient(160deg,#FFFFFF,#E3DCFA);box-shadow:inset 0 0 0 2px #D4CCEE}
+  #d3-agent-av::before{content:"";position:absolute;left:8px;top:14px;width:36px;height:22px;border-radius:8px;background:#2A2244}
+  #d3-agent-av::after{content:"";position:absolute;left:16px;top:21px;width:6px;height:8px;border-radius:3px;background:#FF3D80;box-shadow:14px 0 0 #FF3D80}
+  #d3-agent-nm{position:absolute;left:96px;top:24px;font-weight:600;font-size:24px;color:#212C34}
+  #d3-agent-st{position:absolute;left:96px;top:56px;font-size:16px;color:#2F6C74}
+  #d3-agent-hd .tag{position:absolute;right:30px;top:26px}
+  #d3-agent-u{position:absolute;right:34px;top:140px;max-width:620px;padding:20px 26px;border-radius:24px 24px 6px 24px;background:#E5E0F5;color:#2A2244;font-size:24px;line-height:1.35}
+  #d3-agent-b{position:absolute;left:34px;top:290px;width:700px;padding:24px 28px;border-radius:24px 24px 24px 6px;background:#F7F6FB;border:1px solid #EEEAF6;color:#191853;font-size:27px;line-height:1.42}
+  #d3-agent-b span{opacity:0}
+  #d3-agent-src{position:absolute;left:34px;top:540px;display:flex;gap:12px}
+  #d3-agent-src div{height:40px;padding:0 18px;border-radius:20px;background:#CCEAEE;color:#224044;font-weight:500;font-size:17px;line-height:40px}
+  #d3-agent-in{position:absolute;left:30px;right:30px;bottom:26px;height:68px;border-radius:34px;background:#F4F2FA;color:#8E899E;font-size:20px;line-height:68px;padding-left:30px;color:#5E5A72}
+  #d3-agent-wl{position:absolute;left:1340px;top:170px;font-weight:600;font-size:17px;letter-spacing:.16em;color:#6B7278}
+  .d3-agent-who{position:absolute;left:1340px;height:62px;padding:0 26px 0 66px;border-radius:31px;background:#FFFFFF;color:#212C34;font-weight:500;font-size:22px;line-height:62px;white-space:nowrap;box-shadow:0 12px 28px rgba(42,34,68,.10)}
+  .d3-agent-who u{position:absolute;left:12px;top:11px;width:40px;height:40px;border-radius:20px;color:#FFFFFF;font-weight:600;font-size:17px;line-height:40px;text-align:center;text-decoration:none}
+</style>
+<div class="full wash"></div>
+<canvas id="d3-agent-gl" width="1920" height="1080"></canvas>
+<div id="d3-agent-q">Cerise sur le gâteau ?</div>
+<div id="d3-agent-ui">
+  <div id="d3-agent-chat">
+    <div id="d3-agent-hd"><div id="d3-agent-av"></div><div id="d3-agent-nm">Agent éditorial Finaxy</div><div id="d3-agent-st">nourri par la charte et la plateforme</div><span class="tag tag-p">IA</span></div>
+    <div id="d3-agent-u"><span id="d3-agent-ut"></span></div>
+    <div id="d3-agent-b"></div>
+    <div id="d3-agent-in">Écrire un message…</div>
+  </div>
+  <div id="d3-agent-wl">POUR CHACUN</div>
+</div>
+
+<script src="assets/vendor/three.global.js"></script>
+<script src="assets/vendor/three-addons.js"></script>
+<script src="assets/t3.js"></script>
+<script>
+  (function () {
+    const ID = "d3-agent", D = 7.31, VO = {"1.0": -75.41, "1.1": -72.55, "1.2": -70.76, "1.3": -68.14, "1.4": -64.42, "1.5": -62.53, "2.0": -59.78, "2.1": -57.53, "2.2": -54.64, "2.3": -52.63, "2.4": -50.44, "2.5": -48.84, "2.6": -47.76, "2.7": -45.84, "2.8": -45.36, "2.9": -42.88, "2.10": -38.4, "2.11": -36.34, "2.12": -33.68, "3.0": -30.5, "3.1": -29.51, "3.2": -27.76, "3.3": -26.62, "3.4": -25.67, "3.5": -24.7, "3.6": -23.34, "3.7": -22.62, "3.8": -20.79, "3.9": -19.66, "3.10": -16.22, "3.11": -15.11, "3.12": -13.31, "4.0": -10.36, "4.1": -8.18, "4.2": -6.68, "4.3": -5.87, "4.4": -4.91, "4.5": -3.66, "4.6": -2.52, "4.7": 0.15, "4.8": 1.67, "4.9": 3.15, "5.0": 7.46, "5.1": 9.01, "5.2": 11.78, "5.3": 12.58, "5.4": 15.53, "5.5": 16.74, "5.6": 20.08, "5.7": 23.25, "5.8": 24.29, "5.9": 25.62, "5.10": 26.56, "5.11": 27.53, "5.12": 29.05, "5.13": 29.82, "breath": 31.6, "exhale": 33.35};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["4.7"], ag = VO["4.8"], ch = VO["4.9"], CUT = ag - 0.12;
+    // ── the cake and its cherry, a small glossy 3D object ──
+    const S = T3.stage($("gl"), { w: 1920, h: 1080, fov: 26, camZ: 14, camY: 3.2 });
+    S.camera.lookAt(0, 0.9, 0);
+    const cake = new THREE.Group();
+    [[1.75, 0.8, 0xbdb0f2], [1.35, 0.7, 0xf6eee2], [0.95, 0.62, 0xf4b3dc]].reduce((y, [rad, h, c]) => {
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(rad, rad, h, 64, 1), T3.clay(c, { roughness: 0.42 }));
+      m.position.y = y + h / 2; cake.add(m);
+      const lip = new THREE.Mesh(new THREE.TorusGeometry(rad, 0.07, 16, 80), T3.clay(0xffffff, { roughness: 0.35 }));
+      lip.rotation.x = Math.PI / 2; lip.position.y = y + h; cake.add(lip);
+      return y + h;
+    }, 0);
+    const shC = T3.shadow(2.6, 0.22); shC.position.y = 0.01; cake.add(shC);
+    S.scene.add(cake);
+    // the robot head (the agent) that lands on top instead of a cherry
+    const cherry = new THREE.Group();
+    const shell = T3.glossy(0xece7fc, { irid: 0.8, roughness: 0.16 });
+    const berry = new THREE.Mesh(T3.rbox(1.3, 1.0, 1.05, 0.3, 6), shell);
+    cherry.add(berry);
+    const visor = new THREE.Mesh(T3.rbox(1.02, 0.6, 0.1, 0.2, 4), new THREE.MeshPhysicalMaterial({ color: 0x2a2244, roughness: 0.1, clearcoat: 1, clearcoatRoughness: 0.05 }));
+    visor.position.set(0, 0.02, 0.5); cherry.add(visor);
+    const eyeMat = new THREE.MeshBasicMaterial({ color: 0xff3d80 });
+    const eyes = [-0.24, 0.24].map((x) => { const e = new THREE.Mesh(new THREE.CapsuleGeometry(0.075, 0.12, 8, 16), eyeMat); e.position.set(x, 0.04, 0.57); cherry.add(e); return e; });
+    [-0.7, 0.7].forEach((x) => { const ear = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.16, 40), T3.glossy(0xf4a3d2, { irid: 0.4 })); ear.rotation.z = Math.PI / 2; ear.position.x = x; cherry.add(ear); });
+    const ant = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.42, 12), T3.clay(0x8e899e)); ant.position.y = 0.7; cherry.add(ant);
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.11, 32, 24), T3.glossy(0xff1f66, { irid: 0.3, roughness: 0.1 })); bulb.position.y = 0.95; cherry.add(bulb);
+    S.scene.add(cherry);
+    const TOP = 2.12 + 0.5;
+    const draw = (t) => {
+      const k = T3.ease.clamp((t - a - 0.35) / 0.55);
+      // drop with a bounce, squash on landing
+      const fall = k < 1 ? 6 * (1 - k * k) : 0, land = T3.ease.clamp((t - a - 0.9) / 0.35);
+      cherry.position.set(0, TOP + fall + Math.sin(land * Math.PI) * 0.35 * (1 - land), 0);
+      const sq = land > 0 && land < 1 ? 1 - 0.18 * Math.sin(land * Math.PI) : 1;
+      cherry.scale.set(1 / Math.sqrt(sq), sq, 1 / Math.sqrt(sq));
+      const blink = Math.abs(Math.sin(t * 2.3)) > 0.97 ? 0.15 : 1;
+      eyes.forEach((e) => e.scale.set(1, blink, 1));
+      cake.rotation.y = -0.4 + t * 0.35;
+      cherry.rotation.y = 0.35 + Math.sin(t * 1.2) * 0.25 * land;
+      cherry.rotation.z = Math.sin(t * 0.9) * 0.06 * land;
+      S.camera.position.x = Math.sin(t * 0.4) * 1.2;
+      S.camera.lookAt(0, 2.0, 0);
+      S.render();
+    };
+    const p = { t: 0 };
+    tl.fromTo(p, { t: 0 }, { t: CUT, duration: CUT, ease: "none", onUpdate: () => draw(p.t) }, 0);
+    draw(0);
+    tl.fromTo("#d3-agent-q", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, a - 0.05);
+    tl.fromTo("#d3-agent-gl", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, 0);
+    // ── cut: the robot becomes the agent's avatar ──
+    tl.set(["#d3-agent-gl", "#d3-agent-q"], { display: "none" }, CUT);
+    tl.fromTo("#d3-agent-ui", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, CUT);
+    tl.fromTo("#d3-agent-chat", { y: 120, scale: 0.94, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.6, ease: "expo.out" }, CUT);
+    tl.fromTo("#d3-agent-av", { scale: 3 }, { scale: 1, duration: 0.6, ease: "expo.out" }, CUT);
+    // a request, typed
+    const ASK = "Rédige l’annonce de notre nouvelle identité.", ty = { n: 0 };
+    tl.fromTo("#d3-agent-u", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25 }, CUT + 0.35);
+    tl.fromTo(ty, { n: 0 }, { n: ASK.length, duration: 0.8, ease: "none", immediateRender: false, onUpdate: () => ($("ut").textContent = ASK.slice(0, Math.round(ty.n))) }, CUT + 0.35);
+    // it answers in the Finaxy voice (first line of Finaxy's own announcement)
+    const ANS = "Dix-sept ans après sa création, Finaxy ouvre un nouveau chapitre de son histoire. Ensemble, protégeons ce qui compte.";
+    $("b").innerHTML = ANS.split(" ").map((w) => `<span>${w} </span>`).join("");
+    tl.fromTo("#d3-agent-b", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25 }, CUT + 1.25);
+    tl.to("#d3-agent-b span", { opacity: 1, duration: 0.08, stagger: 0.07 }, CUT + 1.35);
+    // "pour que chacun puisse écrire comme Finaxy": every team, the same voice
+    const WHO = [["Direction", "D", "#6955AA"], ["Commercial", "C", "#3E7C85"], ["Gestion", "G", "#8E3F3E"], ["Ressources humaines", "RH", "#6E6830"], ["Communication", "Co", "#6955AA"], ["Agences", "A", "#3E7C85"]];
+    WHO.forEach(([l, ini, c], i) => {
+      const d = document.createElement("div");
+      d.className = ID + "-who";
+      d.style.top = 214 + i * 96 + "px";
+      d.innerHTML = `<u style="background:${c}">${ini}</u>${l}`;
+      $("ui").appendChild(d);
+      tl.fromTo(d, { x: 60, opacity: 0, scale: 0.8 }, { x: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, ch - 0.05 + i * 0.12);
+    });
+    tl.fromTo("#d3-agent-wl", { opacity: 0 }, { opacity: 1, duration: 0.3 }, ch - 0.1);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

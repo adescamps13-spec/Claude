@@ -1,0 +1,77 @@
+<style>
+  #§cam{position:absolute;left:0;top:0;width:1920px;height:1080px;perspective:1600px;perspective-origin:760px 540px}
+  #§board{left:200px;top:170px;width:900px;height:740px;transform-style:preserve-3d;box-shadow:0 40px 90px rgba(42,34,68,.18)}
+  #§head{position:absolute;left:44px;top:40px;right:44px}
+  #§head .h-uni{display:block;margin-top:18px;font-size:38px;color:#2A2244}
+  #§view{position:absolute;left:30px;right:30px;top:180px;height:520px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 84%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 16%,#000 84%,transparent 100%)}
+  #§list{position:absolute;left:0;right:0;top:0}
+  .§row{position:absolute;left:0;right:0;height:68px;border-radius:20px;background:rgba(255,255,255,.42)}
+  .§row b{position:absolute;left:26px;top:0;line-height:68px;font-weight:600;font-size:26px;color:#5D4F96;width:44px}
+  .§row i{position:absolute;left:96px;top:22px;height:24px;border-radius:12px;background:rgba(255,255,255,.7)}
+  .§row u{position:absolute;right:26px;top:22px;width:90px;height:24px;border-radius:12px;background:rgba(255,255,255,.5)}
+  #§me{position:absolute;left:30px;right:30px;top:396px;height:88px;border-radius:24px;background:#FFFFFF;box-shadow:0 24px 50px rgba(42,34,68,.22);opacity:0}
+  #§me b{position:absolute;left:30px;top:0;line-height:88px;font-family:Unbounded;font-weight:500;font-size:34px;color:#FF0055}
+  #§me .§lg{position:absolute;left:112px;top:22px;width:150px}
+  #§me .§lg svg{width:150px;height:auto;display:block}
+  #§me .tag{position:absolute;right:28px;top:22px}
+  #§big{position:absolute;left:1180px;top:250px;font-family:Unbounded;font-weight:600;font-size:400px;line-height:1;letter-spacing:-.05em;color:#212C34;white-space:nowrap}
+  #§big sup{font-size:150px;vertical-align:top;position:relative;top:40px;color:#FF0055;letter-spacing:0}
+  #§lbl{position:absolute;left:1196px;top:690px;font-family:Unbounded;font-weight:500;font-size:46px;line-height:1.2;color:#212C34}
+  #§lead{position:absolute;left:1196px;top:200px;font-weight:400;font-size:34px;color:#6B7278}
+</style>
+<div class="full wash"></div>
+<div id="§cam">
+  <div class="card card-p" id="§board">
+    <div id="§head"><span class="tag tag-p">Classement</span><span class="h-uni">Courtiers en assurance français</span></div>
+    <div id="§view"><div id="§list"></div></div>
+    <div id="§me" data-layout-allow-occlusion><b data-layout-allow-overlap>11</b><div class="§lg">{{FINAXY_NEW_NAVY}}</div><span class="tag tag-p">Finaxy</span></div>
+  </div>
+  <div id="§lead">Finaxy est le</div>
+  <div id="§big"><span id="§num">30</span><sup>e</sup></div>
+  <div id="§lbl">courtier<br>français</div>
+  <div class="cursor" id="§cur"></div>
+</div>
+{{HUD:#62666B|01 — LE CONSTAT}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const r = KIT.rng(31), STRIDE = 80, N = 30, list = $("list");
+    // an anonymous leaderboard: ranks only, no invented names or figures
+    for (let k = 1; k <= N; k++) {
+      const d = document.createElement("div");
+      d.className = ID + "-row";
+      d.style.top = (k - 1) * STRIDE + "px";
+      d.innerHTML = `<b data-layout-allow-overlap>${String(k).padStart(2, "0")}</b><i style="width:${(180 + r() * 260).toFixed(0)}px"></i><u></u>`;
+      list.appendChild(d);
+    }
+    const target = (11 - 1) * STRIDE - (520 - 68) / 2; // row 11 centred in the viewport
+    const sc = { v: (N - 7) * STRIDE };
+    const draw = () => {
+      list.style.transform = `translateY(${(-sc.v).toFixed(1)}px)`;
+      const rank = Math.round((sc.v + (520 - 68) / 2) / STRIDE + 1);
+      $("num").textContent = String(Math.max(11, Math.min(30, rank)));
+    };
+    draw();
+    const a = VO["1.0"];
+    tl.fromTo("#§board", { y: 120, rotationX: 24, rotationY: -14, opacity: 0 }, { y: 0, rotationX: 0, rotationY: -6, opacity: 1, duration: 0.8, ease: "expo.out" }, 0);
+    tl.to("#§board", { rotationY: 0, duration: D - 0.8, ease: "sine.inOut" }, 0.8);
+    tl.fromTo(sc, { v: (N - 7) * STRIDE }, { v: target, duration: 1.75, ease: "power4.inOut", onUpdate: draw }, 0.25);
+    tl.fromTo("#§lead", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a - 0.15);
+    tl.fromTo("#§big", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.6, ease: "expo.out" }, 0.3);
+    tl.fromTo("#§big", { scale: 1 }, { scale: 1.08, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out", transformOrigin: "0% 60%", immediateRender: false }, 2.0);
+    tl.fromTo("#§lbl", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1.3);
+    // Finaxy's row lifts out of the list
+    tl.fromTo("#§me", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1.04, duration: 0.45, ease: "back.out(2)" }, 2.0);
+    // the Relax cursor comes and points at it
+    tl.fromTo("#§cur", { x: 1500, y: 980 }, { x: 760, y: 640, duration: 0.9, ease: "power3.inOut" }, 1.75);
+    tl.to("#§cur", { scale: 0.82, duration: 0.08, yoyo: true, repeat: 1 }, 2.65);
+    tl.to("#§me", { scale: 1, duration: 0.2, ease: "power2.out" }, 2.68);
+    // push in toward the row before the cut
+    tl.to("#§cam", { scale: 1.12, transformOrigin: "650px 620px", duration: 0.5, ease: "power2.in" }, D - 0.5);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

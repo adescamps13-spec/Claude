@@ -1,0 +1,50 @@
+<style>
+  #§proj{position:absolute;z-index:2;left:750px;top:415px;width:420px;height:250px;border-radius:32px;overflow:hidden;
+    background:linear-gradient(135deg,#C9F1F6 0%,#D4CCEE 40%,#F4C6E6 75%,#CDEBFA 100%);box-shadow:0 40px 80px rgba(105,85,170,.28)}
+  #§proj span{position:absolute;left:0;right:0;top:96px;text-align:center;font-family:Unbounded;font-weight:500;font-size:40px;color:#212C34}
+  #§ring{position:absolute;inset:0}
+  .§pill{position:absolute;left:0;top:0;height:84px;border-radius:42px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;font-size:32px;line-height:84px;text-align:center;white-space:nowrap}
+  .§pill i{display:inline-block;width:14px;height:14px;border-radius:7px;background:#FF0055;margin-right:14px;vertical-align:2px}
+  #§cap{position:absolute;left:0;right:0;top:940px;text-align:center;font-family:Unbounded;font-weight:500;font-size:44px;color:#212C34}
+  #§cap em{font-style:normal;color:#6955AA}
+</style>
+<div class="full wash"></div>
+<div id="§ring"></div>
+<div id="§proj"><span>votre projet</span></div>
+<div id="§cap">On construit l’équipe <em>autour</em> de votre projet.</div>
+{{HUD:#62666B|06 — NOTRE RÔLE}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const c = VO["5.6"];
+    const TAL = ["Stratégie", "Naming", "Design", "Édito", "Développement", "Production"];
+    const pills = TAL.map((s) => {
+      const p = document.createElement("div");
+      p.className = ID + "-pill";
+      p.innerHTML = `<i></i>${s}`;
+      p.style.width = 110 + s.length * 19 + "px";
+      $("ring").appendChild(p);
+      return { el: p, w: 110 + s.length * 19 };
+    });
+    // the talents orbit in depth, then settle around the project
+    const orb = { t: 0 };
+    const drawRing = () => {
+      const k = orb.t, spin = (1 - Math.pow(1 - k, 3)) * Math.PI * 2, rx = 980 - 380 * k, ry = 470 - 210 * k;
+      pills.forEach((p, i) => {
+        const th = (i / 6) * Math.PI * 2 - Math.PI / 2 + spin - Math.PI * 2, depth = Math.sin(th);
+        const sc = 0.8 + 0.2 * ((depth + 1) / 2) * (1 - k) + 0.2 * k;
+        p.el.style.transform = `translate(${(960 + Math.cos(th) * rx - p.w / 2).toFixed(1)}px,${(540 + depth * ry - 42).toFixed(1)}px) scale(${sc.toFixed(3)})`;
+        p.el.style.opacity = Math.min(1, k * 4).toFixed(3);
+        p.el.style.zIndex = depth < 0 && k < 0.8 ? 0 : 3;
+      });
+    };
+    drawRing();
+    tl.fromTo(orb, { t: 0 }, { t: 1, duration: 2.0, ease: "none", onUpdate: drawRing }, c - 0.1);
+    tl.fromTo("#§proj", { scale: 1 }, { scale: 1.12, duration: 1.2, ease: "power2.out" }, c);
+    tl.fromTo("#§cap", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, c + 0.3);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

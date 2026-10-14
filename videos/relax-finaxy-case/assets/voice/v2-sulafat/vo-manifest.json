@@ -1,0 +1,47 @@
+{
+  "1": {
+    "file": "assets/voice/line-01.wav",
+    "frame": "A",
+    "label": "Le constat",
+    "text": "Finaxy est le onzième courtier français. Un groupe qui a grandi vite. Et une marque qui avait fini par ne plus refléter ce que l'entreprise était devenue. Qui n'arrivait plus à le raconter. Pas juste un problème de logo : un sujet de cohérence.",
+    "voice": "Sulafat",
+    "model": "gemini-3.1-flash-tts-preview",
+    "seconds": 14
+  },
+  "2": {
+    "file": "assets/voice/line-02.wav",
+    "frame": "B",
+    "label": "Écouter, comprendre",
+    "text": "On a commencé par écouter. Et on a compris ce que Finaxy était vraiment : une intelligence collective du risque. Une proposition de valeur clé : dans un monde où le risque est devenu multiple, aucune expertise isolée ne suffit.",
+    "voice": "Sulafat",
+    "model": "gemini-3.1-flash-tts-preview",
+    "seconds": 15.56
+  },
+  "3": {
+    "file": "assets/voice/line-03.wav",
+    "frame": "C",
+    "label": "Organiser, exprimer",
+    "text": "De cette idée, nous avons tout décliné : architecture, catégories, naming, place des marques. Ensuite, nous lui avons donné du corps : un nouveau logo, une nouvelle identité, une voix plus affirmée. Notre ambition : valoriser la stature, mettre en avant l'humain.",
+    "voice": "Sulafat",
+    "model": "gemini-3.1-flash-tts-preview",
+    "seconds": 17.88
+  },
+  "4": {
+    "file": "assets/voice/line-04.wav",
+    "frame": "D",
+    "label": "Déployer",
+    "text": "Et enfin, les supports pour exprimer tout ça : plaquettes, kakemonos, cartes de visite, pages réseaux sociaux… Et bien sûr, un nouveau site flambant neuf. La cerise sur le gâteau ? Un agent éditorial IA, pour que chacun puisse écrire comme Finaxy.",
+    "voice": "Sulafat",
+    "model": "gemini-3.1-flash-tts-preview",
+    "seconds": 18.16
+  },
+  "5": {
+    "file": "assets/voice/line-05.wav",
+    "frame": "E",
+    "label": "Le rôle de Relax",
+    "text": "Notre rôle là-dedans ? Mettre les bons talents au service du projet, à chaque étape, en les faisant jouer comme une seule équipe. Parce que chez Relax, on ne fait pas entrer un projet dans une agence. On construit l'équipe autour de votre projet. Côté Relax : du mouvement. Côté client : un seul fil, zéro couture. C'est ça, notre promesse.",
+    "voice": "Sulafat",
+    "model": "gemini-3.1-flash-tts-preview",
+    "seconds": 23.88
+  }
+}

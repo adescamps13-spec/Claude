@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Prototype — langage de mouvement v2</title>
+    <script src="../../assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face{font-family:'Unbounded';font-weight:500;src:url('../../assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+      @font-face{font-family:'Unbounded';font-weight:600;src:url('../../assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+      @font-face{font-family:'DM Sans';font-weight:300;src:url('../../assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+      @font-face{font-family:'DM Sans';font-weight:400;src:url('../../assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+      @font-face{font-family:'DM Sans';font-weight:500;src:url('../../assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+      @font-face{font-family:'DM Sans';font-weight:600;src:url('../../assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+      @font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;src:url('../../assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+      @font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;src:url('../../assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0E0C14; }
+      #proto { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: 'DM Sans', sans-serif; }
+      .seg { position: absolute; inset: 0; overflow: hidden; }
+      .hud { position: absolute; font-family: 'DM Sans'; font-weight: 600; font-size: 17px; letter-spacing: .16em; }
+
+      /* ── 1. COHÉRENCE: giant cropped type, a card passes through it ── */
+      #s1 { background: #0E0C14; }
+      #s1-lead { position: absolute; left: 0; right: 0; top: 190px; text-align: center; color: #A9A3BC; font-weight: 300; font-size: 40px; }
+      #s1-logo { position: relative; color: #FFFFFF; font-weight: 500; }
+      #s1-strike { position: absolute; left: -4px; right: -4px; top: 54%; height: 4px; background: #FF0055; transform-origin: left center; }
+      .s1-word { position: absolute; left: 0; top: 360px; height: 420px; white-space: nowrap; font-family: Unbounded; font-weight: 600; font-size: 400px; line-height: 420px; letter-spacing: -0.03em; color: #F4F1F8; }
+      .s1-word span { display: inline-block; }
+      #s1-front { -webkit-mask-image: linear-gradient(180deg, #000 0, #000 46%, transparent 46%); mask-image: linear-gradient(180deg, #000 0, #000 46%, transparent 46%); }
+      #s1-cardwrap { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; perspective: 1400px; }
+      #s1-card { position: absolute; left: 700px; top: 330px; width: 520px; height: 330px; border-radius: 26px; background: linear-gradient(135deg, #22216A 0%, #191853 60%, #10103E 100%);
+        box-shadow: 0 40px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.18); }
+      #s1-card .lg { position: absolute; left: 70px; top: 120px; width: 380px; height: 108px; background: url('../../assets/brand/finaxy-new.svg') center/contain no-repeat; }
+      #s1-sheen { position: absolute; inset: 0; border-radius: 26px; background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.28) 46%, transparent 60%); background-size: 260% 100%; }
+
+      /* ── 2. the film: Jerry-style curved iridescent carousel ── */
+      #s2 { background: radial-gradient(60% 55% at 50% 44%, #FFFFFF 0%, #F0F0F4 55%, #E3E3EA 100%); }
+      #s2-title { position: absolute; left: 610px; top: 150px; width: 700px; height: 110px; }
+      #s2-title .br { position: absolute; top: 0; font-weight: 300; font-size: 104px; line-height: 104px; color: #B7B7C2; }
+      #s2-slot { position: absolute; left: 70px; right: 70px; top: 6px; height: 100px; overflow: hidden;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); }
+      #s2-words { position: absolute; left: 0; top: 0; white-space: nowrap; }
+      #s2-words span { display: inline-block; width: 560px; text-align: center; font-family: Unbounded; font-weight: 500; font-size: 70px; line-height: 100px; letter-spacing: -0.02em; color: #212C34; }
+      #s2-stage { position: absolute; left: 0; top: 320px; width: 1920px; height: 480px; perspective: 1500px; perspective-origin: 960px 240px; }
+      #s2-film { position: absolute; inset: 0; transform-style: preserve-3d; }
+      .sl { position: absolute; top: 0; height: 480px; overflow: hidden; transform-origin: 50% 50%; }
+      .sl .img { position: absolute; top: 0; width: 840px; height: 480px; background-size: 840px 480px; }
+      .sl .irid { position: absolute; inset: 0; opacity: 0; background: linear-gradient(180deg, #8EEBF7 0%, #B9A8F0 38%, #F0A9E2 70%, #8FDDF6 100%); }
+      .sl .band { position: absolute; left: 0; right: 0; top: 34px; bottom: 34px; opacity: 0; background: linear-gradient(180deg, #7FE3F0 0%, #B3C3F7 55%, #8FDDF6 100%); }
+      #s2-mirror { position: absolute; left: 0; top: 820px; width: 1920px; height: 200px; filter: blur(18px); opacity: .32; }
+      #s2-live { position: absolute; left: 540px; top: 320px; width: 840px; height: 480px; border-radius: 26px; overflow: hidden; }
+      .live-bars { position: absolute; left: 70px; right: 70px; top: 110px; height: 200px; display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; }
+      .live-bars i { display: block; width: 14px; border-radius: 7px; background: #6955AA; height: 40px; }
+
+      /* ── 3. pills collapse into one team (Soco-style UI morph) ── */
+      #s3 { background: #E7E7EC; }
+      #s3-row { position: absolute; left: 0; top: 470px; width: 1920px; height: 110px; }
+      .pill { position: absolute; top: 0; height: 110px; border-radius: 55px; background: #212C34; color: #FFFFFF; display: flex; align-items: center; justify-content: center;
+        font-family: 'DM Sans'; font-weight: 500; font-size: 40px; white-space: nowrap; overflow: hidden; }
+      #s3-one { position: absolute; left: 560px; top: 470px; width: 800px; height: 110px; border-radius: 55px; background: #212C34; color: #FFF; display: flex; align-items: center; justify-content: center; gap: 22px;
+        font-family: Unbounded; font-weight: 500; font-size: 42px; }
+      #s3-one i { display: block; width: 30px; height: 30px; border-radius: 15px; background: #FF0055; }
+      #s3-cap { position: absolute; left: 0; right: 0; top: 650px; text-align: center; font-weight: 300; font-size: 36px; color: #4F575D; }
+    </style>
+  </head>
+  <body>
+    <div id="proto" data-composition-id="proto" data-start="0" data-duration="12.6" data-width="1920" data-height="1080" data-fps="30">
+      <div class="seg" id="s1">
+        <div id="s1-lead">Pas juste un problème de <span id="s1-logo">logo<span id="s1-strike"></span></span></div>
+        <div class="s1-word" id="s1-back"></div>
+        <div id="s1-cardwrap"><div id="s1-card"><div class="lg"></div><div id="s1-sheen"></div></div></div>
+        <div class="s1-word" id="s1-front"></div>
+        <div class="hud" style="left:70px;top:60px;color:#6F6A80">RELAX × FINAXY</div><div class="hud" style="right:70px;top:60px;color:#6F6A80">01 — LE CONSTAT</div>
+      </div>
+      <div class="seg" id="s2">
+        <div id="s2-title"><span class="br" style="left:0">{</span><span class="br" style="right:0">}</span><div id="s2-slot"><div id="s2-words"><span>écouter</span><span>révéler</span></div></div></div>
+        <div id="s2-mirror"></div>
+        <div id="s2-stage"><div id="s2-film"></div></div>
+        <div id="s2-live"></div>
+        <div class="hud" style="left:70px;top:60px;color:#8A8F96">RELAX × FINAXY</div><div class="hud" style="right:70px;top:60px;color:#8A8F96" id="s2-tc">02 — COMPRENDRE</div>
+      </div>
+      <div class="seg" id="s3">
+        <div id="s3-row"></div>
+        <div id="s3-one"><i></i><span>une seule équipe</span></div>
+        <div id="s3-cap">Les bons talents, à chaque étape.</div>
+        <div class="hud" style="left:70px;top:60px;color:#8A8F96">RELAX × FINAXY</div><div class="hud" style="right:70px;top:60px;color:#8A8F96">05 — NOTRE RÔLE</div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const $ = (id) => document.getElementById(id);
+        const tl = gsap.timeline({ paused: true });
+        const T2 = 4.2, T3 = 8.7, END = 12.6;
+        // hard cuts between the three movements (visibility is a pure function of time)
+        const segs = [["s1", 0, T2], ["s2", T2, T3], ["s3", T3, END + 1]];
+        const vis = { t: 0 };
+        const show = () => segs.forEach(([id, a, b]) => ($(id).style.display = vis.t >= a && vis.t < b ? "block" : "none"));
+        tl.fromTo(vis, { t: 0 }, { t: END, duration: END, ease: "none", onUpdate: show }, 0);
+        show();
+
+        // ── 1 ─────────────────────────────────────────────────────────
+        const WORD = "COHÉRENCE";
+        [$("s1-back"), $("s1-front")].forEach((w) => (w.innerHTML = [...WORD].map((c) => `<span>${c}</span>`).join("")));
+        tl.fromTo("#s1-lead", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.15);
+        tl.fromTo("#s1-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power2.inOut" }, 0.85);
+        tl.fromTo(".s1-word", { x: 120, scale: 1.25, opacity: 0, transformOrigin: "50% 50%" }, { x: -160, scale: 1, opacity: 1, duration: 0.55, ease: "expo.out" }, 1.15);
+        tl.to(".s1-word", { x: -520, duration: 2.6, ease: "none" }, 1.7);
+        tl.fromTo("#s1-card", { x: 760, y: 520, rotationX: 58, rotationY: -38, rotationZ: 18, scale: 0.7 },
+          { x: -40, y: -20, rotationX: 14, rotationY: 22, rotationZ: -8, scale: 1.08, duration: 1.7, ease: "power3.out" }, 1.55);
+        tl.to("#s1-card", { x: -120, y: -40, rotationY: 34, rotationX: 8, duration: 1.0, ease: "sine.inOut" }, 3.25);
+        tl.fromTo("#s1-sheen", { backgroundPosition: "130% 0%" }, { backgroundPosition: "-60% 0%", duration: 1.1, ease: "power2.inOut" }, 2.3);
+        const letters = [...document.querySelectorAll("#s1-back span, #s1-front span")];
+        const disp = { t: 0 };
+        const push = () => letters.forEach((l, i) => {
+          const k = i % WORD.length, c = 4.6 - disp.t * 3.2, d = k - c, f = Math.exp(-d * d * 0.9) * Math.sin(disp.t * Math.PI);
+          l.style.transform = `translate(${(d * 26 * f).toFixed(1)}px, ${(-60 * f).toFixed(1)}px) skewX(${(-14 * f).toFixed(1)}deg)`;
+        });
+        tl.fromTo(disp, { t: 0 }, { t: 1, duration: 1.6, ease: "none", onUpdate: push }, 1.7);
+
+        // ── 2 ─────────────────────────────────────────────────────────
+        const CW = 840, GAP = 220, SW = 42, IMGS = ["../../assets/proto/card-c0.png", "../../assets/proto/card-c1.png"];
+        const film = $("s2-film"), mirror = $("s2-mirror"), slices = [];
+        const TOTAL = IMGS.length * (CW + GAP) + 900;
+        for (let x = -1100; x < TOTAL; x += SW) {
+          const k = Math.floor((x + GAP / 2) / (CW + GAP)), local = x - k * (CW + GAP);
+          const inCard = k >= 0 && k < IMGS.length && local >= 0 && local < CW;
+          const sl = document.createElement("div");
+          sl.className = "sl";
+          sl.style.width = SW + 1 + "px";
+          sl.innerHTML = (inCard ? `<div class="img" style="left:${-local}px;background-image:url(${IMGS[k]})"></div>` : `<div class="band"></div>`) + `<div class="irid"></div>`;
+          film.appendChild(sl);
+          slices.push({ el: sl, x, irid: sl.lastChild, band: inCard ? null : sl.firstChild });
+        }
+        mirror.innerHTML = IMGS.map((u, k) => `<div style="position:absolute;top:0;left:0;width:840px;height:200px;border-radius:26px;background:url(${u}) 0 100%/840px 480px;transform-origin:50% 50%;" data-k="${k}"></div>`).join("");
+        const live = $("s2-live");
+        live.innerHTML = `<img src="${IMGS[0]}" style="position:absolute;inset:0;width:840px;height:480px" data-k="0"><img src="${IMGS[1]}" style="position:absolute;inset:0;width:840px;height:480px;opacity:0" data-k="1"><div class="live-bars">${Array.from({ length: 34 }, () => "<i></i>").join("")}</div>`;
+        const bars = live.querySelectorAll(".live-bars i");
+        const FLAT = 470, R = 360, scroll = { v: 0 };
+        const place = () => {
+          for (const s of slices) {
+            const xs = s.x + SW / 2 - scroll.v - CW / 2, ax = Math.abs(xs), sg = Math.sign(xs) || 1;
+            let X = xs, Z = 0, rot = 0, bend = 0;
+            if (ax > FLAT) {
+              const th = Math.min((ax - FLAT) / R, 1.9);
+              X = sg * (FLAT + R * Math.sin(th)); Z = -R * (1 - Math.cos(th)); rot = -sg * th * 57.2958; bend = Math.min(1, th / 1.05);
+            }
+            const on = ax < FLAT + R * 1.85;
+            s.el.style.display = on ? "block" : "none";
+            if (!on) continue;
+            s.el.style.transform = `translate3d(${(960 + X - SW / 2).toFixed(1)}px,0,${Z.toFixed(1)}px) rotateY(${rot.toFixed(2)}deg) scaleX(${(1 + bend * 0.3).toFixed(3)})`;
+            s.irid.style.opacity = (bend * 0.9).toFixed(3);
+            if (s.band) s.band.style.opacity = (bend * 0.95).toFixed(3);
+          }
+          mirror.querySelectorAll("[data-k]").forEach((m) => { const k = +m.dataset.k, off = k * (CW + GAP) - scroll.v; m.style.transform = `translateX(${(540 + off).toFixed(1)}px) scaleY(-1)`; m.style.opacity = Math.max(0, 1 - Math.abs(off) / 520).toFixed(3); });
+          const rest = scroll.v / (CW + GAP), near = Math.abs(rest - Math.round(rest));
+          live.style.opacity = near < 0.004 ? 1 : 0;
+          live.dataset.k = Math.round(rest);
+        };
+        place();
+        const STEP = CW + GAP, A = T2;
+        tl.fromTo(scroll, { v: -STEP * 0.85 }, { v: 0, duration: 1.2, ease: "expo.out", onUpdate: place }, A);
+        tl.fromTo(scroll, { v: 0 }, { v: STEP, duration: 1.2, ease: "expo.inOut", onUpdate: place, immediateRender: false }, A + 2.3);
+        tl.fromTo("#s2-words", { x: 560 }, { x: 0, duration: 1.2, ease: "expo.out" }, A);
+        tl.fromTo("#s2-words", { x: 0 }, { x: -560, duration: 1.2, ease: "expo.inOut", immediateRender: false }, A + 2.3);
+        const lv = { t: 0 };
+        const liveUpd = () => {
+          const k = +live.dataset.k, tt = lv.t * (T3 - A);
+          live.querySelector('[data-k="1"]').style.opacity = k === 1 ? 1 : 0;
+          live.querySelector(".live-bars").style.visibility = k === 0 ? "visible" : "hidden";
+          bars.forEach((b, i) => { b.style.height = (26 + 150 * Math.abs(Math.sin(tt * 6 + i * 0.55) * Math.cos(tt * 2.2 + i * 0.21))).toFixed(1) + "px"; });
+          $("s2-tc").textContent = tt < 3.2 ? "02 — COMPRENDRE" : "02 — RÉVÉLER";
+        };
+        tl.fromTo(lv, { t: 0 }, { t: 1, duration: T3 - A, ease: "none", onUpdate: liveUpd }, A);
+
+        // ── 3 ─────────────────────────────────────────────────────────
+        const TAL = ["Stratégie", "Naming", "Design", "Édito", "Développement", "Production"];
+        const W = TAL.map((s) => 84 + s.length * 22), GAPP = 24, totalW = W.reduce((a, b) => a + b, 0) + GAPP * (TAL.length - 1);
+        let x0 = (1920 - totalW) / 2;
+        const pills = TAL.map((s, i) => {
+          const p = document.createElement("div");
+          p.className = "pill"; p.textContent = s; p.style.width = W[i] + "px"; p.style.left = x0 + "px";
+          p.dataset.cx = x0 + W[i] / 2; x0 += W[i] + GAPP;
+          $("s3-row").appendChild(p);
+          return p;
+        });
+        const B = T3;
+        pills.forEach((p, i) => tl.fromTo(p, { x: 260, opacity: 0, scale: 0.92 }, { x: 0, opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, B + 0.15 + i * 0.07));
+        pills.forEach((p, i) => tl.to(p, { x: 960 - +p.dataset.cx, scaleX: 0.25, opacity: 0, duration: 0.7, ease: "expo.inOut" }, B + 1.55 + Math.abs(i - 2.5) * 0.04));
+        tl.fromTo("#s3-one", { scaleX: 0.15, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)" }, B + 2.05);
+        tl.fromTo("#s3-one span", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, B + 2.45);
+        tl.fromTo("#s3-one i", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(3)" }, B + 2.35);
+        tl.fromTo("#s3-cap", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, B + 2.7);
+
+        window.__timelines = window.__timelines || {};
+        window.__timelines["proto"] = tl;
+      })();
+    </script>
+  </body>
+</html>

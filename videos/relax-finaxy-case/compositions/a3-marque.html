@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
+
+      </style>
+      <div id="root" data-composition-id="a3-marque" data-width="1920" data-height="1080" data-duration="8.23">
+<style>
+  /* ── part 1: the old mark in a pill, giant kinetic type behind it ── */
+  .a3-marque-big{position:absolute;left:0;right:0;height:300px;overflow:hidden;text-align:center;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:250px;line-height:300px;letter-spacing:-.045em;color:#212C34}
+  .a3-marque-big span{display:inline-block}
+  #a3-marque-w1{top:120px}
+  #a3-marque-w2{top:660px;color:#6955AA}
+  .a3-marque-br{position:absolute;left:0;top:0;width:56px;height:56px;border:8px solid #FF0055;opacity:0}
+  #a3-marque-pill{position:absolute;left:660px;top:470px;width:600px;height:140px;border-radius:70px;background:#FFFFFF;box-shadow:0 30px 70px rgba(42,34,68,.22);overflow:hidden}
+  #a3-marque-pill i{position:absolute;left:150px;top:22px;width:300px;height:96px;background:url(assets/cards/oldlogo.png) center/240px auto no-repeat}
+  #a3-marque-ringv{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  #a3-marque-pct{position:absolute;left:0;right:0;top:628px;text-align:center;font-weight:600;font-size:22px;letter-spacing:.14em;color:#8E3F3E}
+  /* ── part 2: the mirror ── */
+  #a3-marque-split{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  #a3-marque-gl{position:absolute;left:0;top:0;width:960px;height:1080px}
+  #a3-marque-rightp{position:absolute;left:960px;top:0;width:960px;height:1080px;background:linear-gradient(180deg,#F4F3F7,#E9E8EF);overflow:hidden}
+  #a3-marque-mirror{position:absolute;left:250px;top:390px;width:460px;height:292px;border-radius:30px;background:url(assets/cards/oldlogo.png) center/cover;transform:scaleX(-1);filter:grayscale(1) contrast(.9);opacity:.75;box-shadow:0 24px 50px rgba(42,34,68,.15)}
+  #a3-marque-glass{position:absolute;left:942px;top:0;width:36px;height:1080px;background:linear-gradient(90deg,rgba(255,255,255,.2),rgba(255,255,255,.9),rgba(255,255,255,.2));box-shadow:0 0 40px rgba(169,156,240,.45);backdrop-filter:blur(10px)}
+  #a3-marque-neq{position:absolute;left:900px;top:480px;width:120px;height:120px;border-radius:60px;background:#FF0055;color:#FFFFFF;font-family:Unbounded;font-weight:600;font-size:66px;line-height:116px;text-align:center;box-shadow:0 20px 40px rgba(255,0,85,.35)}
+  .a3-marque-lab{position:absolute;top:150px}
+  .a3-marque-lab .h-uni{display:block;margin-top:14px;font-size:44px;color:#212C34}
+  #a3-marque-refl{position:absolute;left:0;right:0;top:820px;text-align:center;font-family:Unbounded;font-weight:600;font-size:120px;letter-spacing:-.04em;color:#212C34}
+  #a3-marque-refl b{font-weight:600;position:relative;color:#6955AA}
+  /* ── part 3 ── */
+  #a3-marque-card{position:absolute;left:660px;top:190px;width:600px;height:381px;border-radius:34px;background:url(assets/cards/oldlogo.png) center/cover;box-shadow:0 30px 60px rgba(42,34,68,.18)}
+  #a3-marque-line{position:absolute;left:0;right:0;top:700px;text-align:center;font-family:Unbounded;font-weight:500;font-size:62px;letter-spacing:-.01em;color:#212C34;white-space:nowrap}
+  #a3-marque-logo{position:relative;display:inline-block}
+  #a3-marque-strike{position:absolute;left:-8px;right:-8px;top:52%;height:7px;border-radius:4px;background:#FF0055;transform-origin:left center}
+  #a3-marque-caret{display:inline-block;width:5px;height:64px;margin-left:6px;vertical-align:-10px;background:#FF0055}
+</style>
+<div class="full wash"></div>
+<div id="a3-marque-p1">
+  <div class="a3-marque-big" id="a3-marque-w1" data-layout-allow-overlap></div>
+  <div class="a3-marque-big" id="a3-marque-w2" data-layout-allow-overlap></div>
+  <div class="a3-marque-br" id="a3-marque-b1" style="border-right:0;border-bottom:0"></div><div class="a3-marque-br" id="a3-marque-b2" style="border-left:0;border-bottom:0"></div>
+  <div class="a3-marque-br" id="a3-marque-b3" style="border-right:0;border-top:0"></div><div class="a3-marque-br" id="a3-marque-b4" style="border-left:0;border-top:0"></div>
+  <svg id="a3-marque-ringv" viewBox="0 0 1920 1080"><rect id="a3-marque-ring" x="644" y="454" width="632" height="172" rx="86" fill="none" stroke="#FF0055" stroke-width="6" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+  <div id="a3-marque-pill"><i></i></div>
+  <div id="a3-marque-pct">CHARGEMENT DE LA MARQUE · <span id="a3-marque-pv">0</span> %</div>
+</div>
+<div id="a3-marque-split">
+  <canvas id="a3-marque-gl" width="960" height="1080"></canvas>
+  <div id="a3-marque-rightp"><div id="a3-marque-mirror"></div></div>
+  <div id="a3-marque-glass"></div>
+  <div class="a3-marque-lab" id="a3-marque-l1" style="left:90px"><span class="tag tag-p">ce que Finaxy est devenu</span><span class="h-uni">un groupe vivant</span></div>
+  <div class="a3-marque-lab" id="a3-marque-l2" style="left:1050px"><span class="tag tag-r">ce que la marque renvoyait</span><span class="h-uni">un reflet figé</span></div>
+  <div id="a3-marque-neq">≠</div>
+  <div id="a3-marque-refl">[ <b>reflet</b> ]</div>
+</div>
+<div id="a3-marque-p3">
+  <div id="a3-marque-card"></div>
+  <div id="a3-marque-line"><span id="a3-marque-typed"></span><span id="a3-marque-logo"><span id="a3-marque-lw"></span><span id="a3-marque-strike"></span></span><span id="a3-marque-tail"></span><span id="a3-marque-caret"></span></div>
+</div>
+
+<script src="assets/vendor/three.global.js"></script>
+<script src="assets/vendor/three-addons.js"></script>
+<script src="assets/t3.js"></script>
+<script>
+  (function () {
+    const ID = "a3-marque", D = 8.23, VO = {"1.0": -4.5, "1.1": -1.64, "1.2": 0.15, "1.3": 2.77, "1.4": 6.49, "1.5": 8.38, "2.0": 11.13, "2.1": 13.38, "2.2": 16.27, "2.3": 18.28, "2.4": 20.47, "2.5": 22.07, "2.6": 23.15, "2.7": 25.07, "2.8": 25.55, "2.9": 28.03, "2.10": 32.51, "2.11": 34.57, "2.12": 37.23, "3.0": 40.41, "3.1": 41.4, "3.2": 43.15, "3.3": 44.29, "3.4": 45.24, "3.5": 46.21, "3.6": 47.57, "3.7": 48.29, "3.8": 50.12, "3.9": 51.25, "3.10": 54.69, "3.11": 55.8, "3.12": 57.6, "4.0": 60.55, "4.1": 62.73, "4.2": 64.23, "4.3": 65.04, "4.4": 66.0, "4.5": 67.25, "4.6": 68.39, "4.7": 71.06, "4.8": 72.58, "4.9": 74.06, "5.0": 78.37, "5.1": 79.92, "5.2": 82.69, "5.3": 83.49, "5.4": 86.44, "5.5": 87.65, "5.6": 90.99, "5.7": 94.16, "5.8": 95.2, "5.9": 96.53, "5.10": 97.47, "5.11": 98.44, "5.12": 99.96, "5.13": 100.73, "breath": 102.51, "exhale": 104.26};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["1.2"], b = VO["1.3"], c = VO["1.4"];
+    const CUT2 = b - 0.25, CUT3 = c - 0.2;
+    const vis = { t: 0 };
+    const cut = () => { $("p1").style.display = vis.t < CUT2 ? "block" : "none"; $("split").style.display = vis.t >= CUT2 && vis.t < CUT3 ? "block" : "none"; $("p3").style.display = vis.t >= CUT3 ? "block" : "none"; };
+    tl.fromTo(vis, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: cut }, 0);
+    cut();
+    // ── 1. "Mais une marque qui avait du mal à exister" ──
+    const w1 = KIT.letters($("w1"), "du mal"), w2 = KIT.letters($("w2"), "à exister");
+    tl.fromTo("#a3-marque-pill", { width: 0, x: 300, opacity: 0 }, { width: 600, x: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, a - 0.1);
+    tl.fromTo(w1, { y: 300 }, { y: 0, duration: 0.6, ease: "expo.out", stagger: 0.04 }, a + 0.35);
+    tl.fromTo(w2, { y: -300 }, { y: 0, duration: 0.6, ease: "expo.out", stagger: 0.04 }, a + 0.75);
+    // brackets snap around "exister"
+    const BR = [[290, 700], [1574, 700], [290, 905], [1574, 905]];
+    ["#a3-marque-b1", "#a3-marque-b2", "#a3-marque-b3", "#a3-marque-b4"].forEach((s, i) => { tl.set(s, { x: BR[i][0], y: BR[i][1] }, 0); tl.fromTo(s, { scale: 2.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2)", immediateRender: false }, a + 1.15 + i * 0.03); });
+    // it tries to load… and never gets there
+    const pv = { v: 0 }, upd = () => ($("pv").textContent = Math.round(pv.v));
+    upd();
+    tl.fromTo(pv, { v: 0 }, { v: 34, duration: 0.9, ease: "power2.out", onUpdate: upd, immediateRender: false }, a + 0.3);
+    tl.to(pv, { v: 12, duration: 0.5, ease: "power2.in", onUpdate: upd }, a + 1.35);
+    tl.fromTo("#a3-marque-ring", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0.66 }, duration: 0.9, ease: "power2.out", immediateRender: false }, a + 0.3);
+    tl.to("#a3-marque-ring", { attr: { "stroke-dashoffset": 0.88 }, duration: 0.5, ease: "power2.in" }, a + 1.35);
+    tl.fromTo("#a3-marque-pct", { opacity: 0 }, { opacity: 1, duration: 0.3 }, a + 0.3);
+    tl.to("#a3-marque-pill", { scale: 1.12, duration: 0.18, ease: "power2.out", yoyo: true, repeat: 1 }, a + 0.9);
+    tl.to("#a3-marque-pill", { scaleX: 1.08, scaleY: 0.82, duration: 0.12, yoyo: true, repeat: 1 }, a + 1.4);
+    tl.to("#a3-marque-pill", { opacity: 0.45, duration: 0.08, yoyo: true, repeat: 3, ease: "steps(1)" }, a + 1.7);
+    tl.to([...w1, ...w2], { y: (i) => (i < w1.length ? -320 : 320), duration: 0.35, ease: "expo.in", stagger: 0.015 }, CUT2 - 0.35);
+    tl.to("#a3-marque-pill", { scale: 0.2, opacity: 0, duration: 0.3, ease: "expo.in" }, CUT2 - 0.3);
+    // ── 2. "et qui surtout ne reflétait plus ce que l'entreprise était devenue": a mirror that lies ──
+    const S = T3.stage($("gl"), { w: 960, h: 1080, fov: 30, camZ: 13 });
+    const body = new THREE.Mesh(new THREE.IcosahedronGeometry(1.7, 24), T3.glossy(0xb3a3f3, { irid: 0.9, roughness: 0.14 }));
+    S.scene.add(body);
+    const SAT = [0xff8fb8, 0x8fd3dc, 0xd8cf8a, 0xf4a3d2, 0x9fd3b5, 0xcac3e1].map((c, i) => { const m = new THREE.Mesh(new THREE.SphereGeometry(0.32 + (i % 3) * 0.08, 40, 28), T3.glossy(c, { irid: 0.5 })); S.scene.add(m); return m; });
+    const pos = body.geometry.attributes.position, base = pos.array.slice();
+    const draw3 = (t) => {
+      // a living, wobbling body with satellites in orbit — the group as it really is
+      for (let i = 0; i < pos.count; i++) {
+        const x = base[i * 3], y = base[i * 3 + 1], z = base[i * 3 + 2];
+        const n = 1 + 0.07 * Math.sin(x * 2.1 + t * 2.2) * Math.cos(y * 2.4 + t * 1.7) + 0.04 * Math.sin(z * 3 + t * 2.9);
+        pos.array[i * 3] = x * n; pos.array[i * 3 + 1] = y * n; pos.array[i * 3 + 2] = z * n;
+      }
+      pos.needsUpdate = true;
+      body.geometry.computeVertexNormals();
+      body.rotation.set(t * 0.3, t * 0.5, 0);
+      SAT.forEach((m, i) => { const an = t * (0.9 + i * 0.12) + i * 1.05, rr = 2.7 + (i % 2) * 0.5; m.position.set(Math.cos(an) * rr, Math.sin(an * 0.8 + i) * 1.3, Math.sin(an) * rr); });
+      S.render();
+    };
+    const p3 = { t: 0 };
+    tl.fromTo(p3, { t: 0 }, { t: 3, duration: CUT3 - CUT2, ease: "none", onUpdate: () => draw3(p3.t), immediateRender: false }, CUT2);
+    tl.fromTo("#a3-marque-gl", { x: -300, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "expo.out" }, CUT2);
+    tl.fromTo("#a3-marque-rightp", { x: 960 }, { x: 0, duration: 0.6, ease: "expo.out" }, CUT2);
+    tl.fromTo("#a3-marque-glass", { scaleY: 0 }, { scaleY: 1, duration: 0.5, ease: "expo.out" }, CUT2 + 0.15);
+    tl.fromTo("#a3-marque-mirror", { opacity: 0, scale: 0.6 }, { opacity: 0.75, scale: 1, duration: 0.6, ease: "expo.out" }, CUT2 + 0.35);
+    tl.fromTo("#a3-marque-l1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 }, CUT2 + 0.3);
+    tl.fromTo("#a3-marque-l2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 }, CUT2 + 0.6);
+    tl.fromTo("#a3-marque-neq", { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.4)" }, CUT2 + 1.3);
+    tl.fromTo("#a3-marque-refl", { opacity: 0, scaleX: 1.4 }, { opacity: 1, scaleX: 1, duration: 0.6, ease: "expo.out" }, CUT2 + 1.6);
+    tl.to("#a3-marque-mirror", { x: 6, duration: 0.06, yoyo: true, repeat: 7, ease: "none" }, CUT2 + 2.0);
+    // ── 3. "Pas juste un problème de logo :" under the old mark ──
+    tl.fromTo("#a3-marque-card", { scale: 0.75, opacity: 0, rotationY: 180 }, { scale: 1, opacity: 1, rotationY: 0, duration: 0.6, ease: "expo.out" }, CUT3);
+    const A = "Pas juste un problème de ", L = "logo", Z = " :", ty = { n: 0 };
+    const type = () => {
+      const n = Math.round(ty.n);
+      $("typed").textContent = A.slice(0, n);
+      $("lw").textContent = L.slice(0, Math.max(0, n - A.length));
+      $("tail").textContent = Z.slice(0, Math.max(0, n - A.length - L.length));
+    };
+    type();
+    tl.fromTo(ty, { n: 0 }, { n: A.length + L.length + Z.length, duration: 1.0, ease: "none", onUpdate: type, immediateRender: false }, c - 0.05);
+    tl.fromTo("#a3-marque-caret", { opacity: 0 }, { opacity: 1, duration: 0.01 }, c - 0.1);
+    tl.fromTo("#a3-marque-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.inOut" }, c + 1.2);
+    tl.to("#a3-marque-caret", { opacity: 0, duration: 0.2, repeat: 3, yoyo: true, ease: "steps(1)" }, c + 1.1);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

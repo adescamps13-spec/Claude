@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/DMSans-300-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-italic.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/DMSans-400-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/DMSans-500-normal.woff2') format('woff2');}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/DMSans-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/InstrumentSerif-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:300;font-display:block;src:url('assets/fonts/Unbounded-300-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:block;src:url('assets/fonts/Unbounded-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:block;src:url('assets/fonts/Unbounded-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Unbounded';font-style:normal;font-weight:600;font-display:block;src:url('assets/fonts/Unbounded-600-normal.woff2') format('woff2');}
+
+#root{position:absolute;inset:0;overflow:hidden;background:#FFFFFF;color:#212C34;font-family:'DM Sans',sans-serif}
+#root .abs{position:absolute}
+#root .full{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#root .uni{font-family:Unbounded,sans-serif}
+#root .serif{font-family:'Instrument Serif',serif;font-weight:400}
+#root .hud{position:absolute;top:60px;font-weight:600;font-size:17px;letter-spacing:.16em;white-space:nowrap}
+#root .studio{background:radial-gradient(60% 55% at 50% 44%,#FFFFFF 0%,#F0F0F4 55%,#E3E3EA 100%)}
+#root .night{background:#0E0C14}
+/* Relax charter (relax-agency.com): white + pastel washes, tinted cards, tag pills, dark gradient pills, cursor */
+#root .wash{background:radial-gradient(54.61% 40.94% at 15.14% 59.45%,rgba(85,160,170,.30) 0%,rgba(255,255,255,0) 100%),radial-gradient(40.42% 36.99% at 82.26% 59.45%,rgba(170,162,85,.30) 0%,rgba(255,255,255,.3) 100%),radial-gradient(25.33% 25.33% at 50% 62.91%,rgba(105,85,170,.30) 0%,rgba(255,255,255,.3) 100%),#FFFFFF}
+#root .wash-lav{background:linear-gradient(180deg,#FFFFFF 0%,#F4F1FB 40%,#E5E0F5 100%)}
+#root .card{position:absolute;border-radius:28px;overflow:hidden}
+#root .card-p{background:#CAC3E1;color:#2A2244}#root .card-c{background:#C3DDE1;color:#224044}
+#root .card-y{background:#E0DEC3;color:#3B3818}#root .card-r{background:#E1C3C3;color:#432222}
+#root .tag{display:inline-block;padding:0 22px;height:44px;line-height:44px;border-radius:22px;font-weight:500;font-size:20px;color:#FFFFFF;white-space:nowrap}
+#root .tag-p{background:#6955AA}#root .tag-c{background:#56A0AA}#root .tag-y{background:#8C853F}#root .tag-r{background:#AA5655}
+#root .btn{position:absolute;border-radius:999px;background:linear-gradient(90deg,#1F1F1F,#5D5D5D);color:#FFFFFF;font-weight:500;white-space:nowrap;text-align:center}
+#root .h-uni{font-family:Unbounded,sans-serif;font-weight:500;letter-spacing:-.01em}
+#root .cursor{position:absolute;width:44px;height:44px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%238e899e'/><stop offset='1' stop-color='%23292438'/></linearGradient></defs><path d='M4 3 L40 17 L23 22 L17 40 Z' fill='url(%23g)' stroke='white' stroke-width='2' stroke-linejoin='round'/></svg>") 0 0/44px 44px no-repeat;z-index:20}
+#root .guide-v{position:absolute;width:0;border-left:2px dashed #8E899E}#root .guide-h{position:absolute;height:0;border-top:2px dashed #8E899E}
+
+      </style>
+      <div id="root" data-composition-id="b5-isolee" data-width="1920" data-height="1080" data-duration="3.18">
+<style>
+  #b5-isolee-rings{position:absolute;left:0;top:0;width:1920px;height:1080px}
+  #b5-isolee-rings text{font-family:Unbounded;font-weight:600;letter-spacing:.06em}
+  #b5-isolee-dot{position:absolute;left:942px;top:482px;width:36px;height:36px;border-radius:18px;background:#FF0055;box-shadow:0 0 0 10px rgba(255,0,85,.12)}
+  #b5-isolee-lbl{position:absolute;left:0;right:0;top:532px;text-align:center;font-weight:500;font-size:20px;color:#4F575D}
+  #b5-isolee-cap{position:absolute;left:460px;width:1000px;top:950px;height:110px;font-family:Unbounded;font-size:40px;line-height:110px;box-shadow:0 30px 60px rgba(33,44,52,.25)}
+  #b5-isolee-cap em{font-style:normal;color:#FF7AA5}
+</style>
+<div class="full wash"></div>
+<svg id="b5-isolee-rings" viewBox="0 0 1920 1080" data-layout-allow-overlap></svg>
+<div id="b5-isolee-dot"></div>
+<div id="b5-isolee-lbl">une expertise</div>
+<div class="btn" id="b5-isolee-cap">aucune expertise <em>isolée</em> ne suffit.</div>
+
+<script>
+  (function () {
+    const ID = "b5-isolee", D = 3.18, VO = {"1.0": -41.58, "1.1": -38.72, "1.2": -36.93, "1.3": -34.31, "1.4": -30.59, "1.5": -28.7, "2.0": -25.95, "2.1": -23.7, "2.2": -20.81, "2.3": -18.8, "2.4": -16.61, "2.5": -15.01, "2.6": -13.93, "2.7": -12.01, "2.8": -11.53, "2.9": -9.05, "2.10": -4.57, "2.11": -2.51, "2.12": 0.15, "3.0": 3.33, "3.1": 4.32, "3.2": 6.07, "3.3": 7.21, "3.4": 8.16, "3.5": 9.13, "3.6": 10.49, "3.7": 11.21, "3.8": 13.04, "3.9": 14.17, "3.10": 17.61, "3.11": 18.72, "3.12": 20.52, "4.0": 23.47, "4.1": 25.65, "4.2": 27.15, "4.3": 27.96, "4.4": 28.92, "4.5": 30.17, "4.6": 31.31, "4.7": 33.98, "4.8": 35.5, "4.9": 36.98, "5.0": 41.29, "5.1": 42.84, "5.2": 45.61, "5.3": 46.41, "5.4": 49.36, "5.5": 50.57, "5.6": 53.91, "5.7": 57.08, "5.8": 58.12, "5.9": 59.45, "5.10": 60.39, "5.11": 61.36, "5.12": 62.88, "5.13": 63.65, "breath": 65.43, "exhale": 67.18};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const a = VO["2.12"];
+    // rings of every kind of risk circle a tiny point and close in on it (after the ajith reference)
+    const NS = "http://www.w3.org/2000/svg", svg = $("rings");
+    const RISKS = "CLIMATIQUE · HUMAIN · CYBER · RÉGLEMENTAIRE · GÉOPOLITIQUE · RÉPUTATIONNEL · ";
+    const RINGS = [[395, 268, 42, "#212C34", 1], [295, 190, 33, "#7E6CC4", -1], [205, 122, 25, "#AA5655", 1], [132, 70, 18, "#4B8A93", -1]];
+    const groups = RINGS.map(([r0, r1, fs, col, dir], i) => {
+      const g = document.createElementNS(NS, "g");
+      const path = document.createElementNS(NS, "path");
+      const pid = `${ID}-rp${i}`;
+      path.setAttribute("id", pid);
+      path.setAttribute("d", `M 960 ${500 - r0} a ${r0} ${r0} 0 1 1 -0.01 0`);
+      path.setAttribute("fill", "none");
+      const txt = document.createElementNS(NS, "text");
+      txt.setAttribute("font-size", fs);
+      txt.setAttribute("fill", col);
+      const tp = document.createElementNS(NS, "textPath");
+      tp.setAttribute("href", "#" + pid);
+      const n = Math.max(1, Math.round((2 * Math.PI * r0) / (fs * 0.78 * RISKS.length)));
+      tp.textContent = RISKS.repeat(n);
+      txt.appendChild(tp);
+      g.appendChild(path);
+      g.appendChild(txt);
+      svg.appendChild(g);
+      return { g, r0, r1, dir };
+    });
+    // rings tighten (scale about the centre) while turning
+    groups.forEach((o, i) => {
+      gsap.set(o.g, { svgOrigin: "960 500" });
+      tl.fromTo(o.g, { scale: 1.5, opacity: 0, rotation: o.dir * -40 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.7, ease: "expo.out" }, a - 0.1 + i * 0.07);
+      tl.to(o.g, { scale: o.r1 / o.r0, rotation: o.dir * 70, duration: D - a - 0.6, ease: "power1.in" }, a + 0.6 + i * 0.07);
+    });
+    tl.fromTo("#b5-isolee-dot", { scale: 1 }, { scale: 0.62, duration: D - a, ease: "power1.in" }, a);
+    tl.to("#b5-isolee-dot", { x: 3, duration: 0.05, yoyo: true, repeat: 11, ease: "none" }, a + 1.4);
+    tl.fromTo("#b5-isolee-lbl", { opacity: 0 }, { opacity: 1, duration: 0.3 }, a + 0.3);
+    tl.to("#b5-isolee-lbl", { opacity: 0, duration: 0.3 }, a + 1.6);
+    tl.fromTo("#b5-isolee-cap", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, a + 0.25);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>
+
+      </div>
+    </template>
+  </body>
+</html>

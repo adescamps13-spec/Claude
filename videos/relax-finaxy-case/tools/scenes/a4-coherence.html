@@ -1,0 +1,47 @@
+<style>
+  #§sub{position:absolute;left:0;right:0;top:260px;text-align:center;font-weight:400;font-size:46px;color:#6B7278}
+  #§word{position:absolute;left:0;right:0;top:360px;height:360px;text-align:center;white-space:nowrap;font-family:Unbounded;font-weight:600;font-size:226px;line-height:360px;letter-spacing:-.04em}
+  #§word span{display:inline-block;background:linear-gradient(100deg,#6955AA 0%,#A99CF0 25%,#F4A3D2 45%,#8FD3DC 62%,#6955AA 85%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 4px 0 #CAC3E1) drop-shadow(0 8px 0 #D9D3EE) drop-shadow(0 22px 24px rgba(42,34,68,.18))}
+  #§base{left:200px;width:1520px;top:690px}
+  #§gl{left:0;top:330px;height:420px}
+  #§gr{left:0;top:330px;height:420px}
+</style>
+<div class="full wash"></div>
+<div id="§sub">un sujet de</div>
+<div class="guide-h" id="§base"></div>
+<div class="guide-v" id="§gl"></div><div class="guide-v" id="§gr"></div>
+<div id="§word" data-layout-allow-overlap></div>
+<div class="cursor" id="§cur"></div>
+{{HUD:#62666B|01 — LE CONSTAT}}
+<script>
+  (function () {
+    const ID = "{{ID}}", D = {{D}}, VO = {{VO}};
+    const $ = (s) => document.getElementById(ID + "-" + s);
+    const tl = gsap.timeline({ paused: true });
+    const ls = KIT.letters($("word"), "COHÉRENCE"), r = KIT.rng(9), a = VO["1.5"];
+    ls.forEach((l) => l.setAttribute("data-layout-allow-overlap", ""));
+    // scattered letters (no coherence) snap into one aligned word, on a guide, like a layout being fixed
+    ls.forEach((l, i) => {
+      tl.fromTo(l, { x: (r() - 0.5) * 1200, y: (r() - 0.5) * 700, rotation: (r() - 0.5) * 90, scale: 0.5 + r() * 0.6, opacity: 0 },
+        { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 0.75, ease: "expo.out" }, a + 0.05 + i * 0.045);
+    });
+    tl.fromTo("#§sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, a - 0.1);
+    // alignment guides flash as everything locks
+    tl.fromTo("#§base", { scaleX: 0, opacity: 0, transformOrigin: "0% 50%" }, { scaleX: 1, opacity: 1, duration: 0.45, ease: "expo.out" }, a + 0.55);
+    let wr = ls[0].offsetLeft, wl = ls[ls.length - 1].offsetLeft + ls[ls.length - 1].offsetWidth;
+    if (!(wl > wr + 400)) { wr = 250; wl = 1670; } // layout not ready yet: measured values for 226px Unbounded
+    tl.set("#§gl", { x: wr - 8 }, 0);
+    tl.set("#§gr", { x: wl + 8 }, 0);
+    tl.fromTo(["#§gl", "#§gr"], { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.4, ease: "expo.out", immediateRender: false }, a + 0.62);
+    tl.to(["#§base", "#§gl", "#§gr"], { opacity: 0, duration: 0.4 }, a + 1.5);
+    // iridescent sweep + emphasis pulse
+    tl.fromTo(ls, { backgroundPosition: "100% 0%" }, { backgroundPosition: "0% 0%", duration: 1.6, ease: "power2.inOut", immediateRender: false }, a + 0.6);
+    tl.fromTo("#§word", { scale: 1 }, { scale: 1.06, duration: 0.25, yoyo: true, repeat: 1, ease: "power2.out" }, a + 1.0);
+    tl.fromTo("#§cur", { x: 1500, y: 900 }, { x: 1390, y: 700, duration: 0.6, ease: "power3.out" }, a + 0.4);
+    tl.to("#§cur", { scale: 0.82, duration: 0.08, yoyo: true, repeat: 1 }, a + 1.0);
+    tl.to("#§cur", { x: 1700, y: 1000, opacity: 0, duration: 0.5, ease: "power2.in" }, D - 0.6);
+    window.__timelines = window.__timelines || {};
+    window.__timelines[ID] = tl;
+  })();
+</script>

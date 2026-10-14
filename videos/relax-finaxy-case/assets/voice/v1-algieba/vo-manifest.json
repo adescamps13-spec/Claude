@@ -1,0 +1,101 @@
+{
+  "1": {
+    "file": "assets/voice/line-01.wav",
+    "frame": 1,
+    "label": "Chaos hérité",
+    "text": "Finaxy avait grandi vite. Très vite. Des acquisitions, des cabinets, des expertises, des marques… Onzième courtier français. Plus de douze mille entreprises clientes.",
+    "voice": "Algieba",
+    "model": "gemini-3.8-flash-tts",
+    "seconds": 12.29
+  },
+  "2": {
+    "file": "assets/voice/line-02.wav",
+    "frame": 2,
+    "label": "Le vrai sujet",
+    "text": "L'enjeu n'était pas un simple problème de logo, mais un sujet de cohérence. Le défi : simplifier, sans appauvrir.",
+    "voice": "Algieba",
+    "model": "gemini-3.8-flash-tts",
+    "seconds": 9.45
+  },
+  "3": {
+    "file": "assets/voice/line-03.wav",
+    "frame": 3,
+    "label": "Comprendre",
+    "text": "Alors on a commencé par écouter. Dirigeants, collaborateurs, métiers, marché. Pour comprendre ce que Finaxy était vraiment.",
+    "voice": "Algieba",
+    "model": "gemini-3.8-flash-tts",
+    "seconds": 10.81
+  },
+  "4": {
+    "file": "assets/voice/line-04.wav",
+    "frame": 4,
+    "label": "Révéler",
+    "text": "Et une singularité est apparue. La force d'un groupe. L'esprit d'un cabinet. Face à des risques multiples, aucune expertise isolée ne suffit.",
+    "voice": "Algieba",
+    "model": "gemini-3.8-flash-tts",
+    "seconds": 11.93
+  },
+  "5": {
+    "file": "assets/voice/line-05.wav",
+    "frame": 5,
+    "label": "L'intelligence collective",
+    "text": "Finaxy, c'est l'intelligence collective du risque.",
+    "voice": "Algieba",
+    "model": "gemini-2.5-flash-preview-tts",
+    "seconds": 4.57
+  },
+  "6": {
+    "file": "assets/voice/line-06.wav",
+    "frame": 6,
+    "label": "Organiser",
+    "text": "Cette idée est devenue un principe d'organisation. Architecture, verticales, naming, place de chaque marque : le groupe, lui aussi, est devenu lisible.",
+    "voice": "Algieba",
+    "model": "gemini-3.8-flash-tts",
+    "seconds": 11.93
+  },
+  "7": {
+    "file": "assets/voice/line-07.wav",
+    "frame": 7,
+    "label": "Exprimer",
+    "text": "Puis elle a pris corps. Un logo, une identité, une voix. Plus de stature, sans rien perdre d'humain.",
+    "voice": "Algieba",
+    "model": "gemini-3.8-flash-tts",
+    "seconds": 8.93
+  },
+  "8": {
+    "file": "assets/voice/line-08.wav",
+    "frame": 8,
+    "label": "Déployer",
+    "text": "Et le système s'est mis à produire. Plaquettes, kakemonos, cartes de visite, présentations, cartes de vœux, LinkedIn, le nouveau site… Jusqu'à un agent IA, pour que chacun écrive comme Finaxy.",
+    "voice": "Algieba",
+    "model": "gemini-3.8-flash-tts",
+    "seconds": 15.33
+  },
+  "9": {
+    "file": "assets/voice/line-09.wav",
+    "frame": 9,
+    "label": "La bonne équipe",
+    "text": "Stratégie, architecture, naming, design, éditorial, production, IA. Pour chaque enjeu, Relax a réuni la bonne équipe. Et l'a fait jouer comme une seule.",
+    "voice": "Algieba",
+    "model": "gemini-3.8-flash-tts",
+    "seconds": 15.33
+  },
+  "10": {
+    "file": "assets/voice/line-10.wav",
+    "frame": 10,
+    "label": "Sans couture",
+    "text": "On ne fait pas entrer un projet dans une agence. On construit l'équipe autour du projet. Côté Relax, beaucoup de mouvement. Côté client, un seul fil. Aucune couture.",
+    "voice": "Algieba",
+    "model": "gemini-3.8-flash-tts",
+    "seconds": 13.01
+  },
+  "11": {
+    "file": "assets/voice/line-11.wav",
+    "frame": 11,
+    "label": "Tourbillon",
+    "text": "Les meilleurs experts pour votre projet. Coordonnés par un partenaire de confiance.",
+    "voice": "Algieba",
+    "model": "gemini-2.5-flash-preview-tts",
+    "seconds": 7.61
+  }
+}
