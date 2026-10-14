@@ -13,6 +13,8 @@ Durée 7 s · 30 i/s · 1260 × 1260 px (carte ≈ 990 px de large, nette jusqu'
 | `carte_paiement_alpha_sans_perte.mov` | Même animation, codec PNG sans perte, avec transparence (si le ProRes pose problème). |
 | `carte_paiement_alpha.webm` | VP9 avec transparence, léger (web, CapCut, Canva). |
 | `carte_paiement_masque_flou.mov` | Masque blanc de la forme de la carte, synchronisé, pour l'effet « verre dépoli » (voir ci-dessous). |
+| `carte_paiement_capcut.mov` | Version allégée (840 px) du ProRes 4444 avec transparence, pour CapCut. |
+| `carte_paiement_capcut_fond_noir.mp4` | Solution de secours pour CapCut : carte sur fond noir, à mettre en mode de fusion « Écran ». |
 | `carte_paiement_finale.png` | Image fixe de la carte complète, fond transparent. |
 
 ## Obtenir le flou « verre dépoli »
