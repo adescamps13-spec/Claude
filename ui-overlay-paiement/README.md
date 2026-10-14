@@ -1,4 +1,4 @@
-# Overlay UI : carte « Paiement ticket restaurant / carte wallet »
+# Overlay UI : carte « Paiement titre restaurant / carte wallet »
 
 Carte en verre dépoli animée, fond transparent, à poser sur une vidéo pendant le montage.
 Elle reprend le style de la référence : une petite goutte se transforme en carte, les lignes arrivent une par une (spinner puis coche), et à la fin la carte se floute et se rétracte.
