@@ -1,0 +1,20 @@
+{
+  "provider": "gemini",
+  "tts_model": "gemini-3.8-flash-tts",
+  "voice": "Puck",
+  "lang": "fr",
+  "style": "Narrateur publicitaire français natif, énergique, chaleureux et confiant. Rythme rapide et vivant, attaques nettes, sourire dans la voix. Pas de pause longue.",
+  "lines": [
+    { "id": "vo01", "text": "La voiture, c'est la liberté. Partir où l'on veut, quand on veut." },
+    { "id": "vo02", "text": "Mais en électrique, chaque trajet commence par des questions. Où recharger ? À quel prix ? Avec quelle carte ?", "style": "Plus tendu, un peu agacé, rythme qui s'accélère sur les questions." },
+    { "id": "vo03", "text": "Cette charge mentale, chez Electra, c'est nous qui la portons. Vous, vous avancez.", "style": "Soulagement, la voix s'ouvre, positive et assurée." },
+    { "id": "vo04", "text": "Le prix s'affiche avant de charger, et Electra+ le fait baisser." },
+    { "id": "vo05", "text": "L'appli vous guide vers la borne la plus fiable, du premier coup." },
+    { "id": "vo06", "text": "Une seule carte, pour plus d'un million de points de charge en Europe." },
+    { "id": "vo07", "text": "Vos pauses sont planifiées pour vous." },
+    { "id": "vo08", "text": "Et tout s'affiche en direct : puissance, disponibilité, tarif." },
+    { "id": "vo09", "text": "Vos plans. Pas ceux de votre batterie.", "style": "Signature de marque, posée, chaleureuse, avec conviction." },
+    { "id": "vo10", "text": "Électra, noté 4,8 sur Trustpilot. Téléchargez l'appli.", "style": "Signature finale, souriante, claire." }
+  ],
+  "bgm": { "mode": "none" }
+}

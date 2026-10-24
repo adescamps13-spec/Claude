@@ -116,14 +116,14 @@
     }
   </style>
   <div id="root" data-composition-id="trajet" data-width="1080" data-height="1920">
-    <div id="trajet-kick" class="clip kick kick-dark" data-start="0" data-duration="5.4"><span class="kq" id="trajet-kq">Où recharger ?<i class="kline" id="trajet-kl"></i></span></div>
+    <div id="trajet-kick" class="clip kick kick-dark" data-start="0" data-duration="3.9"><span class="kq" id="trajet-kq">Où recharger ?<i class="kline" id="trajet-kl"></i></span></div>
     <svg id="trajet-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
-    <h1 id="trajet-title" class="clip" data-start="0" data-duration="5.4">
+    <h1 id="trajet-title" class="clip" data-start="0" data-duration="3.9">
       <span class="w" id="trajet-w1">Planifiez votre</span><br />
       <span class="w" id="trajet-w2">trajet</span>
     </h1>
-    <p id="trajet-sub" class="clip" data-start="0" data-duration="5.4">Pauses, batterie, péages… C'est vous qui décidez</p>
-    <div id="trajet-cardclip" class="clip" data-start="0" data-duration="5.4" style="position: absolute; inset: 0" data-layout-allow-overflow>
+    <p id="trajet-sub" class="clip" data-start="0" data-duration="3.9">Pauses, batterie, péages… C'est vous qui décidez</p>
+    <div id="trajet-cardclip" class="clip" data-start="0" data-duration="3.9" style="position: absolute; inset: 0" data-layout-allow-overflow>
       <div id="trajet-cardwrap">
         <div id="trajet-card">
           <div class="tj-h">Itinéraire le plus rapide</div>
@@ -139,7 +139,7 @@
         <path d="M6 4 L6 66 L22 52 L33 78 L45 73 L34 47 L56 47 Z" fill="#0F2A3A" stroke="#fff" stroke-width="5" stroke-linejoin="round" />
       </svg>
     </div>
-    <div id="trajet-irisclip" class="clip" data-start="4.6" data-duration="0.8" style="position: absolute; inset: 0">
+    <div id="trajet-irisclip" class="clip" data-start="3.32" data-duration="0.58" style="position: absolute; inset: 0">
       <div id="trajet-iris"></div>
     </div>
   </div>
@@ -252,15 +252,18 @@
               '<text x="' + b[0].toFixed(1) + '" y="' + (top + 40).toFixed(1) + '" text-anchor="middle" font-family="Outfit" font-weight="600" font-size="30" fill="' + pn.fg + '">' + pn.label + "</text></g>",
           });
         });
-        svg.innerHTML = I.paint(D);
+        // camera energy
+        const k = 1 + I.bump(t, 1.75, 0.035) + I.bump(t, 2.75, 0.035) + I.bump(t, 3.5, 0.03);
+        const sh = I.shake(t, [1.75, 2.75], 5);
+        svg.innerHTML = I.camFx(I.paint(D), { k, cx: 540, cy: 900, dx: sh[0], dy: sh[1] });
       }
 
-      const tl = gsap.timeline({ paused: true });
+      const tl = gsap.timeline();
       const state = { t: 0 };
       tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
 
-      tl.fromTo("#trajet-w1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.4);
-      tl.fromTo("#trajet-w2", { opacity: 0, filter: "blur(10px)", color: "#FFFFFF" }, { opacity: 1, filter: "blur(0px)", color: "#45F5B9", duration: 0.22, ease: "power4.out" }, 0.58);
+      tl.fromTo("#trajet-w1", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 0.4);
+      tl.fromTo("#trajet-w2", { opacity: 0, scale: 1.3, filter: "blur(10px)", color: "#FFFFFF" }, { opacity: 1, scale: 1, filter: "blur(0px)", color: "#45F5B9", duration: 0.28, ease: "expo.out" }, 0.58);
       tl.fromTo("#trajet-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.85);
       // route summary card rises once the car arrives
       tl.fromTo("#trajet-card", { y: 1000, opacity: 1 }, { y: 0, duration: 0.6, ease: "expo.out" }, 3.15);
@@ -280,7 +283,10 @@
       tl.to("#trajet-kq", { opacity: 0.55, duration: 0.2, ease: "power2.out" }, 0.5);
 
       render(0);
-      window.__timelines["trajet"] = tl;
+      // designed at 5.4 s, played at 3.9 s to keep pace with the voiceover
+      const scene = gsap.timeline({ paused: true });
+      scene.add(tl.timeScale(DUR / 3.9), 0);
+      window.__timelines["trajet"] = scene;
     })();
   </script>
 </template>

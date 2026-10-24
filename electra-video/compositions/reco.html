@@ -119,17 +119,17 @@
     }
   </style>
   <div id="root" data-composition-id="reco" data-width="1080" data-height="1920">
-    <div id="reco-kick" class="clip kick kick-dark" data-start="0" data-duration="4.8"><span class="kq" id="reco-kq">Quelle borne ?<i class="kline" id="reco-kl"></i></span></div>
+    <div id="reco-kick" class="clip kick kick-dark" data-start="0" data-duration="3.7"><span class="kq" id="reco-kq">Quelle borne ?<i class="kline" id="reco-kl"></i></span></div>
     <svg id="reco-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
-    <h1 id="reco-title" class="clip" data-start="0" data-duration="4.8">
+    <h1 id="reco-title" class="clip" data-start="0" data-duration="3.7">
       <span class="l" id="reco-l1">La bonne station,</span>
       <span class="l" id="reco-l2">du premier coup</span>
     </h1>
-    <p id="reco-sub" class="clip" data-start="0" data-duration="4.8">
+    <p id="reco-sub" class="clip" data-start="0" data-duration="3.7">
       Recommandée selon sa <span class="k" id="reco-k0">fiabilité</span>, <span class="k" id="reco-k1">puissance</span>,
       <span class="k" id="reco-k2">prix</span> et <span class="k" id="reco-k3">localisation</span>.
     </p>
-    <div id="reco-cardwrap" class="clip" data-start="0" data-duration="4.8" data-layout-allow-overflow>
+    <div id="reco-cardwrap" class="clip" data-start="0" data-duration="3.7" data-layout-allow-overflow>
       <div id="reco-card">
         <div class="rc-head">Station recommandée</div>
         <div class="rc-body">
@@ -243,15 +243,19 @@
         // hand-off: pale flood from the card's centre
         const fl = I.ease("power2.inOut", I.seg(t, 4.3, 4.78));
         if (fl > 0) D.push({ k: 99, s: '<circle cx="540" cy="1130" r="' + (fl * 1300).toFixed(1) + '" fill="' + PALE + '"/>' });
-        svg.innerHTML = I.paint(D);
+        // camera energy
+        let k = 1 + I.push(t, 2.7, 0.5, 0.08);
+        TK.forEach((tk) => (k += I.bump(t, tk, 0.03)));
+        const sh = I.shake(t, [2.75], 7);
+        svg.innerHTML = I.camFx(I.paint(D), { k: 1 + (k - 1) * (1 - I.seg(t, 4.2, 4.5)), cx: 540, cy: 1000, dx: sh[0], dy: sh[1] });
       }
 
-      const tl = gsap.timeline({ paused: true });
+      const tl = gsap.timeline();
       const state = { t: 0 };
       tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
 
-      tl.fromTo("#reco-l1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.4);
-      tl.fromTo("#reco-l2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.55);
+      tl.fromTo("#reco-l1", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 0.4);
+      tl.fromTo("#reco-l2", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 0.55);
       tl.fromTo("#reco-sub", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.7);
       // each criterion lights up as the pillars re-rank
       ["#reco-k0", "#reco-k1", "#reco-k2", "#reco-k3"].forEach((id, k) => {
@@ -274,7 +278,10 @@
       tl.to("#reco-kq", { opacity: 0.55, duration: 0.2, ease: "power2.out" }, 0.5);
 
       render(0);
-      window.__timelines["reco"] = tl;
+      // designed at 4.8 s, played at 3.7 s to keep pace with the voiceover
+      const scene = gsap.timeline({ paused: true });
+      scene.add(tl.timeScale(DUR / 3.7), 0);
+      window.__timelines["reco"] = scene;
     })();
   </script>
 </template>

@@ -3,21 +3,22 @@
 GOAL:    the viewer gets the positioning: EV charging carries a mental load that contradicts the freedom a car promises;
          Electra carries that load ("Vos plans. Pas ceux de votre batterie."), and each proof shows something the driver no longer has to do.
 OUTPUT:  HyperFrames, 1080 x 1920 (9:16, social), 30 fps
-TIME:    45 s x 30 fps = 1350 frames. No music bed (no source available), sound effects only.
+TIME:    45 s x 30 fps = 1350 frames. French voiceover (Gemini TTS, voice Puck) is the clock; sound effects; no music bed (no source available).
 LOOK:    Electra palette (unchanged from the 30 s cut): teal #0E8585, mint #45F5B9 (one accent per shot), pale #E8FFFC, navy #0F2A3A.
          Outfit 700 116-140 px / 500 42-50 px. Flat-shaded true isometric 3D, no gradients, no glow.
 STORY:   promise -> tension -> positioning -> 5 proofs (each opens on the struck-through question it answers) -> claim -> end card.
-SHOTS:
-  0.0-4.0   PROMISE  open road, the car drives; "La voiture, c'est la liberté" / "Aller où l'on veut, quand on veut."; 18 % battery chip.
-  4.0-8.4   TENSION  5 crates land on the roof one by one ("À quel prix ?", "Quelle borne ?", "Quelle carte ?", "Où recharger ?",
-                     "Combien d'attente ?"), the car sinks: "En électrique, la recharge pèse lourd" / "Planifier, calculer, vérifier, anticiper…"
-  8.4-13.0  POSITION the car plugs into an Electra charger, the crates fly off turning mint, the car springs back up:
-                     "Electra porte la charge mentale" / "Vous, avancez."; dive into the charger screen.
-  13.0-16.8 PROOF 1  ~~À quel prix ?~~ "Le prix affiché avant de charger" + Electra+ discounts on the networks.
-  16.8-21.6 PROOF 2  ~~Quelle borne ?~~ "La bonne station, du premier coup" (pillars re-rank, recommendation card).
-  21.6-25.6 PROOF 3  ~~Avec quelle carte ?~~ "Une seule carte, partout": 1 000 000+ points de charge en Europe, concurrents compris.
-  25.6-31.0 PROOF 4  ~~Où recharger ?~~ "Planifiez votre trajet" (route, stops, 4 h 10 · 540 km · 40 €, tap "C'est parti").
-  31.0-34.8 PROOF 5  ~~Combien d'attente ?~~ "Tout en direct" (availability 4/4 -> 3/4 live).
-  34.8-40.4 CLAIM    the same road, car light and fast, 100 %: "Vos plans. Pas ceux de votre batterie." / "La recharge n'est pas une destination."
-  40.4-45.0 END      4,8 Trustpilot -> mark in extrusion -> ELECTRA -> signature -> CTA "Téléchargez l'app Electra".
+SHOTS (v3, narrated, timed on the voice):
+  0.0-3.8   PROMISE  VO "La voiture, c'est la liberté. Partir où l'on veut, quand on veut." Fast road, speed lines, roll-whip exit.
+  3.8-16.0  TENSION + POSITION  VO "Mais en électrique, chaque trajet commence par des questions. Où recharger ? À quel prix ?
+            Avec quelle carte ?" (the last 3 crates land on the 3 questions, each landing pushes in and shakes the camera)
+            then "Cette charge mentale, chez Electra, c'est nous qui la portons. Vous, vous avancez." (crates lift on "portons").
+  16.0-20.1 PRICE    VO "Le prix s'affiche avant de charger, et Electra+ le fait baisser." (coins rain on "Electra+")
+  20.1-23.8 STATION  VO "L'appli vous guide vers la borne la plus fiable, du premier coup."
+  23.8-27.6 CARD     VO "Une seule carte, pour plus d'un million de points de charge en Europe."
+  27.6-31.5 TRIP     VO "Vos pauses sont planifiées pour vous."
+  31.5-35.2 LIVE     VO "Et tout s'affiche en direct : puissance, disponibilité, tarif."
+  35.2-39.6 CLAIM    VO "Vos plans. Pas ceux de votre batterie." (per-word slam on the words)
+  39.6-45.0 END      VO "Electra, noté 4,8 sur Trustpilot. Téléchargez l'appli." (logo on "Electra", rating on "4,8", CTA on "Téléchargez")
+MOTION (v3): titles slam in (scale 1.3 -> 1, blur 10 -> 0, 0.24 s expo.out); camera push-ins, bumps and seeded shakes on impacts;
+            proof scenes compressed 1.03-1.39x to the voice.
 BANNED:  dark void, glow/particles, gradients, everything fading/sliding in, docked logo, three cards in a row, moving titles, invented UI.

@@ -213,6 +213,57 @@
     return s;
   }
 
+  // ---- camera energy -------------------------------------------------
+  // eased push that holds: 0 before t0, a after t0 + dur
+  function push(t, t0, dur, a, e = "expo.out") {
+    return a * ease(e, seg(t, t0, t0 + dur));
+  }
+  // quick bump that decays back to 0
+  function bump(t, t0, a, decay = 9) {
+    if (t < t0) return 0;
+    const k = t - t0;
+    return a * Math.min(1, k / 0.05) * Math.exp(-k * decay);
+  }
+  // seeded decaying shake from a list of hit times -> [dx, dy]
+  function shake(t, hits, amp, decay = 10) {
+    let dx = 0;
+    let dy = 0;
+    hits.forEach((h, i) => {
+      if (t < h) return;
+      const k = t - h;
+      const e = amp * Math.exp(-k * decay);
+      dx += e * Math.sin(k * 61 + i * 1.7);
+      dy += e * Math.cos(k * 53 + i * 2.3);
+    });
+    return [dx, dy];
+  }
+  // wrap a painted world in a 2D camera: zoom k about (cx, cy), offset, roll in degrees
+  function camFx(svgStr, o) {
+    const k = o.k || 1;
+    const cx = o.cx === undefined ? 540 : o.cx;
+    const cy = o.cy === undefined ? 960 : o.cy;
+    return (
+      '<g transform="translate(' + ((o.dx || 0) + cx).toFixed(1) + "," + ((o.dy || 0) + cy).toFixed(1) + ") rotate(" + (o.rot || 0).toFixed(2) + ") scale(" + k.toFixed(4) + ") translate(" + (-cx) + "," + (-cy) + ')">' +
+      svgStr + "</g>"
+    );
+  }
+  // screen-space speed streaks along the iso y axis (down-left), pure function of t
+  function streaks(t, n, speed, seed, color = "#FFFFFF", op = 0.55) {
+    const r = rng(seed);
+    let s = "";
+    for (let i = 0; i < n; i++) {
+      const x0 = r() * 1700 - 100;
+      const y0 = r() * 1400 + 300;
+      const len = 120 + r() * 220;
+      const span = 2600;
+      const d = ((t * speed * (0.7 + r() * 0.6) + r() * span) % span) - 600;
+      const x = x0 - d * C;
+      const y = y0 + d * S;
+      s += '<line x1="' + x.toFixed(1) + '" y1="' + y.toFixed(1) + '" x2="' + (x + len * C).toFixed(1) + '" y2="' + (y - len * S).toFixed(1) + '" stroke="' + color + '" stroke-width="5" stroke-linecap="round" opacity="' + op + '"/>';
+    }
+    return s;
+  }
+
   // Sort drawables {k, s} back to front and join them
   function paint(list) {
     return list
@@ -221,5 +272,5 @@
       .join("");
   }
 
-  window.ISO = { C, S, clamp, seg, lerp, ease, spring, rng, shade, mix, cam, camAt, p, pts, poly, box, tile, cyl, disc, faceMatrix, pathD, along, car, paint };
+  window.ISO = { C, S, clamp, seg, lerp, ease, spring, rng, shade, mix, cam, camAt, p, pts, poly, box, tile, cyl, disc, faceMatrix, pathD, along, car, paint, push, bump, shake, camFx, streaks };
 })();

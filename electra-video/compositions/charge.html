@@ -42,22 +42,22 @@
   </style>
   <div id="root" data-composition-id="charge" data-width="1080" data-height="1920">
     <svg id="charge-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
-    <h1 id="charge-t1" class="clip charge-title" data-start="0" data-duration="4.5">
+    <h1 id="charge-t1" class="clip charge-title" data-start="0" data-duration="6.6">
       <span class="w" id="charge-a1">En électrique,</span><br />
       <span class="w accent" id="charge-a2">la recharge<br />pèse lourd</span>
     </h1>
-    <p id="charge-s1" class="clip charge-sub" data-start="0" data-duration="4.5">Planifier, calculer, vérifier, anticiper…</p>
-    <h1 id="charge-t2" class="clip charge-title" data-start="4.5" data-duration="4.5">
+    <p id="charge-s1" class="clip charge-sub" data-start="0" data-duration="6.6">Planifier, calculer, vérifier, anticiper…</p>
+    <h1 id="charge-t2" class="clip charge-title" data-start="6.6" data-duration="5.6">
       <span class="w" id="charge-b1">Electra porte</span><br />
       <span class="w accent" id="charge-b2">la charge<br />mentale</span>
     </h1>
-    <p id="charge-s2" class="clip charge-sub" data-start="4.5" data-duration="4.5">Vous, avancez.</p>
+    <p id="charge-s2" class="clip charge-sub" data-start="6.6" data-duration="5.6">Vous, avancez.</p>
   </div>
   <script>
     (function () {
       const I = window.ISO;
       const L = window.ELECTRA_LOGO;
-      const DUR = 9;
+      const DUR = 12.2;
       const svg = document.getElementById("charge-world");
       const TEAL = "#0E8585";
       const NAVY = "#12303F";
@@ -67,22 +67,24 @@
 
       // the mental load, one question per crate (the questions the proofs answer, in their order)
       const CRATES = [
-        { label: "À quel prix ?", t: 0.45, j: 0.0 },
-        { label: "Quelle borne ?", t: 1.0, j: 0.05 },
-        { label: "Quelle carte ?", t: 1.55, j: -0.04 },
-        { label: "Où recharger ?", t: 2.1, j: 0.04 },
-        { label: "Combien d'attente ?", t: 2.65, j: -0.03 },
-      ].map((q, i) => Object.assign(q, { off: 4.35 + (4 - i) * 0.1 }));
+        { label: "Quelle borne ?", t: 1.7, j: 0.0 },
+        { label: "Combien d'attente ?", t: 2.5, j: 0.05 },
+        { label: "Où recharger ?", t: 3.45, j: -0.04 },
+        { label: "À quel prix ?", t: 4.3, j: 0.04 },
+        { label: "Avec quelle carte ?", t: 5.22, j: -0.03 },
+      ].map((q, i) => Object.assign(q, { off: 9.0 + (4 - i) * 0.08 }));
+      // the last three land on the spoken questions; each landing hits the camera
+      const LANDS = CRATES.map((q) => q.t + 0.3);
 
       // the charger screen: zoom-through target
       const SCREEN = [0.42, -0.8, 1.72];
 
       function render(t) {
         // slow push, then a dive into the charger screen
-        let s = I.lerp(100, 110, I.ease("sine.inOut", I.seg(t, 0, 8.4)));
+        let s = I.lerp(100, 106, I.ease("sine.inOut", I.seg(t, 0, 11.6)));
         let ox = 470;
         let oy = 1530;
-        const dive = I.ease("power3.in", I.seg(t, 8.48, 9.0));
+        const dive = I.ease("power3.in", I.seg(t, 11.68, 12.2));
         const base = I.cam(ox, oy, s);
         const sp = I.p(base, SCREEN[0], SCREEN[1], SCREEN[2]);
         const Z = 1 + dive * 26;
@@ -107,8 +109,8 @@
         D.push({ k: -4.2, s: I.box(c, { x: -2.4, y: -2.9, z: 4.9, w: 4.6, d: 0.16, h: 0.12, color: NAVY }) });
         const sx0 = 0.2;
         D.push({ k: -4.0, s: I.box(c, { x: sx0, y: -2.85, z: 4.0, w: 2.3, d: 0.14, h: 0.86, color: MINT, left: MINT, right: "#2BC796", top: "#8BFAD5" }) });
-        const kw = Math.round(78 * I.ease("power2.out", I.seg(t, 3.9, 4.4)));
-        const pct = Math.round(I.lerp(18, 56, I.ease("power1.inOut", I.seg(t, 4.0, 7.6))));
+        const kw = Math.round(78 * I.ease("power2.out", I.seg(t, 6.1, 6.6)));
+        const pct = Math.round(I.lerp(18, 56, I.ease("power1.inOut", I.seg(t, 6.2, 11.5))));
         D.push({
           k: -3.9,
           s:
@@ -143,14 +145,14 @@
         D.push({ k: -0.9, s: I.box(c, { x: 0.92, y: -1.35, z: 1.3, w: 0.12, d: 0.24, h: 0.32, color: "#24343B" }) });
 
         // the car crawls in, heavier with every question that lands on its roof
-        const arrive = I.ease("power2.out", I.seg(t, 0, 3.6));
-        const cy = I.lerp(-13, -1.5, arrive);
+        const arrive = I.ease("power2.out", I.seg(t, 0, 5.4));
+        const cy = I.lerp(-14, -1.5, arrive);
         const carX = 1.45;
         let landed = 0;
         CRATES.forEach((q, i) => {
           if (t >= q.t + 0.3) landed++;
         });
-        const relief = I.spring(I.seg(t, 4.4, 5.2), 0.45);
+        const relief = I.spring(I.seg(t, 9.1, 9.9), 0.45);
         const sink = -0.045 * landed * (1 - relief);
         D.push({ k: 0.6, s: I.disc(c, carX + 0.55, cy + 1.1, 0.004, 1.15, "#0B4F50", { opacity: 0.18 }) });
         D.push({ k: 0.8, s: '<g transform="translate(0,' + (-sink * c.s).toFixed(1) + ')">' + carDrawn(c, carX, cy) + "</g>" });
@@ -172,7 +174,8 @@
             const right = i % 2 === 0;
             const a = right ? I.p(c, x + 0.94, y + 0.75, z + 0.2) : I.p(c, x + 0.47, y + 1.5, z + 0.2);
             const w = q.label.length * 15.5 + 40;
-            const x0 = right ? a[0] + 26 : a[0] - 26 - w;
+            let x0 = right ? a[0] + 26 : a[0] - 26 - w;
+            if (x0 + w > 1050) x0 = a[0] - 160 - w; // keep the tag on screen while the car is still far right
             D.push({
               k: 800 + i,
               s:
@@ -183,7 +186,7 @@
         });
 
         // cable from the holster to the car's charge port, with energy dashes
-        const plug = I.ease("power3.out", I.seg(t, 3.7, 4.05));
+        const plug = I.ease("power3.out", I.seg(t, 5.9, 6.25));
         if (plug > 0) {
           const a = I.p(c, 1.04, -1.23, 1.45);
           const b = I.p(c, carX + 0.05, cy + 0.4, 0.75 + sink);
@@ -196,14 +199,23 @@
             s:
               '<path d="' + d + '" pathLength="1" fill="none" stroke="#1B2B31" stroke-width="' + sw.toFixed(1) + '" stroke-linecap="round" stroke-dasharray="' + plug.toFixed(3) + ' 2"/>' +
               (plug >= 1
-                ? '<path d="' + d + '" pathLength="1" fill="none" stroke="' + MINT + '" stroke-width="' + (sw * 0.45).toFixed(1) + '" stroke-linecap="round" stroke-dasharray="0.05 0.09" stroke-dashoffset="' + (-(t - 4.05) * 0.55).toFixed(3) + '"/>'
+                ? '<path d="' + d + '" pathLength="1" fill="none" stroke="' + MINT + '" stroke-width="' + (sw * 0.45).toFixed(1) + '" stroke-linecap="round" stroke-dasharray="0.05 0.09" stroke-dashoffset="' + (-(t - 6.25) * 0.55).toFixed(3) + '"/>'
                 : ""),
           });
         }
         // the screen fill takes the whole frame: hand-off to the pale world
-        const fill = I.seg(t, 8.82, 8.96);
+        const fill = I.seg(t, 12.02, 12.16);
         if (fill > 0) D.push({ k: 99, s: '<rect width="1080" height="1920" fill="' + PALE + '" opacity="' + fill.toFixed(3) + '"/>' });
-        svg.innerHTML = I.paint(D);
+        // camera energy: every landing pushes in and shakes; the lift-off releases it all
+        let k = 1;
+        LANDS.forEach((lt) => {
+          k += I.push(t, lt, 0.3, 0.035) + I.bump(t, lt, 0.03);
+        });
+        k += I.bump(t, 9.0, 0.05) - I.push(t, 9.1, 0.7, 0.175, "power3.out");
+        const live = 1 - I.seg(t, 11.2, 11.68);
+        const sh = I.shake(t, LANDS, 18).map((v, i) => v + I.shake(t, [9.0], 8)[i]);
+        const cp = I.p(c, carX + 0.55, cy + 1.1, 1.2);
+        svg.innerHTML = I.camFx(I.paint(D), { k: 1 + (k - 1) * live, cx: cp[0], cy: cp[1], dx: sh[0] * live, dy: sh[1] * live });
       }
 
       function carDrawn(c, x, y) {
@@ -215,15 +227,15 @@
       tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
 
       // the weight: titles blur in, no translate
-      tl.fromTo("#charge-a1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.1);
-      tl.fromTo("#charge-a2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.3);
-      tl.fromTo("#charge-s1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.6);
-      tl.to(["#charge-a1", "#charge-a2", "#charge-s1"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 4.2);
+      tl.fromTo("#charge-a1", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 0.3);
+      tl.fromTo("#charge-a2", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 1.55);
+      tl.fromTo("#charge-s1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 2.3);
+      tl.to(["#charge-a1", "#charge-a2", "#charge-s1"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 6.3);
       // the relief: Electra takes the load
-      tl.fromTo("#charge-b1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 4.65);
-      tl.fromTo("#charge-b2", { opacity: 0, filter: "blur(10px)", color: "#FFFFFF" }, { opacity: 1, filter: "blur(0px)", color: "#45F5B9", duration: 0.25, ease: "power4.out" }, 4.85);
-      tl.fromTo("#charge-s2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 5.4);
-      tl.to(["#charge-b1", "#charge-b2", "#charge-s2"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 8.35);
+      tl.fromTo("#charge-b1", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 7.85);
+      tl.fromTo("#charge-b2", { opacity: 0, scale: 1.3, filter: "blur(10px)", color: "#FFFFFF" }, { opacity: 1, scale: 1, filter: "blur(0px)", color: "#45F5B9", duration: 0.3, ease: "expo.out" }, 8.9);
+      tl.fromTo("#charge-s2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 10.3);
+      tl.to(["#charge-b1", "#charge-b2", "#charge-s2"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 11.55);
 
       render(0);
       window.__timelines["charge"] = tl;

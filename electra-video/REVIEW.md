@@ -1,24 +1,27 @@
-# REVIEW (delivery note, v2 45 s)
+# REVIEW (delivery note, v3 narrated 45 s)
 
-**Render**: `renders/electra-45s.mp4`, 45.0 s, 1080x1920, 30 fps, H.264 + AAC, ~10 MB.
-`hyperframes check`: ok (0 errors). Audio measured on the file: about -17 LUFS integrated, true peak -1.5 dBTP, no clipping;
-crate thuds, plug, lift-off, stops, tap and logo hits land with their pictures. **Measured, not heard.**
+**Render**: `renders/electra-45s-vo.mp4`, 45.0 s, 1080x1920, 30 fps, H.264 + AAC.
+`hyperframes check`: ok (0 errors). Audio measured on the file: -15.8 LUFS integrated, true peak -1.4 dBTP, no clipping.
+**Measured, not heard**: I cannot listen. The 10 voice lines were transcribed back by Gemini and match the script word for word.
 
-## Creative calls
-- The strategy (tension: freedom vs. charging's mental load; positioning: Electra carries it; proofs) structures the film.
-  Visual identity unchanged (Electra charter, not the strategy deck's).
-- On-screen copy taken from the strategy and manifesto: "Planifier, calculer, vérifier, anticiper", the questions
-  "où recharger, sur quelle borne, à quel prix, avec quelle carte", "Vos plans. Pas ceux de votre batterie.",
-  "La recharge n'est pas une destination.", "plus d'un million de points ... concurrents compris", "Tarifs affichés avant la session, réductions Electra+".
-  Written by me: "Electra porte la charge mentale / Vous, avancez." (from "Cette charge mentale, c'est à nous de la porter"),
-  "Combien d'attente ?", "Le prix affiché avant de charger", "Une seule carte, partout".
-- **Number to confirm**: the strategy says "plus d'un million de points"; Electra's own ad (v1 screenshot) says "800 000+". v2 uses 1 000 000+.
-- Logo vectorised from the screenshots; Outfit instead of the brand typeface; teal #0E8585 for AA contrast (see v1 notes).
+## What changed from v2
+- French voiceover (Gemini TTS `gemini-3.8-flash-tts`, voice "Puck", directed energetic/warm), script in `audio_request.json`,
+  files in `assets/voice/` (loudness-normalised to -14 LUFS; raw takes kept out of git in `.media/vo-raw/`).
+- The whole film is retimed on the voice: crates land on the spoken questions, the lift-off on "portons", coins on "Electra+",
+  logo / rating / CTA on "Electra" / "4,8" / "Téléchargez".
+- More energy: title slams, camera push-ins, bumps and shakes on every impact, speed lines and a rolling whip on the road,
+  proof scenes compressed to the voice (designed timelines played 1.03-1.39x via a nested timeScale).
+- End card now follows the voice: logo -> 4,8 + stars -> signature -> CTA, all held together.
+
+## No music
+No usable music source in this environment: Lyria 3 has a zero free-tier quota on this Gemini key, Lyria RealTime needs
+WebSockets (not allowed by the environment proxy), MusicGen weights (Hugging Face) and Openverse are blocked.
+To add one: drop a track in `assets/bgm/` and say so; the cuts will be re-snapped to its beats (`npx hyperframes beats`).
 
 ## Weakest shot / with more time
-- No music bed: add a ~110-120 bpm track whose energy opens at the lift-off (8.8 s) and recut on its beats.
-- Autocharge (plugging in triggers charge and payment) is only implied by the plug at 7.7 s; a tag on the cable would state it.
+- A music bed is the biggest missing piece for energy.
+- Gemini free tier allows 10 TTS requests/day: re-takes of a line wait until the quota resets.
 
 ## Warnings kept on purpose
 - `line_unread` on SVG labels: false positives (the SVG is redrawn every frame).
-- Two `contrast_aa_failure` samples taken mid-fade (the kW badge fading in, a tag during the dive).
+- One `contrast_aa_failure` sample during the dive (a tag mid-zoom) and one `content_overlap` info on route pins mid-move.

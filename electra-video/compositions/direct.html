@@ -131,13 +131,13 @@
     }
   </style>
   <div id="root" data-composition-id="direct" data-width="1080" data-height="1920">
-    <div id="direct-kick" class="clip kick kick-light" data-start="0" data-duration="3.8"><span class="kq" id="direct-kq">Combien d'attente ?<i class="kline" id="direct-kl"></i></span></div>
+    <div id="direct-kick" class="clip kick kick-light" data-start="0" data-duration="3.7"><span class="kq" id="direct-kq">Combien d'attente ?<i class="kline" id="direct-kl"></i></span></div>
     <svg id="direct-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
-    <h1 id="direct-title" class="clip" data-start="0" data-duration="3.8">
+    <h1 id="direct-title" class="clip" data-start="0" data-duration="3.7">
       <span class="w" id="direct-w1">Tout</span> <span class="w" id="direct-w2">en direct</span>
     </h1>
-    <p id="direct-sub" class="clip" data-start="0" data-duration="3.8">Puissance, disponibilité et tarif de chaque borne&nbsp;: zéro surprise</p>
-    <div id="direct-cardclip" class="clip" data-start="0" data-duration="3.8" style="position: absolute; inset: 0" data-layout-allow-overflow>
+    <p id="direct-sub" class="clip" data-start="0" data-duration="3.7">Puissance, disponibilité et tarif de chaque borne&nbsp;: zéro surprise</p>
+    <div id="direct-cardclip" class="clip" data-start="0" data-duration="3.7" style="position: absolute; inset: 0" data-layout-allow-overflow>
       <div id="direct-cardwrap">
         <div id="direct-card">
           <div class="dc-top">
@@ -214,15 +214,18 @@
         // hand-off: teal flood from the card
         const fl = I.ease("power2.inOut", I.seg(t, 3.3, 3.78));
         if (fl > 0) D.push({ k: 999, s: '<circle cx="540" cy="1140" r="' + (fl * 1400).toFixed(1) + '" fill="' + TEAL + '"/>' });
-        svg.innerHTML = I.paint(D);
+        // camera energy
+        const k = 1 + I.push(t, 0.3, 1.2, 0.06) + I.bump(t, PARK, 0.05);
+        const sh = I.shake(t, [PARK], 9);
+        svg.innerHTML = I.camFx(I.paint(D), { k: 1 + (k - 1) * (1 - I.seg(t, 3.2, 3.5)), cx: 540, cy: 800, dx: sh[0], dy: sh[1] });
       }
 
-      const tl = gsap.timeline({ paused: true });
+      const tl = gsap.timeline();
       const state = { t: 0 };
       tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
 
-      tl.fromTo("#direct-w1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power4.out" }, 0.38);
-      tl.fromTo("#direct-w2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power4.out" }, 0.5);
+      tl.fromTo("#direct-w1", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 0.38);
+      tl.fromTo("#direct-w2", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, 0.5);
       tl.fromTo("#direct-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.7);
       // the station card morphs in from a narrow strip
       tl.fromTo("#direct-card", { scaleX: 0.12, scaleY: 0.5, opacity: 0, filter: "blur(12px)" }, { scaleX: 1, scaleY: 1, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.55);
@@ -237,7 +240,10 @@
       tl.to("#direct-kq", { opacity: 0.55, duration: 0.2, ease: "power2.out" }, 0.5);
 
       render(0);
-      window.__timelines["direct"] = tl;
+      // designed at 3.8 s, played at 3.7 s to keep pace with the voiceover
+      const scene = gsap.timeline({ paused: true });
+      scene.add(tl.timeScale(DUR / 3.7), 0);
+      window.__timelines["direct"] = scene;
     })();
   </script>
 </template>
