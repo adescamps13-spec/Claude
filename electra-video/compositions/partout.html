@@ -16,8 +16,8 @@
     #partout-title {
       position: absolute;
       left: 84px;
-      top: 200px;
-      font-size: 132px;
+      top: 272px;
+      font-size: 120px;
       font-weight: 700;
       line-height: 1;
       letter-spacing: -0.03em;
@@ -32,8 +32,8 @@
     #partout-count {
       position: absolute;
       left: 84px;
-      top: 478px;
-      font-size: 120px;
+      top: 532px;
+      font-size: 112px;
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1;
@@ -43,7 +43,7 @@
     #partout-cap {
       position: absolute;
       left: 88px;
-      top: 606px;
+      top: 652px;
       font-size: 42px;
       font-weight: 500;
       color: var(--color-navy);
@@ -76,13 +76,14 @@
     }
   </style>
   <div id="root" data-composition-id="partout" data-width="1080" data-height="1920">
+    <div id="partout-kick" class="clip kick kick-light" data-start="0" data-duration="4"><span class="kq" id="partout-kq">Avec quelle carte ?<i class="kline" id="partout-kl"></i></span></div>
     <svg id="partout-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
     <h1 id="partout-title" class="clip" data-start="0" data-duration="4">
-      <span class="w" id="partout-w1">Des bornes</span><br />
+      <span class="w" id="partout-w1">Une seule carte,</span><br />
       <span class="w" id="partout-w2">partout</span>
     </h1>
     <div id="partout-count" class="clip" data-start="0" data-duration="4">0</div>
-    <div id="partout-cap" class="clip" data-start="0" data-duration="4">points de charge dans toute l'Europe</div>
+    <div id="partout-cap" class="clip" data-start="0" data-duration="4">points de charge en Europe, concurrents compris</div>
     <div id="partout-cardclip" class="clip" data-start="0" data-duration="4" data-layout-allow-overflow style="position: absolute; inset: 0">
       <div id="partout-cardpos">
         <div id="partout-tiltx">
@@ -152,8 +153,8 @@
         if (fl > 0) D.push({ k: 999, s: '<circle cx="540" cy="1250" r="' + (fl * 1500).toFixed(1) + '" fill="' + TEAL + '"/>' });
         svg.innerHTML = I.paint(D);
 
-        const n = Math.round(800000 * I.ease("expo.out", I.seg(t, LAND, 2.5)) / 1000) * 1000;
-        count.textContent = fmt(n) + (n >= 800000 ? "+" : "");
+        const n = Math.round(1000000 * I.ease("expo.out", I.seg(t, LAND, 2.5)) / 1000) * 1000;
+        count.textContent = fmt(n) + (n >= 1000000 ? "+" : "");
       }
 
       const tl = gsap.timeline({ paused: true });
@@ -169,10 +170,15 @@
       tl.fromTo("#partout-cardpos", { x: 0, y: 0 }, { x: land[0] - 540, y: land[1] - 1020, duration: 0.55, ease: "power3.inOut" }, 0.7);
       tl.to("#partout-cardpos", { scale: 0, opacity: 0, duration: 0.3, ease: "power3.in" }, 3.35);
 
-      tl.fromTo("#partout-w1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.1);
-      tl.fromTo("#partout-w2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.28);
+      tl.fromTo("#partout-w1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.4);
+      tl.fromTo("#partout-w2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.58);
       tl.fromTo(["#partout-count", "#partout-cap"], { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out", stagger: 0.1 }, LAND - 0.05);
-      tl.to(["#partout-w1", "#partout-w2", "#partout-count", "#partout-cap"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 3.4);
+      tl.to(["#partout-kick", "#partout-w1", "#partout-w2", "#partout-count", "#partout-cap"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 3.4);
+
+      // the question it answers, struck through
+      tl.fromTo("#partout-kq", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power4.out" }, 0.0);
+      tl.fromTo("#partout-kl", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power3.inOut", transformOrigin: "0% 50%" }, 0.3);
+      tl.to("#partout-kq", { opacity: 0.55, duration: 0.2, ease: "power2.out" }, 0.5);
 
       render(0);
       window.__timelines["partout"] = tl;

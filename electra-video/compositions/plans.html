@@ -1,0 +1,108 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--color-teal);
+      font-family: var(--font-display);
+    }
+    #plans-world {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #plans-title {
+      position: absolute;
+      left: 84px;
+      top: 200px;
+      font-size: 140px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--color-white);
+    }
+    #plans-title .w {
+      display: inline-block;
+    }
+    #plans-title .accent {
+      color: var(--color-mint);
+    }
+    #plans-sub {
+      position: absolute;
+      left: 88px;
+      top: 650px;
+      width: 900px;
+      font-size: 46px;
+      font-weight: 500;
+      line-height: 1.22;
+      color: var(--color-white);
+    }
+  </style>
+  <div id="root" data-composition-id="plans" data-width="1080" data-height="1920">
+    <svg id="plans-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+    <h1 id="plans-title" class="clip" data-start="0" data-duration="5.6">
+      <span class="w accent" id="plans-w1">Vos</span> <span class="w accent" id="plans-w2">plans.</span><br />
+      <span class="w" id="plans-w3">Pas</span> <span class="w" id="plans-w4">ceux</span> <span class="w" id="plans-w5">de</span><br />
+      <span class="w" id="plans-w6">votre</span> <span class="w" id="plans-w7">batterie.</span>
+    </h1>
+    <p id="plans-sub" class="clip" data-start="0" data-duration="5.6">La recharge n'est pas une destination.</p>
+  </div>
+  <script>
+    (function () {
+      const I = window.ISO;
+      const DUR = 5.6;
+      const svg = document.getElementById("plans-world");
+      const NAVY = "#0F2A3A";
+      const MINT = "#45F5B9";
+
+      function render(t) {
+        // the same road as the opening, now driven light and fast
+        const g = I.ease("expo.out", I.seg(t, 0, 0.7));
+        const yc = 6.5 * t;
+        const c = I.camAt(0, yc, 0, 540, I.lerp(1700, 1380, g), 92);
+        const D = [];
+        window.ROAD.drawRoad(c, D, yc);
+        const cy = yc + I.lerp(-3, 0, g);
+        D.push({ k: cy + 0.5, s: I.disc(c, 0, cy + 1.1, 0.004, 1.05, "#0B4F50", { opacity: 0.16 }) });
+        D.push({ k: cy + 0.6, s: I.car(c, { x: -0.55, y: cy, dir: "y" }) });
+        // full battery chip
+        const chip = I.spring(I.seg(t, 0.9, 1.4), 0.55);
+        if (chip > 0) {
+          const q = I.p(c, 0, cy + 1.1, 1.55);
+          D.push({
+            k: 900,
+            s:
+              '<g transform="translate(' + q[0].toFixed(1) + "," + (q[1] - 40).toFixed(1) + ") scale(" + chip.toFixed(3) + ')">' +
+              '<rect x="-112" y="-34" width="224" height="64" rx="32" fill="#fff" stroke="' + NAVY + '" stroke-width="4"/>' +
+              '<rect x="-84" y="-12" width="44" height="22" rx="5" fill="none" stroke="' + NAVY + '" stroke-width="4"/>' +
+              '<rect x="-38" y="-5" width="5" height="8" fill="' + NAVY + '"/>' +
+              '<rect x="-80" y="-8" width="36" height="14" fill="#18A957"/>' +
+              '<text x="-20" y="10" font-family="Outfit" font-weight="600" font-size="32" fill="' + NAVY + '">100 %</text></g>',
+          });
+        }
+        // hand-off: the world sinks away, leaving the teal ground for the end card
+        const out = I.ease("power3.in", I.seg(t, 5.0, 5.55));
+        svg.setAttribute("opacity", (1 - out).toFixed(3));
+        svg.innerHTML = '<g transform="translate(0,' + (out * 500).toFixed(1) + ')">' + I.paint(D) + "</g>";
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      const state = { t: 0 };
+      tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
+
+      // per word: blur to sharp, 0.08 s apart, no translate
+      const ws = ["#plans-w1", "#plans-w2", "#plans-w3", "#plans-w4", "#plans-w5", "#plans-w6", "#plans-w7"];
+      const at = [0.2, 0.3, 0.95, 1.03, 1.11, 1.19, 1.27];
+      ws.forEach((id, i) => {
+        tl.fromTo(id, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, ease: "power4.out" }, at[i]);
+      });
+      tl.fromTo("#plans-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 2.0);
+      tl.to([...ws, "#plans-sub"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in", stagger: 0.03 }, 5.05);
+
+      render(0);
+      window.__timelines["plans"] = tl;
+    })();
+  </script>
+</template>

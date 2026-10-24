@@ -1,0 +1,232 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--color-teal);
+      font-family: var(--font-display);
+    }
+    #charge-world {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    .charge-title {
+      position: absolute;
+      left: 84px;
+      top: 210px;
+      font-size: 132px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--color-white);
+    }
+    .charge-title .w {
+      display: inline-block;
+    }
+    .charge-title .accent {
+      color: var(--color-mint);
+    }
+    .charge-sub {
+      position: absolute;
+      left: 88px;
+      top: 624px;
+      width: 900px;
+      font-size: 46px;
+      font-weight: 500;
+      line-height: 1.22;
+      color: var(--color-white);
+    }
+  </style>
+  <div id="root" data-composition-id="charge" data-width="1080" data-height="1920">
+    <svg id="charge-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+    <h1 id="charge-t1" class="clip charge-title" data-start="0" data-duration="4.5">
+      <span class="w" id="charge-a1">En électrique,</span><br />
+      <span class="w accent" id="charge-a2">la recharge<br />pèse lourd</span>
+    </h1>
+    <p id="charge-s1" class="clip charge-sub" data-start="0" data-duration="4.5">Planifier, calculer, vérifier, anticiper…</p>
+    <h1 id="charge-t2" class="clip charge-title" data-start="4.5" data-duration="4.5">
+      <span class="w" id="charge-b1">Electra porte</span><br />
+      <span class="w accent" id="charge-b2">la charge<br />mentale</span>
+    </h1>
+    <p id="charge-s2" class="clip charge-sub" data-start="4.5" data-duration="4.5">Vous, avancez.</p>
+  </div>
+  <script>
+    (function () {
+      const I = window.ISO;
+      const L = window.ELECTRA_LOGO;
+      const DUR = 9;
+      const svg = document.getElementById("charge-world");
+      const TEAL = "#0E8585";
+      const NAVY = "#12303F";
+      const MINT = "#45F5B9";
+      const PALE = "#E8FFFC";
+      const SLAB = "#DCEFEC";
+
+      // the mental load, one question per crate (the questions the proofs answer, in their order)
+      const CRATES = [
+        { label: "À quel prix ?", t: 0.45, j: 0.0 },
+        { label: "Quelle borne ?", t: 1.0, j: 0.05 },
+        { label: "Quelle carte ?", t: 1.55, j: -0.04 },
+        { label: "Où recharger ?", t: 2.1, j: 0.04 },
+        { label: "Combien d'attente ?", t: 2.65, j: -0.03 },
+      ].map((q, i) => Object.assign(q, { off: 4.35 + (4 - i) * 0.1 }));
+
+      // the charger screen: zoom-through target
+      const SCREEN = [0.42, -0.8, 1.72];
+
+      function render(t) {
+        // slow push, then a dive into the charger screen
+        let s = I.lerp(100, 110, I.ease("sine.inOut", I.seg(t, 0, 8.4)));
+        let ox = 470;
+        let oy = 1530;
+        const dive = I.ease("power3.in", I.seg(t, 8.48, 9.0));
+        const base = I.cam(ox, oy, s);
+        const sp = I.p(base, SCREEN[0], SCREEN[1], SCREEN[2]);
+        const Z = 1 + dive * 26;
+        // keep the screen point travelling to the frame centre while scaling
+        const tx = I.lerp(sp[0], 540, dive);
+        const ty = I.lerp(sp[1], 960, dive);
+        const c = I.cam(tx + (ox - sp[0]) * Z, ty + (oy - sp[1]) * Z, s * Z);
+
+        const D = [];
+        // ground slab + painted bays
+        D.push({ k: -100, s: I.box(c, { x: -5, y: -6, z: -0.4, w: 9, d: 10, h: 0.4, top: SLAB, left: "#B9D9D4", right: "#9CC7C1" }) });
+        for (let i = 0; i < 3; i++) {
+          const bx = -2.6 + i * 2.25;
+          D.push({ k: -99, s: I.tile(c, bx, -1.6, 0.001, 0.08, 4.2, "#FFFFFF") });
+        }
+        D.push({ k: -99, s: I.tile(c, 1.0, 1.2, 0.002, 1.6, 1.0, "none", { stroke: TEAL, "stroke-width": 0 }) });
+        // charging bay marking (mint) under the arriving car
+        D.push({ k: -98, s: I.tile(c, 1.3, -1.7, 0.003, 1.45, 4.3, I.mix(SLAB, MINT, 0.35)) });
+
+        // sign pole + overhead sign
+        D.push({ k: -4.4, s: I.box(c, { x: -2.4, y: -2.9, z: 0, w: 0.16, d: 0.16, h: 5.1, color: NAVY }) });
+        D.push({ k: -4.2, s: I.box(c, { x: -2.4, y: -2.9, z: 4.9, w: 4.6, d: 0.16, h: 0.12, color: NAVY }) });
+        const sx0 = 0.2;
+        D.push({ k: -4.0, s: I.box(c, { x: sx0, y: -2.85, z: 4.0, w: 2.3, d: 0.14, h: 0.86, color: MINT, left: MINT, right: "#2BC796", top: "#8BFAD5" }) });
+        const kw = Math.round(78 * I.ease("power2.out", I.seg(t, 3.9, 4.4)));
+        const pct = Math.round(I.lerp(18, 56, I.ease("power1.inOut", I.seg(t, 4.0, 7.6))));
+        D.push({
+          k: -3.9,
+          s:
+            '<g transform="' + I.faceMatrix(c, "left", sx0, -2.71, 4.86) + '">' +
+            '<text x="0.16" y="0.58" font-family="Outfit" font-weight="600" font-size="0.44" letter-spacing="-0.01" fill="' + NAVY + '">' +
+            pct + "% · " + kw + "kW</text></g>",
+        });
+
+        // charger: plinth, body, canopy, screen, wordmark
+        D.push({ k: -1.2, s: I.box(c, { x: -0.15, y: -1.7, z: 0, w: 1.15, d: 1.0, h: 0.18, color: "#9FC4BF" }) });
+        D.push({ k: -1.1, s: I.box(c, { x: -0.08, y: -1.62, z: 0.18, w: 1.0, d: 0.82, h: 2.55, color: TEAL, left: "#139797", right: "#0C7474", top: "#1FB0AD" }) });
+        D.push({ k: -1.0, s: I.box(c, { x: -0.18, y: -1.75, z: 2.73, w: 1.22, d: 1.04, h: 0.16, color: "#24343B", top: "#3A4B52" }) });
+        D.push({
+          k: -0.95,
+          s:
+            '<g transform="' + I.faceMatrix(c, "left", -0.08, -0.8, 2.25) + '">' +
+            '<rect x="0.17" y="0.22" width="0.66" height="0.62" rx="0.05" fill="#0E2630"/>' +
+            '<rect x="0.22" y="0.27" width="0.56" height="0.52" rx="0.03" fill="' + PALE + '"/>' +
+            '<rect x="0.3" y="0.36" width="' + (0.4 * pct / 100).toFixed(3) + '" height="0.06" rx="0.03" fill="' + TEAL + '"/>' +
+            '<rect x="0.3" y="0.36" width="0.4" height="0.06" rx="0.03" fill="none" stroke="' + TEAL + '" stroke-width="0.012"/>' +
+            '<rect x="0.17" y="1.05" width="0.66" height="0.07" rx="0.03" fill="' + MINT + '"/>' +
+            "</g>",
+        });
+        const ws = 0.62 / L.word.w;
+        D.push({
+          k: -0.94,
+          s:
+            '<g transform="' + I.faceMatrix(c, "right", 0.92, -0.86, 1.7) + '"><g transform="translate(0.1,0) rotate(-90) translate(-0.62,0) scale(' + ws.toFixed(6) + ')">' +
+            '<path d="' + L.word.d + '" fill="' + PALE + '"/></g></g>',
+        });
+        // holster
+        D.push({ k: -0.9, s: I.box(c, { x: 0.92, y: -1.35, z: 1.3, w: 0.12, d: 0.24, h: 0.32, color: "#24343B" }) });
+
+        // the car crawls in, heavier with every question that lands on its roof
+        const arrive = I.ease("power2.out", I.seg(t, 0, 3.6));
+        const cy = I.lerp(-13, -1.5, arrive);
+        const carX = 1.45;
+        let landed = 0;
+        CRATES.forEach((q, i) => {
+          if (t >= q.t + 0.3) landed++;
+        });
+        const relief = I.spring(I.seg(t, 4.4, 5.2), 0.45);
+        const sink = -0.045 * landed * (1 - relief);
+        D.push({ k: 0.6, s: I.disc(c, carX + 0.55, cy + 1.1, 0.004, 1.15, "#0B4F50", { opacity: 0.18 }) });
+        D.push({ k: 0.8, s: '<g transform="translate(0,' + (-sink * c.s).toFixed(1) + ')">' + carDrawn(c, carX, cy) + "</g>" });
+        CRATES.forEach((q, i) => {
+          const fall = I.seg(t, q.t, q.t + 0.3);
+          if (fall <= 0) return;
+          const lift = I.ease("power3.in", I.seg(t, q.off, q.off + 0.75));
+          if (lift >= 1) return;
+          const bounce = I.spring(I.seg(t, q.t + 0.3, q.t + 0.8), 0.4, 18);
+          const zRest = 1.0 + sink + i * 0.42;
+          const z = fall < 1 ? zRest + 5 * (1 - I.ease("power2.in", fall)) : zRest + 0.14 * (1 - bounce) + lift * 14;
+          const col = I.mix("#4C6470", MINT, I.seg(t, q.off, q.off + 0.25));
+          const x = carX + 0.08 + q.j;
+          const y = cy + 0.35;
+          D.push({ k: 1 + i * 0.01, s: I.box(c, { x, y, z, w: 0.94, d: 1.5, h: 0.4, color: col, top: I.shade(col, 0.22), right: I.shade(col, -0.25) }) });
+          // the question on a tag beside its crate
+          const tag = Math.min(fall * 2, 1) * (1 - I.seg(t, q.off, q.off + 0.15));
+          if (tag > 0) {
+            const right = i % 2 === 0;
+            const a = right ? I.p(c, x + 0.94, y + 0.75, z + 0.2) : I.p(c, x + 0.47, y + 1.5, z + 0.2);
+            const w = q.label.length * 15.5 + 40;
+            const x0 = right ? a[0] + 26 : a[0] - 26 - w;
+            D.push({
+              k: 800 + i,
+              s:
+                '<g opacity="' + tag.toFixed(3) + '"><rect x="' + x0.toFixed(1) + '" y="' + (a[1] - 26).toFixed(1) + '" width="' + w.toFixed(1) + '" height="52" rx="26" fill="#fff" stroke="' + NAVY + '" stroke-width="4"/>' +
+                '<text x="' + (x0 + w / 2).toFixed(1) + '" y="' + (a[1] + 10).toFixed(1) + '" text-anchor="middle" font-family="Outfit" font-weight="600" font-size="29" fill="' + NAVY + '">' + q.label + "</text></g>",
+            });
+          }
+        });
+
+        // cable from the holster to the car's charge port, with energy dashes
+        const plug = I.ease("power3.out", I.seg(t, 3.7, 4.05));
+        if (plug > 0) {
+          const a = I.p(c, 1.04, -1.23, 1.45);
+          const b = I.p(c, carX + 0.05, cy + 0.4, 0.75 + sink);
+          const m1 = [a[0] + 30 * c.s / 110, a[1] + 160 * c.s / 110];
+          const m2 = [b[0] - 40 * c.s / 110, b[1] + 120 * c.s / 110];
+          const d = "M" + a[0].toFixed(1) + "," + a[1].toFixed(1) + " C" + m1.map((v) => v.toFixed(1)).join(",") + " " + m2.map((v) => v.toFixed(1)).join(",") + " " + b[0].toFixed(1) + "," + b[1].toFixed(1);
+          const sw = (11 * c.s) / 110;
+          D.push({
+            k: 5,
+            s:
+              '<path d="' + d + '" pathLength="1" fill="none" stroke="#1B2B31" stroke-width="' + sw.toFixed(1) + '" stroke-linecap="round" stroke-dasharray="' + plug.toFixed(3) + ' 2"/>' +
+              (plug >= 1
+                ? '<path d="' + d + '" pathLength="1" fill="none" stroke="' + MINT + '" stroke-width="' + (sw * 0.45).toFixed(1) + '" stroke-linecap="round" stroke-dasharray="0.05 0.09" stroke-dashoffset="' + (-(t - 4.05) * 0.55).toFixed(3) + '"/>'
+                : ""),
+          });
+        }
+        // the screen fill takes the whole frame: hand-off to the pale world
+        const fill = I.seg(t, 8.82, 8.96);
+        if (fill > 0) D.push({ k: 99, s: '<rect width="1080" height="1920" fill="' + PALE + '" opacity="' + fill.toFixed(3) + '"/>' });
+        svg.innerHTML = I.paint(D);
+      }
+
+      function carDrawn(c, x, y) {
+        return I.car(c, { x, y, dir: "y", body: "#173847", glass: "#BFF6EA" });
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      const state = { t: 0 };
+      tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
+
+      // the weight: titles blur in, no translate
+      tl.fromTo("#charge-a1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.1);
+      tl.fromTo("#charge-a2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.3);
+      tl.fromTo("#charge-s1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.6);
+      tl.to(["#charge-a1", "#charge-a2", "#charge-s1"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 4.2);
+      // the relief: Electra takes the load
+      tl.fromTo("#charge-b1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 4.65);
+      tl.fromTo("#charge-b2", { opacity: 0, filter: "blur(10px)", color: "#FFFFFF" }, { opacity: 1, filter: "blur(0px)", color: "#45F5B9", duration: 0.25, ease: "power4.out" }, 4.85);
+      tl.fromTo("#charge-s2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 5.4);
+      tl.to(["#charge-b1", "#charge-b2", "#charge-s2"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 8.35);
+
+      render(0);
+      window.__timelines["charge"] = tl;
+    })();
+  </script>
+</template>

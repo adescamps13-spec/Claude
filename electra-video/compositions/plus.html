@@ -16,8 +16,8 @@
     #plus-title {
       position: absolute;
       left: 84px;
-      top: 210px;
-      font-size: 132px;
+      top: 282px;
+      font-size: 124px;
       font-weight: 700;
       line-height: 1;
       letter-spacing: -0.03em;
@@ -29,7 +29,7 @@
     #plus-sub {
       position: absolute;
       left: 88px;
-      top: 500px;
+      top: 560px;
       width: 900px;
       font-size: 46px;
       font-weight: 500;
@@ -41,12 +41,13 @@
     }
   </style>
   <div id="root" data-composition-id="plus" data-width="1080" data-height="1920">
+    <div id="plus-kick" class="clip kick kick-light" data-start="0" data-duration="3.8"><span class="kq" id="plus-kq">À quel prix ?<i class="kline" id="plus-kl"></i></span></div>
     <svg id="plus-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
     <h1 id="plus-title" class="clip" data-start="0" data-duration="3.8">
-      <span class="w" id="plus-w1">Chargez</span><br />
-      <span class="w" id="plus-w2">moins</span> <span class="w" id="plus-w3">cher</span>
+      <span class="w" id="plus-w1">Le prix affiché</span><br />
+      <span class="w" id="plus-w2">avant de</span> <span class="w" id="plus-w3">charger</span>
     </h1>
-    <p id="plus-sub" class="clip" data-start="0" data-duration="3.8">Avec <b>Electra+</b>, économisez sur les réseaux&nbsp;:</p>
+    <p id="plus-sub" class="clip" data-start="0" data-duration="3.8">Et des réductions <b>Electra+</b> sur les réseaux&nbsp;:</p>
   </div>
   <script>
     (function () {
@@ -117,11 +118,16 @@
       tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
 
       // title words go from light grey to ink; the accent words land in teal
-      tl.fromTo("#plus-w1", { color: "#BFDCD8" }, { color: "#0F2A3A", duration: 0.2, ease: "power2.out" }, 0.05);
-      tl.fromTo(["#plus-w2", "#plus-w3"], { color: "#BFDCD8" }, { color: "#0E8585", duration: 0.2, ease: "power2.out", stagger: 0.09 }, 0.15);
-      tl.fromTo("#plus-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.45);
+      tl.fromTo("#plus-w1", { color: "#BFDCD8" }, { color: "#0F2A3A", duration: 0.2, ease: "power2.out" }, 0.4);
+      tl.fromTo(["#plus-w2", "#plus-w3"], { color: "#BFDCD8" }, { color: "#0E8585", duration: 0.2, ease: "power2.out", stagger: 0.09 }, 0.5);
+      tl.fromTo("#plus-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.8);
       // exit: blur-out word by word as the ground floods
-      tl.to(["#plus-w1", "#plus-w2", "#plus-w3", "#plus-sub"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 3.05);
+      tl.to(["#plus-kick", "#plus-w1", "#plus-w2", "#plus-w3", "#plus-sub"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 3.05);
+
+      // the question it answers, struck through
+      tl.fromTo("#plus-kq", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power4.out" }, 0.0);
+      tl.fromTo("#plus-kl", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power3.inOut", transformOrigin: "0% 50%" }, 0.3);
+      tl.to("#plus-kq", { opacity: 0.55, duration: 0.2, ease: "power2.out" }, 0.5);
 
       render(0);
       window.__timelines["plus"] = tl;

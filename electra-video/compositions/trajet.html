@@ -16,8 +16,8 @@
     #trajet-title {
       position: absolute;
       left: 84px;
-      top: 200px;
-      font-size: 132px;
+      top: 272px;
+      font-size: 124px;
       font-weight: 700;
       line-height: 1;
       letter-spacing: -0.03em;
@@ -32,7 +32,7 @@
     #trajet-sub {
       position: absolute;
       left: 88px;
-      top: 478px;
+      top: 540px;
       width: 900px;
       font-size: 42px;
       font-weight: 500;
@@ -116,6 +116,7 @@
     }
   </style>
   <div id="root" data-composition-id="trajet" data-width="1080" data-height="1920">
+    <div id="trajet-kick" class="clip kick kick-dark" data-start="0" data-duration="5.4"><span class="kq" id="trajet-kq">Où recharger ?<i class="kline" id="trajet-kl"></i></span></div>
     <svg id="trajet-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
     <h1 id="trajet-title" class="clip" data-start="0" data-duration="5.4">
       <span class="w" id="trajet-w1">Planifiez votre</span><br />
@@ -195,7 +196,7 @@
 
       function render(t) {
         const m = I.ease("power3.inOut", I.seg(t, 2.95, 3.5));
-        const c = I.camAt(5, 2.5, 0, 540, I.lerp(1060, 640, m), I.lerp(96, 70, m));
+        const c = I.camAt(5, 2.5, 0, 540, I.lerp(1150, 640, m), I.lerp(92, 70, m));
         const D = [];
         const g = I.lerp(0.35, 1, I.ease("expo.out", I.seg(t, 0, 0.6)));
         // terrain slab
@@ -258,9 +259,9 @@
       const state = { t: 0 };
       tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
 
-      tl.fromTo("#trajet-w1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.05);
-      tl.fromTo("#trajet-w2", { opacity: 0, filter: "blur(10px)", color: "#FFFFFF" }, { opacity: 1, filter: "blur(0px)", color: "#45F5B9", duration: 0.22, ease: "power4.out" }, 0.25);
-      tl.fromTo("#trajet-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.55);
+      tl.fromTo("#trajet-w1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.4);
+      tl.fromTo("#trajet-w2", { opacity: 0, filter: "blur(10px)", color: "#FFFFFF" }, { opacity: 1, filter: "blur(0px)", color: "#45F5B9", duration: 0.22, ease: "power4.out" }, 0.58);
+      tl.fromTo("#trajet-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.85);
       // route summary card rises once the car arrives
       tl.fromTo("#trajet-card", { y: 1000, opacity: 1 }, { y: 0, duration: 0.6, ease: "expo.out" }, 3.15);
       // cursor enters, presses "C'est parti"
@@ -271,7 +272,12 @@
       tl.to("#trajet-go", { scale: 1, duration: 0.14, ease: "power2.out" }, 4.59);
       // iris opens from the press point onto the next world
       tl.fromTo("#trajet-iris", { clipPath: "circle(0px at 746px 1266px)" }, { clipPath: "circle(2200px at 746px 1266px)", duration: 0.72, ease: "power3.in" }, 4.62);
-      tl.to(["#trajet-w1", "#trajet-w2", "#trajet-sub"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 2.9);
+      tl.to(["#trajet-kick", "#trajet-w1", "#trajet-w2", "#trajet-sub"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 2.9);
+
+      // the question it answers, struck through
+      tl.fromTo("#trajet-kq", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power4.out" }, 0.0);
+      tl.fromTo("#trajet-kl", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power3.inOut", transformOrigin: "0% 50%" }, 0.3);
+      tl.to("#trajet-kq", { opacity: 0.55, duration: 0.2, ease: "power2.out" }, 0.5);
 
       render(0);
       window.__timelines["trajet"] = tl;
