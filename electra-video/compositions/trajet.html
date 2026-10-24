@@ -1,0 +1,280 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--color-teal);
+      font-family: var(--font-display);
+    }
+    #trajet-world {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #trajet-title {
+      position: absolute;
+      left: 84px;
+      top: 200px;
+      font-size: 132px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--color-white);
+    }
+    #trajet-title .w {
+      display: inline-block;
+    }
+    #trajet-w2 {
+      color: var(--color-mint);
+    }
+    #trajet-sub {
+      position: absolute;
+      left: 88px;
+      top: 478px;
+      width: 900px;
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1.22;
+      color: rgba(255, 255, 255, 0.95);
+    }
+    #trajet-cardwrap {
+      position: absolute;
+      left: 100px;
+      top: 965px;
+      width: 880px;
+    }
+    #trajet-card {
+      width: 880px;
+      background: #fff;
+      border-radius: 34px;
+      padding: 30px 40px 32px;
+      color: var(--color-navy);
+      box-shadow: 0 24px 0 rgba(6, 60, 60, 0.35);
+    }
+    .tj-h {
+      font-size: 44px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .tj-r {
+      font-size: 30px;
+      color: #4e6166;
+      margin-top: 4px;
+    }
+    .tj-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 18px;
+    }
+    .tj-time {
+      font-size: 70px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .tj-facts {
+      font-size: 34px;
+      font-weight: 500;
+      color: var(--color-teal);
+    }
+    .tj-btns {
+      display: flex;
+      gap: 24px;
+      margin-top: 22px;
+    }
+    .tj-btn {
+      flex: 1;
+      height: 92px;
+      border-radius: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 600;
+    }
+    #trajet-mod {
+      border: 3px solid var(--color-teal);
+      color: var(--color-teal);
+    }
+    #trajet-go {
+      background: var(--color-teal);
+      color: #fff;
+    }
+    #trajet-cursor {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 70px;
+      height: 84px;
+    }
+    #trajet-iris {
+      position: absolute;
+      inset: 0;
+      background: var(--color-pale);
+    }
+  </style>
+  <div id="root" data-composition-id="trajet" data-width="1080" data-height="1920">
+    <svg id="trajet-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+    <h1 id="trajet-title" class="clip" data-start="0" data-duration="5.4">
+      <span class="w" id="trajet-w1">Planifiez votre</span><br />
+      <span class="w" id="trajet-w2">trajet</span>
+    </h1>
+    <p id="trajet-sub" class="clip" data-start="0" data-duration="5.4">Pauses, batterie, péages… C'est vous qui décidez</p>
+    <div id="trajet-cardclip" class="clip" data-start="0" data-duration="5.4" style="position: absolute; inset: 0" data-layout-allow-overflow>
+      <div id="trajet-cardwrap">
+        <div id="trajet-card">
+          <div class="tj-h">Itinéraire le plus rapide</div>
+          <div class="tj-r">Votre position → Bourg-en-Bresse</div>
+          <div class="tj-row"><span class="tj-time">4 h 10</span><span class="tj-facts">540 km · ⚡ 40 €</span></div>
+          <div class="tj-btns">
+            <div class="tj-btn" id="trajet-mod">Modifier</div>
+            <div class="tj-btn" id="trajet-go">C'est parti</div>
+          </div>
+        </div>
+      </div>
+      <svg id="trajet-cursor" viewBox="0 0 70 84">
+        <path d="M6 4 L6 66 L22 52 L33 78 L45 73 L34 47 L56 47 Z" fill="#0F2A3A" stroke="#fff" stroke-width="5" stroke-linejoin="round" />
+      </svg>
+    </div>
+    <div id="trajet-irisclip" class="clip" data-start="4.6" data-duration="0.8" style="position: absolute; inset: 0">
+      <div id="trajet-iris"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const I = window.ISO;
+      const DUR = 5.4;
+      const svg = document.getElementById("trajet-world");
+      const TEAL = "#0E8585";
+      const NAVY = "#0F2A3A";
+      const MINT = "#45F5B9";
+      const ROUTE = [
+        [0, 0],
+        [3, 0],
+        [3, 2.5],
+        [6.5, 2.5],
+        [6.5, 5],
+        [10, 5],
+      ];
+      const F1 = 5.5 / 15;
+      const F2 = 11.5 / 15;
+      const PINS = [
+        { at: [0, 0], label: "Votre position", bg: "#FFFFFF", fg: NAVY, t: 0.35 },
+        { at: [3, 2.5], label: "⚡ 20 min", bg: "#FFC928", fg: NAVY, t: 0.85 },
+        { at: [6.5, 5], label: "⚡ 15 min", bg: MINT, fg: NAVY, t: 1.15 },
+        { at: [10, 5], label: "Bourg-en-Bresse", bg: NAVY, fg: "#FFFFFF", t: 1.45 },
+      ];
+      // trees, seeded, kept off the road
+      const R = I.rng(23);
+      const trees = [];
+      for (let i = 0; i < 70; i++) {
+        const x = -1.2 + R() * 12.4;
+        const y = -1.2 + R() * 7.4;
+        let near = false;
+        for (let k = 1; k < ROUTE.length; k++) {
+          const a = ROUTE[k - 1];
+          const b = ROUTE[k];
+          const cx = Math.max(Math.min(a[0], b[0]), Math.min(x, Math.max(a[0], b[0])));
+          const cy = Math.max(Math.min(a[1], b[1]), Math.min(y, Math.max(a[1], b[1])));
+          if (Math.hypot(x - cx, y - cy) < 0.75) near = true;
+        }
+        if (!near) trees.push({ x, y, s: 0.22 + R() * 0.16, h: 0.5 + R() * 0.5 });
+      }
+
+      // car progress along the route: drive, charge, drive, charge, arrive
+      function carK(t) {
+        if (t < 1.0) return 0;
+        if (t < 1.75) return F1 * I.ease("power2.inOut", I.seg(t, 1.0, 1.75));
+        if (t < 2.05) return F1;
+        if (t < 2.75) return I.lerp(F1, F2, I.ease("power2.inOut", I.seg(t, 2.05, 2.75)));
+        if (t < 3.0) return F2;
+        return I.lerp(F2, 1, I.ease("power2.inOut", I.seg(t, 3.0, 3.5)));
+      }
+
+      function render(t) {
+        const m = I.ease("power3.inOut", I.seg(t, 2.95, 3.5));
+        const c = I.camAt(5, 2.5, 0, 540, I.lerp(1060, 640, m), I.lerp(96, 70, m));
+        const D = [];
+        const g = I.lerp(0.35, 1, I.ease("expo.out", I.seg(t, 0, 0.6)));
+        // terrain slab
+        D.push({ k: -300, s: I.box(c, { x: I.lerp(5, -1.6, g), y: I.lerp(2.5, -1.6, g), z: -0.4, w: 13.2 * g, d: 8.2 * g, h: 0.4, top: "#D3F3EA", left: "#9FD8CC", right: "#7CC4B7" }) });
+        // road: dark ribbon that draws, then a dashed mint line
+        const draw = I.ease("power2.inOut", I.seg(t, 0.25, 1.4));
+        const d = I.pathD(c, ROUTE.map((q) => [q[0], q[1], 0.01]));
+        const rw = 0.62 * c.s;
+        if (draw > 0) {
+          D.push({ k: -290, s: '<path d="' + d + '" pathLength="1" fill="none" stroke="' + NAVY + '" stroke-width="' + rw.toFixed(1) + '" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="' + draw.toFixed(4) + ' 2"/>' });
+          D.push({ k: -289, s: '<path d="' + d + '" fill="none" stroke="' + MINT + '" stroke-width="' + (0.07 * c.s).toFixed(1) + '" stroke-dasharray="' + (0.3 * c.s).toFixed(1) + " " + (0.25 * c.s).toFixed(1) + '" opacity="' + I.seg(t, 1.2, 1.5).toFixed(3) + '"/>' });
+        }
+        trees.forEach((tr, i) => {
+          const k = I.spring(I.seg(t, 0.15 + (tr.x + tr.y) * 0.04, 0.6 + (tr.x + tr.y) * 0.04), 0.5);
+          if (k <= 0) return;
+          D.push({ k: tr.x + tr.y, s: I.cyl(c, { x: tr.x, y: tr.y, z: 0, r: 0.06, h: 0.25 * k, top: "#7A5A3A", side: "#5E452C" }) + I.cyl(c, { x: tr.x, y: tr.y, z: 0.22 * k, r: tr.s, h: tr.h * k, top: "#5BD3A3", side: "#2DAE7F" }) });
+        });
+        // charging stations at the two stops
+        [[3, 2.5, "#FFC928", 1.75], [6.5, 5, MINT, 2.75]].forEach((st) => {
+          const k = I.spring(I.seg(t, 0.9, 1.4), 0.5);
+          if (k <= 0) return;
+          D.push({ k: st[0] + st[1] - 0.6, s: I.box(c, { x: st[0] - 0.95, y: st[1] - 0.55, z: 0, w: 0.34, d: 0.3, h: 0.9 * k, color: st[2] }) });
+          // a lit ring while the car charges
+          const ch = I.seg(t, st[3], st[3] + 0.1) * (1 - I.seg(t, st[3] + 0.3, st[3] + 0.45));
+          if (ch > 0) D.push({ k: -280, s: I.disc(c, st[0], st[1], 0.02, 0.7 + 0.25 * ch, MINT, { opacity: (0.55 * ch).toFixed(3) }) });
+        });
+        // the car, at half scale, driven along the route
+        const ck = carK(t);
+        const pos = I.along(ROUTE, ck);
+        const ca = I.seg(t, 0.85, 1.0);
+        if (ca > 0) {
+          const sp = I.p(c, pos.x, pos.y, 0);
+          const cs = I.camAt(0, 0, 0, sp[0], sp[1], c.s * 0.6);
+          const dir = Math.abs(pos.dx) >= Math.abs(pos.dy) ? "x" : "y";
+          const carSvg = dir === "x" ? I.car(cs, { x: -1.1, y: -0.55, dir: "x" }) : I.car(cs, { x: -0.55, y: -1.1, dir: "y" });
+          D.push({ k: pos.x + pos.y + 0.3, s: '<g opacity="' + ca.toFixed(3) + '">' + carSvg + "</g>" });
+        }
+        // pins: upright labels on stems
+        PINS.forEach((pn) => {
+          const k = I.spring(I.seg(t, pn.t, pn.t + 0.45), 0.55);
+          if (k <= 0) return;
+          const b = I.p(c, pn.at[0], pn.at[1], 0);
+          const stem = 92 * k;
+          const w = pn.label.length * 17 + 44;
+          const top = b[1] - stem - 56;
+          D.push({
+            k: 400 + pn.at[0] + pn.at[1],
+            s:
+              '<g opacity="' + Math.min(1, k * 1.5).toFixed(3) + '">' +
+              '<line x1="' + b[0].toFixed(1) + '" y1="' + b[1].toFixed(1) + '" x2="' + b[0].toFixed(1) + '" y2="' + (b[1] - stem).toFixed(1) + '" stroke="' + NAVY + '" stroke-width="5"/>' +
+              '<circle cx="' + b[0].toFixed(1) + '" cy="' + b[1].toFixed(1) + '" r="9" fill="' + NAVY + '"/>' +
+              '<rect x="' + (b[0] - w / 2).toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + w + '" height="58" rx="29" fill="' + pn.bg + '" stroke="' + NAVY + '" stroke-width="4"/>' +
+              '<text x="' + b[0].toFixed(1) + '" y="' + (top + 40).toFixed(1) + '" text-anchor="middle" font-family="Outfit" font-weight="600" font-size="30" fill="' + pn.fg + '">' + pn.label + "</text></g>",
+          });
+        });
+        svg.innerHTML = I.paint(D);
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      const state = { t: 0 };
+      tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
+
+      tl.fromTo("#trajet-w1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.05);
+      tl.fromTo("#trajet-w2", { opacity: 0, filter: "blur(10px)", color: "#FFFFFF" }, { opacity: 1, filter: "blur(0px)", color: "#45F5B9", duration: 0.22, ease: "power4.out" }, 0.25);
+      tl.fromTo("#trajet-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.55);
+      // route summary card rises once the car arrives
+      tl.fromTo("#trajet-card", { y: 1000, opacity: 1 }, { y: 0, duration: 0.6, ease: "expo.out" }, 3.15);
+      // cursor enters, presses "C'est parti"
+      tl.fromTo("#trajet-cursor", { x: 1120, y: 1620 }, { x: 740, y: 1262, duration: 0.5, ease: "power3.out" }, 3.95);
+      tl.to("#trajet-cursor", { scale: 0.86, duration: 0.07, ease: "power2.in", transformOrigin: "10% 5%" }, 4.52);
+      tl.to("#trajet-cursor", { scale: 1, duration: 0.12, ease: "power2.out" }, 4.59);
+      tl.to("#trajet-go", { scale: 0.94, backgroundColor: "#0A6B6B", duration: 0.07, ease: "power2.in" }, 4.52);
+      tl.to("#trajet-go", { scale: 1, duration: 0.14, ease: "power2.out" }, 4.59);
+      // iris opens from the press point onto the next world
+      tl.fromTo("#trajet-iris", { clipPath: "circle(0px at 746px 1266px)" }, { clipPath: "circle(2200px at 746px 1266px)", duration: 0.72, ease: "power3.in" }, 4.62);
+      tl.to(["#trajet-w1", "#trajet-w2", "#trajet-sub"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 2.9);
+
+      render(0);
+      window.__timelines["trajet"] = tl;
+    })();
+  </script>
+</template>

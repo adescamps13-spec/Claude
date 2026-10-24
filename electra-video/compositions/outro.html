@@ -1,0 +1,174 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--color-teal);
+      font-family: var(--font-display);
+      color: var(--color-white);
+    }
+    #outro-world {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #outro-proof {
+      position: absolute;
+      left: 0;
+      top: 470px;
+      width: 1080px;
+      text-align: center;
+    }
+    #outro-score {
+      font-size: 280px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    #outro-stars {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin-top: 26px;
+    }
+    #outro-stars svg {
+      width: 104px;
+      height: 104px;
+    }
+    #outro-ex {
+      font-size: 54px;
+      font-weight: 600;
+      margin-top: 40px;
+    }
+    #outro-tp {
+      font-size: 40px;
+      font-weight: 500;
+      margin-top: 10px;
+      color: rgba(255, 255, 255, 0.92);
+    }
+    #outro-lockup {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #outro-tag {
+      position: absolute;
+      left: 0;
+      top: 1112px;
+      width: 1080px;
+      text-align: center;
+      font-size: 44px;
+      font-weight: 500;
+    }
+    #outro-tag b {
+      color: var(--color-mint);
+      font-weight: 600;
+    }
+    #outro-cta {
+      position: absolute;
+      left: 190px;
+      top: 1205px;
+      width: 700px;
+      height: 112px;
+      border-radius: 56px;
+      background: var(--color-mint);
+      color: var(--color-navy);
+      font-size: 44px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <svg id="outro-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="outro-proof" class="clip" data-start="0" data-duration="2.2">
+      <div id="outro-score">4,8</div>
+      <div id="outro-stars">
+        <svg id="outro-s0" viewBox="0 0 100 100"><path d="M50 4 L62 37 L97 38 L69 59 L79 93 L50 73 L21 93 L31 59 L3 38 L38 37 Z" fill="#45F5B9" stroke="#0F2A3A" stroke-width="5" stroke-linejoin="round" /></svg>
+        <svg id="outro-s1" viewBox="0 0 100 100"><path d="M50 4 L62 37 L97 38 L69 59 L79 93 L50 73 L21 93 L31 59 L3 38 L38 37 Z" fill="#45F5B9" stroke="#0F2A3A" stroke-width="5" stroke-linejoin="round" /></svg>
+        <svg id="outro-s2" viewBox="0 0 100 100"><path d="M50 4 L62 37 L97 38 L69 59 L79 93 L50 73 L21 93 L31 59 L3 38 L38 37 Z" fill="#45F5B9" stroke="#0F2A3A" stroke-width="5" stroke-linejoin="round" /></svg>
+        <svg id="outro-s3" viewBox="0 0 100 100"><path d="M50 4 L62 37 L97 38 L69 59 L79 93 L50 73 L21 93 L31 59 L3 38 L38 37 Z" fill="#45F5B9" stroke="#0F2A3A" stroke-width="5" stroke-linejoin="round" /></svg>
+        <svg id="outro-s4" viewBox="0 0 100 100"><path d="M50 4 L62 37 L97 38 L69 59 L79 93 L50 73 L21 93 L31 59 L3 38 L38 37 Z" fill="#45F5B9" stroke="#0F2A3A" stroke-width="5" stroke-linejoin="round" /></svg>
+      </div>
+      <div id="outro-ex">Excellent</div>
+      <div id="outro-tp">1 505 avis sur Trustpilot</div>
+    </div>
+    <svg id="outro-lockup" class="clip" data-start="1.8" data-duration="2.8" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div id="outro-tag" class="clip" data-start="2.4" data-duration="2.2">La recharge <b>économique et rapide</b></div>
+    <div id="outro-ctaclip" class="clip" data-start="2.7" data-duration="1.9" style="position: absolute; inset: 0">
+      <div id="outro-cta"><span id="outro-ctatxt">Téléchargez l'app Electra</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const I = window.ISO;
+      const L = window.ELECTRA_LOGO;
+      const DUR = 4.6;
+      const lock = document.getElementById("outro-lockup");
+      const score = document.getElementById("outro-score");
+      const SHADOW = "#0A5E5E";
+      const MARK_W = 470;
+      const MARK_X = 540 - MARK_W / 2;
+      const MARK_Y = 600;
+      const WORD_W = 560;
+      const WORD_X = 540 - WORD_W / 2;
+      const WORD_Y = 950;
+
+      function render(t) {
+
+        // the mark rises out of the ground as an isometric extrusion, then the wordmark wipes in
+        const lt = t;
+        const rise = I.spring(I.seg(lt, 1.85, 2.5), 0.62);
+        const depth = 26 * I.ease("power3.out", I.seg(lt, 1.95, 2.45));
+        const sc = MARK_W / L.mark.w;
+        const yOff = (1 - rise) * 160;
+        const reveal = I.ease("power3.out", I.seg(lt, 1.85, 2.2));
+        let s = '<defs><clipPath id="outro-mclip"><rect x="0" y="' + (MARK_Y + 400 - reveal * 520).toFixed(1) + '" width="1080" height="700"/></clipPath>';
+        const wr = I.ease("power3.inOut", I.seg(lt, 2.25, 2.65));
+        s += '<clipPath id="outro-wclip"><rect x="' + WORD_X + '" y="' + (WORD_Y - 20) + '" width="' + (WORD_W * wr).toFixed(1) + '" height="160"/></clipPath></defs>';
+        s += '<g clip-path="url(#outro-mclip)">';
+        // extrusion layers, back to front
+        const steps = 13;
+        for (let i = steps; i >= 1; i--) {
+          const o = (depth * i) / steps;
+          s += '<g transform="translate(' + (MARK_X - o * 0.55).toFixed(1) + "," + (MARK_Y + yOff + o).toFixed(1) + ") scale(" + sc.toFixed(5) + ')"><path d="' + L.mark.d + '" fill="' + SHADOW + '"/></g>';
+        }
+        s += '<g transform="translate(' + MARK_X + "," + (MARK_Y + yOff).toFixed(1) + ") scale(" + sc.toFixed(5) + ')"><path d="' + L.mark.d + '" fill="#FFFFFF"/></g>';
+        s += "</g>";
+        s += '<g clip-path="url(#outro-wclip)"><g transform="translate(' + WORD_X + "," + WORD_Y + ") scale(" + (WORD_W / L.word.w).toFixed(5) + ')"><path d="' + L.word.d + '" fill="#FFFFFF"/></g></g>';
+        lock.innerHTML = s;
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      const state = { t: 0 };
+      tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
+
+      tl.fromTo("#outro-score", { opacity: 0, filter: "blur(16px)", scale: 1.25 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.35, ease: "expo.out" }, 0.0);
+      for (let i = 0; i < 5; i++) {
+        tl.fromTo("#outro-s" + i, { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.2)" }, 0.25 + i * 0.09);
+      }
+      tl.fromTo("#outro-ex", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.75);
+      tl.fromTo("#outro-tp", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.88);
+      // proof leaves as the mark arrives
+      tl.to("#outro-score", { opacity: 0, filter: "blur(12px)", duration: 0.2, ease: "power2.in" }, 1.75);
+      tl.to(["#outro-s0", "#outro-s1", "#outro-s2", "#outro-s3", "#outro-s4"], { scale: 0, duration: 0.2, ease: "power3.in", stagger: 0.025 }, 1.72);
+      tl.to(["#outro-ex", "#outro-tp"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 1.75);
+
+      // tagline per word, then the call to action morphs out of a dot
+      tl.fromTo("#outro-tag", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 2.45);
+      tl.fromTo("#outro-cta", { scaleX: 0.16, filter: "blur(10px)" }, { scaleX: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 2.75);
+      tl.fromTo("#outro-ctatxt", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 2.95);
+
+      render(0);
+      window.__timelines["outro"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,181 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--color-pale);
+      font-family: var(--font-display);
+    }
+    #partout-world {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #partout-title {
+      position: absolute;
+      left: 84px;
+      top: 200px;
+      font-size: 132px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--color-navy);
+    }
+    #partout-title .w {
+      display: inline-block;
+    }
+    #partout-w2 {
+      color: var(--color-teal);
+    }
+    #partout-count {
+      position: absolute;
+      left: 84px;
+      top: 478px;
+      font-size: 120px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--color-teal);
+      font-variant-numeric: tabular-nums;
+    }
+    #partout-cap {
+      position: absolute;
+      left: 88px;
+      top: 606px;
+      font-size: 42px;
+      font-weight: 500;
+      color: var(--color-navy);
+    }
+    #partout-cardpos {
+      position: absolute;
+      left: 220px;
+      top: 820px;
+      width: 640px;
+      height: 400px;
+    }
+    #partout-tiltz {
+      width: 640px;
+      height: 400px;
+      border-radius: 40px;
+      background: var(--color-teal);
+      border: 8px solid var(--color-navy);
+      box-shadow:
+        -18px 18px 0 0 #ffffff,
+        -18px 18px 0 8px var(--color-navy);
+      overflow: hidden;
+      position: relative;
+    }
+    #partout-cardword {
+      position: absolute;
+      left: 130px;
+      top: 200px;
+      width: 420px;
+      overflow: visible;
+    }
+  </style>
+  <div id="root" data-composition-id="partout" data-width="1080" data-height="1920">
+    <svg id="partout-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+    <h1 id="partout-title" class="clip" data-start="0" data-duration="4">
+      <span class="w" id="partout-w1">Des bornes</span><br />
+      <span class="w" id="partout-w2">partout</span>
+    </h1>
+    <div id="partout-count" class="clip" data-start="0" data-duration="4">0</div>
+    <div id="partout-cap" class="clip" data-start="0" data-duration="4">points de charge dans toute l'Europe</div>
+    <div id="partout-cardclip" class="clip" data-start="0" data-duration="4" data-layout-allow-overflow style="position: absolute; inset: 0">
+      <div id="partout-cardpos">
+        <div id="partout-tiltx">
+          <div id="partout-tiltz">
+            <svg id="partout-cardword" viewBox="0 0 1561 324"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const I = window.ISO;
+      const L = window.ELECTRA_LOGO;
+      const DUR = 4;
+      const svg = document.getElementById("partout-world");
+      const count = document.getElementById("partout-count");
+      const TEAL = "#0E8585";
+      const NAVY = "#0F2A3A";
+      const MINT = "#45F5B9";
+      const PALE = "#E8FFFC";
+      const CAM = I.camAt(0, 0, 0, 540, 1250, 72);
+      const CARD_Z = 2.2;
+      const LAND = 1.25;
+
+      document.getElementById("partout-cardword").innerHTML =
+        '<g transform="rotate(-8 780 162)"><path d="' + L.word.d + '" fill="#fff"/></g>';
+
+      // the grid of charge points, seeded once
+      const R = I.rng(11);
+      const tiles = [];
+      const N = 6;
+      for (let gx = -N; gx <= N; gx++) {
+        for (let gy = -N; gy <= N; gy++) {
+          tiles.push({ x: gx - 0.43, y: gy - 0.43, r: Math.hypot(gx, gy), h: 0.18 + R() * 0.3, charger: R() < 0.32, tone: R() });
+        }
+      }
+
+      function fmt(n) {
+        return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      }
+
+      function render(t) {
+        const c = CAM;
+        const D = [];
+        const collapse = I.ease("power3.in", I.seg(t, 3.35, 3.7));
+        tiles.forEach((b) => {
+          const tw = LAND + b.r * 0.085;
+          const up = I.spring(I.seg(t, tw - 0.05, tw + 0.5), 0.55);
+          if (up <= 0) return;
+          const bump = 0.9 * Math.exp(-Math.pow((t - tw - 0.12) / 0.16, 2));
+          const h = (b.h * up + bump) * (1 - collapse) + 0.02;
+          const top = b.tone < 0.7 ? "#1AA3A0" : "#2CB8B2";
+          D.push({ k: b.x + b.y, s: I.box(c, { x: b.x, y: b.y, z: 0, w: 0.86, d: 0.86, h, color: TEAL, top, right: "#0A6969" }) });
+          if (b.charger) {
+            const ck = I.spring(I.seg(t, tw + 0.12, tw + 0.6), 0.5) * (1 - collapse);
+            if (ck > 0) {
+              D.push({ k: b.x + b.y + 0.01, s: I.box(c, { x: b.x + 0.28, y: b.y + 0.3, z: h, w: 0.3, d: 0.26, h: 0.62 * ck, color: MINT, left: MINT, right: "#2AC796", top: "#9CFCDB" }) });
+            }
+          }
+        });
+        // the card's shadow on the grid
+        const sh = I.seg(t, LAND - 0.2, LAND + 0.1) * (1 - I.seg(t, 3.4, 3.7));
+        if (sh > 0) D.push({ k: 500, s: I.tile(c, -2, -1.25, 0.9, 4, 2.5, NAVY, { opacity: (0.22 * sh).toFixed(3) }) });
+        // hand-off: teal flood
+        const fl = I.ease("power2.inOut", I.seg(t, 3.5, 3.98));
+        if (fl > 0) D.push({ k: 999, s: '<circle cx="540" cy="1250" r="' + (fl * 1500).toFixed(1) + '" fill="' + TEAL + '"/>' });
+        svg.innerHTML = I.paint(D);
+
+        const n = Math.round(800000 * I.ease("expo.out", I.seg(t, LAND, 2.5)) / 1000) * 1000;
+        count.textContent = fmt(n) + (n >= 800000 ? "+" : "");
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      const state = { t: 0 };
+      tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
+
+      // the Electra card flips in, then lies down onto the grid in true isometric
+      const land = I.p(CAM, 0, 0, CARD_Z);
+      const scl = (4 * 72) / 0.8165 / 640;
+      tl.fromTo("#partout-tiltz", { rotationY: -90, transformPerspective: 1600 }, { rotationY: 0, duration: 0.45, ease: "expo.out" }, 0);
+      tl.fromTo("#partout-tiltz", { rotationZ: 0 }, { rotationZ: 45, duration: 0.55, ease: "power3.inOut" }, 0.7);
+      tl.fromTo("#partout-tiltx", { rotationX: 0, scale: 1 }, { rotationX: 54.7356, scale: scl, duration: 0.55, ease: "power3.inOut" }, 0.7);
+      tl.fromTo("#partout-cardpos", { x: 0, y: 0 }, { x: land[0] - 540, y: land[1] - 1020, duration: 0.55, ease: "power3.inOut" }, 0.7);
+      tl.to("#partout-cardpos", { scale: 0, opacity: 0, duration: 0.3, ease: "power3.in" }, 3.35);
+
+      tl.fromTo("#partout-w1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.1);
+      tl.fromTo("#partout-w2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.28);
+      tl.fromTo(["#partout-count", "#partout-cap"], { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out", stagger: 0.1 }, LAND - 0.05);
+      tl.to(["#partout-w1", "#partout-w2", "#partout-count", "#partout-cap"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 3.4);
+
+      render(0);
+      window.__timelines["partout"] = tl;
+    })();
+  </script>
+</template>

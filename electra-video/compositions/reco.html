@@ -1,0 +1,274 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--color-teal);
+      font-family: var(--font-display);
+    }
+    #reco-world {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #reco-title {
+      position: absolute;
+      left: 84px;
+      top: 200px;
+      font-size: 116px;
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      color: var(--color-white);
+    }
+    #reco-title .l {
+      display: block;
+    }
+    #reco-l1 {
+      color: var(--color-mint);
+    }
+    #reco-sub {
+      position: absolute;
+      left: 88px;
+      top: 462px;
+      width: 900px;
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1.22;
+      color: rgba(255, 255, 255, 0.92);
+    }
+    #reco-sub .k {
+      display: inline-block;
+      font-weight: 600;
+    }
+    #reco-cardwrap {
+      position: absolute;
+      left: 100px;
+      top: 935px;
+      width: 880px;
+      height: 390px;
+      perspective: 1800px;
+    }
+    #reco-card {
+      width: 880px;
+      border-radius: 34px;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 24px 0 rgba(6, 60, 60, 0.35);
+      color: var(--color-navy);
+    }
+    .rc-head {
+      background: var(--color-teal);
+      color: #fff;
+      font-size: 32px;
+      font-weight: 600;
+      padding: 16px 40px;
+    }
+    .rc-body {
+      padding: 26px 40px 30px;
+    }
+    .rc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .rc-name {
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .rc-price {
+      font-size: 42px;
+      font-weight: 600;
+    }
+    .rc-meta {
+      font-size: 36px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    .rc-rel {
+      font-size: 32px;
+      color: #4e6166;
+      margin-top: 6px;
+    }
+    .rc-av {
+      font-size: 34px;
+      font-weight: 600;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .rc-av i {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #18a957;
+      display: inline-block;
+    }
+    .rc-badge {
+      width: 96px;
+      height: 64px;
+      border-radius: 16px;
+      background: var(--color-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <div id="root" data-composition-id="reco" data-width="1080" data-height="1920">
+    <svg id="reco-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+    <h1 id="reco-title" class="clip" data-start="0" data-duration="4.8">
+      <span class="l" id="reco-l1">La bonne station,</span>
+      <span class="l" id="reco-l2">du premier coup</span>
+    </h1>
+    <p id="reco-sub" class="clip" data-start="0" data-duration="4.8">
+      Recommandée selon sa <span class="k" id="reco-k0">fiabilité</span>, <span class="k" id="reco-k1">puissance</span>,
+      <span class="k" id="reco-k2">prix</span> et <span class="k" id="reco-k3">localisation</span>.
+    </p>
+    <div id="reco-cardwrap" class="clip" data-start="0" data-duration="4.8" data-layout-allow-overflow>
+      <div id="reco-card">
+        <div class="rc-head">Station recommandée</div>
+        <div class="rc-body">
+          <div class="rc-row"><span class="rc-name">Rubelles - Ibis Melun</span><span class="rc-price">0,49€/kWh</span></div>
+          <div class="rc-meta">3 min · 300 kW</div>
+          <div class="rc-rel">Excellente fiabilité (99%)</div>
+          <div class="rc-row">
+            <span class="rc-av"><i></i>4 / 5 disponibles</span>
+            <span class="rc-badge"><svg id="reco-badge" width="76" height="16"></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const I = window.ISO;
+      const L = window.ELECTRA_LOGO;
+      const DUR = 4.8;
+      const svg = document.getElementById("reco-world");
+      const TEAL = "#0E8585";
+      const NAVY = "#0F2A3A";
+      const MINT = "#45F5B9";
+      const PALE = "#E8FFFC";
+      const MAP = "#13999A";
+      const NETS = ["#45F5B9", "#3BA7E8", "#FFC928", "#4B2A86"];
+      const TX = (i) => i * 2.4;
+      // pillar heights per criterion (fiabilité, puissance, prix, localisation, overall)
+      const H = [
+        [0.05, 0.05, 0.05, 0.05],
+        [3.0, 2.3, 2.4, 1.9],
+        [2.6, 3.0, 2.6, 1.7],
+        [3.1, 1.8, 1.8, 2.3],
+        [2.6, 2.9, 2.0, 1.6],
+        [3.15, 2.3, 2.1, 1.7],
+      ];
+      const TK = [0.75, 1.2, 1.65, 2.1, 2.55];
+
+      document.getElementById("reco-badge").innerHTML =
+        '<g transform="scale(' + (76 / L.word.w).toFixed(5) + ')"><path d="' + L.word.d + '" fill="#fff"/></g>';
+
+      // city blocks, seeded once
+      const R = I.rng(7);
+      const blocks = [];
+      for (let gx = -3; gx <= 10; gx++) {
+        for (let gy = -6; gy <= 6; gy++) {
+          const x = gx * 1.2 - 0.6;
+          const y = gy * 1.2;
+          if (y > -2.0 && y < 2.9) continue; // the stations' avenue
+          if (Math.abs(x - 3.8) < 0.7) continue; // a cross street
+          if (R() < 0.3) continue;
+          if (x < -2.2 || x > 11.1 || y < -4.6 || y > 8.1) continue;
+          blocks.push({ x, y, h: 0.35 + R() * 1.1, tone: R(), d: R() });
+        }
+      }
+
+      function heightsAt(t) {
+        let cur = H[0];
+        for (let k = 0; k < TK.length; k++) {
+          const e = I.ease("power3.inOut", I.seg(t, TK[k], TK[k] + 0.32));
+          cur = cur.map((v, i) => I.lerp(v, H[k + 1][i], e));
+        }
+        return cur;
+      }
+
+      function render(t) {
+        // camera eases from the previous scene's framing to the map
+        const m = I.ease("power2.inOut", I.seg(t, 0, 0.8));
+        const c = I.camAt(I.lerp(4.4, 4.2, m), I.lerp(0.8, 0.4, m), 0, 540, I.lerp(1150, 1110, m), I.lerp(104, 84, m));
+        const cf = I.camAt(4.2, 0.4, 0, 540, 1110, 84);
+        const D = [];
+        const g = I.ease("expo.out", I.seg(t, 0.05, 0.9));
+        if (g > 0) {
+          // map ground grows out from the row
+          const x0 = I.lerp(4.2, -2.2, g);
+          const x1 = I.lerp(4.2, 12, g);
+          const y0 = I.lerp(0.8, -4.6, g);
+          const y1 = I.lerp(0.8, 9, g);
+          D.push({ k: -300, s: I.box(c, { x: x0, y: y0, z: -0.35, w: x1 - x0, d: y1 - y0, h: 0.35, top: MAP, left: "#0F7F80", right: "#0B6B6C" }) });
+          // streets
+          D.push({ k: -299, s: I.tile(c, x0, -1.75, 0.002, x1 - x0, 0.5, "#2FB3AE") });
+          D.push({ k: -299, s: I.tile(c, x0, 2.45, 0.002, x1 - x0, 0.5, "#2FB3AE") });
+          D.push({ k: -299, s: I.tile(c, 3.55, y0, 0.003, 0.5, y1 - y0, "#2FB3AE") });
+        }
+        blocks.forEach((b, n) => {
+          if (I.p(cf, b.x, b.y, b.h)[1] < 660) return;
+          const dist = Math.hypot(b.x - 4.2, b.y - 0.8);
+          const k = I.ease("back.out(1.6)", I.seg(t, 0.2 + dist * 0.045, 0.6 + dist * 0.045));
+          if (k <= 0) return;
+          const col = b.tone < 0.6 ? "#D7F2EE" : b.tone < 0.85 ? "#A9E4DC" : "#F4FFFD";
+          D.push({ k: b.x + b.y, s: I.box(c, { x: b.x, y: b.y, z: 0, w: 0.9, d: 0.9, h: b.h * k, color: col, left: col, right: I.shade(col, -0.16), top: I.shade(col, 0.3) }) });
+        });
+        // stations
+        const hs = heightsAt(t);
+        const win = I.seg(t, 2.75, 3.05);
+        NETS.forEach((col, i) => {
+          const x = TX(i);
+          const cc = i === 0 ? col : I.mix(col, "#6FBDB8", 0.7 * win);
+          D.push({ k: x + 0.8 - 0.4, s: I.box(c, { x, y: 0, z: 0, w: 1.6, d: 1.6, h: 0.55, color: cc }) });
+          const h = hs[i];
+          D.push({ k: x + 0.8, s: I.box(c, { x: x + 0.3, y: 0.3, z: 0.55, w: 1.0, d: 1.0, h, color: cc }) });
+        });
+        // winner marker: the Electra mark floats above the tallest pillar
+        if (win > 0) {
+          const q = I.p(c, 0.8, 0.8, 0.55 + hs[0] + 0.55);
+          const k = I.spring(win, 0.55);
+          const w = 120 * k;
+          const sc = w / L.mark.w;
+          D.push({ k: 60, s: '<g transform="translate(' + (q[0] - w / 2).toFixed(1) + "," + (q[1] - 30 * k).toFixed(1) + ") scale(" + sc.toFixed(5) + ')"><path d="' + L.mark.d + '" fill="#fff"/></g>' });
+        }
+        // hand-off: pale flood from the card's centre
+        const fl = I.ease("power2.inOut", I.seg(t, 4.3, 4.78));
+        if (fl > 0) D.push({ k: 99, s: '<circle cx="540" cy="1130" r="' + (fl * 1300).toFixed(1) + '" fill="' + PALE + '"/>' });
+        svg.innerHTML = I.paint(D);
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      const state = { t: 0 };
+      tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
+
+      tl.fromTo("#reco-l1", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.1);
+      tl.fromTo("#reco-l2", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.3);
+      tl.fromTo("#reco-sub", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.5);
+      // each criterion lights up as the pillars re-rank
+      ["#reco-k0", "#reco-k1", "#reco-k2", "#reco-k3"].forEach((id, k) => {
+        tl.fromTo(id, { color: "rgba(255,255,255,0.92)" }, { color: "#45F5B9", duration: 0.12, ease: "power2.out" }, TK[k]);
+        tl.to(id, { color: "rgba(255,255,255,0.92)", duration: 0.12, ease: "power2.out" }, TK[k + 1]);
+      });
+      // the recommendation card grows out of the winning pillar, then flips away
+      tl.fromTo(
+        "#reco-card",
+        { opacity: 0, scale: 0.15, y: -300, x: -280, filter: "blur(8px)" },
+        { opacity: 1, scale: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" },
+        2.95,
+      );
+      tl.to("#reco-card", { rotationY: 90, duration: 0.42, ease: "power3.in" }, 4.32);
+      tl.to(["#reco-l1", "#reco-l2", "#reco-sub"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 4.3);
+
+      render(0);
+      window.__timelines["reco"] = tl;
+    })();
+  </script>
+</template>

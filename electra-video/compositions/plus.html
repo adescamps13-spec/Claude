@@ -1,0 +1,130 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--color-pale);
+      font-family: var(--font-display);
+    }
+    #plus-world {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    #plus-title {
+      position: absolute;
+      left: 84px;
+      top: 210px;
+      font-size: 132px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--color-navy);
+    }
+    #plus-title .w {
+      display: inline-block;
+    }
+    #plus-sub {
+      position: absolute;
+      left: 88px;
+      top: 500px;
+      width: 900px;
+      font-size: 46px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--color-navy);
+    }
+    #plus-sub b {
+      font-weight: 700;
+    }
+  </style>
+  <div id="root" data-composition-id="plus" data-width="1080" data-height="1920">
+    <svg id="plus-world" data-layout-allow-overflow viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"></svg>
+    <h1 id="plus-title" class="clip" data-start="0" data-duration="3.8">
+      <span class="w" id="plus-w1">Chargez</span><br />
+      <span class="w" id="plus-w2">moins</span> <span class="w" id="plus-w3">cher</span>
+    </h1>
+    <p id="plus-sub" class="clip" data-start="0" data-duration="3.8">Avec <b>Electra+</b>, économisez sur les réseaux&nbsp;:</p>
+  </div>
+  <script>
+    (function () {
+      const I = window.ISO;
+      const L = window.ELECTRA_LOGO;
+      const DUR = 3.8;
+      const svg = document.getElementById("plus-world");
+      const TEAL = "#0E8585";
+      const NAVY = "#0F2A3A";
+      const MINT = "#45F5B9";
+      const PALE = "#E8FFFC";
+      // shared with the next scene: four networks on four tiles
+      const NETS = [
+        { name: "ELECTRA", color: TEAL },
+        { name: "Atlante", color: "#3BA7E8" },
+        { name: "Fastned", color: "#FFC928" },
+        { name: "Ionity", color: "#4B2A86" },
+      ];
+      const TX = (i) => i * 2.4;
+      const COINS = 4;
+
+      function render(t) {
+        const c = I.camAt(4.4, 0.8, 0, 540, 1150, 104);
+        const D = [];
+        // ground flood to teal from the row's centre (hand-off to the map)
+        const fl = I.ease("power2.inOut", I.seg(t, 3.2, 3.75));
+        if (fl > 0) {
+          const q = I.p(c, 4.4, 0.8, 0);
+          D.push({ k: -200, s: '<circle cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="' + (fl * 1500).toFixed(1) + '" fill="' + TEAL + '"/>' });
+        }
+        NETS.forEach((n, i) => {
+          const x = TX(i);
+          const rise = I.spring(I.seg(t, 0.15 + i * 0.08, 0.85 + i * 0.08), 0.6);
+          const col = i === 0 ? I.mix(TEAL, MINT, fl) : n.color;
+          // tile
+          D.push({ k: x + 0.8 - 0.5, s: I.disc(c, x + 0.9, 0.9, 0, 1.25 * rise, NAVY, { opacity: 0.08 }) });
+          D.push({ k: x + 0.8 - 0.4, s: I.box(c, { x, y: 0, z: -0.55 + 0.55 * rise, w: 1.6, d: 1.6, h: 0.55 * rise + 0.001, color: col }) });
+          // network name printed on the tile's front face
+          const la = I.seg(t, 0.5 + i * 0.1, 0.7 + i * 0.1);
+          if (la > 0) {
+            const ink = i === 2 ? NAVY : "#FFFFFF";
+            const m = I.faceMatrix(c, "left", x, 1.6, 0.55 * rise);
+            if (i === 0) {
+              const ws = 1.24 / L.word.w;
+              D.push({ k: x + 0.8 - 0.39, s: '<g opacity="' + la.toFixed(3) + '" transform="' + m + '"><g transform="translate(0.18,0.15) scale(' + ws.toFixed(6) + ')"><path d="' + L.word.d + '" fill="' + ink + '"/></g></g>' });
+            } else {
+              D.push({ k: x + 0.8 - 0.39, s: '<g opacity="' + la.toFixed(3) + '" transform="' + m + '"><text x="0.18" y="0.41" font-family="Outfit" font-weight="600" font-size="0.36" fill="' + ink + '">' + n.name + "</text></g>" });
+            }
+          }
+          // Electra+ coins drop onto every network, then sink into the tile
+          for (let j = 0; j < COINS; j++) {
+            const t0 = 0.7 + i * 0.16 + j * 0.11;
+            const k = I.seg(t, t0, t0 + 0.55);
+            if (k <= 0) continue;
+            const sink = I.ease("power3.in", I.seg(t, 3.15 + j * 0.03, 3.5));
+            const zRest = 0.57 + j * 0.2;
+            const z = I.lerp(5.5, zRest, I.spring(k, 0.45, 16)) - sink * (zRest + 0.3);
+            const op = 1 - I.seg(t, 3.35, 3.5);
+            if (op <= 0) continue;
+            D.push({ k: x + 0.8 + 0.01 * j, s: I.cyl(c, { x: x + 0.8, y: 0.8, z, r: 0.55, h: 0.16, top: MINT, side: "#22BE8E", inner: "#22BE8E", innerw: 4, op }) });
+          }
+        });
+        svg.innerHTML = I.paint(D);
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      const state = { t: 0 };
+      tl.to(state, { t: DUR, duration: DUR, ease: "none", onUpdate: () => render(state.t) }, 0);
+
+      // title words go from light grey to ink; the accent words land in teal
+      tl.fromTo("#plus-w1", { color: "#BFDCD8" }, { color: "#0F2A3A", duration: 0.2, ease: "power2.out" }, 0.05);
+      tl.fromTo(["#plus-w2", "#plus-w3"], { color: "#BFDCD8" }, { color: "#0E8585", duration: 0.2, ease: "power2.out", stagger: 0.09 }, 0.15);
+      tl.fromTo("#plus-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.45);
+      // exit: blur-out word by word as the ground floods
+      tl.to(["#plus-w1", "#plus-w2", "#plus-w3", "#plus-sub"], { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in", stagger: 0.04 }, 3.05);
+
+      render(0);
+      window.__timelines["plus"] = tl;
+    })();
+  </script>
+</template>
