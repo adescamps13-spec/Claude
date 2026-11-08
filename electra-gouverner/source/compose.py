@@ -17,10 +17,11 @@ MINT = (67, 245, 187, 255)  # Electra+ accent #43F5BB
 
 HEAD = [[("UNE CARTE POUR", ICE)], [("LES GOUVERNER", MINT)], [("TOUTES.", MINT)]]
 BODY = [
-    [("Plus besoin de multiplier les badges.", WHITE, "m")],
-    [("Avec la carte Electra, rechargez sur ", WHITE, "m"), ("plus d’un million", WHITE, "b")],
-    [("de points de charge", WHITE, "b"), (" en Europe.", WHITE, "m")],
+    [("Avec la carte Electra, accédez à un large réseau de bornes de recharge", WHITE, "m")],
+    [("à travers l’Europe. ", WHITE, "m"), ("Plus d’un million de points de charge", WHITE, "b"),
+     (", avec un seul badge.", WHITE, "m")],
 ]
+BODY_MAX_W = 0.88  # body auto-shrinks to fit this share of the width
 
 
 def text_w(font, s, track=0):
@@ -55,8 +56,12 @@ def layers(W, H, bottom_margin=0.08, grad_start=0.55):
     h_lead = hs * 0.92
     # --- body (regular + bold, white) ---
     bs = int(W * 0.031)
-    fm, fb = ImageFont.truetype(BODY_REG, bs), ImageFont.truetype(BODY_BOLD, bs)
-    pick = {"m": fm, "b": fb}
+    while True:
+        fm, fb = ImageFont.truetype(BODY_REG, bs), ImageFont.truetype(BODY_BOLD, bs)
+        pick = {"m": fm, "b": fb}
+        if max(sum(pick[k].getlength(s) for s, _, k in ln) for ln in BODY) <= W * BODY_MAX_W:
+            break
+        bs -= 1
     b_lead = bs * 1.32
 
     asc_h = hf.getbbox("UNE")[1]  # top offset of caps
