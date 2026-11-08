@@ -13,7 +13,7 @@ BODY_BOLD = f"{INTER}/InterDisplay-Bold.otf"
 # Colours sampled from Electra's "Summer Celebration" post
 WHITE = (255, 255, 255, 255)
 ICE = (231, 254, 253, 255)   # first headline line, near-white mint
-MINT = (187, 254, 233, 255)  # pastel mint for the rest of the headline
+MINT = (67, 245, 187, 255)  # Electra+ accent #43F5BB
 
 HEAD = [[("UNE CARTE POUR", ICE)], [("LES GOUVERNER", MINT)], [("TOUTES.", MINT)]]
 BODY = [
