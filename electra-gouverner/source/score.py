@@ -1,5 +1,6 @@
 """Short epic orchestral sting (~5 s) for the animated visual.
-Dm -> Bb -> C -> dark D-minor hit at 3.0 s, then a dramatic Bb/D -> Dm lament (no major resolution).
+Dm -> Bb -> C -> dark D-minor hit at 3.0 s held to the end; the string ostinato carries on
+and the horns echo the opening D-A call, so the ending continues the intro instead of starting a new piece.
 Writes a MIDI file; render with fluidsynth + an orchestral/GM soundfont."""
 import sys
 import mido
@@ -38,9 +39,7 @@ prog = [
     (0.0, 1.5, 38, [50, 53, 57], [62, 65, 69]),   # Dm
     (1.5, 2.25, 34, [46, 50, 53], [58, 62, 65]),  # Bb
     (2.25, 3.0, 36, [48, 52, 55], [60, 64, 67]),  # C
-    (3.0, 3.75, 38, [50, 53, 57], [62, 65, 69]),  # Dm hit
-    (3.75, 4.35, 38, [50, 53, 58], [62, 65, 70]),  # Bb/D (b6 tension)
-    (4.35, DUR, 38, [50, 53, 57], [62, 65, 69]),  # Dm
+    (3.0, DUR, 38, [50, 53, 57], [62, 65, 69]),   # Dm hit, held
 ]
 
 # --- low strings + tuba/trombones: sustained bass, swelling ---
@@ -66,19 +65,20 @@ ost = [0, 0, 3, 0, 5, 0, 3, 7]  # relative to chord root in minor-ish pattern
 step = 0.25
 t = 0.0
 i = 0
-while t < 3.0 - 1e-6:
+while t < DUR - 0.5:
     s, e, b, mid, hi = next(p for p in prog if p[0] <= t < p[1])
     root = mid[0]
-    note("strings", root + [0, 0, 7, 0, 12, 0, 7, 3][i % 8], t, step * 0.9, 70 + 40 * t / 3)
-    if t >= 2.25:  # double-time in the last bar
+    vel = 70 + 40 * t / 3 if t < 3.0 else 105 - 35 * (t - 3.0) / 1.6  # ostinato keeps going, receding
+    note("strings", root + [0, 0, 7, 0, 12, 0, 7, 3][i % 8], t, step * 0.9, vel)
+    if 2.25 <= t < 3.0:  # double-time in the last bar
         note("strings", root + 12, t + step / 2, step * 0.45, 95 + 20 * (t - 2.25) / 0.75)
     t += step
     i += 1
 
 # --- tremolo strings + choir pads following the chords ---
 for s, e, b, mid, hi in prog:
-    chord("trem", mid + hi[:1], s, e - s, 60 if s < 3 else 105)
-    chord("choir", hi, max(s, 0.4), e - max(s, 0.4), 55 if s < 3 else 110)
+    chord("trem", mid + hi[:1], s, e - s, 60 if s < 3 else 85)
+    chord("choir", hi, max(s, 0.4), e - max(s, 0.4), 55 if s < 3 else 95)
 
 # --- heroic horn motif (enters with the headline at 0.25 s) ---
 motif = [(0.25, 0.5, 62), (0.75, 0.75, 69), (1.5, 0.4, 70), (1.9, 0.35, 69),
@@ -87,16 +87,14 @@ for t, d, n in motif:
     note("horns", n, t, d * 0.97, 92 + 15 * t / 3)
     note("horns", n - 12, t, d * 0.97, 80 + 15 * t / 3)
 # trumpet pickup into the hit (part of the 0-3 s intro, unchanged)
-for t, n in [(2.75, 69), (2.875, 69), (2.9375, 71)]:
+for t, n in [(2.75, 69), (2.875, 69), (2.9375, 72)]:  # A A C -> D (no B natural)
     note("trumpets", n, t, 0.06, 105)
-# climax: dark D-minor hit, horns low and full, no bright trumpets
-chord("horns", [50, 53, 57, 62], 3.0, 0.75, 122)
-# lament: horns lean on Bb (b6) and fall back to A
-note("horns", 70, 3.75, 0.6, 115)
-note("horns", 58, 3.75, 0.6, 105)
-note("horns", 69, 4.35, DUR - 4.35, 108)
-note("horns", 57, 4.35, DUR - 4.35, 100)
-chord("horns", [50, 53], 3.75, DUR - 3.75, 95)
+# climax: dark D-minor hit, horns mid register, no bright trumpets
+chord("horns", [57, 62, 65], 3.0, 0.7, 120)
+# horns echo the opening call (D -> A) to close the phrase
+for t, d, n in [(3.75, 0.5, 62), (4.25, DUR - 4.25, 69)]:
+    note("horns", n, t, d * 0.97, 112)
+    note("horns", n - 12, t, d * 0.97, 100)
 
 # --- timpani ---
 note("timp", 38, 0.0, 1.2, 120)
@@ -110,7 +108,7 @@ while t < 2.98:  # crescendo roll
 note("timp", 38, 3.0, 0.7, 127)
 note("timp", 45, 3.0, 0.7, 120)
 # heartbeat pulses after the hit
-for t, v in [(3.75, 100), (3.95, 80), (4.35, 92), (4.55, 72)]:
+for t, v in [(3.75, 95), (4.25, 85)]:
     note("timp", 38, t, 0.3, v)
 
 # --- percussion: bass drum, crash ---
