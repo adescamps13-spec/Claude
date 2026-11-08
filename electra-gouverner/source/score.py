@@ -1,139 +1,158 @@
-"""Short epic orchestral sting (~5 s) for the animated visual.
-Dm -> Bb -> C -> dark D-minor hit at 3.0 s held to the end; the string ostinato carries on
-and the horns echo the opening D-A call, so the ending continues the intro instead of starting a new piece.
-Writes a MIDI file; render with fluidsynth + an orchestral/GM soundfont."""
+"""Electra — orchestral sting for the animated visual (~5 s), written from scratch.
+
+Direction: grandiose orchestral opening, dramatic (minor) from 0:03, one continuous phrase.
+Video cues: headline at 0.25 s, body copy at 0.95 s.
+
+  0.00  opening impact on D (taiko, timpani, low brass)
+  0.50  horn theme climbs over a driving low-string ostinato
+        Dm (0-1.5) -> Bb (1.5-2.0) -> Gm (2.0-2.5) -> A (2.5-3.0, dominant, timpani roll)
+  3.00  dramatic D-minor hit (low brass, choir, taiko)
+  3.0+  everything stays on D minor: tremolo strings, receding ostinato, heartbeat taiko
+
+Usage: python3 score.py out.mid   (rendered + layered by render_music.py)
+"""
 import sys
 import mido
 
-TPB = 480  # ticks per beat, tempo = 60 BPM -> 1 beat = 1 second
+TPB = 480
+DUR = 5.04
 OUT = sys.argv[1]
-DUR = 5.1
 
-# section -> GM program; MIDI channel = position in this dict (drums land on channel 9)
+# section -> GM program; MIDI channel = position in this dict (index 9 = drums)
 CH = {
-    "strings": 48, "lowstr": 48, "horns": 60, "trumpets": 56, "trombones": 57,
-    "tuba": 58, "choir": 52, "timp": 47, "trem": 44, "drums": None,
+    "vln": 48, "low": 48, "horns": 60, "trb": 57, "tuba": 58,
+    "choir": 52, "timp": 47, "taiko": 116, "trem": 44, "drums": None, "oohs": 53,
 }
-events = []  # (time_s, msg)
+CHAN = {name: i for i, name in enumerate(CH)}
+ev = []
 
 
 def note(ch, n, t, d, v):
-    chan = list(CH).index(ch) if ch != "drums" else 9
-    events.append((t, mido.Message("note_on", channel=chan, note=n, velocity=max(1, min(127, int(v))))))
-    events.append((t + d, mido.Message("note_off", channel=chan, note=n, velocity=0)))
+    c = CHAN[ch]
+    ev.append((t, mido.Message("note_on", channel=c, note=n, velocity=max(1, min(127, int(v))))))
+    ev.append((t + d, mido.Message("note_off", channel=c, note=n, velocity=0)))
 
 
-def chord(ch, notes, t, d, v):
-    for n in notes:
+def chord(ch, ns, t, d, v):
+    for n in ns:
         note(ch, n, t, d, v)
 
 
 def cc(ch, num, val, t):
-    chan = list(CH).index(ch)
-    events.append((t, mido.Message("control_change", channel=chan, control=num, value=int(val))))
+    ev.append((t, mido.Message("control_change", channel=CHAN[ch], control=num, value=int(val))))
 
 
-D2, A2, D3, F3, A3, D4 = 38, 45, 50, 53, 57, 62
-# progression (start, end, bass, triad mid, triad high)
-prog = [
-    (0.0, 1.5, 38, [50, 53, 57], [62, 65, 69]),   # Dm
-    (1.5, 2.25, 34, [46, 50, 53], [58, 62, 65]),  # Bb
-    (2.25, 3.0, 36, [48, 52, 55], [60, 64, 67]),  # C
-    (3.0, DUR, 38, [50, 53, 57], [62, 65, 69]),   # Dm hit, held
+# harmony: (start, end, bass root, triad octave 3, triad octave 4)
+H = [
+    (0.0, 1.5, 38, [50, 53, 57], [62, 65, 69]),  # Dm
+    (1.5, 2.0, 34, [50, 53, 58], [62, 65, 70]),  # Bb
+    (2.0, 2.5, 43, [50, 55, 58], [62, 67, 70]),  # Gm
+    (2.5, 3.0, 45, [49, 52, 57], [61, 64, 69]),  # A (dominant)
+    (3.0, DUR, 38, [50, 53, 57], [62, 65, 69]),  # Dm to the end
 ]
 
-# --- low strings + tuba/trombones: sustained bass, swelling ---
-for s, e, b, mid, hi in prog:
-    v = 70 if s < 3 else 112
-    note("lowstr", b, s, e - s, v)
-    note("lowstr", b - 12, s, e - s, v)
-    note("tuba", b - 12 if b > 36 else b, s, e - s, v - 5)
-    chord("trombones", [b, b + 7], s, e - s, v - 10 if s < 3 else v)
 
-# expression swell on brass/strings before the climax
-for i in range(31):
-    t = i * 0.1
-    for ch in ("lowstr", "tuba", "trombones", "choir", "strings"):
-        cc(ch, 11, 70 + 57 * (t / 3.0) ** 1.6, t)
-for ch in ("lowstr", "tuba", "trombones", "choir", "strings", "horns", "trumpets", "trem"):
-    cc(ch, 11, 127, 3.0)
-    cc(ch, 91, 110, 0)   # reverb send
-    cc(ch, 7, 110, 0)
+def harm(t):
+    return next(h for h in H if h[0] <= t < h[1])
 
-# --- string ostinato (eighths at 0.25 s), accelerating feel into the hit ---
-ost = [0, 0, 3, 0, 5, 0, 3, 7]  # relative to chord root in minor-ish pattern
-step = 0.25
-t = 0.0
-i = 0
-while t < DUR - 0.5:
-    s, e, b, mid, hi = next(p for p in prog if p[0] <= t < p[1])
-    root = mid[0]
-    vel = 70 + 40 * t / 3 if t < 3.0 else 105 - 35 * (t - 3.0) / 1.6  # ostinato keeps going, receding
-    note("strings", root + [0, 0, 7, 0, 12, 0, 7, 3][i % 8], t, step * 0.9, vel)
-    if 2.25 <= t < 3.0:  # double-time in the last bar
-        note("strings", root + 12, t + step / 2, step * 0.45, 95 + 20 * (t - 2.25) / 0.75)
-    t += step
+
+for ch in CH:
+    if ch != "drums":
+        cc(ch, 91, 100, 0)  # reverb send
+        cc(ch, 7, 112, 0)
+
+# ---------------- 0.00 opening impact ----------------
+# low brass kept at D2 and above: on D1 their strong 5th harmonic (F#) colours the chord major
+chord("trb", [38, 45, 50, 53], 0.0, 0.9, 118)
+note("tuba", 38, 0.0, 0.9, 120)
+chord("low", [26, 38], 0.0, 0.6, 120)
+note("timp", 38, 0.0, 1.0, 127)
+note("taiko", 38, 0.0, 1.0, 127)
+note("taiko", 31, 0.0, 1.0, 120)
+note("drums", 35, 0.0, 0.5, 127)
+
+# ---------------- low-string ostinato (eighths, accented) ----------------
+t, i = 0.5, 0
+while t < 4.5:
+    s, e, root, mid, hi = harm(t)
+    base = root if root >= 38 else root + 12
+    step = [0, 0, 12, 0, mid[1] - base, 0, 12, 0][i % 8]
+    acc = 1.0 if i % 4 == 0 else 0.82
+    v = (92 + 30 * (t - 0.5) / 2.5) * acc if t < 3.0 else (100 - 45 * (t - 3.0) / 1.5) * acc
+    note("low", base + step, t, 0.2, v)
+    t += 0.25
     i += 1
 
-# --- tremolo strings + choir pads following the chords ---
-for s, e, b, mid, hi in prog:
-    chord("trem", mid + hi[:1], s, e - s, 60 if s < 3 else 85)
-    chord("choir", hi, max(s, 0.4), e - max(s, 0.4), 55 if s < 3 else 95)
+# violins: 16th-note ostinato in the last two bars before the hit
+t = 2.0
+while t < 3.0 - 1e-6:
+    s, e, root, mid, hi = harm(t)
+    k = int(round((t - 2.0) / 0.125))
+    note("vln", [hi[0], hi[1], hi[2], hi[1]][k % 4], t, 0.11, 88 + 35 * (t - 2.0))
+    t += 0.125
 
-# --- heroic horn motif (enters with the headline at 0.25 s) ---
-motif = [(0.25, 0.5, 62), (0.75, 0.75, 69), (1.5, 0.4, 70), (1.9, 0.35, 69),
-         (2.25, 0.4, 67), (2.65, 0.35, 64)]
-for t, d, n in motif:
-    note("horns", n, t, d * 0.97, 92 + 15 * t / 3)
-    note("horns", n - 12, t, d * 0.97, 80 + 15 * t / 3)
-# trumpet pickup into the hit (part of the 0-3 s intro, unchanged)
-for t, n in [(2.75, 69), (2.875, 69), (2.9375, 72)]:  # A A C -> D (no B natural)
-    note("trumpets", n, t, 0.06, 105)
-# climax: dark D-minor hit, horns mid register, no bright trumpets
-chord("horns", [57, 62, 65], 3.0, 0.7, 120)
-# horns echo the opening call (D -> A) to close the phrase
-for t, d, n in [(3.75, 0.5, 62), (4.25, DUR - 4.25, 69)]:
-    note("horns", n, t, d * 0.97, 112)
-    note("horns", n - 12, t, d * 0.97, 100)
+# ---------------- horn theme (legato, climbing to the dominant) ----------------
+theme = [(0.5, 0.5, 62), (1.0, 0.25, 65), (1.25, 0.25, 64), (1.5, 0.5, 62),
+         (2.0, 0.5, 67), (2.5, 0.25, 69), (2.75, 0.25, 70)]  # D F E D | G | A Bb -> (D hit)
+for t, d, n in theme:
+    v = 100 + 22 * t / 3
+    note("horns", n, t, d * 0.98, v)
+    note("horns", n - 12, t, d * 0.98, v - 10)
+# trombones / tuba carry the harmony underneath
+for s, e, root, mid, hi in H[:4]:
+    s0 = max(s, 0.5)
+    chord("trb", [root if root >= 38 else root + 12, mid[0]], s0, e - s0, 84 + 14 * s)
+    note("tuba", root, s0, e - s0, 86 + 12 * s)
+# choir oohs underneath the build
+for s, e, root, mid, hi in H[:4]:
+    s0 = max(s, 1.0)
+    chord("oohs", mid, s0, e - s0, 72 + 18 * s)
+for k in range(31):  # expression crescendo into the hit
+    tt = k * 0.1
+    for ch in ("trb", "tuba", "oohs", "low", "horns"):
+        cc(ch, 11, 96 + 31 * (tt / 3.0) ** 1.3, tt)
 
-# --- timpani ---
-note("timp", 38, 0.0, 1.2, 120)
-note("timp", 45, 0.0, 1.2, 100)
-note("timp", 38, 1.5, 0.6, 100)
-note("timp", 36, 2.25, 0.4, 100)
-t = 2.35
-while t < 2.98:  # crescendo roll
-    note("timp", 38, t, 0.05, 70 + 55 * (t - 2.35) / 0.63)
-    t += 0.045
-note("timp", 38, 3.0, 0.7, 127)
-note("timp", 45, 3.0, 0.7, 120)
-# heartbeat pulses after the hit
-for t, v in [(3.75, 95), (4.25, 85)]:
-    note("timp", 38, t, 0.3, v)
+# ---------------- 2.5 - 3.0 build: timpani roll on A, cymbal swell ----------------
+t = 2.5
+while t < 2.98:
+    note("timp", 45, t, 0.05, 70 + 57 * (t - 2.5) / 0.48)
+    note("drums", 51, t, 0.05, 25 + 55 * (t - 2.5) / 0.48)
+    t += 0.04
 
-# --- percussion: bass drum, crash ---
-note("drums", 35, 0.0, 0.5, 120)
-note("drums", 36, 0.0, 0.5, 110)
-note("drums", 35, 3.0, 1.0, 127)
-note("drums", 36, 3.0, 1.0, 127)
-note("drums", 49, 3.0, 1.5, 85)  # restrained crash, darker impact
-t = 2.25
-while t < 2.97:  # suspended-cymbal swell via soft rolls
-    note("drums", 51, t, 0.05, 30 + 60 * (t - 2.25) / 0.72)
-    t += 0.06
+# ---------------- 3.00 dramatic hit on D minor ----------------
+for ch in ("trb", "tuba", "oohs", "low", "horns", "choir", "trem"):
+    cc(ch, 11, 127, 3.0)
+chord("trb", [38, 45, 50, 53], 3.0, 0.75, 127)
+note("tuba", 38, 3.0, 0.85, 127)
+chord("horns", [57, 62, 65], 3.0, 0.9, 120)
+chord("choir", [57, 62, 65, 69], 3.0, DUR - 3.0, 112)
+chord("trem", [38, 50, 53, 57], 3.0, DUR - 3.0, 100)
+note("timp", 38, 3.0, 1.0, 127)
+note("timp", 45, 3.0, 1.0, 118)
+note("taiko", 38, 3.0, 1.0, 127)
+note("taiko", 31, 3.0, 1.0, 127)
+note("drums", 35, 3.0, 0.8, 127)
+note("drums", 49, 3.0, 1.5, 80)
 
-mid_file = mido.MidiFile(ticks_per_beat=TPB)
+# tail: horns sigh D -> A (inside D minor), taiko heartbeat
+note("horns", 62, 3.9, 0.5, 100)
+note("horns", 57, 4.4, DUR - 4.4, 92)
+note("horns", 50, 3.9, DUR - 3.9, 85)
+for t, v in [(3.75, 100), (3.95, 78), (4.5, 88), (4.7, 66)]:
+    note("taiko", 38, t, 0.4, v)
+
+mf = mido.MidiFile(ticks_per_beat=TPB)
 tr = mido.MidiTrack()
-mid_file.tracks.append(tr)
-tr.append(mido.MetaMessage("set_tempo", tempo=1_000_000))
-for name, prog_no in CH.items():
-    if prog_no is not None:
-        tr.append(mido.Message("program_change", channel=list(CH).index(name), program=prog_no))
-events.sort(key=lambda e: (e[0], e[1].type == "note_on"))
+mf.tracks.append(tr)
+tr.append(mido.MetaMessage("set_tempo", tempo=1_000_000))  # 1 beat = 1 s for easy timing
+for name, prog in CH.items():
+    if prog is not None:
+        tr.append(mido.Message("program_change", channel=CHAN[name], program=prog))
+ev.sort(key=lambda e: (e[0], e[1].type == "note_on"))
 last = 0
-for t, m in events:
+for t, m in ev:
     tick = int(round(t * TPB))
     tr.append(m.copy(time=tick - last))
     last = tick
-mid_file.save(OUT)
+mf.save(OUT)
 print("wrote", OUT)

@@ -17,7 +17,8 @@ MINT = (67, 245, 187, 255)  # Electra+ accent #43F5BB
 
 HEAD = [[("UNE CARTE POUR", ICE)], [("LES GOUVERNER", MINT)], [("TOUTES.", MINT)]]
 BODY = [
-    [("Avec la carte Electra, accédez à ", WHITE, "m"), ("plus d’un million", WHITE, "b")],
+    [("Plus besoin de multiplier les badges.", WHITE, "m")],
+    [("Avec la carte Electra, rechargez sur ", WHITE, "m"), ("plus d’un million", WHITE, "b")],
     [("de points de charge", WHITE, "b"), (" en Europe.", WHITE, "m")],
 ]
 
