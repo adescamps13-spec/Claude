@@ -1,5 +1,5 @@
 """Short epic orchestral sting (~5 s) for the animated visual.
-Dm -> Bb -> C -> D major (triumphant picardy) with a full-orchestra hit at 3.0 s.
+Dm -> Bb -> C -> dark D-minor hit at 3.0 s, then a dramatic Bb/D -> Dm lament (no major resolution).
 Writes a MIDI file; render with fluidsynth + an orchestral/GM soundfont."""
 import sys
 import mido
@@ -38,7 +38,9 @@ prog = [
     (0.0, 1.5, 38, [50, 53, 57], [62, 65, 69]),   # Dm
     (1.5, 2.25, 34, [46, 50, 53], [58, 62, 65]),  # Bb
     (2.25, 3.0, 36, [48, 52, 55], [60, 64, 67]),  # C
-    (3.0, DUR, 38, [50, 54, 57], [62, 66, 69]),   # D major
+    (3.0, 3.75, 38, [50, 53, 57], [62, 65, 69]),  # Dm hit
+    (3.75, 4.35, 38, [50, 53, 58], [62, 65, 70]),  # Bb/D (b6 tension)
+    (4.35, DUR, 38, [50, 53, 57], [62, 65, 69]),  # Dm
 ]
 
 # --- low strings + tuba/trombones: sustained bass, swelling ---
@@ -84,13 +86,17 @@ motif = [(0.25, 0.5, 62), (0.75, 0.75, 69), (1.5, 0.4, 70), (1.9, 0.35, 69),
 for t, d, n in motif:
     note("horns", n, t, d * 0.97, 92 + 15 * t / 3)
     note("horns", n - 12, t, d * 0.97, 80 + 15 * t / 3)
-# climax: trumpets + horns on D major
-chord("horns", [62, 66, 69], 3.0, DUR - 3.0, 120)
-chord("trumpets", [66, 69, 74], 3.0, DUR - 3.0, 118)
-note("trumpets", 62, 3.0, DUR - 3.0, 110)
-# trumpet pickup into the hit
+# trumpet pickup into the hit (part of the 0-3 s intro, unchanged)
 for t, n in [(2.75, 69), (2.875, 69), (2.9375, 71)]:
     note("trumpets", n, t, 0.06, 105)
+# climax: dark D-minor hit, horns low and full, no bright trumpets
+chord("horns", [50, 53, 57, 62], 3.0, 0.75, 122)
+# lament: horns lean on Bb (b6) and fall back to A
+note("horns", 70, 3.75, 0.6, 115)
+note("horns", 58, 3.75, 0.6, 105)
+note("horns", 69, 4.35, DUR - 4.35, 108)
+note("horns", 57, 4.35, DUR - 4.35, 100)
+chord("horns", [50, 53], 3.75, DUR - 3.75, 95)
 
 # --- timpani ---
 note("timp", 38, 0.0, 1.2, 120)
@@ -101,16 +107,18 @@ t = 2.35
 while t < 2.98:  # crescendo roll
     note("timp", 38, t, 0.05, 70 + 55 * (t - 2.35) / 0.63)
     t += 0.045
-note("timp", 38, 3.0, 2.0, 127)
-note("timp", 45, 3.0, 2.0, 120)
+note("timp", 38, 3.0, 0.7, 127)
+note("timp", 45, 3.0, 0.7, 120)
+# heartbeat pulses after the hit
+for t, v in [(3.75, 100), (3.95, 80), (4.35, 92), (4.55, 72)]:
+    note("timp", 38, t, 0.3, v)
 
 # --- percussion: bass drum, crash ---
 note("drums", 35, 0.0, 0.5, 120)
 note("drums", 36, 0.0, 0.5, 110)
 note("drums", 35, 3.0, 1.0, 127)
 note("drums", 36, 3.0, 1.0, 127)
-note("drums", 49, 3.0, 2.0, 120)
-note("drums", 57, 3.0, 2.0, 110)
+note("drums", 49, 3.0, 1.5, 85)  # restrained crash, darker impact
 t = 2.25
 while t < 2.97:  # suspended-cymbal swell via soft rolls
     note("drums", 51, t, 0.05, 30 + 60 * (t - 2.25) / 0.72)
